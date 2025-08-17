@@ -1,4 +1,4 @@
-minikube start --cpus=4 --memory=8192 --driver=docker
+minikube start --cpus=4 --memory=8192 --disk-size=40g --driver=docker
 kubectl create -f ./crd.yaml
 # helm repo add pingcap https://charts.pingcap.org/
 kubectl create namespace tidb-admin

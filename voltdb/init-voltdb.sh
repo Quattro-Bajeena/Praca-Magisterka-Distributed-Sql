@@ -1,4 +1,4 @@
-minikube start --cpus=4 --memory=8192 --driver=docker
+minikube start --cpus=4 --memory=8192 --disk-size=40g --driver=docker
 helm repo add voltdb https://voltdb-kubernetes-charts.storage.googleapis.com
 kubectl create secret docker-registry dockerio-registry --docker-username=paraon --docker-email=motmen001@gmail.com --docker-password=
 helm install mydb voltdb/voltdb        \
@@ -17,3 +17,15 @@ docker compose up
 
 docker.io/voltdb/voltdb-operator
 https://www.docker.com/voltdb/voltdb-operator
+
+git clone https://github.com/VoltDB/TollCollectDemo.git
+cd TollCollectDemo
+./mvnw clean package
+cd target/dev-edition-app-1.0-SNAPSHOT/dev-edition-app
+docker compose up
+
+cd TollCollectClient/target
+java -jar TollCollectClient-1.0-SNAPSHOT.jar
+
+
+mv docker-compose-3dbnodes.yaml docker-compose.yaml

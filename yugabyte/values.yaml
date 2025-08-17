@@ -1,0 +1,48 @@
+storage:
+  master:
+    count: 2
+    size: 10Gi
+    storageClass: standard
+  tserver:
+    count: 2
+    size: 10Gi
+    storageClass: standard
+
+resource:
+  master:
+    requests:
+      cpu: 0.5
+      memory: 0.5Gi
+    limits:
+      cpu: 0.5
+      memory: 0.5Gi
+  tserver:
+    requests:
+      cpu: 0.5
+      memory: 0.5Gi
+    limits:
+      cpu: 0.5
+      memory: 0.5Gi
+
+replicas:
+  master: 2
+  tserver: 2
+
+partition:
+  master: 2
+  tserver: 2
+
+# serviceEndpoints:
+#   - name: "yb-master-ui"
+#     app: "yb-master"
+#     # loadBalancerIP: "11.11.11.11"
+#     type: "LoadBalancer"
+#     ports:
+#       http-ui: "7000"
+#   - name: "yb-tserver-service"
+#     app: "yb-tserver"
+#     # loadBalancerIP: "22.22.22.22"
+#     type: "LoadBalancer"
+#     ports:
+#       tcp-yql-port: "9042"
+#       tcp-ysql-port: "5433"

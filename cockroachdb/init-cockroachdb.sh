@@ -1,4 +1,4 @@
-minikube start --cpus=4 --memory=8192 --driver=docker --ports=30257:30257,30080:30080
+minikube start --cpus=4 --memory=8192 --disk-size=40g --driver=docker --ports=30257:30257,30080:30080
 kubectl create -f ./cockroachdb-statefulset.yaml
 sleep 30
 kubectl get pods
