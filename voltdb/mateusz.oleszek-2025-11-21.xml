@@ -1,0 +1,22 @@
+<license>
+    <permit version="4">
+        <type>Volt Developer Edition</type>
+        <issuer>
+            <company>Volt Active Data</company>
+            <email>support@voltactivedata.com</email>
+            <url>https://voltactivedata.com/</url>
+        </issuer>
+        <issuedate>2025-08-13</issuedate>
+        <licensee>mateusz.oleszek@student.put.poznan.pl</licensee>
+        <expiration>2025-11-21</expiration>
+        <corecount max="100"/>
+        <features trial="true">
+            <allow name="Active(SP)" value="true"/>
+        </features>
+        <note>Not for production use</note>
+    </permit>
+    <signature>
+        302C02142436F744E845A57C1D3E1E71A0FAAF51A3D210
+        A3021433BB9E6E7E2FAE1EFB5D1478036D13F159025BD4
+    </signature>
+</license>
