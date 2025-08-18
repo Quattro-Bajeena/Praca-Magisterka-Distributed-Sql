@@ -1,6 +1,6 @@
-CREATE DATABASE yb_demo;
-GRANT ALL ON DATABASE yb_demo to yugabyte;
-\c yb_demo;
+CREATE DATABASE yb;
+GRANT ALL ON DATABASE yb to yugabyte;
+\c yb;
 \i share/schema.sql;
 \i share/products.sql;
 \i share/users.sql;

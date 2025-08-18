@@ -2,10 +2,9 @@ sysbench oltp_read_only \
   --pgsql-host=127.0.0.1 \
   --pgsql-port=5433 \
   --pgsql-user=yugabyte \
-  --pgsql-db=yb_demo \
-  --tables=2 \
-  --table-size=13000 \
-  --threads=2 \
+  --pgsql-db=yb \
+  --tables=4 \
+  --table-size=5000 \
   --report-interval=1 \
   --db-driver=pgsql \
   --range_key_partitioning=false \
