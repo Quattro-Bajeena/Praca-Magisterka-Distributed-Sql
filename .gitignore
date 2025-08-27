@@ -1,3 +1,5 @@
 voltdb/TollCollectDemo/
 sysbench/sysbench
 yugabyte/yugabyte-client-2025.1.0.1
+postgres-compatibility-index
+venv

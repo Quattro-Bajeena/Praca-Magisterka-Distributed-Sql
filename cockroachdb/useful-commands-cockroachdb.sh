@@ -11,3 +11,5 @@ minikube service cockroachdb-public --url
 curl $(minikube ip):30080
 # docker network connect host minikube
 # kubectl port-forward service/cockroachdb-public --address=0.0.0.0 30257:26257 30080:8080 > pf-cockroachdb-public.out &
+
+psql --dbname defaultdb --host localhost --port 30257 --username root
