@@ -1,4 +1,4 @@
-sysbench oltp_read_only \
+sysbench oltp_read_write \
   --pgsql-host=127.0.0.1 \
   --pgsql-port=5433 \
   --pgsql-user=yugabyte \

@@ -1,0 +1,1 @@
+https://docs.yugabyte.com/preview/develop/postgresql-compatibility/#unsupported-postgresql-features

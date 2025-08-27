@@ -1,0 +1,1 @@
+https://docs.pingcap.com/tidb/stable/mysql-compatibility

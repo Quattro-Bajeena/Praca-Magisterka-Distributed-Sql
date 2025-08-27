@@ -1,0 +1,22 @@
+sysbench oltp_read_write \
+  --pgsql-host=127.0.0.1 \
+  --tables=4 \
+  --table_size=5000  \
+  --range_key_partitioning=false \
+  --serial_cache_size=1000 \
+  --create_secondary=true \
+  --pgsql-db=yb \
+  --pgsql-user=yugabyte \
+  --db-driver=pgsql \
+  --pgsql-port=5433 \
+  --time=1800 \
+  --warmup-time=5 \
+  --num_rows_in_insert=10 \
+  --point_selects=10 \
+  --index_updates=10 \
+  --non_index_updates=10 \
+  --range_selects=false \
+  --thread-init-timeout=90 \
+  --threads=10 \
+  --report-interval=5 \
+  run
