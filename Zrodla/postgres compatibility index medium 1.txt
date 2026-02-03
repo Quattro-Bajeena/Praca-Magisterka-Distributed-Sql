@@ -1,0 +1,96 @@
+Update: In response to a trademark notice from the PostgreSQL Community Association of Canada, domain has been changed from “Postgres.Is” to pgscorecard.com
+
+When Amazon unveiled DSQL, social media buzzed with viral discussions about its touted PostgreSQL compatibility.
+Press enter or click to view image in full size
+
+Some even joked that if DSQL truly is PostgreSQL compatible, why Larry Ellison has not proclaimed Oracle to be the world’s most PostgreSQL-compatible enterprise database?
+Press enter or click to view image in full size
+Larry quoting Genghis Khan or otherway round?
+Press enter or click to view image in full size
+Everyone claiming they are Postgres, Circa 103-BC (colorized)
+
+This notion lingered in my mind when I encountered Gunnar (the former lead at Debezium) and Tudor (CTO of Xata) in a discussion about standardizing what it truly means to be PostgreSQL-compatible. Inspired by their exchange, I went on to create the Postgres Compatibility Index.
+Press enter or click to view image in full size
+The birth of PCI
+Press enter or click to view image in full size
+One index to rule them all
+Postgres Compatibility Index (PCI)
+
+    PCI runs a battery of tests on the database in question, poking at every feature Postgres has to offer.
+    Each feature is scored, depending on whether it works, or implodes spectacularly.
+    The results are weighted, calculated, and distilled into a single PCI score, a percentage of compatibility perfection.
+
+Press enter or click to view image in full size
+PCI in Action
+
+•The code for the PostgreSQL Compatibility Index (PCI) is freely available under the MIT License, because the journey to compatibility should be a collaborative effort.
+
+•Feel free to explore the repository and send a PR to help enhance PCI for the entire Postgres community:
+PostgreSQL Compatibility Index on GitHub
+Next Level :
+
+Web app is built upon the dynamic JSON output produced by running pci_autotest.py
+
+Visit => PG Scorecard
+Press enter or click to view image in full size
+
+You can compare various attributes of different postgres derivatives.
+Press enter or click to view image in full size
+
+Or
+Get Mayur (Do not drink & database)’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+You can see how postgres derivates fare for a specific attribute.
+Press enter or click to view image in full size
+
+    If you want your favorite postgres derivative to feature on website then just run pci_autotest.py and send me json output generated or if you are cloud provider then give me your free tier account. :-) .
+
+POSTGRES IS
+
+While the Postgres Compatibility Index meticulously addresses the technical facets of PostgreSQL, it also prompts a deeper, philosophical inquiry: What does it truly mean to be PostgreSQL? To explore this question, I draw upon Philip K. Dick’s “Human Is” as a metaphor, reflecting on the evolution of PostgreSQL over three transformative decades. Following series of memes eloquently conveys what a thousand words alone could not capture.
+Press enter or click to view image in full size
+
+    AI?
+
+Press enter or click to view image in full size
+
+2. GraphDB?
+Press enter or click to view image in full size
+
+3. Event streaming engine?
+Press enter or click to view image in full size
+
+4. Timeseries database?
+Press enter or click to view image in full size
+
+5. Document database?
+Press enter or click to view image in full size
+
+6. Geospatial analytics tool?
+Press enter or click to view image in full size
+
+7. A Search engine?
+Press enter or click to view image in full size
+
+8. Data-lake?
+Press enter or click to view image in full size
+
+9. Data Ecosystem
+Press enter or click to view image in full size
+
+10. A Working Class Hero
+Press enter or click to view image in full size
+
+11. Galactus?
+Press enter or click to view image in full size
+
+12. Postgres Is
+Press enter or click to view image in full size
+
+
+
+
+
+

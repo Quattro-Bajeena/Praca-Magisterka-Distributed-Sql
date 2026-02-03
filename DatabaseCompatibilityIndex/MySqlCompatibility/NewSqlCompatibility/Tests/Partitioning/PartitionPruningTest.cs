@@ -1,0 +1,56 @@
+using NSCI.Testing;using NSCI.Configuration;
+using System.Data.Common;
+
+namespace NSCI.Tests.Partitioning;
+
+[SqlTest(SqlFeatureCategory.Partitioning, "Test partition pruning in queries", DatabaseType.MySql)]
+public class PartitionPruningTest : SqlTest
+{
+    public override void Setup(DbConnection connection)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+        cmd.CommandText = @"CREATE TABLE logs (
+                            id INT,
+                            log_date DATE,
+                            message VARCHAR(255)
+                        ) PARTITION BY RANGE (YEAR(log_date)) (
+                            PARTITION p2022 VALUES LESS THAN (2023),
+                            PARTITION p2023 VALUES LESS THAN (2024),
+                            PARTITION p2024 VALUES LESS THAN MAXVALUE
+                        )";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "INSERT INTO logs VALUES (1, '2022-01-15', 'Old log')";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "INSERT INTO logs VALUES (2, '2023-06-20', 'Recent log')";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "INSERT INTO logs VALUES (3, '2024-02-10', 'Latest log')";
+        cmd.ExecuteNonQuery();
+    }
+
+    public override void Execute(DbConnection connection)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+
+        cmd.CommandText = "SELECT COUNT(*) FROM logs WHERE log_date >= '2023-01-01' AND log_date < '2024-01-01'";
+        object? count = cmd.ExecuteScalar();
+        AssertEqual(1L, (long)count!, "Should find 1 log from 2023");
+
+        cmd.CommandText = "SELECT COUNT(*) FROM logs WHERE log_date >= '2022-06-01'";
+        count = cmd.ExecuteScalar();
+        AssertEqual(2L, (long)count!, "Should find 2 logs from 2023 and 2024");
+
+        cmd.CommandText = "SELECT COUNT(*) FROM logs";
+        count = cmd.ExecuteScalar();
+        AssertEqual(3L, (long)count!, "Should find all 3 logs");
+    }
+
+    public override void Cleanup(DbConnection connection)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+        cmd.CommandText = "DROP TABLE logs";
+        cmd.ExecuteNonQuery();
+    }
+}
