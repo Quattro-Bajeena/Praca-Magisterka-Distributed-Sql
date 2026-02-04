@@ -1,25 +1,24 @@
-using NSCI.Configuration;
+using MySqlConnector;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Constraints;
 
-[SqlTest(SqlFeatureCategory.Constraints, "Test PRIMARY KEY constraint", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Constraints, "Test PRIMARY KEY constraint")]
 public class PrimaryKeyTest : SqlTest
 {
-    public override string? SetupCommand => "CREATE TABLE pk_test (id INT PRIMARY KEY, name VARCHAR(50))";
+    protected override string? SetupCommandMy => "CREATE TABLE pk_test (id INT PRIMARY KEY, name VARCHAR(50))";
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
         cmd.CommandText = "INSERT INTO pk_test VALUES (1, 'Alice')";
         cmd.ExecuteNonQuery();
 
-        // Try to insert duplicate primary key - expected to fail
         cmd.CommandText = "INSERT INTO pk_test VALUES (1, 'Bob')";
-        cmd.ExecuteNonQuery();
+        AssertThrows<MySqlException>(() => cmd.ExecuteNonQuery(), "Should throw exception for primary key constraint violation");
     }
 
-    public override string? CleanupCommand => "DROP TABLE pk_test";
+    protected override string? CleanupCommandMy => "DROP TABLE pk_test";
 }

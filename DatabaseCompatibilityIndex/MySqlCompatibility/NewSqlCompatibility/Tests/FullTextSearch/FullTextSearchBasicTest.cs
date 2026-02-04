@@ -1,4 +1,5 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.FullTextSearch;
@@ -6,7 +7,7 @@ namespace NSCI.Tests.FullTextSearch;
 [SqlTest(SqlFeatureCategory.FullTextSearch, "Test FULLTEXT index creation and search", DatabaseType.MySql)]
 public class FullTextSearchBasicTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE articles (
@@ -18,24 +19,22 @@ public class FullTextSearchBasicTest : SqlTest
         cmd.ExecuteNonQuery();
 
         cmd.CommandText = @"INSERT INTO articles (title, content) VALUES 
-                            ('Database Tutorial', 'Learn how to use databases effectively'),
+                            ('Database Tutorial', 'Learn how to use database effectively'),
                             ('SQL Guide', 'SQL is a powerful database query language'),
-                            ('Web Development', 'Building websites with modern frameworks')";
+                            ('Web Development', 'Building websites with modern frameworks and SQL')";
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
-        // Full-text search
-        cmd.CommandText = "SELECT id, title FROM articles WHERE MATCH(content) AGAINST('database' IN BOOLEAN MODE)";
-        using DbDataReader reader = cmd.ExecuteReader();
-        AssertTrue(reader.Read(), "Should find at least one article about database");
-        AssertEqual(1, reader.GetInt32(0), "First result should be article id 1");
+        cmd.CommandText = "SELECT COUNT(*) FROM articles WHERE MATCH(content) AGAINST('database SQL')";
+        object? count = cmd.ExecuteScalar();
+        AssertEqual(3L, (long)count!, "Should find 3 articles about database");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE articles";

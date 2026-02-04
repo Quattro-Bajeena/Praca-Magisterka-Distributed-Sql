@@ -1,13 +1,12 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.UserManagement;
 
-[SqlTest(SqlFeatureCategory.UserManagement, "Test REVOKE privileges", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.UserManagement, "Test REVOKE privileges")]
 public class RevokePrivilegesTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "CREATE TABLE revoke_test (id INT, data VARCHAR(100))";
@@ -17,7 +16,7 @@ public class RevokePrivilegesTest : SqlTest
         ExecuteIgnoringException(() => cmd.ExecuteNonQuery());
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -32,7 +31,7 @@ public class RevokePrivilegesTest : SqlTest
         AssertEqual(0L, (long)count!, "Table should be empty");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE IF EXISTS revoke_test";

@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.JSONOperations;
 
-[SqlTest(SqlFeatureCategory.JSONOperations, "Test JSON_LENGTH function", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.JSONOperations, "Test JSON_LENGTH function")]
 public class JsonLengthTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE items (
@@ -22,11 +22,10 @@ public class JsonLengthTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
-        // Get array length
         cmd.CommandText = "SELECT JSON_LENGTH(tags) FROM items WHERE id = 1";
         object? length = cmd.ExecuteScalar();
         AssertEqual(3L, (long)length!, "Should have 3 tags");
@@ -35,13 +34,12 @@ public class JsonLengthTest : SqlTest
         length = cmd.ExecuteScalar();
         AssertEqual(1L, (long)length!, "Should have 1 tag");
 
-        // Filter by JSON length
         cmd.CommandText = "SELECT COUNT(*) FROM items WHERE JSON_LENGTH(tags) > 1";
         object? count = cmd.ExecuteScalar();
         AssertEqual(1L, (long)count!, "Should find 1 item with more than 1 tag");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE items";

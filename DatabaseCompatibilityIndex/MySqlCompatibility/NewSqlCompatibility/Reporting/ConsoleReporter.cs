@@ -1,7 +1,16 @@
-﻿namespace NSCI.Reporting;
+﻿using NSCI.Configuration;
+using NSCI.Testing;
+
+namespace NSCI.Reporting;
 
 public class ConsoleReporter
 {
+    private readonly GeneralConfiguration _config;
+    public ConsoleReporter(GeneralConfiguration config)
+    {
+        _config = config;
+    }
+
     public void ReportTestStart(string testName, string description, string category)
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -11,7 +20,7 @@ public class ConsoleReporter
         Console.WriteLine($"  Description: {description}");
     }
 
-    public void ReportTestEnd(Testing.TestResult result)
+    public void ReportTestEnd(TestResult result)
     {
         if (result.Passed)
         {
@@ -36,6 +45,17 @@ public class ConsoleReporter
         }
 
         Console.WriteLine();
+    }
+
+    public void ReportTestFull(TestResult result)
+    {
+        if (result.Passed && _config.DisplayPassedTests == false)
+        {
+            return;
+        }
+
+        ReportTestStart(result.TestName, result.Description, result.Category.ToString());
+        ReportTestEnd(result);
     }
 
     public void ReportSummary(int total, int passed, int failed)

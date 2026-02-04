@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Performance;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test STRAIGHT_JOIN with hints", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Indexes, "Test STRAIGHT_JOIN with hints")]
 public class StraightJoinTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE dept (
@@ -31,7 +31,7 @@ public class StraightJoinTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -48,7 +48,7 @@ public class StraightJoinTest : SqlTest
         AssertEqual(2, count, "STRAIGHT_JOIN should find 2 IT department employees");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE emp";

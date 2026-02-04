@@ -1,4 +1,5 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Locking;
@@ -6,7 +7,7 @@ namespace NSCI.Tests.Locking;
 [SqlTest(SqlFeatureCategory.Locking, "Test FOR UPDATE with WHERE clause", DatabaseType.MySql)]
 public class SelectForUpdateWithWhereTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "CREATE TABLE items (item_id INT PRIMARY KEY, status VARCHAR(20), value INT)";
@@ -16,20 +17,21 @@ public class SelectForUpdateWithWhereTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
         cmd.CommandText = "BEGIN";
         cmd.ExecuteNonQuery();
 
-        // Lock only active items
         cmd.CommandText = "SELECT item_id, value FROM items WHERE status = 'active' FOR UPDATE";
-        using DbDataReader reader = cmd.ExecuteReader();
         int count = 0;
-        while (reader.Read())
+        using (DbDataReader reader = cmd.ExecuteReader())
         {
-            count++;
+            while (reader.Read())
+            {
+                count++;
+            }
         }
         AssertEqual(2, count, "Should lock 2 active items");
 
@@ -37,7 +39,7 @@ public class SelectForUpdateWithWhereTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE items";

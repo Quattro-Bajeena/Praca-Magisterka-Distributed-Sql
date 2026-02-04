@@ -1,13 +1,12 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Locking;
 
-[SqlTest(SqlFeatureCategory.Locking, "Test row locking prevents concurrent modification", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Locking, "Test row locking prevents concurrent modification")]
 public class RowLockingPreventsConcurrentModificationTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "CREATE TABLE orders (order_id INT PRIMARY KEY, status VARCHAR(20))";
@@ -17,11 +16,10 @@ public class RowLockingPreventsConcurrentModificationTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
-        // Lock row and verify it's locked
         cmd.CommandText = "BEGIN";
         cmd.ExecuteNonQuery();
 
@@ -29,20 +27,18 @@ public class RowLockingPreventsConcurrentModificationTest : SqlTest
         object? status = cmd.ExecuteScalar();
         AssertEqual("pending", (string)status!, "Status should be pending");
 
-        // This would be locked for other transactions, but we can update it in current transaction
         cmd.CommandText = "UPDATE orders SET status = 'processing' WHERE order_id = 1";
         cmd.ExecuteNonQuery();
 
         cmd.CommandText = "COMMIT";
         cmd.ExecuteNonQuery();
 
-        // Verify the update
         cmd.CommandText = "SELECT status FROM orders WHERE order_id = 1";
         object? newStatus = cmd.ExecuteScalar();
         AssertEqual("processing", (string)newStatus!, "Status should be updated to processing");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE orders";

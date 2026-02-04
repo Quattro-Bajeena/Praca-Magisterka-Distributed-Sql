@@ -1,5 +1,4 @@
 ﻿using NSCI.Configuration;
-using NSCI.Database;
 using NSCI.Reporting;
 using NSCI.Testing;
 namespace NSCI;
@@ -17,13 +16,15 @@ internal class Program
             TestConfiguration config = TestConfiguration.Load("appsettings.json");
             Console.WriteLine($"Configuration loaded:");
 
+            List<(DatabaseConfiguration, List<TestResult>)> databaseResults = new();
+
             foreach (DatabaseConfiguration dbConfig in config.Databases)
             {
-                Console.WriteLine($"  Database Type: {dbConfig.Type}");
-                Console.WriteLine($"  Connection String: {dbConfig.ConnectionString}\n");
+                Console.WriteLine($" Database Type: {dbConfig.Type}");
+                Console.WriteLine($" Connection String: {dbConfig.ConnectionString}\n");
                 Console.WriteLine($" Enabled: {dbConfig.Enabled}");
 
-                ConsoleReporter consoleReporter = new();
+                ConsoleReporter consoleReporter = new(config.General);
 
                 if (dbConfig.Enabled)
                 {
@@ -42,7 +43,7 @@ internal class Program
                         return;
                     }
 
-                    TestRunner testRunner = new(DatabaseProviderFactory.Create(dbConfig.Type), dbConfig.ConnectionString, consoleReporter);
+                    TestRunner testRunner = new(dbConfig, consoleReporter);
                     List<TestResult> results = testRunner.RunAllTests(filteredTests);
 
                     Console.WriteLine("\n");
@@ -51,14 +52,16 @@ internal class Program
                     int failedCount = results.Count(r => !r.Passed);
                     consoleReporter.ReportSummary(results.Count, passedCount, failedCount);
 
-                    // 6. Generate JSON report
-                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                    string reportPath = $"report_{timestamp}.json";
-                    JsonReportGenerator.GenerateReport(reportPath, results, dbConfig, testRunner.TestDatabaseName);
 
-                    Console.WriteLine($"\nTest database '{testRunner.TestDatabaseName}' remains available for manual inspection.");
+                    databaseResults.Add((dbConfig, results));
                 }
+
+
             }
+
+            string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            string reportPath = $"report_{timestamp}.json";
+            JsonReportGenerator.GenerateReport(reportPath, databaseResults);
         }
         catch (Exception ex)
         {

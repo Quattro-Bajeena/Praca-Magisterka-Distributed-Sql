@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Performance;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test USE INDEX hint", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Indexes, "Test USE INDEX hint")]
 public class UseIndexHintTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE users (
@@ -28,21 +28,23 @@ public class UseIndexHintTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
         cmd.CommandText = "SELECT * FROM users USE INDEX (idx_email) WHERE email = 'alice@example.com'";
-        using DbDataReader reader = cmd.ExecuteReader();
-        AssertTrue(reader.Read(), "Should find user with USE INDEX hint");
-        AssertEqual("alice", reader.GetString(2), "Should retrieve correct username");
+        using (DbDataReader reader = cmd.ExecuteReader())
+        {
+            AssertTrue(reader.Read(), "Should find user with USE INDEX hint");
+            AssertEqual("alice", reader.GetString(2), "Should retrieve correct username");
+        }
 
         cmd.CommandText = "SELECT COUNT(*) FROM users USE INDEX (idx_email) WHERE email LIKE '%@example.com'";
         object? count = cmd.ExecuteScalar();
-        AssertEqual(3L, (long)count!, "USE INDEX should still return correct count");
+        AssertEqual(3L, Convert.ToInt64(count!), "USE INDEX should still return correct count");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE users";

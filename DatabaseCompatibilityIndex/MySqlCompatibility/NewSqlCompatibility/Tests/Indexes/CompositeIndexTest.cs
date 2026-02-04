@@ -1,13 +1,12 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
-namespace NSCI.Tests.Advanced;
+namespace NSCI.Tests.Indexes;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test composite INDEXusing NSCI.Testing;", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Indexes, "Test composite INDEXusing NSCI.Testing;")]
 public class CompositeIndexTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "CREATE TABLE composite_idx (id INT PRIMARY KEY, first_name VARCHAR(50), last_name VARCHAR(50))";
@@ -20,7 +19,7 @@ public class CompositeIndexTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -29,7 +28,7 @@ public class CompositeIndexTest : SqlTest
         AssertEqual(1L, (long)count!, "Composite index should work");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP INDEX idx_name ON composite_idx";

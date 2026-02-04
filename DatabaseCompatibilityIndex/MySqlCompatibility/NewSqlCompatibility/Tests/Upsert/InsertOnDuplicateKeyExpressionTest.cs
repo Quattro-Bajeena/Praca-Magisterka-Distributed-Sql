@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Upsert;
 
-[SqlTest(SqlFeatureCategory.Upsert, "Test ON DUPLICATE KEY UPDATE with expressions", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Upsert, "Test ON DUPLICATE KEY UPDATE with expressions")]
 public class InsertOnDuplicateKeyExpressionTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "CREATE TABLE counters (id INT PRIMARY KEY, count INT)";
@@ -16,28 +16,26 @@ public class InsertOnDuplicateKeyExpressionTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
-        // Increment counter on duplicate
         cmd.CommandText = "INSERT INTO counters VALUES (1, 1) ON DUPLICATE KEY UPDATE count = count + VALUES(count)";
         cmd.ExecuteNonQuery();
 
         cmd.CommandText = "SELECT count FROM counters WHERE id = 1";
         object? result = cmd.ExecuteScalar();
-        AssertEqual(11L, (long)result!, "Counter should be incremented to 11");
+        AssertEqual(11L, Convert.ToInt64(result!), "Counter should be incremented to 11");
 
-        // Insert new counter
         cmd.CommandText = "INSERT INTO counters VALUES (2, 5) ON DUPLICATE KEY UPDATE count = count + VALUES(count)";
         cmd.ExecuteNonQuery();
 
         cmd.CommandText = "SELECT count FROM counters WHERE id = 2";
         result = cmd.ExecuteScalar();
-        AssertEqual(5L, (long)result!, "New counter should be 5");
+        AssertEqual(5L, Convert.ToInt64(result!), "New counter should be 5");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE counters";

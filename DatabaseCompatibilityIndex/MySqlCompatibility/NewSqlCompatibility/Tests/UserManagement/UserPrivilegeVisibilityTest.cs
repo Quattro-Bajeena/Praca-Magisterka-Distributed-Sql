@@ -1,13 +1,12 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.UserManagement;
 
-[SqlTest(SqlFeatureCategory.UserManagement, "Test user privilege visibility", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.UserManagement, "Test user privilege visibility")]
 public class UserPrivilegeVisibilityTest : SqlTest
 {
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 

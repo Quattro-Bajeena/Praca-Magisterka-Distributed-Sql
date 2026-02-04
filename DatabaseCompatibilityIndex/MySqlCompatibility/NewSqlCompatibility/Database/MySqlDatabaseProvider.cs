@@ -15,7 +15,7 @@ public class MySqlDatabaseProvider : IDatabaseProvider
         return $"CREATE DATABASE `{databaseName}` DEFAULT CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci";
     }
 
-    public string GenerateUseDatabaseSql(string databaseName)
+    public string GenerateSetDatabaseSql(string databaseName)
     {
         return $"USE `{databaseName}`";
     }

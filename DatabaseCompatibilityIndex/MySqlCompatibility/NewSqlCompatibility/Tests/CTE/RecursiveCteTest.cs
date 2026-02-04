@@ -2,12 +2,12 @@ using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
-namespace NSCI.Tests.Advanced;
+namespace NSCI.Tests.CTE;
 
 [SqlTest(SqlFeatureCategory.CTE, "Test recursive CTE", DatabaseType.MySql)]
 public class RecursiveCteTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "CREATE TABLE hierarchy (id INT PRIMARY KEY, parent_id INT, name VARCHAR(50))";
@@ -17,7 +17,7 @@ public class RecursiveCteTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -31,10 +31,10 @@ public class RecursiveCteTest : SqlTest
             SELECT COUNT(*) FROM cte";
 
         object? count = cmd.ExecuteScalar();
-        AssertEqual(1L, (long)count!, "Recursive CTE should work");
+        AssertEqual(4L, Convert.ToInt64(count!), "Recursive CTE should work");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE hierarchy";

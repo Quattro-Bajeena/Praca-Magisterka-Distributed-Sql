@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Performance;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test FORCE INDEX hint", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Indexes, "Test FORCE INDEX hint")]
 public class ForceIndexHintTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE products (
@@ -27,25 +27,27 @@ public class ForceIndexHintTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
         cmd.CommandText = "SELECT * FROM products FORCE INDEX (idx_category) WHERE category = 'Electronics'";
-        using DbDataReader reader = cmd.ExecuteReader();
         int count = 0;
-        while (reader.Read())
+        using (DbDataReader reader = cmd.ExecuteReader())
         {
-            count++;
+            while (reader.Read())
+            {
+                count++;
+            }
         }
         AssertEqual(2, count, "Should find 2 Electronics products with FORCE INDEX");
 
         cmd.CommandText = "SELECT COUNT(*) FROM products FORCE INDEX (idx_price) WHERE price > 100";
         object? result = cmd.ExecuteScalar();
-        AssertEqual(2L, (long)result!, "Should find 2 products with price > 100");
+        AssertEqual(2L, Convert.ToInt64(result!), "Should find 2 products with price > 100");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE products";

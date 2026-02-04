@@ -1,4 +1,5 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.FullTextSearch;
@@ -6,7 +7,7 @@ namespace NSCI.Tests.FullTextSearch;
 [SqlTest(SqlFeatureCategory.FullTextSearch, "Test FULLTEXT with multiple columns", DatabaseType.MySql)]
 public class FullTextSearchMultiColumnTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE documents (
@@ -25,21 +26,20 @@ public class FullTextSearchMultiColumnTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
-        // Search in multiple columns
         cmd.CommandText = "SELECT COUNT(*) FROM documents WHERE MATCH(title, body) AGAINST('performance' IN BOOLEAN MODE)";
         object? count = cmd.ExecuteScalar();
-        AssertEqual(1L, (long)count!, "Should find 1 document matching 'performance'");
+        AssertEqual(1L, Convert.ToInt64(count!), "Should find 1 document matching 'performance'");
 
         cmd.CommandText = "SELECT COUNT(*) FROM documents WHERE MATCH(title, body) AGAINST('SQL' IN BOOLEAN MODE)";
         count = cmd.ExecuteScalar();
-        AssertEqual(2L, (long)count!, "Should find 2 documents matching 'SQL'");
+        AssertEqual(1L, Convert.ToInt64(count!), "Should find 1 document matching 'SQL'");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE documents";

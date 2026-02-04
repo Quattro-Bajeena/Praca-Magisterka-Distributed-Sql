@@ -1,72 +1,131 @@
+using NSCI.Configuration;
 using System.Data.Common;
 
 namespace NSCI.Testing;
 
 public abstract class SqlTest
 {
-    /// <summary>
-    /// Optional: Override to provide a simple SQL command string.
-    /// If not overridden or returns null, Execute() method will be called instead.
-    /// </summary>
-    public virtual string? Command => null;
 
-    /// <summary>
-    /// Optional: Override to implement setup logic before Execute() is called.
-    /// Default implementation does nothing.
-    /// </summary>
-    public virtual void Setup(DbConnection connection)
+    private DatabaseConfiguration _config = null!;
+
+    public void Initialize(DatabaseConfiguration config)
     {
-        if (SetupCommand != null)
+        _config = config;
+    }
+
+    public void Setup(DbConnection connection)
+    {
+        switch (_config.Type)
+        {
+            case DatabaseType.MySql:
+                SetupMy(connection);
+                break;
+            case DatabaseType.PostgreSql:
+                SetupPg(connection);
+                break;
+        }
+    }
+
+    protected virtual void SetupMy(DbConnection connection)
+    {
+        if (SetupCommandMy != null)
         {
             using DbCommand command = connection.CreateCommand();
-            command.CommandText = SetupCommand;
+            command.CommandText = SetupCommandMy;
             command.ExecuteNonQuery();
         }
     }
 
-    /// <summary>
-    /// Override to implement custom test logic.
-    /// Default implementation executes the Command property if available.
-    /// </summary>
-    public virtual void Execute(DbConnection connection)
+    protected virtual void SetupPg(DbConnection connection)
     {
-        if (Command != null)
+        if (SetupCommandPg != null)
         {
             using DbCommand command = connection.CreateCommand();
-            command.CommandText = Command;
+            command.CommandText = SetupCommandPg;
             command.ExecuteNonQuery();
         }
     }
 
-    /// <summary>
-    /// Optional: Override to implement cleanup logic after Execute() is called.
-    /// Default implementation does nothing.
-    /// </summary>
-    public virtual void Cleanup(DbConnection connection)
+    public void Execute(DbConnection connection, DbConnection connectionSecond)
     {
-        if (CleanupCommand != null)
+        switch (_config.Type)
+        {
+            case DatabaseType.MySql:
+                ExecuteMy(connection, connectionSecond);
+                break;
+            case DatabaseType.PostgreSql:
+                ExecutePg(connection, connectionSecond);
+                break;
+        }
+    }
+
+    protected virtual void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
+    {
+        if (CommandMy != null)
         {
             using DbCommand command = connection.CreateCommand();
-            command.CommandText = CleanupCommand;
+            command.CommandText = CommandMy;
             command.ExecuteNonQuery();
         }
     }
 
-    /// <summary>
-    /// Optional: Override to provide a simple SQL setup command.
-    /// If not overridden or returns null, Setup() method will be used instead.
-    /// </summary>
-    public virtual string? SetupCommand => null;
+    protected virtual void ExecutePg(DbConnection connection, DbConnection connectionSecond)
+    {
+        if (CommandMy != null)
+        {
+            using DbCommand command = connection.CreateCommand();
+            command.CommandText = CommandMy;
+            command.ExecuteNonQuery();
+        }
+    }
 
-    /// <summary>
-    /// Optional: Override to provide a simple SQL cleanup command.
-    /// If not overridden or returns null, Cleanup() method will be used instead.
-    /// </summary>
-    public virtual string? CleanupCommand => null;
+    public void Cleanup(DbConnection connection)
+    {
+        switch (_config.Type)
+        {
+            case DatabaseType.MySql:
+                CleanupMy(connection);
+                break;
+            case DatabaseType.PostgreSql:
+                CleanupPg(connection);
+                break;
+        }
+    }
 
-    /// <summary>
-    /// Helper method for value assertions.
-    /// </summary>
+    protected virtual void CleanupMy(DbConnection connection)
+    {
+        if (CleanupCommandMy != null)
+        {
+            using DbCommand command = connection.CreateCommand();
+            command.CommandText = CleanupCommandMy;
+            command.ExecuteNonQuery();
+        }
+    }
+
+    protected virtual void CleanupPg(DbConnection connection)
+    {
+        if (CleanupCommandMy != null)
+        {
+            using DbCommand command = connection.CreateCommand();
+            command.CommandText = CleanupCommandPg;
+            command.ExecuteNonQuery();
+        }
+    }
+
+
+    protected virtual string? CommandMy => null;
+
+
+    protected virtual string? CommandPg => null;
+
+    protected virtual string? SetupCommandMy => null;
+
+    protected virtual string? SetupCommandPg => null;
+
+    protected virtual string? CleanupCommandMy => null;
+
+    protected virtual string? CleanupCommandPg => null;
+
     protected void AssertEqual<T>(T? expected, T? actual, string message = "")
     {
         if (!Equals(expected, actual))
@@ -78,9 +137,6 @@ public abstract class SqlTest
         }
     }
 
-    /// <summary>
-    /// Helper method for boolean assertions.
-    /// </summary>
     protected void AssertTrue(bool condition, string message = "")
     {
         if (!condition)
@@ -92,9 +148,6 @@ public abstract class SqlTest
         }
     }
 
-    /// <summary>
-    /// Helper method to assert row count from reader.
-    /// </summary>
     protected void AssertRowCount(DbDataReader reader, int expected)
     {
         int count = 0;
@@ -104,9 +157,6 @@ public abstract class SqlTest
         AssertEqual(expected, count, "Row count mismatch");
     }
 
-    /// <summary>
-    /// Helper method to assert non-empty result set.
-    /// </summary>
     protected void AssertHasRows(DbDataReader reader, string message = "")
     {
         if (!reader.HasRows)
@@ -118,9 +168,6 @@ public abstract class SqlTest
         }
     }
 
-    /// <summary>
-    /// Helper method to parse first column value from query result.
-    /// </summary>
     protected T? ExecuteScalar<T>(DbConnection connection, string sql)
     {
         using DbCommand command = connection.CreateCommand();
@@ -129,9 +176,6 @@ public abstract class SqlTest
         return result == null || result == DBNull.Value ? default : (T?)Convert.ChangeType(result, typeof(T));
     }
 
-    /// <summary>
-    /// Helper method to assert that an action throws a specific exception type.
-    /// </summary>
     protected void AssertThrows<TException>(Action action, string message) where TException : Exception
     {
         try
@@ -150,9 +194,6 @@ public abstract class SqlTest
         throw new AssertionException(message);
     }
 
-    /// <summary>
-    /// Helper method to execute an action and ignore any exception.
-    /// </summary>
     protected void ExecuteIgnoringException(Action action)
     {
         try
@@ -165,9 +206,6 @@ public abstract class SqlTest
     }
 }
 
-/// <summary>
-/// Custom exception for assertion failures.
-/// </summary>
 public class AssertionException : Exception
 {
     public AssertionException(string message) : base(message) { }

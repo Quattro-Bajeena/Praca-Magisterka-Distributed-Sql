@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Partitioning;
 
-[SqlTest(SqlFeatureCategory.Partitioning, "Test RANGE partitioning by column", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Partitioning, "Test RANGE partitioning by column")]
 public class RangePartitioningByColumnTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE employees (
@@ -21,7 +21,7 @@ public class RangePartitioningByColumnTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -47,7 +47,7 @@ public class RangePartitioningByColumnTest : SqlTest
         AssertEqual(1L, (long)highCount!, "Should have 1 employee in high salary partition");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE employees";

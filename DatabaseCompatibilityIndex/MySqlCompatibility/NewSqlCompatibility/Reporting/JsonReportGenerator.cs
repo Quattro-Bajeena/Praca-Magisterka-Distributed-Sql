@@ -9,11 +9,9 @@ public static class JsonReportGenerator
 {
     public static void GenerateReport(
         string outputPath,
-        List<TestResult> results,
-        DatabaseConfiguration databaseType,
-        string databaseName)
+        List<(DatabaseConfiguration, List<TestResult>)> results)
     {
-        JsonReport report = BuildReport(results, databaseType, databaseName);
+        JsonReport report = BuildReport(results);
 
         JsonSerializerOptions options = new()
         {
@@ -28,7 +26,14 @@ public static class JsonReportGenerator
         Console.WriteLine($"\n✓ Report generated: {outputPath}");
     }
 
-    private static JsonReport BuildReport(List<TestResult> results, DatabaseConfiguration configuration, string databaseName)
+    private static JsonReport BuildReport(List<(DatabaseConfiguration, List<TestResult>)> results)
+    {
+        return new JsonReport(
+            Reports: results.Select(r => BuildDatabaseReport(r.Item1, r.Item2)).ToList()
+        );
+    }
+
+    private static JsonDatabaseReport BuildDatabaseReport(DatabaseConfiguration configuration, List<TestResult> results)
     {
         JsonReportSummary summary = new(
             Total: results.Count,
@@ -38,11 +43,11 @@ public static class JsonReportGenerator
 
         Dictionary<string, JsonReportCategory> resultsByCategory = BuildCategoryGroups(results);
 
-        return new JsonReport(
+        return new JsonDatabaseReport(
             GeneratedAt: DateTime.UtcNow.ToString("O"),
             DatabaseType: configuration.Type.ToString(),
             ConfigurationName: configuration.Name,
-            DatabaseName: databaseName,
+            DatabaseName: configuration.DatabaseName ?? "unknown",
             ConnectionString: configuration.ConnectionString,
             Summary: summary,
             ResultsByCategory: resultsByCategory

@@ -1,15 +1,14 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Constraints;
 
-[SqlTest(SqlFeatureCategory.Constraints, "Test DEFAULT value", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Constraints, "Test DEFAULT value")]
 public class DefaultValueTest : SqlTest
 {
-    public override string? SetupCommand => "CREATE TABLE default_test (id INT PRIMARY KEY, status VARCHAR(20) DEFAULT 'active')";
+    protected override string? SetupCommandMy => "CREATE TABLE default_test (id INT PRIMARY KEY, status VARCHAR(20) DEFAULT 'active')";
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -21,5 +20,5 @@ public class DefaultValueTest : SqlTest
         AssertEqual("active", status?.ToString(), "Default value should be applied");
     }
 
-    public override string? CleanupCommand => "DROP TABLE default_test";
+    protected override string? CleanupCommandMy => "DROP TABLE default_test";
 }

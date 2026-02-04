@@ -1,13 +1,12 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
-namespace NSCI.Tests.Advanced;
+namespace NSCI.Tests.Views;
 
-[SqlTest(SqlFeatureCategory.Views, "Test CREATE and SELECT from VIEW", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Views, "Test CREATE and SELECT from VIEW")]
 public class ViewTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "CREATE TABLE view_base (id INT PRIMARY KEY, name VARCHAR(50), status VARCHAR(20))";
@@ -17,7 +16,7 @@ public class ViewTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -29,7 +28,7 @@ public class ViewTest : SqlTest
         AssertEqual(1L, (long)count!, "VIEW should work correctly");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP VIEW IF EXISTS active_items";

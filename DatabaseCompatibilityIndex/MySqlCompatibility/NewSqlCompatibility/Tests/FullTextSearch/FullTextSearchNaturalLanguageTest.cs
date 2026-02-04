@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.FullTextSearch;
 
-[SqlTest(SqlFeatureCategory.FullTextSearch, "Test FULLTEXT natural language search", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.FullTextSearch, "Test FULLTEXT natural language search")]
 public class FullTextSearchNaturalLanguageTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE blog_posts (
@@ -24,11 +24,10 @@ public class FullTextSearchNaturalLanguageTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
-        // Natural language search (default mode)
         cmd.CommandText = "SELECT COUNT(*) FROM blog_posts WHERE MATCH(title, content) AGAINST('MySQL')";
         object? count = cmd.ExecuteScalar();
         AssertEqual(3L, (long)count!, "Natural language search should find 3 posts about MySQL");
@@ -38,7 +37,7 @@ public class FullTextSearchNaturalLanguageTest : SqlTest
         AssertEqual(1L, (long)count!, "Should find 1 post about optimization");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE blog_posts";

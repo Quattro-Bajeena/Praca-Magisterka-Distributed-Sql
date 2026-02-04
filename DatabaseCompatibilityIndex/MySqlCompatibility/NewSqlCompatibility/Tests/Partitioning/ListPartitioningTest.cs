@@ -1,4 +1,5 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Partitioning;
@@ -6,14 +7,14 @@ namespace NSCI.Tests.Partitioning;
 [SqlTest(SqlFeatureCategory.Partitioning, "Test LIST partitioning", DatabaseType.MySql)]
 public class ListPartitioningTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE user_activities (
                             id INT,
                             username VARCHAR(100),
                             region VARCHAR(50)
-                        ) PARTITION BY LIST (COLUMN(region)) (
+                        ) PARTITION BY LIST COLUMNS(region) (
                             PARTITION p_us VALUES IN ('CA', 'NY', 'TX'),
                             PARTITION p_eu VALUES IN ('UK', 'DE', 'FR'),
                             PARTITION p_other VALUES IN ('JP', 'AU', 'BR')
@@ -21,7 +22,7 @@ public class ListPartitioningTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -36,21 +37,16 @@ public class ListPartitioningTest : SqlTest
 
         cmd.CommandText = "SELECT COUNT(*) FROM user_activities WHERE region IN ('CA', 'NY', 'TX')";
         object? usCount = cmd.ExecuteScalar();
-        AssertEqual(1L, (long)usCount!, "Should have 1 US user");
+        AssertEqual(1L, Convert.ToInt64(usCount!), "Should have 1 US user");
 
         cmd.CommandText = "SELECT COUNT(*) FROM user_activities WHERE region IN ('UK', 'DE', 'FR')";
         object? euCount = cmd.ExecuteScalar();
-        AssertEqual(1L, (long)euCount!, "Should have 1 EU user");
+        AssertEqual(1L, Convert.ToInt64(euCount!), "Should have 1 EU user");
 
         cmd.CommandText = "SELECT COUNT(*) FROM user_activities WHERE region IN ('JP', 'AU', 'BR')";
         object? otherCount = cmd.ExecuteScalar();
-        AssertEqual(1L, (long)otherCount!, "Should have 1 other region user");
+        AssertEqual(1L, Convert.ToInt64(otherCount!), "Should have 1 other region user");
     }
 
-    public override void Cleanup(DbConnection connection)
-    {
-        using DbCommand cmd = connection.CreateCommand();
-        cmd.CommandText = "DROP TABLE user_activities";
-        cmd.ExecuteNonQuery();
-    }
+    protected override string? CleanupCommandMy => "DROP TABLE user_activities";
 }

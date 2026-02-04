@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.JSONOperations;
 
-[SqlTest(SqlFeatureCategory.JSONOperations, "Test JSON_SET function", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.JSONOperations, "Test JSON_SET function")]
 public class JsonSetTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE config (
@@ -19,20 +19,17 @@ public class JsonSetTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
-        // Update JSON value
         cmd.CommandText = "UPDATE config SET settings = JSON_SET(settings, '$.theme', 'light') WHERE id = 1";
         cmd.ExecuteNonQuery();
 
-        // Verify the update
         cmd.CommandText = "SELECT JSON_EXTRACT(settings, '$.theme') FROM config WHERE id = 1";
         object? theme = cmd.ExecuteScalar();
         AssertTrue(theme != null && theme.ToString()!.Contains("light"), "Theme should be updated to 'light'");
 
-        // Add new key
         cmd.CommandText = "UPDATE config SET settings = JSON_SET(settings, '$.timezone', 'UTC') WHERE id = 1";
         cmd.ExecuteNonQuery();
 
@@ -41,7 +38,7 @@ public class JsonSetTest : SqlTest
         AssertTrue(tz != null && tz.ToString()!.Contains("UTC"), "Should have new timezone key");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE config";

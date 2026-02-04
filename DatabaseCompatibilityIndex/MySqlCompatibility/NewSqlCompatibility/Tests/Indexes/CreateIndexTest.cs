@@ -1,13 +1,12 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
-namespace NSCI.Tests.Advanced;
+namespace NSCI.Tests.Indexes;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test CREATE INDEX", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Indexes, "Test CREATE INDEX")]
 public class CreateIndexTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "CREATE TABLE indexed_table (id INT PRIMARY KEY, email VARCHAR(100), name VARCHAR(50))";
@@ -17,7 +16,7 @@ public class CreateIndexTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -29,7 +28,7 @@ public class CreateIndexTest : SqlTest
         AssertEqual(1L, (long)count!, "Indexed query should work");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP INDEX idx_email ON indexed_table";

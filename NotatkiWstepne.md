@@ -11,3 +11,5 @@ https://dl.acm.org/doi/abs/10.14778/3415478.3415535
 
 
 https://www.yugabyte.com/blog/implementing-distributed-transactions-the-google-way-percolator-vs-spanner/
+
+- pobrać całe repozytorium TiDB i poszukać w kodzie wiadomości "is not implemented yet"

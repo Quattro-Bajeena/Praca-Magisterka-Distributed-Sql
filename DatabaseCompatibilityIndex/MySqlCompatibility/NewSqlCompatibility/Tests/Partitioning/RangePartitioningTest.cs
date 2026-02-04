@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Partitioning;
 
-[SqlTest(SqlFeatureCategory.Partitioning, "Test RANGE partitioning by date", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Partitioning, "Test RANGE partitioning by date")]
 public class RangePartitioningTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE sales_data (
@@ -22,7 +22,7 @@ public class RangePartitioningTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -47,10 +47,5 @@ public class RangePartitioningTest : SqlTest
         AssertEqual(1L, (long)count!, "Should have 1 row in 2022 partition");
     }
 
-    public override void Cleanup(DbConnection connection)
-    {
-        using DbCommand cmd = connection.CreateCommand();
-        cmd.CommandText = "DROP TABLE sales_data";
-        cmd.ExecuteNonQuery();
-    }
+    protected override string? CleanupCommandMy => "DROP TABLE sales_data";
 }

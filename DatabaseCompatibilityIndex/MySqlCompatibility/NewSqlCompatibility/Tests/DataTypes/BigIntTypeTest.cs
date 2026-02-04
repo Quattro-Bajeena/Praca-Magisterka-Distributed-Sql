@@ -1,13 +1,12 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.DataTypes;
 
-[SqlTest(SqlFeatureCategory.DataTypes, "Test BIGINT data type", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.DataTypes, "Test BIGINT data type")]
 public class BigIntTypeTest : SqlTest
 {
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 

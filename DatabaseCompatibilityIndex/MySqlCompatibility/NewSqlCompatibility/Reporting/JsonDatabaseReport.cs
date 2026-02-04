@@ -1,6 +1,9 @@
 ﻿namespace NSCI.Reporting;
 
 public record JsonReport(
+    List<JsonDatabaseReport> Reports);
+
+public record JsonDatabaseReport(
     string GeneratedAt,
     string DatabaseType,
     string ConfigurationName,

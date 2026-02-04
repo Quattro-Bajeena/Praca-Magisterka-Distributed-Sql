@@ -1,15 +1,14 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Constraints;
 
-[SqlTest(SqlFeatureCategory.Constraints, "Test AUTO_INCREMENT", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Constraints, "Test AUTO_INCREMENT")]
 public class AutoIncrementTest : SqlTest
 {
-    public override string? SetupCommand => "CREATE TABLE autoinc_test (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50))";
+    protected override string? SetupCommandMy => "CREATE TABLE autoinc_test (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50))";
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -21,8 +20,8 @@ public class AutoIncrementTest : SqlTest
 
         cmd.CommandText = "SELECT id FROM autoinc_test WHERE name = 'Bob'";
         object? id = cmd.ExecuteScalar();
-        AssertEqual(2L, (long)id!, "AUTO_INCREMENT should assign sequential IDs");
+        AssertEqual(2, Convert.ToInt32(id!), "AUTO_INCREMENT should assign sequential IDs");
     }
 
-    public override string? CleanupCommand => "DROP TABLE autoinc_test";
+    protected override string? CleanupCommandMy => "DROP TABLE autoinc_test";
 }

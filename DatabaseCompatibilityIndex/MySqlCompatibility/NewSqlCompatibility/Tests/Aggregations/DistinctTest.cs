@@ -1,13 +1,12 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Aggregations;
 
-[SqlTest(SqlFeatureCategory.Aggregations, "Test DISTINCT", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Aggregations, "Test DISTINCT")]
 public class DistinctTest : SqlTest
 {
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 

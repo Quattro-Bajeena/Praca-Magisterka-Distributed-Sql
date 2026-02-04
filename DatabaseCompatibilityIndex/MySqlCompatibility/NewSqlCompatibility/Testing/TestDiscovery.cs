@@ -4,10 +4,6 @@ namespace NSCI.Testing;
 
 public static class TestDiscovery
 {
-    /// <summary>
-    /// Discovers all test classes that inherit from SqlTest and have [SqlTest] attribute.
-    /// Returns a list of (Type, SqlTestAttribute) tuples.
-    /// </summary>
     public static List<(Type Type, SqlTestAttribute Attribute)> DiscoverTests()
     {
         List<(Type, SqlTestAttribute)> result = new List<(Type, SqlTestAttribute)>();

@@ -1,22 +1,21 @@
-using NSCI.Configuration;
+using MySqlConnector;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Constraints;
 
-[SqlTest(SqlFeatureCategory.Constraints, "Test NOT NULL constraint", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Constraints, "Test NOT NULL constraint")]
 public class NotNullConstraintTest : SqlTest
 {
-    public override string? SetupCommand => "CREATE TABLE notnull_test (id INT PRIMARY KEY, required_field VARCHAR(50) NOT NULL)";
+    protected override string? SetupCommandMy => "CREATE TABLE notnull_test (id INT PRIMARY KEY, required_field VARCHAR(50) NOT NULL)";
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
-        // Try to insert NULL in NOT NULL column - expected to fail
         cmd.CommandText = "INSERT INTO notnull_test VALUES (1, NULL)";
-        cmd.ExecuteNonQuery();
+        AssertThrows<MySqlException>(() => cmd.ExecuteNonQuery(), "Should throw exception for NOT NULL constraint violation");
     }
 
-    public override string? CleanupCommand => "DROP TABLE notnull_test";
+    protected override string? CleanupCommandMy => "DROP TABLE notnull_test";
 }

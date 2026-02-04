@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Locking;
 
-[SqlTest(SqlFeatureCategory.Locking, "Test SELECT...FOR SHARE (shared lock)", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Locking, "Test SELECT...FOR SHARE (shared lock)")]
 public class SelectForShareTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "CREATE TABLE inventory (product_id INT PRIMARY KEY, stock INT)";
@@ -16,28 +16,26 @@ public class SelectForShareTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
-        // Lock row for shared access
         cmd.CommandText = "BEGIN";
         cmd.ExecuteNonQuery();
 
         cmd.CommandText = "SELECT stock FROM inventory WHERE product_id = 1 FOR SHARE";
         object? stock = cmd.ExecuteScalar();
-        AssertEqual(100L, (long)stock!, "Should read shared-locked row");
+        AssertEqual(100, (int)stock!, "Should read shared-locked row");
 
         cmd.CommandText = "COMMIT";
         cmd.ExecuteNonQuery();
 
-        // Verify data integrity
         cmd.CommandText = "SELECT stock FROM inventory WHERE product_id = 1";
         object? finalStock = cmd.ExecuteScalar();
-        AssertEqual(100L, (long)finalStock!, "Stock should remain unchanged");
+        AssertEqual(100, (int)finalStock!, "Stock should remain unchanged");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE inventory";

@@ -1,9 +1,8 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 namespace NSCI.Tests.BasicQueries;
 
-[SqlTest(SqlFeatureCategory.BasicQueries, "SELECT constant value 1", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.BasicQueries, "SELECT constant value 1")]
 public class SelectConstantTest : SqlTest
 {
-    public override string Command => "SELECT 1";
+    protected override string CommandMy => "SELECT 1";
 }

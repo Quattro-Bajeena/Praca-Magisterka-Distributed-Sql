@@ -1,13 +1,12 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.UserManagement;
 
-[SqlTest(SqlFeatureCategory.UserManagement, "Test GRANT privileges", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.UserManagement, "Test GRANT privileges")]
 public class GrantPrivilegesTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "CREATE TABLE test_table (id INT PRIMARY KEY, name VARCHAR(50))";
@@ -17,7 +16,7 @@ public class GrantPrivilegesTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -35,7 +34,7 @@ public class GrantPrivilegesTest : SqlTest
         AssertEqual(1L, (long)count!, "Table should still be accessible");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE IF EXISTS test_table";

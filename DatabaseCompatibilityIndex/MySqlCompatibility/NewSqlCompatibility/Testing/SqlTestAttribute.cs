@@ -9,6 +9,11 @@ public class SqlTestAttribute : Attribute
     public string Description { get; }
     public DatabaseType[] DatabaseTypes { get; }
 
+    public SqlTestAttribute(SqlFeatureCategory category, string description)
+        : this(category, description, [DatabaseType.MySql, DatabaseType.PostgreSql])
+    {
+    }
+
     public SqlTestAttribute(SqlFeatureCategory category, string description, DatabaseType databaseType)
         : this(category, description, [databaseType])
     {
@@ -18,6 +23,6 @@ public class SqlTestAttribute : Attribute
     {
         Category = category;
         Description = description;
-        DatabaseTypes = databaseTypes.Length == 0 ? new[] { DatabaseType.MySql } : databaseTypes;
+        DatabaseTypes = databaseTypes;
     }
 }

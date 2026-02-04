@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.FullTextSearch;
 
-[SqlTest(SqlFeatureCategory.FullTextSearch, "Test FULLTEXT boolean mode operators", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.FullTextSearch, "Test FULLTEXT boolean mode operators")]
 public class FullTextSearchBooleanModeTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE posts (
@@ -25,28 +25,24 @@ public class FullTextSearchBooleanModeTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
-        // Search with inclusion operator (+)
         cmd.CommandText = "SELECT COUNT(*) FROM posts WHERE MATCH(content) AGAINST('+programming' IN BOOLEAN MODE)";
         object? count = cmd.ExecuteScalar();
         AssertEqual(1L, (long)count!, "Should find 1 post with '+programming'");
 
-        // Search with exclusion operator (-)
         cmd.CommandText = "SELECT COUNT(*) FROM posts WHERE MATCH(content) AGAINST('+language -python' IN BOOLEAN MODE)";
         count = cmd.ExecuteScalar();
-        // Language doesn't appear in any post, so this might return 0
         AssertTrue((long)count! >= 0, "Exclusion search should work");
 
-        // Search with phrase operator ("")
         cmd.CommandText = "SELECT COUNT(*) FROM posts WHERE MATCH(content) AGAINST('\"is great\"' IN BOOLEAN MODE)";
         count = cmd.ExecuteScalar();
         AssertEqual(1L, (long)count!, "Should find 1 post with phrase 'is great'");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE posts";

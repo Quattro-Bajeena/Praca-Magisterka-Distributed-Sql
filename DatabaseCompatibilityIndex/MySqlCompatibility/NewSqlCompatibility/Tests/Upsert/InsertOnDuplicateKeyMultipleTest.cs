@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Upsert;
 
-[SqlTest(SqlFeatureCategory.Upsert, "Test INSERT...ON DUPLICATE KEY with multiple rows", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Upsert, "Test INSERT...ON DUPLICATE KEY with multiple rows")]
 public class InsertOnDuplicateKeyMultipleTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "CREATE TABLE products (product_id INT PRIMARY KEY, name VARCHAR(100), quantity INT)";
@@ -16,11 +16,10 @@ public class InsertOnDuplicateKeyMultipleTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
-        // Upsert multiple rows
         cmd.CommandText = @"INSERT INTO products VALUES 
                             (1, 'Laptop Pro', 3), 
                             (2, 'Wireless Mouse', 15),
@@ -30,17 +29,16 @@ public class InsertOnDuplicateKeyMultipleTest : SqlTest
                             quantity = VALUES(quantity)";
         cmd.ExecuteNonQuery();
 
-        // Verify all rows
         cmd.CommandText = "SELECT COUNT(*) FROM products";
         object? count = cmd.ExecuteScalar();
-        AssertEqual(3L, (long)count!, "Should have 3 products");
+        AssertEqual(3L, Convert.ToInt64(count!), "Should have 3 products");
 
         cmd.CommandText = "SELECT quantity FROM products WHERE product_id = 1";
         object? qty = cmd.ExecuteScalar();
-        AssertEqual(3L, (long)qty!, "Laptop quantity should be updated to 3");
+        AssertEqual(3L, Convert.ToInt64(qty!), "Laptop quantity should be updated to 3");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE products";

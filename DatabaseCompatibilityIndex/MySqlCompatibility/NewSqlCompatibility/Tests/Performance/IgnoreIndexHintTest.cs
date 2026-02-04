@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Performance;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test IGNORE INDEX hint", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Indexes, "Test IGNORE INDEX hint")]
 public class IgnoreIndexHintTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE orders (
@@ -27,7 +27,7 @@ public class IgnoreIndexHintTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -45,7 +45,7 @@ public class IgnoreIndexHintTest : SqlTest
         AssertEqual(2, rowCount, "Should find 2 matching orders ignoring indexes");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE orders";

@@ -1,13 +1,13 @@
-using NSCI.Configuration;
+using MySqlConnector;
 using NSCI.Testing;
 using System.Data.Common;
 
-namespace NSCI.Tests.Advanced;
+namespace NSCI.Tests.Indexes;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test UNIQUE INDEX", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Indexes, "Test UNIQUE INDEX")]
 public class UniqueIndexTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "CREATE TABLE unique_indexed (id INT PRIMARY KEY, code VARCHAR(20))";
@@ -20,9 +20,14 @@ public class UniqueIndexTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override string? Command => "INSERT INTO unique_indexed VALUES (2, 'ABC123')";
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+        cmd.CommandText = "INSERT INTO unique_indexed VALUES (2, 'ABC123')";
+        AssertThrows<MySqlException>(() => cmd.ExecuteNonQuery(), "Should throw exception for unique index violation");
+    }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP INDEX uk_code ON unique_indexed";

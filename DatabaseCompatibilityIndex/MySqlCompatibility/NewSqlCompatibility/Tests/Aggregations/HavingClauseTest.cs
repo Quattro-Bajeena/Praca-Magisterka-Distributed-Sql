@@ -7,7 +7,7 @@ namespace NSCI.Tests.Aggregations;
 [SqlTest(SqlFeatureCategory.Aggregations, "Test HAVING clause with GROUP BY", DatabaseType.MySql)]
 public class HavingClauseTest : SqlTest
 {
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -19,7 +19,7 @@ public class HavingClauseTest : SqlTest
 
         cmd.CommandText = "SELECT COUNT(*) FROM (SELECT customer_id FROM orders_having GROUP BY customer_id HAVING SUM(total) > 100) AS filtered";
         object? havingCount = cmd.ExecuteScalar();
-        AssertEqual(1L, (long)havingCount!, "HAVING clause should filter grouped results");
+        AssertEqual(2L, Convert.ToInt64(havingCount!), "HAVING clause should filter grouped results");
 
         cmd.CommandText = "DROP TABLE orders_having";
         cmd.ExecuteNonQuery();

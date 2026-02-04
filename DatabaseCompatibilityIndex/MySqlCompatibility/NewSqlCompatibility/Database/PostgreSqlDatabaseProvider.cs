@@ -15,9 +15,8 @@ public class PostgreSqlDatabaseProvider : IDatabaseProvider
         return $"CREATE DATABASE \"{databaseName}\"";
     }
 
-    public string GenerateUseDatabaseSql(string databaseName)
+    public string GenerateSetDatabaseSql(string databaseName)
     {
-        // PostgreSQL doesn't have USE statement, connection string must specify the database
         throw new NotSupportedException("PostgreSQL doesn't support USE statement. Include database name in connection string.");
     }
 }

@@ -5,6 +5,7 @@ namespace NSCI.Configuration;
 
 public class TestConfiguration
 {
+    public GeneralConfiguration General { get; set; } = new();
     public List<DatabaseConfiguration> Databases { get; set; } = new();
 
     public static TestConfiguration Load(string path)

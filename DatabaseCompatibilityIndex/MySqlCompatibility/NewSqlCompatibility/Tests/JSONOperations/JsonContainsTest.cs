@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.JSONOperations;
 
-[SqlTest(SqlFeatureCategory.JSONOperations, "Test JSON_CONTAINS function", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.JSONOperations, "Test JSON_CONTAINS function")]
 public class JsonContainsTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE products (
@@ -22,11 +22,10 @@ public class JsonContainsTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
-        // Check if value exists in array
         cmd.CommandText = "SELECT COUNT(*) FROM products WHERE JSON_CONTAINS(attributes, '\"red\"', '$.colors')";
         object? count = cmd.ExecuteScalar();
         AssertEqual(1L, (long)count!, "Should find product with 'red' color");
@@ -35,13 +34,12 @@ public class JsonContainsTest : SqlTest
         count = cmd.ExecuteScalar();
         AssertEqual(1L, (long)count!, "Should find product with 'blue' color");
 
-        // Check if object contains key-value
         cmd.CommandText = "SELECT COUNT(*) FROM products WHERE JSON_CONTAINS(attributes, '{\"size\": \"large\"}')";
         count = cmd.ExecuteScalar();
         AssertEqual(1L, (long)count!, "Should find product with size 'large'");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE products";

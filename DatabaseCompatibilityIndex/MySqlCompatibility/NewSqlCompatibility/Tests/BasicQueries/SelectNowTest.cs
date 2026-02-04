@@ -1,9 +1,8 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 namespace NSCI.Tests.BasicQueries;
 
-[SqlTest(SqlFeatureCategory.BasicQueries, "SELECT current timestamp", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.BasicQueries, "SELECT current timestamp")]
 public class SelectNowTest : SqlTest
 {
-    public override string Command => "SELECT NOW()";
+    protected override string CommandMy => "SELECT NOW()";
 }

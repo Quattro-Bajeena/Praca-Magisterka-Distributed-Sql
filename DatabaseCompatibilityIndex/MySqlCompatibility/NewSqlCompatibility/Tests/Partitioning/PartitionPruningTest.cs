@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Partitioning;
 
-[SqlTest(SqlFeatureCategory.Partitioning, "Test partition pruning in queries", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Partitioning, "Test partition pruning in queries")]
 public class PartitionPruningTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE logs (
@@ -30,7 +30,7 @@ public class PartitionPruningTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -47,7 +47,7 @@ public class PartitionPruningTest : SqlTest
         AssertEqual(3L, (long)count!, "Should find all 3 logs");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE logs";

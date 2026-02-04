@@ -1,13 +1,12 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.UserManagement;
 
-[SqlTest(SqlFeatureCategory.UserManagement, "Test GRANT on specific columns", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.UserManagement, "Test GRANT on specific columns")]
 public class GrantColumnPrivilegesTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "CREATE TABLE sensitive_data (id INT, name VARCHAR(100), salary DECIMAL(10,2), ssn VARCHAR(11))";
@@ -17,7 +16,7 @@ public class GrantColumnPrivilegesTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -29,7 +28,7 @@ public class GrantColumnPrivilegesTest : SqlTest
         AssertEqual(1L, (long)count!, "Table should have data");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE IF EXISTS sensitive_data";

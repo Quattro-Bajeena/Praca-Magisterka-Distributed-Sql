@@ -1,13 +1,12 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Aggregations;
 
-[SqlTest(SqlFeatureCategory.Aggregations, "Test MIN and MAX aggregate functions", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Aggregations, "Test MIN and MAX aggregate functions")]
 public class MinMaxAggregateTest : SqlTest
 {
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -19,11 +18,11 @@ public class MinMaxAggregateTest : SqlTest
 
         cmd.CommandText = "SELECT MIN(val) FROM values_table";
         object? min = cmd.ExecuteScalar();
-        AssertEqual(10L, (long)min!, "MIN should be 10");
+        AssertEqual(10L, Convert.ToInt64(min!), "MIN should be 10");
 
         cmd.CommandText = "SELECT MAX(val) FROM values_table";
         object? max = cmd.ExecuteScalar();
-        AssertEqual(100L, (long)max!, "MAX should be 100");
+        AssertEqual(100L, Convert.ToInt64(max!), "MAX should be 100");
 
         cmd.CommandText = "DROP TABLE values_table";
         cmd.ExecuteNonQuery();

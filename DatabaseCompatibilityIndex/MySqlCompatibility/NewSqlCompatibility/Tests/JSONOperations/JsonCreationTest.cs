@@ -1,12 +1,12 @@
-using NSCI.Testing;using NSCI.Configuration;
+using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.JSONOperations;
 
-[SqlTest(SqlFeatureCategory.JSONOperations, "Test JSON_ARRAY and JSON_OBJECT functions", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.JSONOperations, "Test JSON_ARRAY and JSON_OBJECT functions")]
 public class JsonCreationTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = @"CREATE TABLE json_data (
@@ -16,11 +16,10 @@ public class JsonCreationTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
-        // Create JSON array
         cmd.CommandText = "INSERT INTO json_data (data) VALUES (JSON_ARRAY(1, 2, 3, 'four'))";
         cmd.ExecuteNonQuery();
 
@@ -28,7 +27,6 @@ public class JsonCreationTest : SqlTest
         object? value = cmd.ExecuteScalar();
         AssertTrue(value != null, "Should have created JSON array");
 
-        // Create JSON object
         cmd.CommandText = "INSERT INTO json_data (data) VALUES (JSON_OBJECT('key1', 'value1', 'key2', 123))";
         cmd.ExecuteNonQuery();
 
@@ -37,7 +35,7 @@ public class JsonCreationTest : SqlTest
         AssertTrue(objValue != null && objValue.ToString()!.Contains("value1"), "Should have created JSON object");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE json_data";

@@ -1,13 +1,12 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
-namespace NSCI.Tests.Advanced;
+namespace NSCI.Tests.CTE;
 
-[SqlTest(SqlFeatureCategory.CTE, "Test Common Table Expression (CTE)", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.CTE, "Test Common Table Expression (CTE)")]
 public class CteTest : SqlTest
 {
-    public override void Setup(DbConnection connection)
+    protected override void SetupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "CREATE TABLE employees_cte (id INT PRIMARY KEY, name VARCHAR(50), salary DECIMAL(10,2))";
@@ -17,7 +16,7 @@ public class CteTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    public override void Execute(DbConnection connection)
+    protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
     {
         using DbCommand cmd = connection.CreateCommand();
 
@@ -31,7 +30,7 @@ public class CteTest : SqlTest
         AssertEqual(1L, (long)count!, "CTE should work correctly");
     }
 
-    public override void Cleanup(DbConnection connection)
+    protected override void CleanupMy(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE employees_cte";
