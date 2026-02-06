@@ -50,7 +50,7 @@ public class SpatialCoordinatesTest : SqlTest
         object? fromGeoHash = cmd.ExecuteScalar();
         AssertTrue(fromGeoHash?.ToString()?.Contains("POINT") == true, "Should create point from geohash");
 
-        cmd.CommandText = "SELECT ST_GeoHash(ST_GeomFromText('POINT(-122.4194 37.7749)', 4326), 10)";
+        cmd.CommandText = "SELECT ST_GeoHash(ST_GeomFromText('POINT(-89.4194 37.7749)', 4326), 10)";
         object? geoHash = cmd.ExecuteScalar();
         AssertTrue(geoHash != null && geoHash.ToString()!.Length == 10, "GeoHash should be 10 characters");
 

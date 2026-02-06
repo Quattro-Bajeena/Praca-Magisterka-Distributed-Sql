@@ -57,7 +57,7 @@ public class SpatialOperationsTest : SqlTest
 
         cmd.CommandText = @"SELECT ST_Area(ST_SymDifference(
             ST_GeomFromText('POLYGON((0 0, 5 0, 5 5, 0 5, 0 0))'),
-            ST_GeomFromText('POLYGON((3 3, 8 3, 8 8, 3 8, 3 8))')
+            ST_GeomFromText('POLYGON((3 3, 8 3, 8 8, 3 8, 3 3))')
         ))";
         object? symDiffArea = cmd.ExecuteScalar();
         AssertTrue(symDiffArea != null, "SymDifference should return a value");

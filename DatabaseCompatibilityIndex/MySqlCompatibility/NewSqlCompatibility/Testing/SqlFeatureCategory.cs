@@ -21,5 +21,6 @@ public enum SqlFeatureCategory
     Partitioning,
     UserManagement,
     JSONOperations,
+    DLL,
     Misc
 }

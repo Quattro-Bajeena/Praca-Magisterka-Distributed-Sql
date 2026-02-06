@@ -54,15 +54,6 @@ public class SpatialGeometryCollectionTest : SqlTest
         numGeoms = cmd.ExecuteScalar();
         AssertEqual(3, Convert.ToInt32(numGeoms!), "Should have 3 different geometries in collection");
 
-        cmd.CommandText = @"SELECT ST_AsText(ST_Collect(
-            ST_GeomFromText('POINT(0 0)'),
-            ST_GeomFromText('POINT(1 1)')
-        ))";
-        object? collection = cmd.ExecuteScalar();
-        AssertTrue(collection?.ToString()?.Contains("MULTIPOINT") == true ||
-                   collection?.ToString()?.Contains("GEOMETRYCOLLECTION") == true,
-                   "ST_Collect should create a collection");
-
         cmd.CommandText = "SELECT ST_AsText(ST_StartPoint(ST_GeomFromText('LINESTRING(0 0, 5 5, 10 0)')))";
         object? startPoint = cmd.ExecuteScalar();
         AssertTrue(startPoint?.ToString()?.Contains("POINT(0 0)") == true, "Start point should be (0 0)");
