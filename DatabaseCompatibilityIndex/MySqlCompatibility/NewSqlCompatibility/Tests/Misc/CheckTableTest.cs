@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Misc;
 
-[SqlTest(SqlFeatureCategory.Misc, "Test CHECK TABLE syntax ", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Misc, "Test CHECK TABLE syntax ")]
 public class CheckTableTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

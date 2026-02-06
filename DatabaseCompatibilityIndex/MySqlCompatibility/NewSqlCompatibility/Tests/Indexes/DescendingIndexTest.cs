@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Indexes;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test Descending Index ", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Indexes, "Test Descending Index ")]
 public class DescendingIndexTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

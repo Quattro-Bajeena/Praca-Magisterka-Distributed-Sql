@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.IsolationLevels;
 
-[SqlTest(SqlFeatureCategory.Transactions, "Test locking difference between REPEATABLE READ and READ COMMITTED", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Transactions, "Test locking difference between REPEATABLE READ and READ COMMITTED")]
 public class LockingBehaviorDifferenceTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

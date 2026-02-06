@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Views;
 
-[SqlTest(SqlFeatureCategory.Views, "Test Updatable Views (not updatable in TiDB)", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Views, "Test Updatable Views (not updatable in TiDB)")]
 public class UpdatableViewTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

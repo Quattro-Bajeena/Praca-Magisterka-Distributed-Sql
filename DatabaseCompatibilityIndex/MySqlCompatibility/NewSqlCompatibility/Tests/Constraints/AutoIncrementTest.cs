@@ -24,4 +24,23 @@ public class AutoIncrementTest : SqlTest
     }
 
     protected override string? CleanupCommandMy => "DROP TABLE autoinc_test";
+
+    protected override string? SetupCommandPg => "CREATE TABLE autoinc_test (id SERIAL PRIMARY KEY, name VARCHAR(50))";
+
+    protected override void ExecutePg(DbConnection connection, DbConnection connectionSecond)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+
+        cmd.CommandText = "INSERT INTO autoinc_test (name) VALUES ('Alice')";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "INSERT INTO autoinc_test (name) VALUES ('Bob')";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "SELECT id FROM autoinc_test WHERE name = 'Bob'";
+        object? id = cmd.ExecuteScalar();
+        AssertEqual(2, Convert.ToInt32(id!), "SERIAL should assign sequential IDs");
+    }
+
+    protected override string? CleanupCommandPg => "DROP TABLE autoinc_test";
 }

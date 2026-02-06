@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Advanced;
 
-[SqlTest(SqlFeatureCategory.Triggers, "Test TRIGGER", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Triggers, "Test TRIGGER")]
 public class TriggerTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

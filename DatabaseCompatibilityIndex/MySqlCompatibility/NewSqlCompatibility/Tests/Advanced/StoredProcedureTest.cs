@@ -1,10 +1,9 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Advanced;
 
-[SqlTest(SqlFeatureCategory.StoredProcedures, "Test STORED PROCEDURE", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.StoredProcedures, "Test STORED PROCEDURE")]
 public class StoredProcedureTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

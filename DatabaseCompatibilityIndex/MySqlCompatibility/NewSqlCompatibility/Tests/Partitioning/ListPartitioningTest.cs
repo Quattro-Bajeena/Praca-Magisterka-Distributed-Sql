@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Partitioning;
 
-[SqlTest(SqlFeatureCategory.Partitioning, "Test LIST partitioning", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Partitioning, "Test LIST partitioning")]
 public class ListPartitioningTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

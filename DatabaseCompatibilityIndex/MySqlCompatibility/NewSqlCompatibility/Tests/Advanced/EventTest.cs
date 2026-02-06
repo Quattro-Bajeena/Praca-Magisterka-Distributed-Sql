@@ -1,10 +1,9 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Advanced;
 
-[SqlTest(SqlFeatureCategory.Misc, "Test EVENT ", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Misc, "Test EVENT ")]
 public class EventTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

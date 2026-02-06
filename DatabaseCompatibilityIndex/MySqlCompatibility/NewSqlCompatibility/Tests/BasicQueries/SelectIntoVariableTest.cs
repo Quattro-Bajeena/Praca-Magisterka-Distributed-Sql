@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.BasicQueries;
 
-[SqlTest(SqlFeatureCategory.BasicQueries, "Test SELECT INTO @variable ", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.BasicQueries, "Test SELECT INTO @variable ")]
 public class SelectIntoVariableTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

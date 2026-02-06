@@ -67,6 +67,12 @@ public abstract class SqlTest
             command.CommandText = CommandMy;
             command.ExecuteNonQuery();
         }
+        else
+        {
+            // TODO na wszelki wypadek
+            Console.WriteLine("Warning: MySql execution is using Pg command as fallback.");
+            ExecutePg(connection, connectionSecond);
+        }
     }
 
     protected virtual void ExecutePg(DbConnection connection, DbConnection connectionSecond)
@@ -76,6 +82,12 @@ public abstract class SqlTest
             using DbCommand command = connection.CreateCommand();
             command.CommandText = CommandMy;
             command.ExecuteNonQuery();
+        }
+        else
+        {
+            // TODO: implement Pg-specific logic
+            Console.WriteLine("Warning: Pg execution is using MySql command as fallback.");
+            ExecuteMy(connection, connectionSecond);
         }
     }
 

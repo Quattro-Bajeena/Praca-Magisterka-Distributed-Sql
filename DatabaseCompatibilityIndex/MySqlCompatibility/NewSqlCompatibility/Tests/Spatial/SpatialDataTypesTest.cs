@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Spatial;
 
-[SqlTest(SqlFeatureCategory.Misc, "Test SPATIAL data types (POINT, LINESTRING, POLYGON) - unsupported in TiDB", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Misc, "Test SPATIAL data types (POINT, LINESTRING, POLYGON) - unsupported in TiDB")]
 public class SpatialDataTypesTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

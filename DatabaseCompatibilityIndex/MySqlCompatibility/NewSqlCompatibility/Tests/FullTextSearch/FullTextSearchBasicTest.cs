@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.FullTextSearch;
 
-[SqlTest(SqlFeatureCategory.FullTextSearch, "Test FULLTEXT index creation and search", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.FullTextSearch, "Test FULLTEXT index creation and search")]
 public class FullTextSearchBasicTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

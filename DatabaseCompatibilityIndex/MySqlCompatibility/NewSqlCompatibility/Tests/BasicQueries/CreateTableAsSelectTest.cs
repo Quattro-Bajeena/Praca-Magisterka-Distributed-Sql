@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.BasicQueries;
 
-[SqlTest(SqlFeatureCategory.BasicQueries, "Test CREATE TABLE AS SELECT ", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.BasicQueries, "Test CREATE TABLE AS SELECT ")]
 public class CreateTableAsSelectTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

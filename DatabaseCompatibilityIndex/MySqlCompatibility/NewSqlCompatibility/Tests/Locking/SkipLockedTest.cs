@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Locking;
 
-[SqlTest(SqlFeatureCategory.Locking, "Test SKIP LOCKED ", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Locking, "Test SKIP LOCKED ")]
 public class SkipLockedTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

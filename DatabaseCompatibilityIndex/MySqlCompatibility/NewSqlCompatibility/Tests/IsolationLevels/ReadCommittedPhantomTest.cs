@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.IsolationLevels;
 
-[SqlTest(SqlFeatureCategory.Transactions, "Test READ COMMITTED allows phantom reads", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Transactions, "Test READ COMMITTED allows phantom reads")]
 public class ReadCommittedPhantomTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

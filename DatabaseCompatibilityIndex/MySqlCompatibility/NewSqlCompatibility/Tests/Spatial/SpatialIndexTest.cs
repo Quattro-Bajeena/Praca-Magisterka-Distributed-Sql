@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Spatial;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test SPATIAL indexes - unsupported in TiDB", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Indexes, "Test SPATIAL indexes - unsupported in TiDB")]
 public class SpatialIndexTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

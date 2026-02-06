@@ -442,7 +442,7 @@ NewSqlCompatibility/Tests/Spatial/
 All tests follow the standard pattern:
 
 ```csharp
-[SqlTest(SqlFeatureCategory.Misc, "Description", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Misc, "Description")]
 public class TestName : SqlTest
 {
     protected override void SetupMy(DbConnection connection) { }

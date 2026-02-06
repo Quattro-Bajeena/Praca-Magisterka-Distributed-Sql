@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Misc;
 
-[SqlTest(SqlFeatureCategory.Misc, "Test OPTIMIZE TABLE syntax ", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Misc, "Test OPTIMIZE TABLE syntax ")]
 public class OptimizeTableTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

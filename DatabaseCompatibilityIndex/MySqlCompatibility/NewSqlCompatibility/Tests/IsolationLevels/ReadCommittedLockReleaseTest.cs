@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.IsolationLevels;
 
-[SqlTest(SqlFeatureCategory.Transactions, "Test READ COMMITTED releases non-matching row locks", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Transactions, "Test READ COMMITTED releases non-matching row locks")]
 public class ReadCommittedLockReleaseTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

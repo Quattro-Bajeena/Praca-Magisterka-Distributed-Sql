@@ -1,10 +1,9 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.IsolationLevels;
 
-[SqlTest(SqlFeatureCategory.Transactions, "Test REPEATABLE READ prevents phantom reads in range", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Transactions, "Test REPEATABLE READ prevents phantom reads in range")]
 public class RepeatableReadPhantomPreventionTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

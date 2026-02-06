@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.DDL;
 
-[SqlTest(SqlFeatureCategory.DLL, "Test ALTER TABLE data type conversions", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.DLL, "Test ALTER TABLE data type conversions")]
 public class AlterTableDataTypeConversionTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Locking;
 
-[SqlTest(SqlFeatureCategory.Locking, "Test FOR UPDATE with WHERE clause", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Locking, "Test FOR UPDATE with WHERE clause")]
 public class SelectForUpdateWithWhereTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

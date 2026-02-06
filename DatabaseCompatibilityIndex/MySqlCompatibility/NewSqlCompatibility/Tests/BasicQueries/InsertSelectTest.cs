@@ -23,4 +23,22 @@ public class InsertSelectTest : SqlTest
         cmd.CommandText = "DROP TABLE users";
         cmd.ExecuteNonQuery();
     }
+
+    protected override void ExecutePg(DbConnection connection, DbConnection connectionSecond)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+
+        cmd.CommandText = "CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(50) NOT NULL)";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "INSERT INTO users (username) VALUES ('alice'), ('bob'), ('charlie')";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "SELECT COUNT(*) FROM users";
+        object? count = cmd.ExecuteScalar();
+        AssertEqual(3L, (long)count!, "Should have 3 users");
+
+        cmd.CommandText = "DROP TABLE users";
+        cmd.ExecuteNonQuery();
+    }
 }

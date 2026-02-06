@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Misc;
 
-[SqlTest(SqlFeatureCategory.Misc, "Test XA Transaction syntax ", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Misc, "Test XA Transaction syntax ")]
 public class XATransactionTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

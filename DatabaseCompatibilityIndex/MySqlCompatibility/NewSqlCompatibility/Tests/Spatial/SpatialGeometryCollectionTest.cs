@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Spatial;
 
-[SqlTest(SqlFeatureCategory.Misc, "Test SPATIAL geometry collections and multi-geometries - unsupported in TiDB", DatabaseType.MySql)]
+[SqlTest(SqlFeatureCategory.Misc, "Test SPATIAL geometry collections and multi-geometries - unsupported in TiDB")]
 public class SpatialGeometryCollectionTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

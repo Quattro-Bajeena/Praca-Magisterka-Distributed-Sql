@@ -12,11 +12,11 @@ public class PostgreSqlDatabaseProvider : IDatabaseProvider
 
     public string GenerateCreateDatabaseSql(string databaseName)
     {
-        return $"CREATE DATABASE \"{databaseName}\"";
+        return $"CREATE SCHEMA \"{databaseName}\"";
     }
 
     public string GenerateSetDatabaseSql(string databaseName)
     {
-        throw new NotSupportedException("PostgreSQL doesn't support USE statement. Include database name in connection string.");
+        return $"SET search_path TO \"{databaseName}\"";
     }
 }

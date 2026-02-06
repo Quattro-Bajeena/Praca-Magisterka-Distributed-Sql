@@ -21,4 +21,29 @@ public class CheckConstraintTest : SqlTest
     }
 
     protected override string? CleanupCommandMy => "DROP TABLE check_test";
+
+    protected override string? SetupCommandPg => "CREATE TABLE check_test (id INT PRIMARY KEY, age INT CHECK (age >= 0 AND age <= 150))";
+
+    protected override void ExecutePg(DbConnection connection, DbConnection connectionSecond)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+
+        cmd.CommandText = "INSERT INTO check_test VALUES (1, 25)";
+        cmd.ExecuteNonQuery();
+
+        bool errorOccurred = false;
+        try
+        {
+            cmd.CommandText = "INSERT INTO check_test VALUES (2, -5)";
+            cmd.ExecuteNonQuery();
+        }
+        catch
+        {
+            errorOccurred = true;
+        }
+
+        AssertTrue(errorOccurred, "Should throw exception for CHECK constraint violation");
+    }
+
+    protected override string? CleanupCommandPg => "DROP TABLE check_test";
 }
