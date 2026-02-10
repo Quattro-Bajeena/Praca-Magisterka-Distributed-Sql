@@ -1,0 +1,57 @@
+services:
+  crdb:
+    container_name: crdb
+    hostname: crdb
+    image: cockroachdb/cockroach:latest
+    command: start-single-node --cluster-name=example-single-node --insecure
+    environment:
+      - COCKROACH_DATABASE=crdb
+      - COCKROACH_USER=crdb
+      - COCKROACH_PASSWORD=
+    ports:
+      - "26257:26257"
+      - "8080:8080"
+    volumes:
+      - crdb-data:/cockroach/cockroach-data
+
+  crdb-init:
+    container_name: crdb-init
+    hostname: crdb-init
+    image: timveil/cockroachdb-remote-client:latest
+    environment:
+      - COCKROACH_HOST=crdb:26257
+      - COCKROACH_INSECURE=true
+      - DATABASE_NAME=crdb
+    depends_on:
+      - crdb
+
+
+  crdb-21:
+    container_name: crdb-21
+    hostname: crdb-21
+    image: cockroachdb/cockroach:21.2.0
+    command: start-single-node --cluster-name=example-single-node-21 --insecure
+    environment:
+      - COCKROACH_DATABASE=crdb
+      - COCKROACH_USER=crdb
+      - COCKROACH_PASSWORD=
+    ports:
+      - "26258:26257"
+      - "8081:8080"
+    volumes:
+      - crdb-data-21:/cockroach/cockroach-data
+
+  crdb-init-21:
+    container_name: crdb-init-21
+    hostname: crdb-init-21
+    image: timveil/cockroachdb-remote-client:latest
+    environment:
+      - COCKROACH_HOST=crdb-21:26257
+      - COCKROACH_INSECURE=true
+      - DATABASE_NAME=crdb
+    depends_on:
+      - crdb-21
+
+volumes:
+  crdb-data:
+  crdb-data-21:
