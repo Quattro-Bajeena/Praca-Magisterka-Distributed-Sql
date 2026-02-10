@@ -125,7 +125,7 @@ public class TestRunner
 
     private static string GenerateTestDatabaseName()
     {
-        string suffix = DateTime.Now.ToString();
+        string suffix = DateTime.Now.ToString("s");
         return $"test_{suffix}";
     }
 }

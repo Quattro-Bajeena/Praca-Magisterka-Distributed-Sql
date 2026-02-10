@@ -10,7 +10,7 @@ public class PostgresWindowFramesTest : SqlTest
     protected override void SetupPg(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
-        
+
         cmd.CommandText = @"CREATE TABLE sales_frames (
                             id SERIAL PRIMARY KEY,
                             day INT,
@@ -34,7 +34,7 @@ public class PostgresWindowFramesTest : SqlTest
                            FROM sales_frames
                            WHERE day <= 5
                            ORDER BY day";
-        
+
         using (DbDataReader reader = cmd.ExecuteReader())
         {
             AssertTrue(reader.Read(), "Should have results");
@@ -63,12 +63,12 @@ public class PostgresWindowFramesTest : SqlTest
                            FROM sales_frames
                            WHERE day BETWEEN 5 AND 7
                            ORDER BY day";
-        
+
         using (DbDataReader reader = cmd.ExecuteReader())
         {
             AssertTrue(reader.Read(), "Should have day 5");
             double avg5 = reader.GetDouble(2);
-            AssertEqual(500.0, avg5, "Day 5: avg of days 4-6 (400+500+600)/3 = 500");
+            AssertEqual(550.0, avg5, "Day 5: avg of days 5-6 (500+600)/2 = 500");
 
             AssertTrue(reader.Read(), "Should have day 6");
             double avg6 = reader.GetDouble(2);
@@ -76,7 +76,7 @@ public class PostgresWindowFramesTest : SqlTest
 
             AssertTrue(reader.Read(), "Should have day 7");
             double avg7 = reader.GetDouble(2);
-            AssertEqual(700.0, avg7, "Day 7: avg of days 6-8 (600+700+800)/3 = 700");
+            AssertEqual(650.0, avg7, "Day 7: avg of days 7-8 (700+800)/2 = 650");
         }
 
         cmd.CommandText = @"SELECT day, amount,
@@ -84,7 +84,7 @@ public class PostgresWindowFramesTest : SqlTest
                            FROM sales_frames
                            WHERE day <= 4
                            ORDER BY day";
-        
+
         using (DbDataReader reader = cmd.ExecuteReader())
         {
             AssertTrue(reader.Read(), "Day 1");

@@ -11,7 +11,7 @@ public class PostgresPostGISSpatialIndexTest : SqlTest
     {
         using DbCommand cmd = connection.CreateCommand();
         
-        cmd.CommandText = "CREATE EXTENSION IF NOT EXISTS postgis";
+        cmd.CommandText = "CREATE EXTENSION IF NOT EXISTS postgis  SCHEMA public";
         cmd.ExecuteNonQuery();
 
         cmd.CommandText = @"CREATE TABLE postgis_index_test (

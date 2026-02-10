@@ -1,10 +1,9 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.FullTextSearch;
 
-[SqlTest(SqlFeatureCategory.FullTextSearch, "Test FULLTEXT with multiple columns")]
+[SqlTest(SqlFeatureCategory.FullTextSearch, "Test FULLTEXT with multiple columns", Configuration.DatabaseType.MySql)]
 public class FullTextSearchMultiColumnTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

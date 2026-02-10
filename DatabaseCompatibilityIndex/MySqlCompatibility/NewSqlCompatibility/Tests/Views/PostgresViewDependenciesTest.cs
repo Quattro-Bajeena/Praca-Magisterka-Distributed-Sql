@@ -10,7 +10,7 @@ public class PostgresViewDependenciesTest : SqlTest
     protected override void SetupPg(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
-        
+
         cmd.CommandText = @"CREATE TABLE base_products (
                             id SERIAL PRIMARY KEY,
                             name VARCHAR(100),
@@ -64,9 +64,9 @@ public class PostgresViewDependenciesTest : SqlTest
         count = cmd.ExecuteScalar();
         AssertEqual(1L, Convert.ToInt64(count!), "Should have 1 premium electronics item");
 
-        cmd.CommandText = @"SELECT COUNT(*) 
+        cmd.CommandText = $@"SELECT COUNT(*) 
                            FROM information_schema.views 
-                           WHERE table_schema = 'public' 
+                           WHERE table_schema = '{_config.DatabaseName}' 
                            AND (table_name LIKE '%product%' OR table_name LIKE '%electronic%')";
         count = cmd.ExecuteScalar();
         AssertTrue(Convert.ToInt64(count!) >= 3, "Should have at least 3 views created");

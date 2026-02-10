@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="Tests\BasicQueries\CreateTableAsSelectTest.cs~RFcdbb7de.TMP" />
+    <None Remove="Tests\Spatial\PostgresPostGISMeasurementsTest.cs~RF118a20b7.TMP" />
   </ItemGroup>
 
   <ItemGroup>

@@ -41,8 +41,8 @@ public class PostgresStatisticalWindowTest : SqlTest
     {
         using DbCommand cmd = connection.CreateCommand();
 
-        cmd.CommandText = @"SELECT subject,
-                           STDDEV_POP(score) OVER (PARTITION BY subject) as std_dev,
+        cmd.CommandText = @"SELECT subject, 
+                            STDDEV_POP(score) OVER (PARTITION BY subject) as std_dev,
                            VAR_POP(score) OVER (PARTITION BY subject) as variance
                            FROM exam_scores
                            WHERE subject = 'Math'
@@ -51,8 +51,8 @@ public class PostgresStatisticalWindowTest : SqlTest
         using (DbDataReader reader = cmd.ExecuteReader())
         {
             AssertTrue(reader.Read(), "Should have Math statistics");
-            decimal stdDev = reader.GetDecimal(1);
-            decimal variance = reader.GetDecimal(2);
+            double stdDev = reader.GetDouble(1);
+            double variance = reader.GetDouble(2);
             AssertTrue(stdDev > 0, "Standard deviation should be positive");
             AssertTrue(variance > 0, "Variance should be positive");
         }
@@ -70,8 +70,8 @@ public class PostgresStatisticalWindowTest : SqlTest
             while (reader.Read())
             {
                 rowCount++;
-                decimal pctRank = reader.GetDecimal(3);
-                decimal cumeDist = reader.GetDecimal(4);
+                double pctRank = reader.GetDouble(3);
+                double cumeDist = reader.GetDouble(4);
                 AssertTrue(pctRank >= 0 && pctRank <= 1, "PERCENT_RANK should be between 0 and 1");
                 AssertTrue(cumeDist > 0 && cumeDist <= 1, "CUME_DIST should be between 0 and 1");
             }
@@ -112,7 +112,7 @@ public class PostgresStatisticalWindowTest : SqlTest
         using (DbDataReader reader = cmd.ExecuteReader())
         {
             AssertTrue(reader.Read(), "Should have first student result");
-            decimal overallAvg = reader.GetDecimal(1);
+            Double overallAvg = reader.GetDouble(1);
             AssertTrue(overallAvg > 0 && overallAvg < 100, "Overall average should be reasonable");
         }
     }

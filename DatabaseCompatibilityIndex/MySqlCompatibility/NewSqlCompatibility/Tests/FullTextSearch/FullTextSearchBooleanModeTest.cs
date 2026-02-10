@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.FullTextSearch;
 
-[SqlTest(SqlFeatureCategory.FullTextSearch, "Test FULLTEXT boolean mode operators")]
+[SqlTest(SqlFeatureCategory.FullTextSearch, "Test FULLTEXT boolean mode operators", Configuration.DatabaseType.MySql)]
 public class FullTextSearchBooleanModeTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

@@ -10,7 +10,7 @@ public class PostgresFullTextSearchBasicTest : SqlTest
     protected override void SetupPg(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
-        
+
         cmd.CommandText = @"CREATE TABLE articles_pg (
                             id SERIAL PRIMARY KEY,
                             title VARCHAR(255) NOT NULL,
@@ -22,7 +22,7 @@ public class PostgresFullTextSearchBasicTest : SqlTest
         cmd.CommandText = @"INSERT INTO articles_pg (title, content, content_tsvector) VALUES 
                             ('Database Tutorial', 'Learn how to use database effectively', to_tsvector('english', 'Learn how to use database effectively')),
                             ('SQL Guide', 'SQL is a powerful database query language', to_tsvector('english', 'SQL is a powerful database query language')),
-                            ('Web Development', 'Building websites with modern frameworks and SQL', to_tsvector('english', 'Building websites with modern frameworks and SQL'))";
+                            ('Web Development', 'Building websites with modern frameworks and SQL database', to_tsvector('english', 'Building websites with modern frameworks and SQL database'))";
         cmd.ExecuteNonQuery();
 
         cmd.CommandText = "CREATE INDEX idx_content_fts ON articles_pg USING GIN (content_tsvector)";

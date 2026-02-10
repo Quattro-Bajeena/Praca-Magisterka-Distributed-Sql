@@ -10,8 +10,8 @@ public class PostgresPostGISGeographyTest : SqlTest
     protected override void SetupPg(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
-        
-        cmd.CommandText = "CREATE EXTENSION IF NOT EXISTS postgis";
+
+        cmd.CommandText = "CREATE EXTENSION IF NOT EXISTS postgis  SCHEMA public";
         cmd.ExecuteNonQuery();
 
         cmd.CommandText = @"CREATE TABLE postgis_geography_test (

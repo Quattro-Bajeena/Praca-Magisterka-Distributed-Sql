@@ -17,6 +17,6 @@ public class PostgreSqlDatabaseProvider : IDatabaseProvider
 
     public string GenerateSetDatabaseSql(string databaseName)
     {
-        return $"SET search_path TO \"{databaseName}\"";
+        return $"SET search_path TO \"{databaseName}\",public";
     }
 }

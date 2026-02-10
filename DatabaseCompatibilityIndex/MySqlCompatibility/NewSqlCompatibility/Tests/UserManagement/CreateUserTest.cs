@@ -24,7 +24,7 @@ public class CreateUserTest : SqlTest
         count = cmd.ExecuteScalar();
         AssertTrue(count != null && (long)count! >= 1, "User with host should be created");
 
-        cmd.CommandText = "CREATE USER IF NOT EXISTS test_user3 IDENTIFIED WITH mysql_native_password BY 'secure_pass'";
+        cmd.CommandText = "CREATE USER IF NOT EXISTS test_user3 IDENTIFIED WITH caching_sha2_password BY 'secure_pass'";
         cmd.ExecuteNonQuery();
 
         cmd.CommandText = "SELECT COUNT(*) FROM mysql.user WHERE user LIKE 'test_user%'";

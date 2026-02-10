@@ -6,7 +6,7 @@ namespace NSCI.Testing;
 public abstract class SqlTest
 {
 
-    private DatabaseConfiguration _config = null!;
+    protected DatabaseConfiguration _config = null!;
 
     public void Initialize(DatabaseConfiguration config)
     {

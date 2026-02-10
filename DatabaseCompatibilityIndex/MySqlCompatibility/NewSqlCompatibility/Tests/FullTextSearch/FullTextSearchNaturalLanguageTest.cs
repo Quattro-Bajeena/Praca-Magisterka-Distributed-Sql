@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.FullTextSearch;
 
-[SqlTest(SqlFeatureCategory.FullTextSearch, "Test FULLTEXT natural language search")]
+[SqlTest(SqlFeatureCategory.FullTextSearch, "Test FULLTEXT natural language search", Configuration.DatabaseType.MySql)]
 public class FullTextSearchNaturalLanguageTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)
