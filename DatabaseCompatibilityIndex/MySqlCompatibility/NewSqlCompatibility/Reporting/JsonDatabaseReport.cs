@@ -1,7 +1,8 @@
 ﻿namespace NSCI.Reporting;
 
 public record JsonReport(
-    List<JsonDatabaseReport> Reports);
+    DateTime GeneratedAt,
+    Dictionary<string, JsonDatabaseReport> Reports);
 
 public record JsonDatabaseReport(
     string GeneratedAt,

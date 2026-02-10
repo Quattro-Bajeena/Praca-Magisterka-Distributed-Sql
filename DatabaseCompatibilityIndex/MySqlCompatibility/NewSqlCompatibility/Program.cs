@@ -22,8 +22,9 @@ internal class Program
 
             foreach (DatabaseConfiguration dbConfig in config.Databases)
             {
+                Console.WriteLine($"=== Database: {dbConfig.Name} ===");
                 Console.WriteLine($" Database Type: {dbConfig.Type}");
-                Console.WriteLine($" Connection String: {dbConfig.ConnectionString}\n");
+                Console.WriteLine($" Connection String: {dbConfig.ConnectionString}");
                 Console.WriteLine($" Enabled: {dbConfig.Enabled}");
 
                 ConsoleReporter consoleReporter = new(config.General);
@@ -58,6 +59,7 @@ internal class Program
                     databaseResults.Add((dbConfig, results));
                 }
 
+                Console.WriteLine("\n");
 
             }
 

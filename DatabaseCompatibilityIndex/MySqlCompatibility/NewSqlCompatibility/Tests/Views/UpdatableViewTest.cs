@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Views;
 
-[SqlTest(SqlFeatureCategory.Views, "Test Updatable Views (not updatable in TiDB)")]
+[SqlTest(SqlFeatureCategory.Views, "Test Updatable Views")]
 public class UpdatableViewTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

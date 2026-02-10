@@ -24,12 +24,15 @@ public static class JsonReportGenerator
         File.WriteAllText(outputPath, json);
 
         Console.WriteLine($"\n✓ Report generated: {outputPath}");
+
+        UpdateMasterReport(outputPath, report, options);
     }
 
     private static JsonReport BuildReport(List<(DatabaseConfiguration, List<TestResult>)> results)
     {
         return new JsonReport(
-            Reports: results.Select(r => BuildDatabaseReport(r.Item1, r.Item2)).ToList()
+            GeneratedAt: DateTime.Now,
+            Reports: results.Select(r => BuildDatabaseReport(r.Item1, r.Item2)).ToDictionary(r => r.ConfigurationName)
         );
     }
 
@@ -74,5 +77,39 @@ public static class JsonReportGenerator
                     )).ToList()
                 )
             );
+    }
+
+    private static void UpdateMasterReport(string outputPath, JsonReport currentReport, JsonSerializerOptions options)
+    {
+        string directory = Path.GetDirectoryName(outputPath) ?? Directory.GetCurrentDirectory();
+        string masterReportPath = Path.Combine(directory, "master_report.json");
+
+        Dictionary<string, JsonDatabaseReport> masterReports;
+
+        if (File.Exists(masterReportPath))
+        {
+            string existingJson = File.ReadAllText(masterReportPath);
+            JsonReport? existingMasterReport = JsonSerializer.Deserialize<JsonReport>(existingJson, options);
+            masterReports = existingMasterReport?.Reports ?? new Dictionary<string, JsonDatabaseReport>();
+        }
+        else
+        {
+            masterReports = new Dictionary<string, JsonDatabaseReport>();
+        }
+
+        foreach (KeyValuePair<string, JsonDatabaseReport> report in currentReport.Reports)
+        {
+            masterReports[report.Key] = report.Value;
+        }
+
+        JsonReport updatedMasterReport = new(
+            GeneratedAt: DateTime.Now,
+            Reports: masterReports
+        );
+
+        string masterJson = JsonSerializer.Serialize(updatedMasterReport, options);
+        File.WriteAllText(masterReportPath, masterJson);
+
+        Console.WriteLine($"✓ Master report updated: {masterReportPath}");
     }
 }
