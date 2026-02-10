@@ -1,0 +1,11 @@
+# start the image
+# docker run -d --name citus -p 5432:5432 -e POSTGRES_PASSWORD=mypass citusdata/citus:13.0
+
+services:
+  citus:
+    image: citusdata/citus:13.0
+    container_name: citus
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_PASSWORD: mypass
