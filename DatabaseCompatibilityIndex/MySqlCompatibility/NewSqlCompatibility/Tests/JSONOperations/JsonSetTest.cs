@@ -44,4 +44,43 @@ public class JsonSetTest : SqlTest
         cmd.CommandText = "DROP TABLE config";
         cmd.ExecuteNonQuery();
     }
+
+    protected override void SetupPg(DbConnection connection)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+        cmd.CommandText = @"CREATE TABLE config (
+                            id INT PRIMARY KEY,
+                            settings JSONB
+                        )";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = @"INSERT INTO config VALUES (1, '{""theme"": ""dark"", ""language"": ""en""}')";
+        cmd.ExecuteNonQuery();
+    }
+
+    protected override void ExecutePg(DbConnection connection, DbConnection connectionSecond)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+
+        cmd.CommandText = "UPDATE config SET settings = jsonb_set(settings, '{theme}', '\"light\"') WHERE id = 1";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "SELECT settings->>'theme' FROM config WHERE id = 1";
+        object? theme = cmd.ExecuteScalar();
+        AssertTrue(theme != null && theme.ToString()!.Contains("light"), "Theme should be updated to 'light'");
+
+        cmd.CommandText = "UPDATE config SET settings = jsonb_set(settings, '{timezone}', '\"UTC\"', true) WHERE id = 1";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "SELECT settings->>'timezone' FROM config WHERE id = 1";
+        object? tz = cmd.ExecuteScalar();
+        AssertTrue(tz != null && tz.ToString()!.Contains("UTC"), "Should have new timezone key");
+    }
+
+    protected override void CleanupPg(DbConnection connection)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+        cmd.CommandText = "DROP TABLE config";
+        cmd.ExecuteNonQuery();
+    }
 }

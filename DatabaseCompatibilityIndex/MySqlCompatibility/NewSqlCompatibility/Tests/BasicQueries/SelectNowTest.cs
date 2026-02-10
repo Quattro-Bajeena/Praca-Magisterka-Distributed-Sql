@@ -5,4 +5,6 @@ namespace NSCI.Tests.BasicQueries;
 public class SelectNowTest : SqlTest
 {
     protected override string CommandMy => "SELECT NOW()";
+
+    protected override string CommandPg => "SELECT NOW()";
 }

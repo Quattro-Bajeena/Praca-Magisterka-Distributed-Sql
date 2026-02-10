@@ -1,4 +1,3 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 

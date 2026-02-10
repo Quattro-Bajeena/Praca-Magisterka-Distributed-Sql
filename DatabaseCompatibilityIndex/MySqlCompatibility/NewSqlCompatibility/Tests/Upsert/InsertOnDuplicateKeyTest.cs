@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Upsert;
 
-[SqlTest(SqlFeatureCategory.Upsert, "Test INSERT...ON DUPLICATE KEY UPDATE")]
+[SqlTest(SqlFeatureCategory.Upsert, "Test INSERT...ON DUPLICATE KEY UPDATE", Configuration.DatabaseType.MySql)]
 public class InsertOnDuplicateKeyTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

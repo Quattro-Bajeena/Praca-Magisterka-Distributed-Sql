@@ -1,10 +1,9 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Spatial;
 
-[SqlTest(SqlFeatureCategory.Misc, "Test SPATIAL coordinate functions (ST_X, ST_Y, ST_SRID, ST_Transform) - unsupported in TiDB")]
+[SqlTest(SqlFeatureCategory.Misc, "Test SPATIAL coordinate functions (ST_X, ST_Y, ST_SRID, ST_Transform)", Configuration.DatabaseType.MySql)]
 public class SpatialCoordinatesTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

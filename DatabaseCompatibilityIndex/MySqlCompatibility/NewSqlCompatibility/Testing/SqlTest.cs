@@ -69,9 +69,7 @@ public abstract class SqlTest
         }
         else
         {
-            // TODO na wszelki wypadek
-            Console.WriteLine("Warning: MySql execution is using Pg command as fallback.");
-            ExecutePg(connection, connectionSecond);
+            throw new Exception("No command defined for MySQL test execution");
         }
     }
 
@@ -85,9 +83,7 @@ public abstract class SqlTest
         }
         else
         {
-            // TODO: implement Pg-specific logic
-            Console.WriteLine("Warning: Pg execution is using MySql command as fallback.");
-            ExecuteMy(connection, connectionSecond);
+            throw new Exception("No command defined for PostgreSQL test execution");
         }
     }
 

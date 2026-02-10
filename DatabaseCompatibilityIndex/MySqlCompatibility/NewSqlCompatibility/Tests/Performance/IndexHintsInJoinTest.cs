@@ -1,9 +1,10 @@
+using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Performance;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test index hints in JOIN queries")]
+[SqlTest(SqlFeatureCategory.PerformanceHints, "Test index hints in JOIN queries", DatabaseType.MySql)]
 public class IndexHintsInJoinTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

@@ -1,10 +1,9 @@
-﻿using NSCI.Configuration;
-using NSCI.Testing;
+﻿using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Spatial;
 
-[SqlTest(SqlFeatureCategory.Misc, "Test SPATIAL operations (ST_Buffer, ST_Union, ST_Intersection) - unsupported in TiDB")]
+[SqlTest(SqlFeatureCategory.Spatial, "Test SPATIAL operations (ST_Buffer, ST_Union, ST_Intersection)", Configuration.DatabaseType.MySql)]
 public class SpatialOperationsTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

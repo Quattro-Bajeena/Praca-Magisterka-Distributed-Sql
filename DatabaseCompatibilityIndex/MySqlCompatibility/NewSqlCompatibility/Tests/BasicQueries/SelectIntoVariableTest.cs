@@ -1,10 +1,9 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.BasicQueries;
 
-[SqlTest(SqlFeatureCategory.BasicQueries, "Test SELECT INTO @variable ")]
+[SqlTest(SqlFeatureCategory.BasicQueries, "Test SELECT INTO @variable ", Configuration.DatabaseType.MySql)]
 public class SelectIntoVariableTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

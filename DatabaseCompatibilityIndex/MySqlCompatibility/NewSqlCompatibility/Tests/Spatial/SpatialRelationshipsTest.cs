@@ -1,10 +1,9 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Spatial;
 
-[SqlTest(SqlFeatureCategory.Misc, "Test SPATIAL relationship functions (ST_Contains, ST_Intersects, ST_Within) - unsupported in TiDB")]
+[SqlTest(SqlFeatureCategory.Spatial, "Test SPATIAL relationship functions (ST_Contains, ST_Intersects, ST_Within)", Configuration.DatabaseType.MySql)]
 public class SpatialRelationshipsTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

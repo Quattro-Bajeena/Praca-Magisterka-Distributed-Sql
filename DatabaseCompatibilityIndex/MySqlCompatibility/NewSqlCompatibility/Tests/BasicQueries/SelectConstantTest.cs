@@ -5,4 +5,6 @@ namespace NSCI.Tests.BasicQueries;
 public class SelectConstantTest : SqlTest
 {
     protected override string CommandMy => "SELECT 1";
+    
+    protected override string CommandPg => "SELECT 1";
 }

@@ -1,9 +1,10 @@
+using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Performance;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test USE INDEX hint")]
+[SqlTest(SqlFeatureCategory.PerformanceHints, "Test USE INDEX hint", DatabaseType.MySql)]
 public class UseIndexHintTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

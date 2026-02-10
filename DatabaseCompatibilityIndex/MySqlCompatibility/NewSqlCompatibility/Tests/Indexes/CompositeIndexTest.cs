@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Indexes;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test composite INDEXusing NSCI.Testing;")]
+[SqlTest(SqlFeatureCategory.Indexes, "Test composite INDEX")]
 public class CompositeIndexTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)
@@ -63,7 +63,10 @@ public class CompositeIndexTest : SqlTest
     protected override void CleanupPg(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
-        cmd.CommandText = "DROP TABLE composite_idx";
+        cmd.CommandText = "DROP INDEX IF EXISTS idx_name";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "DROP TABLE IF EXISTS composite_idx";
         cmd.ExecuteNonQuery();
     }
 }

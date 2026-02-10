@@ -22,5 +22,7 @@ public enum SqlFeatureCategory
     UserManagement,
     JSONOperations,
     DLL,
-    Misc
+    Misc,
+    PerformanceHints,
+    Spatial,
 }

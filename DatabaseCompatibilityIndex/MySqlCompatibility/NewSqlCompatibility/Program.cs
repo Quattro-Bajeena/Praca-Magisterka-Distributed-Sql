@@ -1,6 +1,7 @@
 ﻿using NSCI.Configuration;
 using NSCI.Reporting;
 using NSCI.Testing;
+using System.Globalization;
 namespace NSCI;
 
 internal class Program
@@ -13,6 +14,7 @@ internal class Program
             Console.WriteLine("║   Distributed SQL Compatibility Tester                        ║");
             Console.WriteLine("╚════════════════════════════════════════════════════════════════╝\n");
 
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US"); // So jfloats are always with dot, not comma
             TestConfiguration config = TestConfiguration.Load("appsettings.json");
             Console.WriteLine($"Configuration loaded:");
 

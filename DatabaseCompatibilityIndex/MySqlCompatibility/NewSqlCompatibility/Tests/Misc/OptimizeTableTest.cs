@@ -1,4 +1,3 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
@@ -35,6 +34,38 @@ public class OptimizeTableTest : SqlTest
     }
 
     protected override void CleanupMy(DbConnection connection)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+        cmd.CommandText = "DROP TABLE IF EXISTS optimize_test";
+        cmd.ExecuteNonQuery();
+    }
+
+    protected override void SetupPg(DbConnection connection)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+        cmd.CommandText = "CREATE TABLE optimize_test (id INT PRIMARY KEY, data VARCHAR(100))";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "INSERT INTO optimize_test VALUES (1, 'data1'), (2, 'data2')";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "DELETE FROM optimize_test WHERE id = 2";
+        cmd.ExecuteNonQuery();
+    }
+
+    protected override void ExecutePg(DbConnection connection, DbConnection connectionSecond)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+
+        cmd.CommandText = "VACUUM ANALYZE optimize_test";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "SELECT COUNT(*) FROM optimize_test";
+        object? count = cmd.ExecuteScalar();
+        AssertEqual(1L, Convert.ToInt64(count!), "Should have 1 row after vacuum");
+    }
+
+    protected override void CleanupPg(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
         cmd.CommandText = "DROP TABLE IF EXISTS optimize_test";

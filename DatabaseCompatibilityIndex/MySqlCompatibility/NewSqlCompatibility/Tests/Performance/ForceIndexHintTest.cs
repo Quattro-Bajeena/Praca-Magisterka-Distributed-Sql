@@ -1,9 +1,10 @@
+using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Performance;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test FORCE INDEX hint")]
+[SqlTest(SqlFeatureCategory.PerformanceHints, "Test FORCE INDEX hint", DatabaseType.MySql)]
 public class ForceIndexHintTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

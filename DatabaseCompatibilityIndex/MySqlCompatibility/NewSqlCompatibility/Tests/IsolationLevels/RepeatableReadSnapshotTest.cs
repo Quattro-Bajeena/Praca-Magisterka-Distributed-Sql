@@ -82,10 +82,7 @@ public class RepeatableReadSnapshotTest : SqlTest
         using DbCommand cmd1 = connection.CreateCommand();
         using DbCommand cmd2 = connectionSecond.CreateCommand();
 
-        cmd1.CommandText = "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ";
-        cmd1.ExecuteNonQuery();
-
-        cmd1.CommandText = "BEGIN";
+        cmd1.CommandText = "BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ";
         cmd1.ExecuteNonQuery();
 
         cmd1.CommandText = "SELECT value FROM rr_snapshot WHERE id = 1";

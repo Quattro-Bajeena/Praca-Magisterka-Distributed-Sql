@@ -41,4 +41,40 @@ public class SelectForShareTest : SqlTest
         cmd.CommandText = "DROP TABLE inventory";
         cmd.ExecuteNonQuery();
     }
+
+    protected override void SetupPg(DbConnection connection)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+        cmd.CommandText = "CREATE TABLE inventory (product_id INT PRIMARY KEY, stock INT)";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "INSERT INTO inventory VALUES (1, 100)";
+        cmd.ExecuteNonQuery();
+    }
+
+    protected override void ExecutePg(DbConnection connection, DbConnection connectionSecond)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+
+        cmd.CommandText = "BEGIN";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "SELECT stock FROM inventory WHERE product_id = 1 FOR SHARE";
+        object? stock = cmd.ExecuteScalar();
+        AssertEqual(100, (int)stock!, "Should read shared-locked row");
+
+        cmd.CommandText = "COMMIT";
+        cmd.ExecuteNonQuery();
+
+        cmd.CommandText = "SELECT stock FROM inventory WHERE product_id = 1";
+        object? finalStock = cmd.ExecuteScalar();
+        AssertEqual(100, (int)finalStock!, "Stock should remain unchanged");
+    }
+
+    protected override void CleanupPg(DbConnection connection)
+    {
+        using DbCommand cmd = connection.CreateCommand();
+        cmd.CommandText = "DROP TABLE IF EXISTS inventory";
+        cmd.ExecuteNonQuery();
+    }
 }

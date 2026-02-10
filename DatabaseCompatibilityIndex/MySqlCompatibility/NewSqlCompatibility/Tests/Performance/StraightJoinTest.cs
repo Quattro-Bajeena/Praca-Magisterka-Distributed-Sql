@@ -1,9 +1,10 @@
+using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Performance;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test STRAIGHT_JOIN with hints")]
+[SqlTest(SqlFeatureCategory.PerformanceHints, "Test STRAIGHT_JOIN with hints", DatabaseType.MySql)]
 public class StraightJoinTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

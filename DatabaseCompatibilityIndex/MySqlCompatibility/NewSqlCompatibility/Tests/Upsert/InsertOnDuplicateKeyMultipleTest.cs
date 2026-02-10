@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Upsert;
 
-[SqlTest(SqlFeatureCategory.Upsert, "Test INSERT...ON DUPLICATE KEY with multiple rows")]
+[SqlTest(SqlFeatureCategory.Upsert, "Test INSERT...ON DUPLICATE KEY with multiple rows", Configuration.DatabaseType.MySql)]
 public class InsertOnDuplicateKeyMultipleTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

@@ -1,10 +1,9 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Spatial;
 
-[SqlTest(SqlFeatureCategory.Misc, "Test SPATIAL data types (POINT, LINESTRING, POLYGON) - unsupported in TiDB")]
+[SqlTest(SqlFeatureCategory.Spatial, "Test SPATIAL data types (POINT, LINESTRING, POLYGON)", Configuration.DatabaseType.MySql)]
 public class SpatialDataTypesTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

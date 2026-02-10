@@ -1,9 +1,10 @@
+using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
 namespace NSCI.Tests.Performance;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test IGNORE INDEX hint")]
+[SqlTest(SqlFeatureCategory.PerformanceHints, "Test IGNORE INDEX hint", DatabaseType.MySql)]
 public class IgnoreIndexHintTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)
