@@ -5,3 +5,4 @@ postgres-compatibility-index
 venv
 vitess/vitess
 tidb/tidb-docker-compose
+radondb/radon
