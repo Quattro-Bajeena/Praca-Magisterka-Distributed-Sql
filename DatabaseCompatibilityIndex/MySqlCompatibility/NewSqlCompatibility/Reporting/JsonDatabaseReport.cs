@@ -26,6 +26,7 @@ public record JsonReportCategory(
 public record JsonReportTest(
     string Name,
     string ClassName,
+    string Category,
     string Description,
     bool Passed,
     string Duration,

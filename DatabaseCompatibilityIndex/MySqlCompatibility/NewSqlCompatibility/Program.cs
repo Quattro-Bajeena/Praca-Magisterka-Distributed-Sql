@@ -18,6 +18,14 @@ internal class Program
             TestConfiguration config = TestConfiguration.Load("appsettings.json");
             Console.WriteLine($"Configuration loaded:");
 
+            DatabaseReporter? databaseReporter = null;
+            if (!string.IsNullOrEmpty(config.General.StatDbConnectionString))
+            {
+                databaseReporter = new DatabaseReporter(config.General.StatDbConnectionString);
+                databaseReporter.EnsureTablesExist();
+                Console.WriteLine("Database reporter initialized\n");
+            }
+
             List<(DatabaseConfiguration, List<TestResult>)> databaseResults = new();
 
             foreach (DatabaseConfiguration dbConfig in config.Databases)
@@ -66,6 +74,12 @@ internal class Program
             string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
             string reportPath = $"report_{timestamp}.json";
             JsonReportGenerator.GenerateReport(reportPath, databaseResults);
+
+            if (databaseReporter != null && databaseResults.Count > 0)
+            {
+                databaseReporter.SaveResults(databaseResults);
+                Console.WriteLine("✓ Results saved to database");
+            }
         }
         catch (Exception ex)
         {

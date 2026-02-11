@@ -70,6 +70,7 @@ public static class JsonReportGenerator
                     Tests: g.Select(r => new JsonReportTest(
                         Name: r.TestName,
                         ClassName: r.ClassName,
+                        Category: r.Category.ToString(),
                         Description: r.Description,
                         Passed: r.Passed,
                         Duration: $"{r.Duration:hh\\:mm\\:ss\\.fff}",
