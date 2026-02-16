@@ -6,3 +6,4 @@ venv
 vitess/vitess
 tidb/tidb-docker-compose
 radondb/radon
+cockroachdb/cockroach

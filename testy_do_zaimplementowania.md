@@ -1,0 +1,29 @@
+- Bulk insert (COPY FROM) Postgres, Load data infile into table MYSQL
+- GiST index (postgres)
+- Opcje przy tworzeniu tabel
+  - UNLOGGED
+  - typed name
+  - COLLATE
+  - STORAGE { PLAIN | EXTERNAL | EXTENDED | MAIN | DEFAULT }
+  - COMPRESSION
+  - INHERITS
+  - PARTITION OF
+  - LIKE source_table
+- Rodzaje kolumn
+  - GENERATED
+  - COMPRESION
+  - IDENTITY
+
+- Zaawansowane typy
+  - Własne typy CREATE TYPE
+  - Enumerowane AS ENUM
+  - Domena CREATE DOMAIN
+- DISTINCT ON
+- TABLESAMPLE 
+- Analityczne
+  - CUBE
+  - ROLLUP
+- Sekwencje
+- Reindex
+- Listen, Notify
+- Rules
