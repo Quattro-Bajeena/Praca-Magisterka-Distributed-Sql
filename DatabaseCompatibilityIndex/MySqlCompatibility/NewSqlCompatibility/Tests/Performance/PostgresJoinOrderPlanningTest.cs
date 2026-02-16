@@ -4,6 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Performance;
 
+// https://www.postgresql.org/docs/current/explicit-joins.html
 [SqlTest(SqlFeatureCategory.PerformanceHints, "Test PostgreSQL join order and planning settings", DatabaseType.PostgreSql)]
 public class PostgresJoinOrderPlanningTest : SqlTest
 {

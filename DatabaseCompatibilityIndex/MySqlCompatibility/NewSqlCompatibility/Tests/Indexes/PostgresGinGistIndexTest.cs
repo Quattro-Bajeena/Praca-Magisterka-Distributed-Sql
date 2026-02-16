@@ -4,7 +4,8 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Indexes;
 
-[SqlTest(SqlFeatureCategory.Indexes, "Test PostgreSQL GIN and GiST index types", DatabaseType.PostgreSql)]
+// TODO (GiST nie jest jeszcze zaimplemnetowany)
+[SqlTest(SqlFeatureCategory.Indexes, "Test PostgreSQL GIN index types", DatabaseType.PostgreSql)]
 public class PostgresGinGistIndexTest : SqlTest
 {
     protected override void SetupPg(DbConnection connection)

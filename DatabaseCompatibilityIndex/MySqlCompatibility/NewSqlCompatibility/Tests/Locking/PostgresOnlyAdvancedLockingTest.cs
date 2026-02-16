@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Locking;
 
-[SqlTest(SqlFeatureCategory.Locking, "Test PostgreSQL-exclusive FOR KEY SHARE and FOR NO KEY UPDATE", DatabaseType.PostgreSql)]
+[SqlTest(SqlFeatureCategory.Locking, "FOR KEY SHARE and FOR NO KEY UPDATE", DatabaseType.PostgreSql)]
 public class PostgresOnlyAdvancedLockingTest : SqlTest
 {
     protected override void SetupPg(DbConnection connection)

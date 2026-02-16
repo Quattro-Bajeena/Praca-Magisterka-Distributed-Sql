@@ -10,7 +10,7 @@ public class PostgresIncludeIndexTest : SqlTest
     protected override void SetupPg(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
-        
+
         cmd.CommandText = @"CREATE TABLE products_include (
                             id SERIAL PRIMARY KEY,
                             sku VARCHAR(50),
