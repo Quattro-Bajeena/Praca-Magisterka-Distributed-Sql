@@ -45,6 +45,7 @@ public class StoredProcedureTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
+    // TODO to jest funkcja a nie procedura PROCEDURE
     protected override void SetupPg(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();

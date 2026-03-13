@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Advanced;
 
-[SqlTest(SqlFeatureCategory.Misc, "Test EVENT ")]
+[SqlTest(SqlFeatureCategory.Misc, "Test EVENT ", Configuration.DatabaseType.MySql)]
 public class EventTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)
@@ -43,43 +43,5 @@ public class EventTest : SqlTest
         cmd.ExecuteNonQuery();
     }
 
-    protected override void SetupPg(DbConnection connection)
-    {
-        using DbCommand cmd = connection.CreateCommand();
-
-        cmd.CommandText = "CREATE TABLE event_log (id SERIAL PRIMARY KEY, log_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
-        cmd.ExecuteNonQuery();
-
-        cmd.CommandText = @"CREATE OR REPLACE FUNCTION insert_event_log() RETURNS void AS $$
-            BEGIN
-                INSERT INTO event_log (log_time) VALUES (CURRENT_TIMESTAMP);
-            END;
-            $$ LANGUAGE plpgsql";
-        cmd.ExecuteNonQuery();
-
-        cmd.CommandText = "SELECT pg_sleep(0.1)";
-        cmd.ExecuteNonQuery();
-
-        cmd.CommandText = "SELECT insert_event_log()";
-        cmd.ExecuteNonQuery();
-    }
-
-    protected override void ExecutePg(DbConnection connection, DbConnection connectionSecond)
-    {
-        using DbCommand cmd = connection.CreateCommand();
-
-        cmd.CommandText = "SELECT COUNT(*) FROM event_log";
-        object? count = cmd.ExecuteScalar();
-        AssertEqual(1L, Convert.ToInt64(count!), "Function should have inserted 1 row");
-    }
-
-    protected override void CleanupPg(DbConnection connection)
-    {
-        using DbCommand cmd = connection.CreateCommand();
-        cmd.CommandText = "DROP FUNCTION IF EXISTS insert_event_log()";
-        cmd.ExecuteNonQuery();
-
-        cmd.CommandText = "DROP TABLE IF EXISTS event_log";
-        cmd.ExecuteNonQuery();
-    }
+    // TODO Przepisać test
 }
