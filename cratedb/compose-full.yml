@@ -1,0 +1,69 @@
+services:
+  cratedb01:
+    image: crate:latest
+    container_name: cratedb01
+    ports:
+      - "4201:4200"
+      - "4301:4300"
+    volumes:
+      - ./data/01:/data
+    environment:
+      CRATE_HEAP_SIZE: 1g
+    command:
+      [
+        "crate",
+        "-Ccluster.name=crate-docker-cluster",
+        "-Cnode.name=cratedb01",
+        "-Cnode.data=true",
+        "-Cnetwork.host=_site_",
+        "-Cdiscovery.seed_hosts=cratedb02,cratedb03",
+        "-Ccluster.initial_master_nodes=cratedb01,cratedb02,cratedb03",
+        "-Cgateway.expected_data_nodes=3",
+        "-Cgateway.recover_after_data_nodes=2",
+      ]
+
+  cratedb02:
+    image: crate:latest
+    container_name: cratedb02
+    ports:
+      - "4202:4200"
+      - "4302:4300"
+    volumes:
+      - ./data/02:/data
+    environment:
+      CRATE_HEAP_SIZE: 1g
+    command:
+      [
+        "crate",
+        "-Ccluster.name=crate-docker-cluster",
+        "-Cnode.name=cratedb02",
+        "-Cnode.data=true",
+        "-Cnetwork.host=_site_",
+        "-Cdiscovery.seed_hosts=cratedb01,cratedb03",
+        "-Ccluster.initial_master_nodes=cratedb01,cratedb02,cratedb03",
+        "-Cgateway.expected_data_nodes=3",
+        "-Cgateway.recover_after_data_nodes=2",
+      ]
+
+  cratedb03:
+    image: crate:latest
+    container_name: cratedb03
+    ports:
+      - "4203:4200"
+      - "4303:4300"
+    volumes:
+      - ./data/03:/data
+    environment:
+      CRATE_HEAP_SIZE: 1g
+    command:
+      [
+        "crate",
+        "-Ccluster.name=crate-docker-cluster",
+        "-Cnode.name=cratedb03",
+        "-Cnode.data=true",
+        "-Cnetwork.host=_site_",
+        "-Cdiscovery.seed_hosts=cratedb01,cratedb02",
+        "-Ccluster.initial_master_nodes=cratedb01,cratedb02,cratedb03",
+        "-Cgateway.expected_data_nodes=3",
+        "-Cgateway.recover_after_data_nodes=2",
+      ]

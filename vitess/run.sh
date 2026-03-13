@@ -2,6 +2,7 @@ minikube start --kubernetes-version=v1.25.8 --cpus=4 --memory=11000 --disk-size=
 git clone https://github.com/vitessio/vitess
 git checkout release-16.0
 cd vitess/examples/operator
+cd operator
 kubectl apply -f operator.yaml
 kubectl apply -f 101_initial_cluster.yaml
 
@@ -11,7 +12,7 @@ alias vtctlclient="vtctlclient --server=localhost:15999"
 alias mysql="mysql -h 127.0.0.1 -P 15306 -u user"
 
 
-kubectl port-forward -n example --address 0.0.0.0 "$(kubectl get service -n example --selector="planetscale.com/component=vtctld" -o name | head -n1)" 15000 15999 &
+kubectl port-forward -n example --address 0.0.0.0 "$(kubectl get service -n example --selector="planetscale.com/component=vtctld" -o name | head -n1)" 15000:15999 &
 process_id1=$!
 kubectl port-forward -n example --address 0.0.0.0 "$(kubectl get service -n example --selector="planetscale.com/component=vtgate,!planetscale.com/cell" -o name | head -n1)" 15306:3306 &
 process_id2=$!
@@ -25,3 +26,7 @@ echo "Hit Ctrl-C to stop the port forwards"
 wait $process_id1
 wait $process_id2
 wait $process_id3
+
+
+# Windows
+mysqlsh -h 127.0.0.1 -P 15306 -u user

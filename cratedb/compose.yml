@@ -1,0 +1,12 @@
+#sh$ docker run --publish 4200:4200 --publish 5432:5432 --env CRATE_HEAP_SIZE=1g crate '-Cdiscovery.type=single-node'
+
+services:
+  crate:
+    image: crate:latest
+    container_name: crate
+    ports:
+      - "4204:4200" # Admin UI
+      - "5434:5432" # Postgres protocol
+    environment:
+      CRATE_HEAP_SIZE: 1g
+    command: ['-Cdiscovery.type=single-node']

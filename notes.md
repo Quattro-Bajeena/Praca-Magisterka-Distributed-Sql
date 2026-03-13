@@ -17,7 +17,7 @@ Testowanie SQL:
 ## Zaimplementowane testy
 Kategorie:
 - Aggregations
-- Basic queires
+- Basic queries
 - constraints
 - CTE
 - Data Types
@@ -102,3 +102,28 @@ Bardziej analityczne bazy danych:
   - Crate
 
 ## Podpięcie rozproszonej bazy danych do open sourcowej aplikacji i sprawdzenie działania w praktyce
+
+
+
+
+- Wsparcie społeczności / łatwość wdrożenia
+- Wersja -> Lata ważniejsze. X lat wstecz
+
+Opis co będzie:
+10 punktów
+co najmniej X baz danych
+kategorie, liczba testów
+
+Opis:
+- Stworzenie programu w języku C# ułatwiającego przeprowadzanie testów funkcjonalności baz danych
+- Napisanie przynajmniej 150 przypadków testowych dla bazy PostgreSQL oraz MySql
+- Testy będą obejmowały obszary takie jak: agregacje, ograniczenia, CTE, typy danych, DLL, indeksy, blokowanie, dane przestrzenne, procedury składowane, podzaptania, transakcje, wyzwalacze, zarządzanie użytkownikami, widoki, funkcje analitczne i inne
+- Analiza kodów źródłowych w celu przetestowania przypadków brzegowych
+- Uruchomienie testów na co najmniej 6 bazach danych typu rozproszonego, które deklarują zgodność z PostgreSQL lub MySQL, m.in. CockroachDB, TiDB, YugabyteDB
+- Stworzenie panelu do wizualizacji otrzymanych wyników.
+- Analiza i kategoryzacja wyników. Kategoryzacja i ocena powagi znalezionych braków w zgodności.
+- Porównanie wyników otrzymanych dla najnowszych wersji baz danych, ze wcześniejszymi wersjami z ostatnich kilku lat.
+- Przeprowadzenie testów wydajnościowych w kontrolowanych warunkach, aby porównać czasy wykonania identycznych operacji pomiędzy tradycyjnymi a rozproszonymi bazami danych
+- Ocena łatwości przeniesienia aplikacji korzystającej z tradycyjnej bazy danych na każdą z testowanych rozproszonych baz
+
+
