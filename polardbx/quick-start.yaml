@@ -1,0 +1,30 @@
+apiVersion: polardbx.aliyun.com/v1
+kind: XStore
+metadata:
+  name: quick-start
+spec:
+  config:
+    controller:
+      RPCProtocolVersion: 1
+  topology:
+    nodeSets:
+    - name: cand
+      replicas: 2
+      role: Candidate
+      template:
+        spec:
+          image: polardbx/polardbx-engine:v2.4.0_8.4.19
+          resources:
+            limits:
+              cpu: 2
+              memory: 4Gi
+    - name: log
+      replicas: 1
+      role: Voter
+      template:
+        spec:
+          image: polardbx/polardbx-engine:v2.4.0_8.4.19
+          resources:
+            limits:
+              cpu: 1
+              memory: 2Gi
