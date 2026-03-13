@@ -11,3 +11,6 @@ pxd tryout
 pxd list
 pxd cleanup
 pxd delete pxc-tryout
+
+
+mysql -h127.0.0.1 -P56750 -upolardbx_root -pjtGglNHV
