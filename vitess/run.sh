@@ -17,7 +17,6 @@ sudo ./pf.sh & alias vtctldclient="vtctldclient --server=localhost:15999"
 alias vtctlclient="vtctlclient --server=localhost:15999"
 alias mysql="mysql -h 127.0.0.1 -P 15306 -u user"
 
-# Na WSLu
 kubectl port-forward -n example --address 0.0.0.0 "$(kubectl get service -n example --selector="planetscale.com/component=vtctld" -o name | head -n1)" 15000:15999 &
 process_id1=$!
 kubectl port-forward -n example --address 0.0.0.0 "$(kubectl get service -n example --selector="planetscale.com/component=vtgate" -o name | head -n1)" 15306:3306 &
@@ -37,3 +36,6 @@ wait $process_id3
 
 # Windows
 mysqlsh -h 127.0.0.1 -P 15306 -u user
+
+# Na WSLu
+./port-forward.sh

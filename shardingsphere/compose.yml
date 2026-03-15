@@ -1,0 +1,11 @@
+services:
+  shardingsphere:
+    image: apache/shardingsphere-proxy:latest
+    container_name: shardingsphere-proxy
+    ports:
+      - 13308:3308
+    environment:
+      - PORT=3308
+    volumes:
+      - ./conf:/opt/shardingsphere-proxy/conf
+      - ./logs:/opt/shardingsphere-proxy/logs
