@@ -3,18 +3,25 @@ git clone https://github.com/vitessio/vitess
 git checkout release-16.0
 cd vitess/examples/operator
 cd operator
+
+
+kubectl create namespace example
 kubectl apply -f operator.yaml
 kubectl apply -f 101_initial_cluster.yaml
 
-./pf.sh &
-alias vtctldclient="vtctldclient --server=localhost:15999"
+kubectl get pods -n example
+
+
+
+sudo ./pf.sh & alias vtctldclient="vtctldclient --server=localhost:15999"
 alias vtctlclient="vtctlclient --server=localhost:15999"
 alias mysql="mysql -h 127.0.0.1 -P 15306 -u user"
 
-
+# Na WSLu
 kubectl port-forward -n example --address 0.0.0.0 "$(kubectl get service -n example --selector="planetscale.com/component=vtctld" -o name | head -n1)" 15000:15999 &
 process_id1=$!
-kubectl port-forward -n example --address 0.0.0.0 "$(kubectl get service -n example --selector="planetscale.com/component=vtgate,!planetscale.com/cell" -o name | head -n1)" 15306:3306 &
+kubectl port-forward -n example --address 0.0.0.0 "$(kubectl get service -n example --selector="planetscale.com/component=vtgate" -o name | head -n1)" 15306:3306 &
+# kubectl port-forward -n example --address 0.0.0.0 "$(kubectl get service -n example --selector="planetscale.com/component=vtgate,!planetscale.com/cell" -o name | head -n1)" 15306:3306 &
 process_id2=$!
 kubectl port-forward -n example --address 0.0.0.0 "$(kubectl get service -n example --selector="planetscale.com/component=vtadmin" -o name | head -n1)" 14000:15000 14001:15001 &
 process_id3=$!
