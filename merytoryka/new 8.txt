@@ -1,0 +1,13 @@
+- prodziak i ktoś jeszcze musi to zaakceptować
+- 8 zdań
+
+newSql są jednym z typów nowoczsnych baz danych
+oferują wiele funkjci, które nie są spójne
+celem pracy jest zbadanie co najmniej X produtków open sourców
+w celu sprawdzenia - wymienić funkcjonalności
+
+
+Bazy danych typu NewSql (znane także jako distributed SQL )
+
+
+

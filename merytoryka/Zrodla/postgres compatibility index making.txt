@@ -1,0 +1,34 @@
+The Making of “Postgres Is”
+Mayur (Do not drink & database)
+Mayur (Do not drink & database)
+2 min read
+·
+Feb 27, 2025
+Press enter or click to view image in full size
+Philosophy behind “PG Scorecard”:
+
+Postgres is an open-source database boasting an impressive 30-year legacy and a potent network effect. Its vibrant community has nurtured enduring credibility and resilience.
+
+Naturally, emerging database startups want to harness this “Network effect” by claiming Postgres compatibility. Yet, without intrinsic checks on such assertions, this risks spiraling out of control and enticing malevolent actors.
+
+The Postgres Compatibility Index aims to create an open-source framework to validate these claims. My drive to introduce automated tests stems from the need to compare user experiences between the community edition and the more flamboyant, serverless, cloud-based, or specialized derivatives. Are users granted the same freedom, flexibility, and reliability they enjoy with the community version of PostgreSQL?
+For example, Technically a cloud vendor can be compatible to Postgres however by not allowing freedom to use external programming language such as pl/perl,pl/python or C functions you would be denying users same experience as on self hosted community Postgresql.
+
+For now, I’ve sidelined the obvious champions such as EDB Postgres, Azure FlexiServer, Amazon RDS, and Google CloudSQL. Time’s the culprit. By day, I’m a DBA; by weekend, a coder. They’ll join the fray when the clock permits.
+Get Mayur (Do not drink & database)’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+There are lot of complex tests that I would like to have but not figured out yet how to incorporate them. If you wish to contribute tests or code, please submit a pull request.
+
+MIT Licenced code so feel free to contribute and improve it.
+
+Contribut to scoring methodology code here ==> pci_autotest.py
+
+Are you a vendor itching to showcase your creation?
+
+Run autotest.py against your database. Send a pull request with the JSON output, logs, and screenshots. Step into the spotlight.
+
+Need your favorite db featured on site ==> Outputs
+
+Update: In response to a trademark notice from the PostgreSQL Community Association of Canada, domain has been changed from “Postgres.Is” to pgscorecard.com

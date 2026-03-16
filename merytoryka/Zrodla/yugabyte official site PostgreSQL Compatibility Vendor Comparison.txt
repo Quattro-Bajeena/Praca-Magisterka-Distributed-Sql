@@ -1,0 +1,168 @@
+Comparing PostgreSQL-Compatible Databases
+From Amazon RDS to YugabyteDB
+
+PostgreSQL was ranked this year as the #1 database by over 90,000 developers. Its meteoric rise—in terms of popularity—has led to the development of many different PostgreSQL-compatible databases. The goal? To make it easier to use PostgreSQL in the cloud or introduce new capabilities that are not available in the standard database distribution.
+
+However, the abundance of PostgreSQL-compatible databases can make it difficult for developers to choose the one that best suits their application use case.
+
+This guide will help you overcome that difficulty by comparing key capabilities and PostgreSQL compatibility differences of various options, starting with managed services like Amazon RDS and Azure Database for PostgreSQL, and moving on to distributed SQL databases like Google Spanner and YugabyteDB.
+PostgreSQL Compatibility Levels
+
+It’s important to accurately measure the level of PostgreSQL compatibility that a database achieves since that is what determines how the database supports Postgres APIs and—ultimately—how it behaves.
+
+All levels of PostgreSQL compatibility are not the sameWhy is this important? Well, depending on the level of supported compatibility, you might find that migrating one application from PostgreSQL to a PostgreSQL-compatible database just requires a simple configuration change. However, for another application, it could entail more extensive code-level changes.
+
+An oversimplified approach to measuring compatibility might be to look at it quantitatively. It’s tempting to state that one database is 80% compatible with PostgreSQL, while another database is only 20% compatible. However, Postgres is a feature-rich database with a broad ecosystem of libraries and extensions. This makes it challenging and impractical to quantify all capabilities or agree on a subset of features for measuring compatibility. Additionally, PostgreSQL has its own system catalog, error codes, and runtime statistics. Should these runtime characteristics be included in a quantitative framework? If so, should they contribute 10%, 5%, or 1% to the overall compatibility rank?
+
+Instead of measuring PostgreSQL compatibility quantitatively, a more practical approach is to define different compatibility levels and discuss the degree of compatibility (low, moderate, high, full) within each level.
+
+Within this guide, we will match PostgreSQL-compatible databases to the following four levels:
+
+    Wire-Protocol compatibility. This is the most basic compatibility level. It enables a PostgreSQL-compatible database to recognize and follow network protocol-level commands. SQL tools and drivers use this protocol to communicate with a PostgreSQL instance.
+     Syntax compatibility. This compatibility level defines to what extent a database supports the PostgreSQL DML and DDL syntax. The higher the compatibility level, the fewer syntax-level code changes an application requires.
+    Feature compatibility. Applications depend on both core and advanced features of PostgreSQL. This compatibility level helps assess the extent to which an application can reuse transaction isolation levels, triggers, views, stored procedures, and other PostgreSQL features.
+    Runtime compatibility. This is the highest compatibility level, evaluating how well a PostgreSQL-compatible database supports PostgreSQL execution semantics. It is crucial for the ecosystem of extensions, libraries, and frameworks that rely on the PostgreSQL system catalog, error codes, and statistics.
+
+PostgreSQL Compatibility Matrix
+
+Using these four compatibility levels, we’ve created a straightforward compatibility matrix for the databases we’ll be discussing.
+Database Category	 Database Name	Wire-Protocol Compatibility	Syntax Compatibility	Feature Compatibility	Runtime Compatibility
+Managed Services for Postgres	Amazon RDS	Full	Full	High	Full
+Google Cloud SQL	Full	Full	High	Full
+Azure Database for PostgreSQL	Full	Full	High	Full
+EDB BigAnimal	Full	Full	High	Full
+Separate Storage and Compute	Amazon Aurora	Full	Full	High	High
+Google AlloyDB	Full	Full	High	High
+Neon	Full	Full	High	High
+Sharded Postgres	CitusData	Full	Full	High	High
+Azure CosmosDB for PostgreSQL	Full	Full	High	High
+Distributed SQL Databases	Google Spanner	Full	High	Low	Low
+CockroachDB	Full	High	Moderate	Low
+YugabyteDB	Full	Full	High	High
+
+To keep things simple, we’ve assessed each database’s level of compliance to each compatibility level using four clear degrees; low, moderate, high, and full. Now let’s delve into the first category of PostgreSQL-compatible databases, ones that provide a fully managed service for open source PostgreSQL.
+Managed Services for PostgreSQL
+
+Amazon RDS, Google Cloud SQL, Azure Database for PostgreSQL, and EDB BigAnimal are all fully managed service options for Postgres. These database options possess the highest degree of compatibility since they essentially manage standard PostgreSQL for you.
+Database Category	Database Name	Wire-Protocol Compatibility	Syntax Compatibility	Feature Compatibility	Runtime Compatibility
+Managed Services for Postgres	Amazon RDS	Full	Full	High	Full
+Google Cloud SQL	Full	Full	High	Full
+Azure Database for PostgreSQL	Full	Full	High	Full
+EDB BigAnimal	Full	Full	High	Full
+
+However, due to security concerns and other reasons, you may not be able to install and utilize certain PostgreSQL extensions or foreign data wrappers. This means that services are not fully feature-compatible.
+
+From a high availability (HA) standpoint, all cloud vendors allow you to deploy standby instances in different availability zones from the primary instance. Such configurations can tolerate zone-level outages, with automatic failover in case the primary instance fails. Additionally, Azure Database for PostgreSQL and Google Cloud SQL allow you to add extra replica nodes to scale read workloads once the primary database instance is ready. Amazon RDS and EDB BigAnimal also support configuration options with standby replica instances to load balance read operations.
+Workloads That Suit A Managed Service Deployment Option
+
+If the storage and compute resources of a single database server are sufficient for your application workload, and if you can tolerate downtime whenever the database instance needs to be scaled up, this deployment option is worth considering.
+
+Overall, Amazon RDS, Google Cloud SQL, Azure Database for PostgreSQL, and EDB BigAnimal are excellent choices if you’re looking for a fully managed service for standard PostgreSQL. These platforms can handle the deployment, management, patching, and backup of your database, providing security and a variety of high-availability options.
+PostgreSQL-Compatible Databases With Separate Storage and Compute
+
+The public cloud infrastructure provides highly scalable and reliable storage, optimized for cloud workloads. Amazon Aurora, Google AlloyDB, and Neon are examples of PostgreSQL-compatible databases born in the cloud and specifically designed to leverage global cloud storage.
+
+Conceptually, all three databases separate storage from compute. They retain the upper half of PostgreSQL (usually called the compute or query layer) while providing an alternative storage layer implementation. This aspect of storage makes these databases unique and often improves performance, scalability, and availability compared to standard PostgreSQL deployments running in a cloud-native setting.
+
+Regarding the compute layer, Aurora, AlloyDB, and Neon maintain a single primary instance for both write and read workloads. To scale reads, you simply deploy additional replica nodes.
+
+Since these databases have a single primary instance that serves read/write workloads, they retain a high degree of compatibility with PostgreSQL.
+Database Category	Database Name	Wire-Protocol Compatibility	Syntax Compatibility	Feature Compatibility	Runtime Compatibility
+Separate Storage and Compute	Amazon Aurora	Full	Full	High	High
+Google AlloyDB	Full	Full	High	High
+Neon	Full	Full	High	High
+
+These databases may not support all extensions, foreign data wrappers and PostgreSQL executions semantics, due to differences in their storage layers, security concerns, or a range of other reasons. As a result, Aurora, AlloyDB, and Neon possess high (but not full) feature and runtime compatibility with PostgreSQL.
+
+High availability (HA) is achieved at both the compute and storage layers. Compute-level HA involves having a primary instance and read replica nodes (or compute/worker nodes), with one promoted to primary in case of an outage. This is comparable to the HA deployment option of standard PostgreSQL using a single primary and read replica. As for storage-level HA, each database offers its own unique solution—one that allows for the storage of redundant data copies across multiple cloud locations.
+
+The RTO (recovery time objective) and RPO (recovery point objective) depend on specific database configuration and storage settings. For example, Amazon Aurora provides an RTO measured in minutes and an RPO in seconds.
+Workloads That Suit a Deployment Option with Separate Storage and Compute
+
+Aurora, AlloyDB, and Neon provide greater flexibility, allowing you to find the right balance between performance, scalability, fault tolerance, and your cloud spend.
+
+You can opt for dedicated instances of Aurora and AlloyDB, which provide superior scalability and availability compared to standard PostgreSQL, albeit at a higher price point. Alternatively, if you have a variable workload and want to minimize cloud expenditure, options like Aurora Serverless or Neon might be a better fit.
+
+The databases in this category can scale read workloads using additional replica nodes. However, they are not designed for write workload scalability since all writes are processed by a single primary instance.
+Sharded PostgreSQL Databases
+
+If your application workload outgrows the resources of a single primary database, you might face issues like storage space exhaustion or insufficient CPUs to handle increased write/read workloads.
+
+Upgrading the database server to another instance with more storage and CPU cores usually involves downtime, which becomes unsustainable if regular vertical upgrades are needed.
+
+Sharding is a technique that enables horizontal database scaling by distributing data and read/write workloads across multiple database servers. Although PostgreSQL doesn’t natively support sharding, there are several solutions that can assist in deploying a sharded PostgreSQL cluster. For example, CitusData is an extension that simplifies sharded deployments of PostgreSQL.
+
+YugabyteDB postgresql ha seo worker nodes
+
+CitusData has a coordinator node that receives client queries and forwards them to worker nodes (standard PostgreSQL instances). Depending on the query type, the coordinator can direct a request to a single PostgreSQL instance or broadcast them across all worker nodes.
+
+To ensure high availability, each coordinator and each worker node must be complemented by one or more standby instances, depending on your desired recovery time objective (RTO) and recovery point objective (RPO). Patroni is often used to streamline failover and failback procedures. This article on PostgreSQL high availability provides more detail.
+
+As for Azure CosmosDB for PostgreSQL, it is a fully managed service optimized for CitusData deployments on Microsoft’s cloud infrastructure.
+
+Both CitusData and CosmosDB for PostgreSQL maintain high compatibility with PostgreSQL as long as data is sharded and the load is distributed across standard PostgreSQL instances.
+Database Category	Database Name	Wire-Protocol Compatibility	Syntax Compatibility	Feature Compatibility	Runtime Compatibility
+Sharded Postgres	CitusData	Full	Full	High	High
+Azure CosmosDB for PostgreSQL	Full	Full	High	High
+
+However, there are still some limitations that apply to sharded tables. For example, there’s no support for cross-shard foreign keys, unique constraints, and serializable transactions. This means that these databases retain high (but not full) feature and runtime compatibility.
+Workloads That Suit a Sharded PostgreSQL Deployment Option
+
+If you need to shard data across several PostgreSQL instances and scale both read and write workloads, CitusData or Microsoft CosmosDB for PostgreSQL are good options. However, their scale-out process isn’t entirely automated. While you can add new nodes to the cluster, the shard rebalancing process must be done manually. Also, once you add nodes, you cannot later reduce the cluster size.
+
+For specific use cases, Citus recommends employing its solution for:
+
+    multi-tenant applications (where each tenant’s data is mapped to one of the worker nodes).
+    real-time analytics.
+
+PostgreSQL-Compatible Distributed SQL Databases
+
+Similar to sharding solutions like CosmosDB for PostgreSQL, distributed SQL databases enable horizontal scaling by sharding data and load balancing requests across multiple nodes. However, this is where the similarities end.
+
+Distributed databases like YugabyteDB, Google Spanner, and CockroachDB are built on a shared-nothing architecture. Their architectures don’t have a single coordinator node because it can easily become a bottleneck. Instead, cluster nodes communicate directly to execute distributed transactions, join tables, replicate changes, handle failures automatically, and scale elastically without manual intervention.
+
+These databases were designed to capitalize on NoSQL database scalability to the benefit of OLTP workloads. As a result, they offer features and capabilities crucial for transactional applications, such as ACID transactions, secondary indexes, foreign keys, unique constraints, and more.
+
+From a high availability standpoint, the cluster is self-healing. So, if one node goes down, the others detect the outage. They will take over processing the application requests sent to the failed node since they possess a redundant and consistent copy of the data.
+
+The databases exhibit different characteristics due to the way they’ve enabled PostgreSQL compatibility.
+Database Category	Database Name	Wire-Protocol Compatibility	Syntax Compatibility	Feature Compatibility	Runtime Compatibility
+Distributed SQL Databases	Google Spanner	Full	High	Low	Low
+CockroachDB	Full	High	Moderate	Low
+YugabyteDB	Full	Full	High	High
+
+SQL engines of Google Spanner and CockroachDB were built from the ground up, gradually adding PostgreSQL capabilities. Both databases exhibit full wire-protocol and high syntax-level compatibility. However, many standard PostgreSQL features, like triggers and stored procedures, aren’t fully supported in either database (refer to their limitations list for more details).
+
+CockroachDB began working towards feature parity earlier than Spanner, leading to a higher degree of compatibility at the feature level. When it comes to runtime compatibility, however, neither Spanner nor CockroachDB supports the PostgreSQL catalog, error codes, or statistics, making them less compatible from a runtime perspective.
+
+YugabyteDB went a different route, building the upper half of their database — the query layer — using PostgreSQL source code. It is essentially a PostgreSQL fork that reuses the PostgreSQL parser, analyzer, planner, and executor, with enhancements made for its distributed storage (DocDB).
+
+YugabyteDB postgresql ha seo query layers
+
+Yugabyte’s approach and architecture result in a high level of feature and runtime compatibility with PostgreSQL. It supports all core features, including materialized views, stored procedures, and triggers, as well as many extensions, foreign data wrappers, libraries, tools, and frameworks originally designed for PostgreSQL. In addition, YugabyteDB has expanded PostgreSQL table partitioning capabilities by adding support for geo-partitioned tables that pin user data to specific locations.
+
+Learn more about geo-partitioning of data in YugabyteDB >>
+Workloads That Suit Distributed SQL
+
+If the capacity and compute resources of a single PostgreSQL instance are inadequate for your application workload, consider distributed SQL. This category of databases scales horizontally and vertically, ensuring transactional guarantees like standard relational databases but at scale.
+
+Additionally, they are designed for high availability, capable of tolerating zone- and region-level outages, as well as other incidents. They also offer one of the lowest RTO/RPO of all reviewed PostgreSQL-compatible databases. For example, YugabyteDB provides an RPO of 0 (no data loss) and an RTO within the range of 3-15 seconds (depending on the database and TCP/IP configuration defaults).
+
+How a Fortune 500 retailer weathered a regional cloud outage with YugabyteDB >>
+In Summary…
+
+With the popularity of PostgreSQL, numerous PostgreSQL-compatible databases have emerged. To find the best option for your application use case, group them by their capabilities and compatibility levels, and match this to your application’s requirements.
+
+Assessing the degree of compatibility with PostgreSQL will aid in understanding the work required to migrate your existing applications from PostgreSQL to a compatible database, and what new skills and knowledge might be required to develop new applications.
+PostgreSQL-Compatible Database FAQ
+
+    Is there an enterprise version of PostgreSQL?
+    Yes, many enterprise-level database companies offer different degrees of PostgreSQL compatibility, including as a managed services, a compatible distributed SQL databases, or with separated compute and storage.
+    Is CockroachDB compatible with PostgreSQL?
+    CockroachDB is wire-protocol and syntax-level compatible. However, many standard features, like triggers and stored procedures, aren’t fully supported. It is also much less compatible from a runtime perspective.
+    Does AWS RDS support PostgreSQL?
+    Yes, Amazon RDS fully manages standard PostgreSQL, including deployment, management, patching, and backups. Consider this option if you can tolerate downtime during database instance scaling.
+    Is PostgreSQL supported in Azure?
+    Azure CosmosDB for PostgreSQL is a fully managed PostgreSQL-compatible service optimized for CitusData deployments on Microsoft’s cloud infrastructure.
+    Is Amazon Aurora compatible with PostgreSQL?
+    Amazon Aurora is PostgreSQL compatible but may not support all extensions, foreign data wrappers, and PostgreSQL executions semantics, due to differences in their storage layers, security concerns, etc.

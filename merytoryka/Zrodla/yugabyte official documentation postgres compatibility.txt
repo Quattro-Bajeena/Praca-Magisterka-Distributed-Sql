@@ -1,0 +1,40 @@
+Understanding PostgreSQL Compatibility
+From Syntax to Runtime Levels
+
+A PostgreSQL-compatible database should work seamlessly with the applications and tools developed for PostgreSQL. It achieves this compatibility by mirroring the original PostgreSQL’s features, functions, and syntax.
+
+PostgreSQL offers advanced functionality in the form of stored procedures, user defined functions, triggers, and more, and is supported by a rich ecosystem of extensions, tools, connectors, drivers, and frameworks. A truly PostgreSQL-compatible database should integrate seamlessly with those frameworks and tools, as well as any applications developed for PostgreSQL. This is achieved by implementing a similar set of features, functions, and syntax.
+
+Supporting SQL (Structured Query Language), the standard language for relational databases, is also essential. This includes support for the same data types, operators, and functions used in PostgreSQL, along with similar syntax for creating and manipulating tables, indexes, and views.
+PostgreSQL Compatibility Levels
+
+Many databases claim to be PostgreSQL-compatible. However, it is important to understand that a claim of compatibility does not necessarily mean that the database is fully compatible. There are, in fact, four levels of PostgreSQL compatibility. Compatibility is not an all-or-nothing sport. There can be degrees of compatibility since databases can lay anywhere along a level’s spectrum.
+
+A Comparison Guide of PostgreSQL-Compatible Database: From Amazon RDS to YugabyteDB>>> 
+
+Claiming a database is compatible with PostgreSQl does not inherently mean it is 100 percent compatible and that existing applications will run without updates. Databases can only support applications to the extent they meet the compatibility criteria. Therefore, even if a database claims compatibility, updates may still be necessary to ensure that existing applications run smoothly.
+
+    Wire-Protocol Compatibility
+    A PostgreSQL database reads a set of commands and queries off the network. These commands and queries are written in a sequence of bytes and serialized. A “wire-protocol compatible” database can understand this same data sequencing and serialization. Wire-protocol compatibility allows PostgreSQL client drivers to communicate with the database. This means that developers experienced with PostgreSQL can easily build their applications. They can write the application using a variety of programming languages—Java, JDBC, Python, Go, etc—and can use command-line tools (psql, for example) to connect to the database and explore a large number of schemas or queries.
+    Syntax Compatibility
+    Syntax compatibility relates to how a database parses the PostgreSQL syntax. In other words, if a valid PostgreSQL snippet is sent to the database, it should create a table, execute a SQL statement, and return a valid result. The way this is executed, however, might be different. For example, a specific set of parameters may be ignored. With proper syntax, developers can use some of PostgreSQL’s tools and frameworks. They send the necessary commands, and the database understands and follows them.
+    Feature Compatibility
+    With feature compatibility, a database can support the advanced features in PostgreSQL— beyond the ANSI SQL standard—to help you get the most out of your data. Some of these advanced features include triggers, partial indexes, and stored procedures. On the other hand, an equivalent feature can have a different Postgres syntax to work. In this scenario, developers who rely on a specific Postgres feature would need to get up to speed with equivalent feature sets and make application modifications.
+    Runtime Compatibility
+    Runtime compatibility is the highest level of PostgreSQL compatibility. It ensures that a database will match PostgreSQL execution semantics at runtime. More specifically, runtime-compatible databases should support queries to the system catalog, error messages, and error codes. Having runtime compatibility automatically implies that the other three compatibility metrics—wire, syntax, and feature—are in place. As a result, developers who know PostgreSQL will feel at home from start to finish.
+
+    How YugabyteDB reuses the PostgreSQL query layer
+    Figure 1: How YugabyteDB reuses the PostgreSQL query layer
+
+Why is PostgreSQL compatibility important?
+
+PostgreSQL is considered the gold standard for transactional databases thanks to its proven feature set that is known and loved by technologists. It supports a number of  “post-relational” database concepts, including in-database functions. It is highly functional for many use cases and applications.
+DB-Engines Ranking of PostgreSQL Popularity
+Figure 2: DB-Engines Ranking of PostgreSQL Popularity (2013-2023)
+
+PostgreSQL is robust, fully extensible, and 100% open source. It is supported by a vibrant community of developers—not to mention an expansive ecosystem of tools and frameworks.
+PostgreSQL Compatibility FAQ
+
+    What is PostgreSQL compatibility?
+
+    PostgreSQL compatibility means that a database should work seamlessly with applications and tools originally developed for use with a PostgreSQL database.

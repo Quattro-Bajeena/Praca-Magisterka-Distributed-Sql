@@ -1,0 +1,7 @@
+NewSQL (znane także jako Distributed SQL) to nowoczesna klasa rozproszonych systemów baz danych, która łączą zalety tradycyjnych relacyjnych systemów z możliwościami skalowania horyzontalnego typowymi dla NoSQL. 
+Wspólną cechą wielu rozwiązań NewSQL jest częściowa zgodność z dialektami języka SQL oraz zapewnienie modelu ACID, jednak implementacje poszczególnych systemów znacznie się różnią pod względem architektury, dostępnych funkcjonalności i stopnia zgodności ze standardami SQL.
+Celem niniejszej pracy magisterskiej jest przeprowadzenie analizy porównawczej wybranych otwartoźródłowych baz danych klasy NewSQL. 
+W pracy zostaną zbadane co najmniej cztery aktywnie rozwijane systemy.
+Analiza będzie uwzględniać takie aspekty, jak kompatybilność z dialektami SQL, mechanizmy rozproszenia i replikacji, wsparcie dla transakcji, odporność na awarie oraz skalowalność horyzontalną. 
+Zostaną także przeprowadzone praktyczne pomiary różnic w wydajności pomiędzy systemami.
+Praca ma na celu ocenę, które rozwiązania najlepiej sprawdzają się w różnych scenariuszach wykorzystania i jakie kompromisy projektowe zostały przyjęte przez twórców poszczególnych systemów.

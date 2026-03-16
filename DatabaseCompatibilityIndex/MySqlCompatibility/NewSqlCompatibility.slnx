@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Project Path="NewSqlCompatibility/NSCI.csproj" />
+  <Project Path="NSCI.Visualize/NSCI.Visualize.csproj" Id="ac5f1557-a913-4b2e-a470-fe1228f91af5" />
+</Solution>

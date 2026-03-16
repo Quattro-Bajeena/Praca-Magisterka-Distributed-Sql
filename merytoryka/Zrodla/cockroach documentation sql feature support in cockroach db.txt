@@ -1,0 +1,157 @@
+
+SQL Feature Support in CockroachDB
+
+CockroachDB v25.4 supports the following standard SQL features and common extensions.
+
+    Component lists the components that are commonly considered part of SQL.
+    Supported shows CockroachDB's level of support for the component.
+    Type indicates whether the component is part of the SQL Standard or is an Extension created by Cockroach Labs or others.
+    Details provides greater context about the component.
+
+Features
+Row values
+Component 	Supported 	Type 	Details
+ARRAY 	✓ 	Standard 	ARRAY documentation
+AUTO INCREMENT
+(Automatic key generation) 	Alternative 	Common Extension 	Automatic key generation FAQ
+BIT 	✓ 	Standard 	BIT documentation
+BOOLEAN 	✓ 	Standard 	BOOL documentation
+BYTES 	✓ 	CockroachDB Extension 	BYTES documentation
+COLLATE 	✓ 	Standard 	COLLATE documentation
+DATE 	✓ 	Standard 	DATE documentation
+DECIMAL, NUMERIC 	✓ 	Standard 	DECIMAL documentation
+ENUM 	✓ 	PostgreSQL Extension 	ENUM documentation
+FLOAT, REAL 	✓ 	Standard 	FLOAT documentation
+INET 	✓ 	PostgreSQL Extension 	INET documentation
+INT 	✓ 	Standard 	INT documentation
+INTERVAL 	✓ 	Standard 	INTERVAL documentation
+JSON/JSONB 	✓ 	Common Extension 	JSONB documentation
+NULL 	✓ 	Standard 	NULL-handling documentation
+OID 	✓ 	PostgreSQL Extension 	OID documentation
+SERIAL 	✓ 	PostgreSQL Extension 	SERIAL documentation
+SET 	✗ 	MySQL 	Only allow rows to contain values from a defined set of terms.
+STRING, CHARACTER 	✓ 	Standard 	STRING documentation
+TIME 	✓ 	Standard 	TIME documentation
+TIMESTAMP/TIMESTAMPTZ 	✓ 	Standard 	TIMESTAMP documentation
+TSQUERY 	✓ 	Standard 	TSQUERY documentation
+TSVECTOR 	✓ 	Standard 	TSVECTOR documentation
+UNSIGNED INT 	✗ 	Common Extension 	UNSIGNED INT causes numerous casting issues, so we do not plan to support it.
+UUID 	✓ 	PostgreSQL Extension 	UUID documentation
+Identifiers 	✓ 	Standard 	Identifiers documentation. See also SQL Name Resolution.
+Key-value pairs 	Alternative 	Extension 	Key-Value FAQ
+XML 	✗ 	Standard 	XML data can be stored as BYTES, but we do not offer XML parsing.
+Constraints
+Component 	Supported 	Type 	Details
+Not Null 	✓ 	Standard 	Not Null documentation
+Unique 	✓ 	Standard 	Unique documentation
+Primary Key 	✓ 	Standard 	Primary Key documentation
+Check 	✓ 	Standard 	Check documentation
+Foreign Key 	✓ 	Standard 	Foreign Key documentation
+Default Value 	✓ 	Standard 	Default Value documentation
+Transactions
+Component 	Supported 	Type 	Details
+Transactions (ACID semantics) 	✓ 	Standard 	Transactions documentation
+BEGIN 	✓ 	Standard 	BEGIN documentation
+COMMIT 	✓ 	Standard 	COMMIT documentation
+ROLLBACK 	✓ 	Standard 	ROLLBACK documentation
+SAVEPOINT 	✓ 	Standard with CockroachDB extensions 	CockroachDB supports nested transactions using SAVEPOINT
+Indexes
+Component 	Supported 	Type 	Details
+Indexes 	✓ 	Common Extension 	Indexes documentation
+Multi-column indexes 	✓ 	Common Extension 	We do not limit on the number of columns indexes can include
+Covering indexes 	✓ 	Common Extension 	Storing Columns documentation
+GIN indexes 	✓ 	Common Extension 	GIN indexes documentation
+Trigram indexes 	✓ 	PostgreSQL Extension 	Trigram indexes documentation
+Partial indexes 	✓ 	Common Extension 	Partial indexes documentation
+Spatial indexes 	✓ 	Common Extension 	Spatial indexes documentation
+Multiple indexes per query 	Partial 	Common Extension 	Index selection
+Full-text indexes 	✓ 	Common Extension 	Full-text search documentation
+Expression indexes 	✓ 	Common Extension 	Expression indexes
+Prefix indexes 	✗ 	Common Extension 	Implement using Expression indexes
+Hash indexes 	✗ 	Common Extension 	Improves performance of queries looking for single, exact values
+Hash-sharded indexes 	✓ 	CockroachDB Extension 	Hash-sharded Indexes documentation
+Schema changes
+Component 	Supported 	Type 	Details
+ALTER TABLE 	✓ 	Standard 	ALTER TABLE documentation
+Database renames 	✓ 	Standard 	ALTER DATABASE ... RENAME TO documentation
+Table renames 	✓ 	Standard 	ALTER TABLE ... RENAME TO documentation
+Column renames 	✓ 	Standard 	RENAME COLUMN documentation
+Altering a column's data type 	✓ 	Standard 	ALTER COLUMN documentation
+Adding columns 	✓ 	Standard 	ADD COLUMN documentation
+Removing columns 	✓ 	Standard 	DROP COLUMN documentation
+Adding constraints 	✓ 	Standard 	ADD CONSTRAINT documentation
+Removing constraints 	✓ 	Standard 	DROP CONSTRAINT documentation
+Index renames 	✓ 	Standard 	ALTER INDEX ... RENAME TO documentation
+Adding indexes 	✓ 	Standard 	CREATE INDEX documentation
+Removing indexes 	✓ 	Standard 	DROP INDEX documentation
+Altering a primary key 	✓ 	Standard 	ALTER PRIMARY KEY documentation
+Adding user-defined schemas 	✓ 	Standard 	CREATE SCHEMA documentation
+Removing user-defined schemas 	✓ 	Standard 	DROP SCHEMA documentation
+Altering user-defined schemas 	✓ 	Standard 	ALTER SCHEMA documentation
+Statements
+Component 	Supported 	Type 	Details
+Common statements 	✓ 	Standard, PostgreSQL/CockroachDB Extension 	SQL Statements documentation
+UPSERT 	✓ 	PostgreSQL, MSSQL Extension 	UPSERT documentation
+EXPLAIN 	✓ 	Common Extension 	EXPLAIN documentation
+SELECT ... INTO 	✓ 	Common Extension 	PL/pgSQL documentation.
+SELECT FOR UPDATE 	✓ 	Common Extension 	SELECT FOR UPDATE documentation
+Clauses
+Component 	Supported 	Type 	Details
+Common clauses 	✓ 	Standard 	SQL Grammar documentation
+LIMIT 	✓ 	Common Extension 	Limit the number of rows a statement returns. For more information, see Limit Query Results.
+LIMIT with OFFSET 	✓ 	Common Extension 	Skip a number of rows, and then limit the size of the return set. For more information, see Limit Query Results.
+RETURNING 	✓ 	Common Extension 	Retrieve a table of rows statements affect. For examples, see the INSERT and DELETE documentation.
+Table expressions
+Component 	Supported 	Type 	Details
+Table and View references 	✓ 	Standard 	Table expressions documentation
+AS in table expressions 	✓ 	Standard 	Aliased table expressions documentation
+JOIN (INNER, LEFT, RIGHT, FULL, CROSS) 	✓ 	Standard 	JOIN expressions documentation
+Sub-queries as table expressions 	Partial 	Standard 	Non-correlated subqueries are supported, as are most correlated subqueries.
+Table generator functions 	Partial 	PostgreSQL Extension 	Table generator functions documentation
+WITH ORDINALITY 	✓ 	CockroachDB Extension 	Ordinality annotation documentation
+Scalar expressions and Boolean formulas
+Component 	Supported 	Type 	Details
+Common functions 	✓ 	Standard 	Functions calls and SQL special forms documentation
+Common operators 	✓ 	Standard 	Operators documentation
+IF/CASE/NULLIF 	✓ 	Standard 	Conditional expressions documentation
+COALESCE/IFNULL 	✓ 	Standard 	Conditional expressions documentation
+AND/OR 	✓ 	Standard 	Conditional expressions documentation
+LIKE/ILIKE 	✓ 	Standard 	String pattern matching documentation
+SIMILAR TO 	✓ 	Standard 	SQL regexp pattern matching documentation
+Matching using POSIX regular expressions 	✓ 	Common Extension 	POSIX regexp pattern matching documentation
+EXISTS 	Partial 	Standard 	Non-correlated subqueries are supported, as are most correlated subqueries. Works only with small data sets.
+Scalar subqueries 	Partial 	Standard 	Non-correlated subqueries are supported, as are most correlated subqueries. Works only with small data sets.
+Bitwise arithmetic 	✓ 	Common Extension 	Operators documentation
+Array constructors and subscripting 	Partial 	PostgreSQL Extension 	Array expression documentation: Constructor syntax and Subscripting
+COLLATE 	✓ 	Standard 	Collation expressions documentation
+Column ordinal references 	✓ 	CockroachDB Extension 	Column references documentation
+Type annotations 	✓ 	CockroachDB Extension 	Type annotations documentation
+Permissions
+Component 	Supported 	Type 	Details
+Users 	✓ 	Standard 	Users documentation
+Roles 	✓ 	Standard 	Roles documentation
+Object ownership 	✓ 	Common Extension 	Ownership documentation
+Privileges 	✓ 	Standard 	Privileges documentation
+Default privileges 	✓ 	PostgreSQL Extension 	Default privileges documentation
+Miscellaneous
+Component 	Supported 	Type 	Details
+Column families 	✓ 	CockroachDB Extension 	Column Families documentation
+Computed columns (stored and virtual) 	✓ 	Common Extension 	Computed Columns documentation
+ON UPDATE expressions 	✓ 	MySQL Extension 	ON UPDATE expressions documentation
+Multi-region capabilities 	✓ 	CockroachDB Extension 	Multi-region documentation
+System catalog schemas 	✓ 	Standard, PostgreSQL/CockroachDB Extension 	crdb_internal (CockroachDB Extension)
+information_schema (Standard)
+pg_catalog (PostgreSQL Extension)
+pg_extension (PostgreSQL Extension)
+Sequences 	✓ 	Common Extension 	CREATE SEQUENCE documentation
+Identity columns 	✓ 	Common Extension 	Identity columns documentation
+Views 	✓ 	Standard 	Views documentation
+Materialized views 	✓ 	Common Extension 	Materialized views documentation
+Window functions 	✓ 	Standard 	Window Functions documentation
+Common table expressions 	Partial 	Common Extension 	Common Table Expressions documentation
+Stored procedures 	Partial 	Common Extension 	Stored procedures documentation
+Cursors 	Partial 	Standard 	Cursors documentation
+Triggers 	Partial 	Standard 	Triggers documentation
+Row-level TTL 	✓ 	Common Extension 	Automatically delete expired rows. For more information, see Batch-delete expired data with Row-Level TTL.
+User-defined functions 	Partial 	Standard 	User-Defined Functions documentation
+CREATE EXTENSION "uuid-ossp" 	✓ 	Common Extension 	Provides access to several additional UUID generation functions. Note that these UUID functions are available without typing CREATE EXTENSION "uuid-ossp". CockroachDB does not have full support for CREATE EXTENSION. GitHub issue tracking CREATE EXTENSION support.
