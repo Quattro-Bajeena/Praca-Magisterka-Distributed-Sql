@@ -1,0 +1,63 @@
+{
+    "name": "CockroachDB",
+    "startupType": "docker-compose",
+    "databaseType": "PostgreSql",
+    "enabled": false,
+    "instances": [
+        {
+            "id": "cockroach-v26.1",
+            "displayName": "CockroachDB 26.1",
+            "version": "26.1",
+            "enabled": true,
+            "connectionString": "Host=localhost;Port=26257;Username=root;Password=;Database=crdb;Include Error Detail=true",
+            "healthCheck": {
+                "host": "localhost",
+                "port": 26257
+            }
+        },
+        {
+            "id": "cockroach-v25.4",
+            "displayName": "CockroachDB 25.4",
+            "version": "25.4",
+            "enabled": true,
+            "connectionString": "Host=localhost;Port=26259;Username=root;Password=;Database=crdb;Include Error Detail=true",
+            "healthCheck": {
+                "host": "localhost",
+                "port": 26259
+            }
+        },
+        {
+            "id": "cockroach-v24.3",
+            "displayName": "CockroachDB 24.3",
+            "version": "24.3",
+            "enabled": true,
+            "connectionString": "Host=localhost;Port=26262;Username=root;Password=;Database=crdb;Include Error Detail=true",
+            "healthCheck": {
+                "host": "localhost",
+                "port": 26262
+            }
+        },
+        {
+            "id": "cockroach-v23.2",
+            "displayName": "CockroachDB 23.2",
+            "version": "23.2",
+            "enabled": true,
+            "connectionString": "Host=localhost;Port=26261;Username=root;Password=;Database=crdb;Include Error Detail=true",
+            "healthCheck": {
+                "host": "localhost",
+                "port": 26261
+            }
+        },
+        {
+            "id": "cockroach-v22.2",
+            "displayName": "CockroachDB 22.2",
+            "version": "22.2",
+            "enabled": true,
+            "connectionString": "Host=localhost;Port=26260;Username=root;Password=;Database=crdb;Include Error Detail=true",
+            "healthCheck": {
+                "host": "localhost",
+                "port": 26260
+            }
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "TiDB",
+  "startupType": "kubernetes",
+  "databaseType": "MySql",
+  "enabled": true,
+  "instances": [
+    {
+      "id": "tidb-v8.5",
+      "displayName": "TiDB 8.5",
+      "version": "8.5",
+      "enabled": true,
+      "connectionString": "Server=localhost;Port=14000;User=root;Password=;AllowUserVariables=True;",
+      "healthCheck": {
+        "host": "127.0.0.1",
+        "port": 14000
+      }
+    }
+  ]
+}

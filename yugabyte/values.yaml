@@ -2,11 +2,11 @@ storage:
   master:
     count: 2
     size: 10Gi
-    storageClass: standard
+    storageClass: hostpath
   tserver:
     count: 2
     size: 10Gi
-    storageClass: standard
+    storageClass: hostpath
 
 resource:
   master:
