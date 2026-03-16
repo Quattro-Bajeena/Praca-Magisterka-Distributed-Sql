@@ -1,83 +1,207 @@
 services:
-  crdb:
-    container_name: crdb
-    hostname: crdb
-    image: cockroachdb/cockroach:latest
-    command: start-single-node --cluster-name=example-single-node --insecure
-    environment:
-      - COCKROACH_DATABASE=crdb
-      - COCKROACH_USER=crdb
-      - COCKROACH_PASSWORD=
+  crdb-26:
+    container_name: crdb-26
+    hostname: crdb-26
+    image: cockroachdb/cockroach:latest-v26.1
+    command: start-single-node --cluster-name=example-single-node-26 --insecure
     ports:
       - "26257:26257"
       - "8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "cockroach sql --insecure --host=127.0.0.1:26257 -e 'SELECT 1' > /dev/null 2>&1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
     volumes:
-      - crdb-data:/cockroach/cockroach-data
+      - crdb-data-26:/cockroach/cockroach-data
+    networks:
+      - crdb-net-26
 
-  crdb-init:
-    container_name: crdb-init
-    hostname: crdb-init
-    image: timveil/cockroachdb-remote-client:latest
-    environment:
-      - COCKROACH_HOST=crdb:26257
-      - COCKROACH_INSECURE=true
-      - DATABASE_NAME=crdb
+  crdb-init-26:
+    container_name: crdb-init-26
+    hostname: crdb-init-26
+    image: cockroachdb/cockroach:latest-v26.1
+    entrypoint: /bin/sh
+    command:
+      - -ec
+      - until cockroach sql --insecure --host=crdb-26:26257 -e "CREATE USER IF NOT EXISTS crdb; CREATE DATABASE IF NOT EXISTS crdb; GRANT ALL ON DATABASE crdb TO crdb;"; do sleep 1; done
     depends_on:
-      - crdb
+      crdb-26:
+        condition: service_healthy
+    networks:
+      - crdb-net-26
 
   crdb-25:
     container_name: crdb-25
     hostname: crdb-25 
     image: cockroachdb/cockroach:latest-v25.4
-    command: start-single-node --cluster-name=example-single-node --insecure
-    environment:
-      - COCKROACH_DATABASE=crdb
-      - COCKROACH_USER=crdb
-      - COCKROACH_PASSWORD=
+    command: start-single-node --cluster-name=example-single-node-25 --insecure
     ports:
       - "26259:26257"
       - "8082:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "cockroach sql --insecure --host=127.0.0.1:26257 -e 'SELECT 1' > /dev/null 2>&1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
     volumes:
-      - crdb-data:/cockroach/cockroach-data
+      - crdb-data-25:/cockroach/cockroach-data
+    networks:
+      - crdb-net-25
 
   crdb-init-25:
     container_name: crdb-init-25
     hostname: crdb-init-25  
-    image: timveil/cockroachdb-remote-client:latest
-    environment:
-      - COCKROACH_HOST=crdb-25:26257
-      - COCKROACH_INSECURE=true
-      - DATABASE_NAME=crdb
+    image: cockroachdb/cockroach:latest-v25.4
+    entrypoint: /bin/sh
+    command:
+      - -ec
+      - until cockroach sql --insecure --host=crdb-25:26257 -e "CREATE USER IF NOT EXISTS crdb; CREATE DATABASE IF NOT EXISTS crdb; GRANT ALL ON DATABASE crdb TO crdb;"; do sleep 1; done
     depends_on:
-      - crdb-25 
+      crdb-25:
+        condition: service_healthy
+    networks:
+      - crdb-net-25
 
 
-  crdb-21:
-    container_name: crdb-21
-    hostname: crdb-21
-    image: cockroachdb/cockroach:v21.2.0
-    command: start-single-node --cluster-name=example-single-node-21 --insecure
-    environment:
-      - COCKROACH_DATABASE=crdb
-      - COCKROACH_USER=crdb
-      - COCKROACH_PASSWORD=
+  # crdb-21:
+  #   container_name: crdb-21
+  #   hostname: crdb-21
+  #   image: cockroachdb/cockroach:v21.2.0
+  #   command: start-single-node --cluster-name=example-single-node-21 --insecure
+  #   environment:
+  #     - COCKROACH_DATABASE=crdb
+  #     - COCKROACH_USER=crdb
+  #     - COCKROACH_PASSWORD=
+  #   ports:
+  #     - "26258:26257"
+  #     - "8081:8080"
+  #   volumes:
+  #     - crdb-data-21:/cockroach/cockroach-data
+
+  # crdb-init-21:
+  #   container_name: crdb-init-21
+  #   hostname: crdb-init-21
+  #   image: timveil/cockroachdb-remote-client:latest
+  #   environment:
+  #     - COCKROACH_HOST=crdb-21:26257
+  #     - COCKROACH_INSECURE=true
+  #     - DATABASE_NAME=crdb
+  #   depends_on:
+  #     - crdb-21
+
+  crdb-22:
+    container_name: crdb-22
+    hostname: crdb-22
+    image: cockroachdb/cockroach:latest-v22.2
+    command: start-single-node --cluster-name=example-single-node-22 --insecure
     ports:
-      - "26258:26257"
-      - "8081:8080"
+      - "26260:26257"
+      - "8083:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "cockroach sql --insecure --host=127.0.0.1:26257 -e 'SELECT 1' > /dev/null 2>&1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
     volumes:
-      - crdb-data-21:/cockroach/cockroach-data
+      - crdb-data-22:/cockroach/cockroach-data
+    networks:
+      - crdb-net-22
 
-  crdb-init-21:
-    container_name: crdb-init-21
-    hostname: crdb-init-21
-    image: timveil/cockroachdb-remote-client:latest
-    environment:
-      - COCKROACH_HOST=crdb-21:26257
-      - COCKROACH_INSECURE=true
-      - DATABASE_NAME=crdb
+  crdb-init-22:
+    container_name: crdb-init-22
+    hostname: crdb-init-22
+    image: cockroachdb/cockroach:latest-v22.2
+    entrypoint: /bin/sh
+    command:
+      - -ec
+      - until cockroach sql --insecure --host=crdb-22:26257 -e "CREATE USER IF NOT EXISTS crdb; CREATE DATABASE IF NOT EXISTS crdb; GRANT ALL ON DATABASE crdb TO crdb;"; do sleep 1; done
     depends_on:
-      - crdb-21
+      crdb-22:
+        condition: service_healthy
+    networks:
+      - crdb-net-22
+
+  crdb-23:
+    container_name: crdb-23
+    hostname: crdb-23
+    image: cockroachdb/cockroach:latest-v23.2
+    command: start-single-node --cluster-name=example-single-node-23 --insecure
+    ports:
+      - "26261:26257"
+      - "8084:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "cockroach sql --insecure --host=127.0.0.1:26257 -e 'SELECT 1' > /dev/null 2>&1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    volumes:
+      - crdb-data-23:/cockroach/cockroach-data
+    networks:
+      - crdb-net-23
+
+  crdb-init-23:
+    container_name: crdb-init-23
+    hostname: crdb-init-23
+    image: cockroachdb/cockroach:latest-v23.2
+    entrypoint: /bin/sh
+    command:
+      - -ec
+      - until cockroach sql --insecure --host=crdb-23:26257 -e "CREATE USER IF NOT EXISTS crdb; CREATE DATABASE IF NOT EXISTS crdb; GRANT ALL ON DATABASE crdb TO crdb;"; do sleep 1; done
+    depends_on:
+      crdb-23:
+        condition: service_healthy
+    networks:
+      - crdb-net-23
+
+  crdb-24:
+    container_name: crdb-24
+    hostname: crdb-24
+    image: cockroachdb/cockroach:latest-v24.3
+    command: start-single-node --cluster-name=example-single-node-24 --insecure
+    ports:
+      - "26262:26257"
+      - "8085:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "cockroach sql --insecure --host=127.0.0.1:26257 -e 'SELECT 1' > /dev/null 2>&1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    volumes:
+      - crdb-data-24:/cockroach/cockroach-data
+    networks:
+      - crdb-net-24
+
+  crdb-init-24:
+    container_name: crdb-init-24
+    hostname: crdb-init-24
+    image: cockroachdb/cockroach:latest-v24.3
+    entrypoint: /bin/sh
+    command:
+      - -ec
+      - until cockroach sql --insecure --host=crdb-24:26257 -e "CREATE USER IF NOT EXISTS crdb; CREATE DATABASE IF NOT EXISTS crdb; GRANT ALL ON DATABASE crdb TO crdb;"; do sleep 1; done
+    depends_on:
+      crdb-24:
+        condition: service_healthy
+    networks:
+      - crdb-net-24
 
 volumes:
-  crdb-data:
   crdb-data-21:
+  crdb-data-22:
+  crdb-data-23:
+  crdb-data-24:
+  crdb-data-25:
+  crdb-data-26:
+
+networks:
+  crdb-net-22:
+  crdb-net-23:
+  crdb-net-24:
+  crdb-net-25:
+  crdb-net-26:

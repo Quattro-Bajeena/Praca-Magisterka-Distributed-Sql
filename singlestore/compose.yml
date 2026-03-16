@@ -6,7 +6,7 @@ services:
     container_name: singlestoredb-dev
     ports:
       - "3366:3306" # MySQL protocol
-      - "8086:8080" #SingleStore Studio
+      - "8006:8080" #SingleStore Studio
       - "9006:9000"
     environment:
       ROOT_PASSWORD: "password"
