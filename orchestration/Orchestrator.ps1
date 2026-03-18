@@ -1,3 +1,4 @@
+[CmdletBinding()]
 param(
     [switch]$Start,
     [switch]$Check,
@@ -5,6 +6,45 @@ param(
     [switch]$Run,
     [switch]$Stop
 )
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
+
+# -----------------------
+# Configuration (tweak as needed)
+# -----------------------
+$HealthMaxRetries = 20
+$HealthConnectTimeoutSeconds = 2
+$HealthRetryDelaySeconds = 3
+$BuildConfiguration = 'Release'
+
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$RepoRoot = Split-Path -Parent $ScriptDir
+$NsciProjectPath = Join-Path $RepoRoot 'DatabaseCompatibilityIndex\NewSqlCompatibility\NSCI.csproj'
+$NsciConfigPath = Join-Path $RepoRoot 'DatabaseCompatibilityIndex\NewSqlCompatibility\appsettings.json'
+
+# Default behavior: start, check, build, run if no switches are provided.
+if (-not ($Start -or $Check -or $Build -or $Run -or $Stop)) {
+    $Start = $true
+    $Check = $true
+    $Build = $true
+    $Run = $true
+}
+
+function Write-Info {
+    param([string]$Message)
+    Write-Host "[INFO] $Message"
+}
+
+function Write-Warn {
+    param([string]$Message)
+    Write-Host "[WARN] $Message" -ForegroundColor Yellow
+}
+
+function Write-ErrorText {
+    param([string]$Message)
+    Write-Host "[ERROR] $Message" -ForegroundColor Red
+}
 
 class HealthCheckConfig {
     [string]$HostName
@@ -37,25 +77,6 @@ class DatabaseEntry {
     [DatabaseConfig]$Config
 }
 
-$ErrorActionPreference = "Stop"
-
-# Manual tuning variables (edit directly in this file).
-$HealthMaxRetries = 20
-$HealthConnectTimeoutSeconds = 2
-$HealthRetryDelaySeconds = 3
-$BuildConfiguration = "Release"
-
-$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$RepoRoot = Split-Path -Parent $ScriptDir
-$NsciProjectPath = Join-Path $RepoRoot "DatabaseCompatibilityIndex\NewSqlCompatibility\NSCI.csproj"
-
-if (-not ($Start -or $Check -or $Build -or $Run -or $Stop)) {
-    $Start = $true
-    $Check = $true
-    $Build = $true
-    $Run = $true
-}
-
 function ConvertTo-DatabaseConfig {
     param(
         [string]$ConfigPath
@@ -79,8 +100,8 @@ function ConvertTo-DatabaseConfig {
         $typedInstance.ConnectionString = [string]$rawInstance.connectionString
 
         $typedHealth = [HealthCheckConfig]::new()
-        $typedHealth.HostName = [string]$rawInstance.healthCheck.PSObject.Properties["host"].Value
-        $typedHealth.Port = [int]$rawInstance.healthCheck.PSObject.Properties["port"].Value
+        $typedHealth.HostName = [string]$rawInstance.healthCheck.PSObject.Properties['host'].Value
+        $typedHealth.Port = [int]$rawInstance.healthCheck.PSObject.Properties['port'].Value
         $typedInstance.HealthCheck = $typedHealth
 
         $typedInstances += $typedInstance
@@ -95,13 +116,17 @@ function Get-DatabaseEntries {
         [string]$Root
     )
 
+    if (-not (Test-Path -Path $Root -PathType Container)) {
+        throw "Database root folder not found: $Root"
+    }
+
     $entries = @()
     $dirs = Get-ChildItem -Path $Root -Directory
 
     foreach ($dir in $dirs) {
-        $configPath = Join-Path $dir.FullName "db.config.json"
-        $startPath = Join-Path $dir.FullName "Start.ps1"
-        $stopPath = Join-Path $dir.FullName "Stop.ps1"
+        $configPath = Join-Path $dir.FullName 'db.config.json'
+        $startPath = Join-Path $dir.FullName 'Start.ps1'
+        $stopPath = Join-Path $dir.FullName 'Stop.ps1'
 
         if ((Test-Path $configPath) -and (Test-Path $startPath) -and (Test-Path $stopPath)) {
             $config = ConvertTo-DatabaseConfig -ConfigPath $configPath
@@ -137,11 +162,11 @@ function Assert-DatabaseConfig {
         throw "Missing required field 'databaseType' in $ConfigPath"
     }
 
-    if ($Config.startupType -ne "docker-compose" -and $Config.startupType -ne "kubernetes") {
+    if ($Config.startupType -ne 'docker-compose' -and $Config.startupType -ne 'kubernetes') {
         throw "Invalid startupType '$($Config.startupType)' in $ConfigPath"
     }
 
-    if ($Config.databaseType -ne "PostgreSql" -and $Config.databaseType -ne "MySql") {
+    if ($Config.databaseType -ne 'PostgreSql' -and $Config.databaseType -ne 'MySql') {
         throw "Invalid databaseType '$($Config.databaseType)' in $ConfigPath"
     }
 
@@ -217,33 +242,33 @@ function Test-TcpEndpoint {
     }
 }
 
-function Assert-Health {
+function Wait-ForHealth {
     param(
         [DatabaseEntry]$DbEntry
     )
 
     if (-not $DbEntry.Config.enabled) {
-        Write-Host "[CHECK] Skipping disabled database '$($DbEntry.Name)'."
+        Write-Info "Skipping disabled database '$($DbEntry.Name)'."
         return
     }
 
-    $instances = @($DbEntry.Config.Instances | Where-Object { $_.Enabled -eq $true })
+    $instances = $DbEntry.Config.Instances | Where-Object { $_.Enabled }
 
     foreach ($instance in $instances) {
         $endpointAddress = $instance.HealthCheck.HostName
         $endpointPort = $instance.HealthCheck.Port
-        $endpointText = $endpointAddress + ":" + $endpointPort
+        $endpointText = "${endpointAddress}:${endpointPort}"
+
+        Write-Info "Waiting for '$($DbEntry.Name)' instance '$($instance.DisplayName)' at $endpointText"
+
         $ok = $false
-
-        Write-Host ("[CHECK] Waiting for {0} / {1} at {2}" -f $DbEntry.Name, $instance.DisplayName, $endpointText)
-
         for ($attempt = 1; $attempt -le $HealthMaxRetries; $attempt++) {
             if (Test-TcpEndpoint -EndpointAddress $endpointAddress -Port $endpointPort -ConnectTimeoutSeconds $HealthConnectTimeoutSeconds) {
                 $ok = $true
                 break
             }
 
-            Write-Host ("[CHECK] Retry {0}/{1} failed for {2} / {3} at {4}" -f $attempt, $HealthMaxRetries, $DbEntry.Name, $instance.DisplayName, $endpointText)
+            Write-Info "Retry $attempt/$HealthMaxRetries failed for '$($DbEntry.Name)' / '$($instance.DisplayName)'"
 
             if ($attempt -lt $HealthMaxRetries) {
                 Start-Sleep -Seconds $HealthRetryDelaySeconds
@@ -251,27 +276,27 @@ function Assert-Health {
         }
 
         if (-not $ok) {
-            throw ("Health check failed for '{0}' instance '{1}' at {2}." -f $DbEntry.Name, $instance.DisplayName, $endpointText)
+            throw "Health check failed for '$($DbEntry.Name)' instance '$($instance.DisplayName)' at $endpointText"
         }
 
-        Write-Host ("[CHECK] OK: {0} / {1} at {2}" -f $DbEntry.Name, $instance.DisplayName, $endpointText)
+        Write-Info "Health check OK for '$($DbEntry.Name)' / '$($instance.DisplayName)'"
     }
 }
 
-function Invoke-DatabaseScript {
+function Invoke-DatabaseAction {
     param(
         [DatabaseEntry]$DbEntry,
-        [ValidateSet("start", "stop")]
+        [ValidateSet('start', 'stop')]
         [string]$Action
     )
 
-    if ($Action -eq "start") {
+    if ($Action -eq 'start') {
         if (-not $DbEntry.Config.enabled) {
-            Write-Host "[START] Skipping disabled database '$($DbEntry.Name)'."
+            Write-Info "Skipping disabled database '$($DbEntry.Name)'."
             return
         }
 
-        Write-Host "[START] $($DbEntry.Name)"
+        Write-Info "Starting '$($DbEntry.Name)'"
         & $DbEntry.StartScript
         if ($LASTEXITCODE -ne 0) {
             throw "Start script failed for '$($DbEntry.Name)'."
@@ -279,7 +304,7 @@ function Invoke-DatabaseScript {
         return
     }
 
-    Write-Host "[STOP] $($DbEntry.Name)"
+    Write-Info "Stopping '$($DbEntry.Name)'"
     & $DbEntry.StopScript
     if ($LASTEXITCODE -ne 0) {
         throw "Stop script failed for '$($DbEntry.Name)'."
@@ -296,13 +321,13 @@ function Invoke-NsciBuild {
         throw "NSCI project not found at $ProjectPath"
     }
 
-    Write-Host "[BUILD] dotnet restore"
+    Write-Info "Running dotnet restore"
     & dotnet restore $ProjectPath
     if ($LASTEXITCODE -ne 0) {
         throw "dotnet restore failed"
     }
 
-    Write-Host "[BUILD] dotnet build ($Configuration)"
+    Write-Info "Running dotnet build ($Configuration)"
     & dotnet build $ProjectPath --configuration $Configuration
     if ($LASTEXITCODE -ne 0) {
         throw "dotnet build failed"
@@ -313,6 +338,7 @@ function Invoke-NsciRun {
     param(
         [string]$ProjectPath,
         [string]$Configuration,
+        [string]$ConfigPath,
         [string]$DatabaseRoot
     )
 
@@ -320,52 +346,59 @@ function Invoke-NsciRun {
         throw "NSCI project not found at $ProjectPath"
     }
 
-    $absoluteDbRoot = [System.IO.Path]::GetFullPath($DatabaseRoot)
-    Write-Host "[RUN] dotnet run with --db-root $absoluteDbRoot"
+    if (-not (Test-Path $ConfigPath)) {
+        throw "NSCI configuration not found at $ConfigPath"
+    }
 
-    & dotnet run --project $ProjectPath --configuration $Configuration -- --db-root $absoluteDbRoot
+    $absoluteDbRoot = [System.IO.Path]::GetFullPath($DatabaseRoot)
+    $absoluteConfigPath = [System.IO.Path]::GetFullPath($ConfigPath)
+
+    Write-Info "Running NSCI with config '$absoluteConfigPath' and db root '$absoluteDbRoot'"
+    & dotnet run --project $ProjectPath --configuration $Configuration -- --config $absoluteConfigPath --db-root $absoluteDbRoot
     if ($LASTEXITCODE -ne 0) {
         throw "dotnet run failed"
     }
 }
 
-$databaseEntries = Get-DatabaseEntries -Root $RepoRoot
+try {
+    $databaseEntries = Get-DatabaseEntries -Root $RepoRoot
 
-foreach ($entry in $databaseEntries) {
-    Assert-DatabaseConfig -Config $entry.Config -ConfigPath $entry.ConfigPath
-}
+    foreach ($entry in $databaseEntries) {
+        Assert-DatabaseConfig -Config $entry.Config -ConfigPath $entry.ConfigPath
+    }
 
-if ($Start) {
-    if ($Check) {
+    if ($Start) {
         foreach ($entry in $databaseEntries) {
-            Invoke-DatabaseScript -DbEntry $entry -Action "start"
-            Assert-Health -DbEntry $entry
+            Invoke-DatabaseAction -DbEntry $entry -Action 'start'
+            if ($Check) {
+                Wait-ForHealth -DbEntry $entry
+            }
         }
     }
-    else {
+    elseif ($Check) {
         foreach ($entry in $databaseEntries) {
-            Invoke-DatabaseScript -DbEntry $entry -Action "start"
+            Wait-ForHealth -DbEntry $entry
         }
     }
-}
-elseif ($Check) {
-    foreach ($entry in $databaseEntries) {
-        Assert-Health -DbEntry $entry
+
+    if ($Build) {
+        Invoke-NsciBuild -ProjectPath $NsciProjectPath -Configuration $BuildConfiguration
     }
-}
 
-if ($Build) {
-    Invoke-NsciBuild -ProjectPath $NsciProjectPath -Configuration $BuildConfiguration
-}
-
-if ($Run) {
-    Invoke-NsciRun -ProjectPath $NsciProjectPath -Configuration $BuildConfiguration -DatabaseRoot $RepoRoot
-}
-
-if ($Stop) {
-    foreach ($entry in $databaseEntries) {
-        Invoke-DatabaseScript -DbEntry $entry -Action "stop"
+    if ($Run) {
+        Invoke-NsciRun -ProjectPath $NsciProjectPath -Configuration $BuildConfiguration -ConfigPath $NsciConfigPath -DatabaseRoot $RepoRoot
     }
-}
 
-Write-Host "Done."
+    if ($Stop) {
+        foreach ($entry in $databaseEntries) {
+            Invoke-DatabaseAction -DbEntry $entry -Action 'stop'
+        }
+    }
+
+    Write-Host 'Done.'
+}
+catch {
+    Write-ErrorText $_.Exception.Message
+    Write-ErrorText $_.Exception.StackTrace
+    exit 1
+}
