@@ -1,0 +1,19 @@
+{
+  "name": "CrateDB",
+  "startupType": "docker-compose",
+  "databaseType": "PostgreSql",
+  "enabled": true,
+  "instances": [
+    {
+      "id": "cratedb-latest",
+      "displayName": "CrateDB latest",
+      "version": "latest",
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=5434;Username=crate;Include Error Detail=true",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 5434
+      }
+    }
+  ]
+}

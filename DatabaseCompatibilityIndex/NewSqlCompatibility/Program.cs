@@ -2,7 +2,8 @@
 using NSCI.Reporting;
 using NSCI.Testing;
 using System.CommandLine;
-using System.CommandLine.Invocation;
+using System.CommandLine.Parsing;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace NSCI;
@@ -10,31 +11,31 @@ namespace NSCI;
 internal static class Program
 {
     private const string DefaultConfigFileName = "appsettings.json";
+    private const string DefaultDbRootFolderPath = "C:\\Coding\\Studia\\Praca-Magisterka-Distributed-Sql";
 
     internal static int Main(string[] args)
     {
-        var configOption = new Option<FileInfo?>("--config", new[] { "-c" })
+        Option<FileInfo?> configOption = new Option<FileInfo?>("--config", new[] { "-c" })
         {
             Description = "Path to the JSON configuration file."
         };
 
-        var dbRootOption = new Option<DirectoryInfo>("--db-root", Array.Empty<string>())
+        Option<DirectoryInfo?> dbRootOption = new Option<DirectoryInfo?>("--db-root", Array.Empty<string>())
         {
             Description = "Root folder that contains database subfolders with db.config.json.",
-            Required = true
         };
 
-        var rootCommand = new RootCommand("Distributed SQL Compatibility Tester")
+        RootCommand rootCommand = new RootCommand("Distributed SQL Compatibility Tester")
         {
             configOption,
             dbRootOption
         };
 
-        var parseResult = rootCommand.Parse(args);
+        ParseResult parseResult = rootCommand.Parse(args);
 
         if (parseResult.Errors.Count > 0)
         {
-            foreach (var error in parseResult.Errors)
+            foreach (ParseError error in parseResult.Errors)
             {
                 Console.Error.WriteLine(error.Message);
             }
@@ -42,8 +43,8 @@ internal static class Program
             return 1;
         }
 
-        FileInfo? configFile = parseResult.GetValue(configOption);
-        DirectoryInfo dbRoot = parseResult.GetRequiredValue(dbRootOption);
+        FileInfo configFile = parseResult.GetValue(configOption) ?? new FileInfo(Path.Combine(AppContext.BaseDirectory, DefaultConfigFileName));
+        DirectoryInfo dbRoot = parseResult.GetValue(dbRootOption) ?? new DirectoryInfo(DefaultDbRootFolderPath);
 
         try
         {
@@ -60,20 +61,15 @@ internal static class Program
         }
     }
 
-    private static void Run(FileInfo? configFile, DirectoryInfo dbRoot)
+    private static void Run(FileInfo configFile, DirectoryInfo dbRoot)
     {
-        Console.WriteLine("╔════════════════════════════════════════════════════════════════╗");
-        Console.WriteLine("║   Distributed SQL Compatibility Tester                        ║");
-        Console.WriteLine("╚════════════════════════════════════════════════════════════════╝\n");
-
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-        configFile ??= new FileInfo(Path.Combine(AppContext.BaseDirectory, DefaultConfigFileName));
-
         Console.WriteLine($"Configuration file: {configFile.FullName}");
+
         Console.WriteLine($"Database root: {dbRoot.FullName}");
 
-        TestConfiguration config = TestConfiguration.Load(configFile.FullName, dbRoot.FullName);
+        TestConfiguration config = TestConfiguration.Load(configFile.FullName, dbRoot?.FullName);
 
         Console.WriteLine("Configuration loaded:");
 
@@ -88,20 +84,30 @@ internal static class Program
         List<(DatabaseConfiguration, List<TestResult>)> databaseResults = new();
         List<(Type Type, SqlTestAttribute Attribute)> discoveredTests = TestDiscovery.DiscoverTests();
 
+
+        Console.WriteLine($"Discovered enabled databases:");
         foreach (DatabaseConfiguration dbConfig in config.Databases)
         {
-            Console.WriteLine($"=== Database: {dbConfig.Name} ===");
-            Console.WriteLine($" Database Type: {dbConfig.Type}");
-            Console.WriteLine($" Connection String: {dbConfig.ConnectionString}");
-            Console.WriteLine($" Enabled: {dbConfig.Enabled}");
+            if (dbConfig.Enabled)
+            {
+                Console.WriteLine($"=== Database: {dbConfig.Name} ===");
+                Console.WriteLine($" Database Type: {dbConfig.Type}");
+                Console.WriteLine($" Connection String: {dbConfig.ConnectionString}");
+                Console.WriteLine($" Enabled: {dbConfig.Enabled}");
+            }
+        }
 
-            ConsoleReporter consoleReporter = new(config.General);
-
+        Console.WriteLine($"Running tests:");
+        foreach (DatabaseConfiguration dbConfig in config.Databases)
+        {
             if (!dbConfig.Enabled)
             {
-                Console.WriteLine("Skipping disabled database.\n");
                 continue;
             }
+
+            Console.WriteLine($"=== Running test for: {dbConfig.Name} ===");
+
+            ConsoleReporter consoleReporter = new(config.General);
 
             List<(Type Type, SqlTestAttribute Attribute)> filteredTests = discoveredTests
                 .Where(t => t.Attribute.DatabaseTypes.Contains(dbConfig.Type))
@@ -118,16 +124,26 @@ internal static class Program
                 continue;
             }
 
+            Stopwatch stopwatch = Stopwatch.StartNew();
             TestRunner testRunner = new(dbConfig, consoleReporter);
             List<TestResult> results = testRunner.RunAllTests(filteredTests);
+            stopwatch.Stop();
 
             Console.WriteLine();
 
             int passedCount = results.Count(r => r.Passed);
             int failedCount = results.Count(r => !r.Passed);
-            consoleReporter.ReportSummary(results.Count, passedCount, failedCount);
+            consoleReporter.ReportSummary(results.Count, passedCount, failedCount, stopwatch.Elapsed);
 
-            databaseResults.Add((dbConfig, results));
+            (DatabaseConfiguration dbConfig, List<TestResult> results) resultToSave = (dbConfig, results);
+            databaseResults.Add(resultToSave);
+
+            if (databaseReporter != null)
+            {
+                databaseReporter.SaveResult(resultToSave);
+                Console.WriteLine("✓ Results saved to database");
+            }
+
             Console.WriteLine();
         }
 

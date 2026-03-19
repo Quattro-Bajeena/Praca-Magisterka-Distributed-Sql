@@ -58,7 +58,7 @@ public class ConsoleReporter
         ReportTestEnd(result);
     }
 
-    public void ReportSummary(int total, int passed, int failed)
+    public void ReportSummary(int total, int passed, int failed, TimeSpan duration)
     {
         Console.WriteLine(new string('=', 60));
         Console.WriteLine("TEST SUMMARY");
@@ -75,6 +75,8 @@ public class ConsoleReporter
 
         double successRate = total > 0 ? (passed * 100.0 / total) : 0;
         Console.WriteLine($"Success rate: {successRate:F2}%");
+
+        Console.WriteLine($"Total duration: {duration.TotalSeconds:F2} seconds");
         Console.WriteLine(new string('=', 60));
     }
 }

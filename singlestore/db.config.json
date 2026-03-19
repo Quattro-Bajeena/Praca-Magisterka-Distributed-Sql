@@ -1,0 +1,19 @@
+{
+  "name": "SingleStoreDB",
+  "startupType": "docker-compose",
+  "databaseType": "MySql",
+  "enabled": true,
+  "instances": [
+    {
+      "id": "singlestoredb-dev-latest",
+      "displayName": "SingleStoreDB Dev latest",
+      "version": "latest",
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=3366;Username=root;Password=password;AllowUserVariables=True;",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 3366
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "PolarDB-X",
+  "startupType": "kubernetes",
+  "databaseType": "MySql",
+  "enabled": false,
+  "instances": [
+    {
+      "id": "polardbx-v2.4",
+      "displayName": "PolarDB-X 2.4",
+      "version": "2.4",
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=56750;Username=polardbx_root;Password=jtGglNHV;AllowUserVariables=True;",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 56750
+      }
+    }
+  ]
+}

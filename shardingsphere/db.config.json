@@ -1,0 +1,19 @@
+{
+  "name": "ShardingSphere",
+  "startupType": "docker-compose",
+  "databaseType": "MySql",
+  "enabled": true,
+  "instances": [
+    {
+      "id": "shardingsphere-proxy-latest",
+      "displayName": "ShardingSphere Proxy latest",
+      "version": "latest",
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=13308;Username=root;Password=root;AllowUserVariables=True;",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 13308
+      }
+    }
+  ]
+}

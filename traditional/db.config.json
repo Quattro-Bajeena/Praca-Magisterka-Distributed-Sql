@@ -1,0 +1,19 @@
+{
+  "name": "Traditional",
+  "startupType": "docker-compose",
+  "databaseType": "PostgreSql",
+  "enabled": false,
+  "instances": [
+    {
+      "id": "postgres-v18",
+      "displayName": "PostgreSQL 18",
+      "version": "18",
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=5432;Username=postgres;Password=password;Database=postgres",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 5432
+      }
+    }
+  ]
+}

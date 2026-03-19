@@ -1,0 +1,7 @@
+- notatki o samych bazach danych (podstawowy element)
+- co chcemy osiągnąć
+- kluczowe testy.
+- wstęp pod koniec
+- krótki opis środowiska testowego.
+- łatwość trudność postawienia baz danych, instalacji. plusy 
+- 

@@ -10,9 +10,7 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-# -----------------------
-# Configuration (tweak as needed)
-# -----------------------
+
 $HealthMaxRetries = 20
 $HealthConnectTimeoutSeconds = 2
 $HealthRetryDelaySeconds = 3
@@ -23,7 +21,6 @@ $RepoRoot = Split-Path -Parent $ScriptDir
 $NsciProjectPath = Join-Path $RepoRoot 'DatabaseCompatibilityIndex\NewSqlCompatibility\NSCI.csproj'
 $NsciConfigPath = Join-Path $RepoRoot 'DatabaseCompatibilityIndex\NewSqlCompatibility\appsettings.json'
 
-# Default behavior: start, check, build, run if no switches are provided.
 if (-not ($Start -or $Check -or $Build -or $Run -or $Stop)) {
     $Start = $true
     $Check = $true

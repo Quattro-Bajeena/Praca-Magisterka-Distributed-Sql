@@ -1,0 +1,19 @@
+{
+  "name": "Citus",
+  "startupType": "docker-compose",
+  "databaseType": "PostgreSql",
+  "enabled": false,
+  "instances": [
+    {
+      "id": "citus-v13.0",
+      "displayName": "Citus 13.0",
+      "version": "13.0",
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=5433;Username=postgres;Password=mypass;Database=postgres;Include Error Detail=true",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 5433
+      }
+    }
+  ]
+}

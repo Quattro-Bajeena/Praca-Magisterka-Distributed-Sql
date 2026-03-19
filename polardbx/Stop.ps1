@@ -1,0 +1,37 @@
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$PidFile = Join-Path $ScriptDir ".portforward.pids"
+
+$hadPidFile = Test-Path $PidFile
+
+if ($hadPidFile) {
+    $pids = Get-Content $PidFile | Where-Object { $_ -match "^[0-9]+$" }
+
+    foreach ($pidText in $pids) {
+        try {
+            Stop-Process -Id ([int]$pidText) -Force -ErrorAction Stop
+            Write-Host "Stopped process with PID $pidText."
+        }
+        catch {
+            Write-Host "Process with PID $pidText not found, skipping."
+        }
+    }
+}
+
+foreach ($port in @(56750)) {
+    $listeners = Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue
+    foreach ($listener in $listeners) {
+        $ownerPid = $listener.OwningProcess
+        try {
+            $processInfo = Get-Process -Id $ownerPid -ErrorAction Stop
+            if ($processInfo.ProcessName -eq "kubectl") {
+                Stop-Process -Id $ownerPid -Force -ErrorAction Stop
+                Write-Host "Stopped stale PolarDB-X port-forward on port $port (PID $ownerPid)."
+            }
+        }
+        catch { }
+    }
+}
+
+if ($hadPidFile -and (Test-Path $PidFile)) {
+    Remove-Item $PidFile -Force
+}

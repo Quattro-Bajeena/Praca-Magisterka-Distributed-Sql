@@ -1,0 +1,19 @@
+{
+  "name": "OceanBase",
+  "startupType": "docker-compose",
+  "databaseType": "MySql",
+  "enabled": false,
+  "instances": [
+    {
+      "id": "oceanbase-ce-latest",
+      "displayName": "OceanBase CE latest",
+      "version": "latest",
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=2881;Username=root;Password=root_password;Database=test;AllowUserVariables=True;",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 2881
+      }
+    }
+  ]
+}

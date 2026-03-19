@@ -1,0 +1,19 @@
+{
+  "name": "Vitess",
+  "startupType": "kubernetes",
+  "databaseType": "MySql",
+  "enabled": true,
+  "instances": [
+    {
+      "id": "vitess-v16",
+      "displayName": "Vitess 16.0",
+      "version": "16.0",
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=15306;Username=user;AllowUserVariables=True;",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 15306
+      }
+    }
+  ]
+}

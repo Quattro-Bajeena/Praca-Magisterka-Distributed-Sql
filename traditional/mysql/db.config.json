@@ -1,0 +1,19 @@
+{
+  "name": "MySQL",
+  "startupType": "docker-compose",
+  "databaseType": "MySql",
+  "enabled": false,
+  "instances": [
+    {
+      "id": "mysql-v9",
+      "displayName": "MySQL 9.6",
+      "version": "9.6",
+      "enabled": true,
+      "connectionString": "Server=localhost;Port=3306;User=root;Password=password;AllowUserVariables=True;",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 3306
+      }
+    }
+  ]
+}

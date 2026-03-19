@@ -28,12 +28,29 @@ public class TestRunner
 
         foreach ((Type testType, SqlTestAttribute attribute) in discoveredTests)
         {
-            using DbConnection connection = CreateConnectionToTestDatabase();
-            using DbConnection connectionSecond = CreateConnectionToTestDatabase();
+            try
+            {
+                using DbConnection connection = CreateConnectionToTestDatabase();
+                using DbConnection connectionSecond = CreateConnectionToTestDatabase();
 
-            TestResult result = RunTest(testType, attribute, connection, connectionSecond);
-            results.Add(result);
-            _consoleReporter.ReportTestFull(result);
+                TestResult result = RunTest(testType, attribute, connection, connectionSecond);
+                results.Add(result);
+                _consoleReporter.ReportTestFull(result);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($" Fatal error while closing connection: {testType.FullName}: {ex.Message}");
+                results.Add(new TestResult(
+                    TestName: testType.Name,
+                    ClassName: testType.FullName ?? testType.Name,
+                    Category: attribute.Category,
+                    Description: attribute.Description,
+                    Passed: false,
+                    ErrorMessage: $"Test execution failed: {ex.GetType().Name}: {ex.Message}",
+                    Duration: TimeSpan.Zero
+                ));
+            }
+
         }
 
         return results;

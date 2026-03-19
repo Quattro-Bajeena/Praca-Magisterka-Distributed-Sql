@@ -62,6 +62,22 @@ public class DatabaseReporter
         }
     }
 
+    public void SaveResult((DatabaseConfiguration, List<TestResult>) testResult)
+    {
+        using NpgsqlConnection connection = new(_connectionString);
+        connection.Open();
+
+        (DatabaseConfiguration? dbConfig, List<TestResult>? testResults) = testResult;
+
+        int passedCount = testResults.Count(r => r.Passed);
+        int totalCount = testResults.Count;
+        decimal result = totalCount > 0 ? (decimal)passedCount / totalCount : 0;
+
+        int databaseId = UpsertDatabase(connection, dbConfig.Name, dbConfig.Type.ToString(), result);
+
+        UpsertTestResults(connection, databaseId, testResults);
+    }
+
     private int UpsertDatabase(NpgsqlConnection connection, string name, string type, decimal result)
     {
         using NpgsqlCommand command = connection.CreateCommand();
