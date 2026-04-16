@@ -1,9 +1,9 @@
 using NSCI.Testing;
 using System.Data.Common;
 
-namespace NSCI.Tests.DDL;
+namespace NSCI.Tests.TableDefinition;
 
-[SqlTest(SqlFeatureCategory.DLL, "Test ALTER TABLE with multiple changes to same column")]
+[SqlTest(SqlFeatureCategory.DDL, "Test ALTER TABLE with multiple changes to same column")]
 public class AlterTableMultipleChangesTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

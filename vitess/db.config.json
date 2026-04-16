@@ -2,7 +2,7 @@
   "name": "Vitess",
   "startupType": "kubernetes",
   "databaseType": "MySql",
-  "enabled": true,
+  "enabled": false,
   "instances": [
     {
       "id": "vitess-v16",

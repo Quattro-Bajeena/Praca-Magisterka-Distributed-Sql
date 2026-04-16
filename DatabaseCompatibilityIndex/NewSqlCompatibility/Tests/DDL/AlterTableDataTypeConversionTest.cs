@@ -1,9 +1,9 @@
 using NSCI.Testing;
 using System.Data.Common;
 
-namespace NSCI.Tests.DDL;
+namespace NSCI.Tests.TableDefinition;
 
-[SqlTest(SqlFeatureCategory.DLL, "Test ALTER TABLE data type conversions")]
+[SqlTest(SqlFeatureCategory.DDL, "Test ALTER TABLE data type conversions")]
 public class AlterTableDataTypeConversionTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

@@ -1,4 +1,5 @@
 using NSCI.Configuration;
+using NSCI.Database;
 using System.Data.Common;
 
 namespace NSCI.Testing;
@@ -7,6 +8,7 @@ public abstract class SqlTest
 {
 
     protected DatabaseConfiguration _config = null!;
+    protected IDatabaseProvider _databaseProvider = null!;
 
     public void Initialize(DatabaseConfiguration config)
     {

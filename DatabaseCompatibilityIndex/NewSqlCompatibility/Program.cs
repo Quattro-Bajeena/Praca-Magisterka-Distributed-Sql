@@ -126,22 +126,25 @@ internal static class Program
 
             Stopwatch stopwatch = Stopwatch.StartNew();
             TestRunner testRunner = new(dbConfig, consoleReporter);
-            List<TestResult> results = testRunner.RunAllTests(filteredTests);
+            List<TestResult>? results = testRunner.RunAllTests(filteredTests);
             stopwatch.Stop();
 
             Console.WriteLine();
 
-            int passedCount = results.Count(r => r.Passed);
-            int failedCount = results.Count(r => !r.Passed);
-            consoleReporter.ReportSummary(results.Count, passedCount, failedCount, stopwatch.Elapsed);
-
-            (DatabaseConfiguration dbConfig, List<TestResult> results) resultToSave = (dbConfig, results);
-            databaseResults.Add(resultToSave);
-
-            if (databaseReporter != null)
+            if (results != null)
             {
-                databaseReporter.SaveResult(resultToSave);
-                Console.WriteLine("✓ Results saved to database");
+                int passedCount = results.Count(r => r.Passed);
+                int failedCount = results.Count(r => !r.Passed);
+                consoleReporter.ReportSummary(results.Count, passedCount, failedCount, stopwatch.Elapsed);
+
+                (DatabaseConfiguration dbConfig, List<TestResult> results) resultToSave = (dbConfig, results);
+                databaseResults.Add(resultToSave);
+
+                if (databaseReporter != null)
+                {
+                    databaseReporter.SaveResult(resultToSave);
+                    Console.WriteLine("✓ Results saved to database");
+                }
             }
 
             Console.WriteLine();

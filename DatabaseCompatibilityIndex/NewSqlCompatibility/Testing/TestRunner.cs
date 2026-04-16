@@ -20,37 +20,21 @@ public class TestRunner
         _databaseProvider = DatabaseProviderFactory.Create(_config.Type);
     }
 
-    public List<TestResult> RunAllTests(List<(Type Type, SqlTestAttribute Attribute)> discoveredTests)
+    public List<TestResult>? RunAllTests(List<(Type Type, SqlTestAttribute Attribute)> discoveredTests)
     {
         List<TestResult> results = new List<TestResult>();
         _testDatabaseName = CreateTestDatabase();
+        if (_testDatabaseName == null)
+        {
+            return null;
+        }
         _config.DatabaseName = _testDatabaseName;
 
         foreach ((Type testType, SqlTestAttribute attribute) in discoveredTests)
         {
-            try
-            {
-                using DbConnection connection = CreateConnectionToTestDatabase();
-                using DbConnection connectionSecond = CreateConnectionToTestDatabase();
-
-                TestResult result = RunTest(testType, attribute, connection, connectionSecond);
-                results.Add(result);
-                _consoleReporter.ReportTestFull(result);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($" Fatal error while closing connection: {testType.FullName}: {ex.Message}");
-                results.Add(new TestResult(
-                    TestName: testType.Name,
-                    ClassName: testType.FullName ?? testType.Name,
-                    Category: attribute.Category,
-                    Description: attribute.Description,
-                    Passed: false,
-                    ErrorMessage: $"Test execution failed: {ex.GetType().Name}: {ex.Message}",
-                    Duration: TimeSpan.Zero
-                ));
-            }
-
+            TestResult result = RunTest(testType, attribute);
+            results.Add(result);
+            _consoleReporter.ReportTestFull(result);
         }
 
         return results;
@@ -66,23 +50,31 @@ public class TestRunner
         return connection;
     }
 
-    private string CreateTestDatabase()
+    private string? CreateTestDatabase()
     {
-        using DbConnection connection = _databaseProvider.CreateConnection(_config.ConnectionString);
-        connection.Open();
+        try
+        {
+            using DbConnection connection = _databaseProvider.CreateConnection(_config.ConnectionString);
+            connection.Open();
 
-        string dbName = GenerateTestDatabaseName();
-        string createDbSql = _databaseProvider.GenerateCreateDatabaseSql(dbName);
+            string dbName = GenerateTestDatabaseName();
+            string createDbSql = _databaseProvider.GenerateCreateDatabaseSql(dbName);
 
-        using DbCommand command = connection.CreateCommand();
-        command.CommandText = createDbSql;
-        command.ExecuteNonQuery();
+            using DbCommand command = connection.CreateCommand();
+            command.CommandText = createDbSql;
+            command.ExecuteNonQuery();
 
-        Console.WriteLine($"✓ Test database created: {dbName}");
-        return dbName;
+            Console.WriteLine($"✓ Test database created: {dbName}");
+            return dbName;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Could not create a test database: ", ex);
+            return null;
+        }
     }
 
-    private TestResult RunTest(Type testType, SqlTestAttribute attribute, DbConnection connection, DbConnection connectionSecond)
+    private TestResult RunTest(Type testType, SqlTestAttribute attribute)
     {
         Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
         string testName = testType.Name;
@@ -91,11 +83,15 @@ public class TestRunner
 
         try
         {
+
             SqlTest testInstance = Activator.CreateInstance(testType) as SqlTest
                 ?? throw new InvalidOperationException($"Failed to instantiate test {testName}");
 
+            using DbConnection connection = CreateConnectionToTestDatabase();
+            using DbConnection connectionSecond = CreateConnectionToTestDatabase();
             try
             {
+
                 testInstance.Initialize(_config);
                 testInstance.Setup(connection);
                 testInstance.Execute(connection, connectionSecond);

@@ -234,7 +234,7 @@ public class TestDataService
                 if (reader.Read())
                 {
                     int total = Convert.ToInt32(reader.GetInt64(0));
-                    int passed = Convert.ToInt32(reader.GetInt64(1));
+                    int passed = Convert.ToInt32(reader.GetFieldValue<int?>(1));
                     decimal passRate = total > 0 ? (decimal)passed / total * 100 : 0;
                     passRates.Add(passRate);
                 }

@@ -2,7 +2,7 @@
   "name": "OceanBase",
   "startupType": "docker-compose",
   "databaseType": "MySql",
-  "enabled": false,
+  "enabled": true,
   "instances": [
     {
       "id": "oceanbase-ce-latest",
