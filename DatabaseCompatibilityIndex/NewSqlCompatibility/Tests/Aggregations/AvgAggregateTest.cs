@@ -3,6 +3,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Aggregations;
 
+// https://www.postgresql.org/docs/current/functions-aggregate.html
 [SqlTest(SqlFeatureCategory.Aggregations, "Test AVG aggregate function")]
 public class AvgAggregateTest : SqlTest
 {

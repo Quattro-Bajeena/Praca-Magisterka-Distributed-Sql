@@ -19,6 +19,8 @@ namespace NSCI.Tests.Aggregations;
 //   4 detail rows  + 2 region subtotals  + 2 product subtotals  + 1 grand total  = 9 rows
 //
 // MySQL does NOT support CUBE — this test is PostgreSQL-only.
+
+// https://www.postgresql.org/docs/current/queries-table-expressions.html
 [SqlTest(SqlFeatureCategory.Aggregations, "Test GROUP BY CUBE generates all-dimension subtotals including cross-column aggregates", DatabaseType.PostgreSql)]
 public class PostgresCubeTest : SqlTest
 {

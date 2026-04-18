@@ -1,8 +1,10 @@
 using NSCI.Testing;
 using System.Data.Common;
 
-namespace NSCI.Tests.Advanced;
+namespace NSCI.Tests.StoredProcedures;
 
+// https://www.postgresql.org/docs/current/sql-createprocedure.html
+// https://dev.mysql.com/doc/refman/8.4/en/create-procedure.html
 [SqlTest(SqlFeatureCategory.StoredProcedures, "Test STORED PROCEDURE")]
 public class StoredProcedureTest : SqlTest
 {
@@ -20,6 +22,7 @@ public class StoredProcedureTest : SqlTest
             BEGIN
                 SELECT SUM(value) INTO total FROM proc_test;
             END";
+
         cmd.ExecuteNonQuery();
     }
 

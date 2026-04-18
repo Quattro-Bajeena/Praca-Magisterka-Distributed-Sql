@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Tests\Concurrency\**" />
+    <EmbeddedResource Remove="Tests\Concurrency\**" />
+    <None Remove="Tests\Concurrency\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Tests\BasicQueries\CreateTableAsSelectTest.cs~RFcdbb7de.TMP" />
     <None Remove="Tests\Spatial\PostgresPostGISMeasurementsTest.cs~RF118a20b7.TMP" />
   </ItemGroup>
@@ -22,10 +28,6 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Tests\Concurrency\" />
   </ItemGroup>
 
 </Project>

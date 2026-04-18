@@ -1,8 +1,7 @@
-using NSCI.Configuration;
 using NSCI.Testing;
 using System.Data.Common;
 
-namespace NSCI.Tests.Advanced;
+namespace NSCI.Tests.Triggers;
 
 [SqlTest(SqlFeatureCategory.Triggers, "Test TRIGGER")]
 public class TriggerTest : SqlTest

@@ -127,3 +127,7 @@ Opis:
 - Ocena łatwości przeniesienia aplikacji korzystającej z tradycyjnej bazy danych na każdą z testowanych rozproszonych baz
 
 
+## Pytania
+- Czy dodać wagi dla każdego z testu? jak dodać wagi? Czy powinny być 0.1, 0.2 czy może Ważne/ średnie/ mało ważne
+- Czy zostawić kilka testów dla featurów jak GiS
+- 

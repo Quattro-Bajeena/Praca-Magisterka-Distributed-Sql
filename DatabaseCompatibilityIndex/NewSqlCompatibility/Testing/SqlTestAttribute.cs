@@ -8,21 +8,28 @@ public class SqlTestAttribute : Attribute
     public SqlFeatureCategory Category { get; }
     public string Description { get; }
     public DatabaseType[] DatabaseTypes { get; }
+    float Weight { get; set; } = 1.0f;
 
     public SqlTestAttribute(SqlFeatureCategory category, string description)
-        : this(category, description, [DatabaseType.MySql, DatabaseType.PostgreSql])
+        : this(category, description, [DatabaseType.MySql, DatabaseType.PostgreSql], 1.0f)
     {
     }
 
     public SqlTestAttribute(SqlFeatureCategory category, string description, DatabaseType databaseType)
-        : this(category, description, [databaseType])
+        : this(category, description, [databaseType], 1.0f)
     {
     }
 
-    public SqlTestAttribute(SqlFeatureCategory category, string description, DatabaseType[] databaseTypes)
+    public SqlTestAttribute(SqlFeatureCategory category, string description, DatabaseType databaseType, float weight)
+        : this(category, description, [databaseType], weight)
+    {
+    }
+
+    public SqlTestAttribute(SqlFeatureCategory category, string description, DatabaseType[] databaseTypes, float weight)
     {
         Category = category;
         Description = description;
         DatabaseTypes = databaseTypes;
+        Weight = weight;
     }
 }

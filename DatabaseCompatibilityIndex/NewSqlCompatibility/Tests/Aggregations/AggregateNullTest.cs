@@ -3,6 +3,8 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Aggregations;
 
+// https://dev.mysql.com/doc/refman/8.4/en/counting-rows.html
+// https://www.postgresql.org/docs/current/functions-aggregate.html
 [SqlTest(SqlFeatureCategory.Aggregations, "Test aggregate with NULL values")]
 public class AggregateNullTest : SqlTest
 {

@@ -1,7 +1,7 @@
 using NSCI.Testing;
 using System.Data.Common;
 
-namespace NSCI.Tests.Advanced;
+namespace NSCI.Tests.Misc;
 
 [SqlTest(SqlFeatureCategory.Misc, "Test EVENT ", Configuration.DatabaseType.MySql)]
 public class EventTest : SqlTest
