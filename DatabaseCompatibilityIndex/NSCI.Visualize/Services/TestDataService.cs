@@ -1,250 +1,136 @@
-using Npgsql;
+using Microsoft.EntityFrameworkCore;
+using NSCI.Data;
+using NSCI.Data.Entities;
 using NSCI.Visualize.Models;
 
 namespace NSCI.Visualize.Services;
 
 public class TestDataService
 {
-    private readonly string _connectionString;
+    private readonly IDbContextFactory<NsciDbContext> _contextFactory;
 
-    public TestDataService(string connectionString)
+    public TestDataService(IDbContextFactory<NsciDbContext> contextFactory)
     {
-        _connectionString = connectionString;
+        _contextFactory = contextFactory;
     }
 
     public List<DatabaseInfo> GetAllDatabases()
     {
-        List<DatabaseInfo> databases = new();
+        using NsciDbContext context = _contextFactory.CreateDbContext();
 
-        using NpgsqlConnection connection = new(_connectionString);
-        connection.Open();
-
-        using NpgsqlCommand command = connection.CreateCommand();
-        command.CommandText = @"
-            SELECT 
-                d.id, 
-                d.name, 
-                d.type, 
-                d.result,
-                COUNT(tr.id) as total_tests,
-                SUM(CASE WHEN tr.passed THEN 1 ELSE 0 END) as passed_tests
-            FROM databases d
-            LEFT JOIN test_results tr ON d.id = tr.database_id
-            GROUP BY d.id, d.name, d.type, d.result
-            ORDER BY d.name;
-        ";
-
-        using NpgsqlDataReader reader = command.ExecuteReader();
-        while (reader.Read())
-        {
-            int totalTests = reader.IsDBNull(4) ? 0 : Convert.ToInt32(reader.GetInt64(4));
-            int passedTests = reader.IsDBNull(5) ? 0 : Convert.ToInt32(reader.GetInt64(5));
-
-            databases.Add(new DatabaseInfo
+        return context.Databases
+            .Select(d => new DatabaseInfo
             {
-                Id = reader.GetInt32(0),
-                Name = reader.GetString(1),
-                Type = reader.GetString(2),
-                Result = reader.IsDBNull(3) ? null : reader.GetDecimal(3),
-                TotalTests = totalTests,
-                PassedTests = passedTests,
-                FailedTests = totalTests - passedTests
-            });
-        }
-
-        return databases;
+                Id = d.Id,
+                Name = d.Name,
+                Type = d.Type,
+                Product = d.Product,
+                Version = d.Version,
+                ReleaseYear = d.ReleaseYear,
+                Result = d.Result,
+                TotalTests = d.TestResults.Count,
+                PassedTests = d.TestResults.Count(tr => tr.Passed),
+                FailedTests = d.TestResults.Count(tr => !tr.Passed)
+            })
+            .OrderBy(d => d.Name)
+            .ToList();
     }
 
     public DatabaseInfo? GetDatabase(int databaseId)
     {
-        using NpgsqlConnection connection = new(_connectionString);
-        connection.Open();
+        using NsciDbContext context = _contextFactory.CreateDbContext();
 
-        using NpgsqlCommand command = connection.CreateCommand();
-        command.CommandText = @"
-            SELECT 
-                d.id, 
-                d.name, 
-                d.type, 
-                d.result,
-                COUNT(tr.id) as total_tests,
-                SUM(CASE WHEN tr.passed THEN 1 ELSE 0 END) as passed_tests
-            FROM databases d
-            LEFT JOIN test_results tr ON d.id = tr.database_id
-            WHERE d.id = @database_id
-            GROUP BY d.id, d.name, d.type, d.result;
-        ";
-
-        command.Parameters.AddWithValue("@database_id", databaseId);
-
-        using NpgsqlDataReader reader = command.ExecuteReader();
-        if (reader.Read())
-        {
-            int totalTests = reader.IsDBNull(4) ? 0 : Convert.ToInt32(reader.GetInt64(4));
-            int passedTests = reader.IsDBNull(5) ? 0 : Convert.ToInt32(reader.GetInt64(5));
-
-            return new DatabaseInfo
+        return context.Databases
+            .Where(d => d.Id == databaseId)
+            .Select(d => new DatabaseInfo
             {
-                Id = reader.GetInt32(0),
-                Name = reader.GetString(1),
-                Type = reader.GetString(2),
-                Result = reader.IsDBNull(3) ? null : reader.GetDecimal(3),
-                TotalTests = totalTests,
-                PassedTests = passedTests,
-                FailedTests = totalTests - passedTests
-            };
-        }
-
-        return null;
+                Id = d.Id,
+                Name = d.Name,
+                Type = d.Type,
+                Product = d.Product,
+                Version = d.Version,
+                ReleaseYear = d.ReleaseYear,
+                Result = d.Result,
+                TotalTests = d.TestResults.Count,
+                PassedTests = d.TestResults.Count(tr => tr.Passed),
+                FailedTests = d.TestResults.Count(tr => !tr.Passed)
+            })
+            .FirstOrDefault();
     }
 
     public List<TestResultInfo> GetTestResultsForDatabase(int databaseId)
     {
-        List<TestResultInfo> results = new();
+        using NsciDbContext context = _contextFactory.CreateDbContext();
 
-        using NpgsqlConnection connection = new(_connectionString);
-        connection.Open();
-
-        using NpgsqlCommand command = connection.CreateCommand();
-        command.CommandText = @"
-            SELECT id, database_id, name, class_name, category, description, passed, duration, error
-            FROM test_results
-            WHERE database_id = @database_id
-            ORDER BY category, name;
-        ";
-
-        command.Parameters.AddWithValue("@database_id", databaseId);
-
-        using NpgsqlDataReader reader = command.ExecuteReader();
-        while (reader.Read())
-        {
-            results.Add(new TestResultInfo
+        return context.TestResults
+            .Where(tr => tr.DatabaseId == databaseId)
+            .OrderBy(tr => tr.Category)
+            .ThenBy(tr => tr.Name)
+            .Select(tr => new TestResultInfo
             {
-                Id = reader.GetInt32(0),
-                DatabaseId = reader.GetInt32(1),
-                Name = reader.GetString(2),
-                ClassName = reader.GetString(3),
-                Category = reader.GetString(4),
-                Description = reader.GetString(5),
-                Passed = reader.GetBoolean(6),
-                Duration = reader.GetString(7),
-                Error = reader.IsDBNull(8) ? null : reader.GetString(8)
-            });
-        }
-
-        return results;
+                Id = tr.Id,
+                DatabaseId = tr.DatabaseId,
+                Name = tr.Name,
+                ClassName = tr.ClassName,
+                Category = tr.Category,
+                Description = tr.Description ?? "",
+                Passed = tr.Passed,
+                Duration = tr.Duration,
+                Error = tr.Error
+            })
+            .ToList();
     }
 
     public Dictionary<string, CategoryStats> GetCategoryStatsForDatabase(int databaseId)
     {
-        Dictionary<string, CategoryStats> stats = new();
+        using NsciDbContext context = _contextFactory.CreateDbContext();
 
-        using NpgsqlConnection connection = new(_connectionString);
-        connection.Open();
-
-        using NpgsqlCommand command = connection.CreateCommand();
-        command.CommandText = @"
-            SELECT 
-                category,
-                COUNT(*) as total,
-                SUM(CASE WHEN passed THEN 1 ELSE 0 END) as passed
-            FROM test_results
-            WHERE database_id = @database_id
-            GROUP BY category
-            ORDER BY category;
-        ";
-
-        command.Parameters.AddWithValue("@database_id", databaseId);
-
-        using NpgsqlDataReader reader = command.ExecuteReader();
-        while (reader.Read())
-        {
-            string category = reader.GetString(0);
-            int total = Convert.ToInt32(reader.GetInt64(1));
-            int passed = Convert.ToInt32(reader.GetInt64(2));
-
-            stats[category] = new CategoryStats
+        return context.TestResults
+            .Where(tr => tr.DatabaseId == databaseId)
+            .GroupBy(tr => tr.Category)
+            .OrderBy(g => g.Key)
+            .Select(g => new CategoryStats
             {
-                Category = category,
-                Total = total,
-                Passed = passed,
-                Failed = total - passed
-            };
-        }
-
-        return stats;
+                Category = g.Key,
+                Total = g.Count(),
+                Passed = g.Count(tr => tr.Passed),
+                Failed = g.Count(tr => !tr.Passed)
+            })
+            .ToDictionary(cs => cs.Category);
     }
 
     public ComparisonData GetComparisonData()
     {
+        using NsciDbContext context = _contextFactory.CreateDbContext();
+
         ComparisonData data = new();
-        HashSet<string> allCategories = new();
 
-        using NpgsqlConnection connection = new(_connectionString);
-        connection.Open();
+        data.Categories = context.TestResults
+            .Select(tr => tr.Category)
+            .Distinct()
+            .OrderBy(c => c)
+            .ToList();
 
-        using NpgsqlCommand categoryCommand = connection.CreateCommand();
-        categoryCommand.CommandText = @"
-            SELECT DISTINCT category FROM test_results ORDER BY category;
-        ";
+        List<DatabaseEntity> databases = context.Databases
+            .Include(d => d.TestResults)
+            .OrderBy(d => d.Name)
+            .ToList();
 
-        using (NpgsqlDataReader reader = categoryCommand.ExecuteReader())
+        foreach (DatabaseEntity db in databases)
         {
-            while (reader.Read())
-            {
-                string category = reader.GetString(0);
-                allCategories.Add(category);
-                data.Categories.Add(category);
-            }
-        }
-
-        using NpgsqlCommand databaseCommand = connection.CreateCommand();
-        databaseCommand.CommandText = @"
-            SELECT id, name FROM databases ORDER BY name;
-        ";
-
-        List<(int id, string name)> databases = new();
-        using (NpgsqlDataReader reader = databaseCommand.ExecuteReader())
-        {
-            while (reader.Read())
-            {
-                databases.Add((reader.GetInt32(0), reader.GetString(1)));
-            }
-        }
-
-        foreach (var (dbId, dbName) in databases)
-        {
-            List<decimal> passRates = new();
-
-            foreach (string category in data.Categories)
-            {
-                using NpgsqlCommand statsCommand = connection.CreateCommand();
-                statsCommand.CommandText = @"
-                    SELECT 
-                        COUNT(*) as total,
-                        SUM(CASE WHEN passed THEN 1 ELSE 0 END) as passed
-                    FROM test_results
-                    WHERE database_id = @database_id AND category = @category;
-                ";
-
-                statsCommand.Parameters.AddWithValue("@database_id", dbId);
-                statsCommand.Parameters.AddWithValue("@category", category);
-
-                using NpgsqlDataReader reader = statsCommand.ExecuteReader();
-                if (reader.Read())
+            List<decimal> passRates = data.Categories
+                .Select(category =>
                 {
-                    int total = Convert.ToInt32(reader.GetInt64(0));
-                    int passed = Convert.ToInt32(reader.GetFieldValue<int?>(1));
-                    decimal passRate = total > 0 ? (decimal)passed / total * 100 : 0;
-                    passRates.Add(passRate);
-                }
-                else
-                {
-                    passRates.Add(0);
-                }
-            }
+                    List<TestResultEntity> categoryResults = db.TestResults
+                        .Where(tr => tr.Category == category)
+                        .ToList();
+                    int total = categoryResults.Count;
+                    int passed = categoryResults.Count(tr => tr.Passed);
+                    return total > 0 ? (decimal)passed / total * 100 : 0m;
+                })
+                .ToList();
 
-            data.DatabasePassRates[dbName] = passRates;
+            data.DatabasePassRates[db.Name] = passRates;
         }
 
         return data;
