@@ -5,6 +5,13 @@ namespace NSCI.Database;
 
 public class PostgreSqlDatabaseProvider : IDatabaseProvider
 {
+    readonly string _product;
+
+    public PostgreSqlDatabaseProvider(string product)
+    {
+        _product = product;
+    }
+
     public DbConnection CreateConnection(string connectionString)
     {
         return new NpgsqlConnection(connectionString);

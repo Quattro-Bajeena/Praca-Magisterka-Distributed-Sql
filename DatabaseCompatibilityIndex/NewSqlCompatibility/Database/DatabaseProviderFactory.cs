@@ -4,7 +4,7 @@ namespace NSCI.Database;
 
 public static class DatabaseProviderFactory
 {
-    public static IDatabaseProvider Create(DatabaseType databaseType)
+    public static IDatabaseProvider Create(DatabaseType databaseType, string product)
     {
         return databaseType switch
         {

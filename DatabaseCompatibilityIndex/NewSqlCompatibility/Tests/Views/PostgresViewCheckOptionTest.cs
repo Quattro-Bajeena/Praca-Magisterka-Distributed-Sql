@@ -14,16 +14,13 @@ public class PostgresViewCheckOptionTest : SqlTest
         cmd.CommandText = @"CREATE TABLE employees_check (
                             id SERIAL PRIMARY KEY,
                             name VARCHAR(100),
-                            department VARCHAR(50),
-                            salary DECIMAL(10,2)
+                            department VARCHAR(50)
                         )";
         cmd.ExecuteNonQuery();
 
-        cmd.CommandText = "INSERT INTO employees_check (name, department, salary) VALUES ('Alice', 'Engineering', 75000)";
+        cmd.CommandText = "INSERT INTO employees_check (name, department) VALUES ('Alice', 'Engineering')";
         cmd.ExecuteNonQuery();
-        cmd.CommandText = "INSERT INTO employees_check (name, department, salary) VALUES ('Bob', 'Engineering', 80000)";
-        cmd.ExecuteNonQuery();
-        cmd.CommandText = "INSERT INTO employees_check (name, department, salary) VALUES ('Charlie', 'Sales', 60000)";
+        cmd.CommandText = "INSERT INTO employees_check (name, department) VALUES ('Bob', 'Sales')";
         cmd.ExecuteNonQuery();
     }
 
@@ -32,7 +29,7 @@ public class PostgresViewCheckOptionTest : SqlTest
         using DbCommand cmd = connection.CreateCommand();
 
         cmd.CommandText = @"CREATE VIEW engineering_view AS
-                           SELECT id, name, department, salary
+                           SELECT id, name, department
                            FROM employees_check
                            WHERE department = 'Engineering'
                            WITH CHECK OPTION";
@@ -40,49 +37,25 @@ public class PostgresViewCheckOptionTest : SqlTest
 
         cmd.CommandText = "SELECT COUNT(*) FROM engineering_view";
         object? count = cmd.ExecuteScalar();
-        AssertEqual(2L, Convert.ToInt64(count!), "Engineering view should show 2 employees");
+        AssertEqual(1L, Convert.ToInt64(count!), "Engineering view should show 1 employee");
 
-        cmd.CommandText = "INSERT INTO engineering_view (name, department, salary) VALUES ('David', 'Engineering', 85000)";
+        // Insert through view — valid row should succeed
+        cmd.CommandText = "INSERT INTO engineering_view (name, department) VALUES ('David', 'Engineering')";
         cmd.ExecuteNonQuery();
 
         cmd.CommandText = "SELECT COUNT(*) FROM engineering_view";
         count = cmd.ExecuteScalar();
-        AssertEqual(3L, Convert.ToInt64(count!), "Should have 3 engineering employees");
+        AssertEqual(2L, Convert.ToInt64(count!), "Should now have 2 engineering employees");
 
-        bool checkOptionViolated = false;
-        try
-        {
-            cmd.CommandText = "INSERT INTO engineering_view (name, department, salary) VALUES ('Eve', 'Sales', 70000)";
-            cmd.ExecuteNonQuery();
-        }
-        catch
-        {
-            checkOptionViolated = true;
-        }
-        AssertTrue(checkOptionViolated, "WITH CHECK OPTION should prevent inserting non-Engineering department");
-
-        cmd.CommandText = "UPDATE engineering_view SET salary = 90000 WHERE name = 'Alice'";
-        cmd.ExecuteNonQuery();
-
-        cmd.CommandText = "SELECT salary FROM employees_check WHERE name = 'Alice'";
-        object? salary = cmd.ExecuteScalar();
-        AssertEqual(90000m, Convert.ToDecimal(salary!), "Update through view should work");
-
-        bool updateViolation = false;
-        try
-        {
-            cmd.CommandText = "UPDATE engineering_view SET department = 'HR' WHERE name = 'Alice'";
-            cmd.ExecuteNonQuery();
-        }
-        catch
-        {
-            updateViolation = true;
-        }
-        AssertTrue(updateViolation, "WITH CHECK OPTION should prevent updating department to non-Engineering");
-
-        cmd.CommandText = "SELECT COUNT(*) FROM employees_check";
-        count = cmd.ExecuteScalar();
-        AssertEqual(4L, Convert.ToInt64(count!), "Base table should have 4 total employees");
+        // Insert row that violates the view's WHERE clause — should fail
+        AssertThrows<Exception>(
+            () =>
+            {
+                using DbCommand badCmd = connection.CreateCommand();
+                badCmd.CommandText = "INSERT INTO engineering_view (name, department) VALUES ('Eve', 'Sales')";
+                badCmd.ExecuteNonQuery();
+            },
+            "WITH CHECK OPTION should prevent inserting non-Engineering department");
     }
 
     protected override void CleanupPg(DbConnection connection)

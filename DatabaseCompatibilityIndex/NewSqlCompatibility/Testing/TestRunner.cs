@@ -69,7 +69,7 @@ public class TestRunner
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Could not create a test database: ", ex);
+            Console.WriteLine("Could not create a test database: " + ex.Message);
             return null;
         }
     }

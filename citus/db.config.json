@@ -2,7 +2,7 @@
   "name": "Citus",
   "startupType": "docker-compose",
   "databaseType": "PostgreSql",
-  "enabled": true,
+  "enabled": false,
   "instances": [
     {
       "id": "citus-v10",

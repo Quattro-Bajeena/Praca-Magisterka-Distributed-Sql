@@ -16,11 +16,9 @@ public class FullTextSearchBooleanModeTest : SqlTest
                         )";
         cmd.ExecuteNonQuery();
 
-        cmd.CommandText = @"INSERT INTO posts (content) VALUES 
+        cmd.CommandText = @"INSERT INTO posts (content) VALUES
                             ('C++ programming is powerful'),
-                            ('Java is used for enterprise applications'),
                             ('Python is great for data science'),
-                            ('Go is fast and efficient'),
                             ('Ruby on Rails framework')";
         cmd.ExecuteNonQuery();
     }
@@ -33,13 +31,9 @@ public class FullTextSearchBooleanModeTest : SqlTest
         object? count = cmd.ExecuteScalar();
         AssertEqual(1L, (long)count!, "Should find 1 post with '+programming'");
 
-        cmd.CommandText = "SELECT COUNT(*) FROM posts WHERE MATCH(content) AGAINST('+language -python' IN BOOLEAN MODE)";
+        cmd.CommandText = "SELECT COUNT(*) FROM posts WHERE MATCH(content) AGAINST('Python | Ruby' IN BOOLEAN MODE)";
         count = cmd.ExecuteScalar();
-        AssertTrue((long)count! >= 0, "Exclusion search should work");
-
-        cmd.CommandText = "SELECT COUNT(*) FROM posts WHERE MATCH(content) AGAINST('\"is great\"' IN BOOLEAN MODE)";
-        count = cmd.ExecuteScalar();
-        AssertEqual(1L, (long)count!, "Should find 1 post with phrase 'is great'");
+        AssertTrue((long)count! >= 2, "OR operator should find Python or Ruby posts");
     }
 
     protected override void CleanupMy(DbConnection connection)

@@ -22,6 +22,7 @@ public class TestDataService
             .Select(d => new DatabaseInfo
             {
                 Id = d.Id,
+                DatabaseId = d.DatabaseId,
                 Name = d.Name,
                 Type = d.Type,
                 Product = d.Product,
@@ -45,6 +46,7 @@ public class TestDataService
             .Select(d => new DatabaseInfo
             {
                 Id = d.Id,
+                DatabaseId = d.DatabaseId,
                 Name = d.Name,
                 Type = d.Type,
                 Product = d.Product,

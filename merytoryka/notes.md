@@ -157,3 +157,11 @@ Kategorie:
 
 
 Czy to jest okej, że tylko część baz danych będzie miała porównania pomiędzy wersjami (te z docker compose)
+
+
+
+# TODO
+- CrateDB - Could not create a test database - oprócz dla najnowszej wersji, najnowsza wersja ma większość testów na failed
+- Shardingsphere - Could not create a test database dla większości wersji, większość testów sfailowało - dlaczego?
+- Oceanbase - Could not create a test database dla większości wersji oprócz najnowszej
+- singlestore - Could not create a test database dla żadnej wersji

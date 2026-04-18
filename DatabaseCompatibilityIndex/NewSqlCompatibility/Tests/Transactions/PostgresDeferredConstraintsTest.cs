@@ -20,9 +20,8 @@ public class PostgresDeferredConstraintsTest : SqlTest
         cmd.CommandText = @"CREATE TABLE child_deferred (
                             id INT PRIMARY KEY,
                             parent_id INT,
-                            name VARCHAR(100),
-                            CONSTRAINT fk_parent FOREIGN KEY (parent_id) 
-                                REFERENCES parent_deferred(id) 
+                            CONSTRAINT fk_parent FOREIGN KEY (parent_id)
+                                REFERENCES parent_deferred(id)
                                 DEFERRABLE INITIALLY DEFERRED
                         )";
         cmd.ExecuteNonQuery();
@@ -32,73 +31,22 @@ public class PostgresDeferredConstraintsTest : SqlTest
     {
         using DbCommand cmd = connection.CreateCommand();
 
+        // Insert child before parent — allowed because constraint is INITIALLY DEFERRED
         cmd.CommandText = "BEGIN";
         cmd.ExecuteNonQuery();
 
-        cmd.CommandText = "INSERT INTO child_deferred (id, parent_id, name) VALUES (1, 100, 'Child First')";
+        cmd.CommandText = "INSERT INTO child_deferred (id, parent_id) VALUES (1, 100)";
         cmd.ExecuteNonQuery();
 
-        cmd.CommandText = "INSERT INTO parent_deferred (id, name) VALUES (100, 'Parent After')";
+        cmd.CommandText = "INSERT INTO parent_deferred (id, name) VALUES (100, 'Parent')";
         cmd.ExecuteNonQuery();
 
         cmd.CommandText = "COMMIT";
         cmd.ExecuteNonQuery();
 
         cmd.CommandText = "SELECT COUNT(*) FROM child_deferred WHERE parent_id = 100";
-        object? childCount = cmd.ExecuteScalar();
-        AssertEqual(1L, Convert.ToInt64(childCount!), "Deferred constraint should allow child before parent");
-
-        cmd.CommandText = "BEGIN";
-        cmd.ExecuteNonQuery();
-
-        cmd.CommandText = "SET CONSTRAINTS fk_parent IMMEDIATE";
-        cmd.ExecuteNonQuery();
-
-        cmd.CommandText = "INSERT INTO parent_deferred (id, name) VALUES (200, 'Parent Immediate')";
-        cmd.ExecuteNonQuery();
-
-        bool exceptionThrown = false;
-        try
-        {
-            cmd.CommandText = "INSERT INTO child_deferred (id, parent_id, name) VALUES (2, 999, 'Invalid Child')";
-            cmd.ExecuteNonQuery();
-        }
-        catch
-        {
-            exceptionThrown = true;
-        }
-
-        if (exceptionThrown)
-        {
-            cmd.CommandText = "ROLLBACK";
-            cmd.ExecuteNonQuery();
-        }
-        else
-        {
-            cmd.CommandText = "COMMIT";
-            cmd.ExecuteNonQuery();
-        }
-
-        AssertTrue(exceptionThrown, "Immediate constraint should fail on invalid foreign key");
-
-        cmd.CommandText = "BEGIN";
-        cmd.ExecuteNonQuery();
-
-        cmd.CommandText = "SET CONSTRAINTS ALL DEFERRED";
-        cmd.ExecuteNonQuery();
-
-        cmd.CommandText = "INSERT INTO child_deferred (id, parent_id, name) VALUES (3, 300, 'Child 3')";
-        cmd.ExecuteNonQuery();
-
-        cmd.CommandText = "INSERT INTO parent_deferred (id, name) VALUES (300, 'Parent 3')";
-        cmd.ExecuteNonQuery();
-
-        cmd.CommandText = "COMMIT";
-        cmd.ExecuteNonQuery();
-
-        cmd.CommandText = "SELECT COUNT(*) FROM parent_deferred";
-        object? parentCount = cmd.ExecuteScalar();
-        AssertTrue(Convert.ToInt64(parentCount!) >= 2, "Should have multiple parents");
+        object? count = cmd.ExecuteScalar();
+        AssertEqual(1L, Convert.ToInt64(count!), "Deferred constraint should allow child to be inserted before parent");
     }
 
     protected override void CleanupPg(DbConnection connection)

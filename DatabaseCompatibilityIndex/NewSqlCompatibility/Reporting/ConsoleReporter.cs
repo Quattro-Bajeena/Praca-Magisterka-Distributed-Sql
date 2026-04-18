@@ -54,6 +54,11 @@ public class ConsoleReporter
             return;
         }
 
+        if (result.Passed == false && _config.DisplayFailedTests == false)
+        {
+            return;
+        }
+
         ReportTestStart(result.TestName, result.Description, result.Category.ToString());
         ReportTestEnd(result);
     }

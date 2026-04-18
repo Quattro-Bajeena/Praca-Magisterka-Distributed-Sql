@@ -2,7 +2,7 @@
   "name": "MySQL",
   "startupType": "docker-compose",
   "databaseType": "MySQL",
-  "enabled": true,
+  "enabled": false,
   "instances": [
     {
       "id": "mysql-v9",

@@ -2,7 +2,7 @@
     "name": "CockroachDB",
     "startupType": "docker-compose",
     "databaseType": "PostgreSql",
-    "enabled": true,
+    "enabled": false,
     "instances": [
         {
             "id": "cockroach-v26.1",

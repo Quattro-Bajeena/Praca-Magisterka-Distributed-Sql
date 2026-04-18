@@ -3,6 +3,7 @@ namespace NSCI.Visualize.Models;
 public class DatabaseInfo
 {
     public int Id { get; set; }
+    public string DatabaseId { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
     public string Type { get; set; } = string.Empty;
     public string? Product { get; set; }

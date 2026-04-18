@@ -2,7 +2,7 @@
   "name": "SingleStoreDB",
   "startupType": "docker-compose",
   "databaseType": "MySql",
-  "enabled": true,
+  "enabled": false,
   "instances": [
     {
       "id": "singlestoredb-dev-0.1.7",

@@ -2,7 +2,7 @@
   "name": "PostgreSQL",
   "startupType": "docker-compose",
   "databaseType": "PostgreSQL",
-  "enabled": true,
+  "enabled": false,
   "instances": [
     {
       "id": "postgres-v18",
