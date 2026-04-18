@@ -1,12 +1,88 @@
 services:
-  oceanbase:
-    image: oceanbase/oceanbase-ce:latest
-    container_name: oceanbase-ce
+  # oceanbase-latest:
+  #   image: oceanbase/oceanbase-ce:latest
+  #   container_name: oceanbase-ce-latest
+  #   ports:
+  #     - "2881:2881"
+  #   environment:
+  #     MODE: mini
+  #     OB_CLUSTER_NAME: obcluster-latest
+  #     OB_TENANT_NAME: test
+  #     OB_SYS_PASSWORD: root_password
+  #     OB_TENANT_PASSWORD: tenant_password
+  #   healthcheck:
+  #     test: ["CMD", "mysql", "-h127.0.0.1", "-P2881", "-uroot", "-proot_password", "-e", "SELECT 1"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   networks:
+  #     - oceanbase-network
+
+  oceanbase-3.1.4:
+    image: oceanbase/oceanbase-ce:3.1.4
+    container_name: oceanbase-ce-3.1.4
     ports:
-      - "2881:2881"
+      - "2882:2881"
     environment:
       MODE: mini
-      OB_CLUSTER_NAME: obcluster
+      OB_CLUSTER_NAME: obcluster-314
+      OB_TENANT_NAME: test
+      OB_SYS_PASSWORD: root_password
+      OB_TENANT_PASSWORD: tenant_password
+    healthcheck:
+      test: ["CMD", "mysql", "-h127.0.0.1", "-P2881", "-uroot", "-proot_password", "-e", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - oceanbase-network
+
+  oceanbase-4.2.1-lts:
+    image: oceanbase/oceanbase-ce:4.2.1-lts
+    container_name: oceanbase-ce-4.2.1-lts
+    ports:
+      - "2883:2881"
+    environment:
+      MODE: mini
+      OB_CLUSTER_NAME: obcluster-421lts
+      OB_TENANT_NAME: test
+      OB_SYS_PASSWORD: root_password
+      OB_TENANT_PASSWORD: tenant_password
+    healthcheck:
+      test: ["CMD", "mysql", "-h127.0.0.1", "-P2881", "-uroot", "-proot_password", "-e", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - oceanbase-network
+
+  oceanbase-4.3.5-lts:
+    image: oceanbase/oceanbase-ce:4.3.5-lts
+    container_name: oceanbase-ce-4.3.5-lts
+    ports:
+      - "2884:2881"
+    environment:
+      MODE: mini
+      OB_CLUSTER_NAME: obcluster-435lts
+      OB_TENANT_NAME: test
+      OB_SYS_PASSWORD: root_password
+      OB_TENANT_PASSWORD: tenant_password
+    healthcheck:
+      test: ["CMD", "mysql", "-h127.0.0.1", "-P2881", "-uroot", "-proot_password", "-e", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - oceanbase-network
+
+  oceanbase-4.4.2:
+    image: oceanbase/oceanbase-ce:4.4.2.0-100000032026021017
+    container_name: oceanbase-ce-4.4.2
+    ports:
+      - "2885:2881"
+    environment:
+      MODE: mini
+      OB_CLUSTER_NAME: obcluster-442
       OB_TENANT_NAME: test
       OB_SYS_PASSWORD: root_password
       OB_TENANT_PASSWORD: tenant_password

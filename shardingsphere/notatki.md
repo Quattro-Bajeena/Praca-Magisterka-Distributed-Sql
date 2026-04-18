@@ -1,0 +1,1 @@
+- udało się tylko tryb mysql uruchomić

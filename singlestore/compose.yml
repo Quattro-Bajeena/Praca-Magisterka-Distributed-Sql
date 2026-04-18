@@ -1,17 +1,30 @@
-# docker run -d --name singlestoredb-dev -e ROOT_PASSWORD="YOUR SINGLESTORE ROOT PASSWORD" -p 3306:3306 -p 8080:8080 -p 9000:9000 ghcr.io/singlestore-labs/singlestoredb-dev:latest
-
 services:
-  singlestoredb:
-    image: ghcr.io/singlestore-labs/singlestoredb-dev:latest
-    container_name: singlestoredb-dev
+  singlestoredb-0.1.7:
+    image: ghcr.io/singlestore-labs/singlestoredb-dev:0.1.7
+    container_name: singlestoredb-dev-0.1.7
     ports:
-      - "3366:3306" # MySQL protocol
-      - "8006:8080" #SingleStore Studio
+      - "3366:3306"
+      - "8006:8080"
       - "9006:9000"
     environment:
       ROOT_PASSWORD: "password"
     healthcheck:
-      test: ["CMD", "mysql", "-h127.0.0.1", "-P3366", "-uroot", "-ppassword", "-e", "SELECT 1"]
+      test: ["CMD", "mysql", "-h127.0.0.1", "-P3306", "-uroot", "-ppassword", "-e", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  singlestoredb-0.2.79:
+    image: ghcr.io/singlestore-labs/singlestoredb-dev:0.2.79
+    container_name: singlestoredb-dev-0.2.79
+    ports:
+      - "3367:3306"
+      - "8007:8080"
+      - "9007:9000"
+    environment:
+      ROOT_PASSWORD: "password"
+    healthcheck:
+      test: ["CMD", "mysql", "-h127.0.0.1", "-P3306", "-uroot", "-ppassword", "-e", "SELECT 1"]
       interval: 10s
       timeout: 5s
       retries: 5

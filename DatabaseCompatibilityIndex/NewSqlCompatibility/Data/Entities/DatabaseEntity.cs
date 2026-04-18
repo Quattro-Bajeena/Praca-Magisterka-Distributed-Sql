@@ -3,6 +3,7 @@ namespace NSCI.Data.Entities;
 public class DatabaseEntity
 {
     public int Id { get; set; }
+    public string DatabaseId { get; set; } = "";
     public string Name { get; set; } = "";
     public string Type { get; set; } = "";
     public string? Product { get; set; }

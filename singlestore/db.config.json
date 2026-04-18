@@ -5,14 +5,27 @@
   "enabled": true,
   "instances": [
     {
-      "id": "singlestoredb-dev-latest",
-      "displayName": "SingleStoreDB Dev latest",
-      "version": "latest",
+      "id": "singlestoredb-dev-0.1.7",
+      "displayName": "SingleStoreDB Dev 0.1.7",
+      "version": "0.1.7",
+      "releaseYear": 2022,
       "enabled": true,
       "connectionString": "Host=localhost;Port=3366;Username=root;Password=password;AllowUserVariables=True;",
       "healthCheck": {
         "host": "localhost",
         "port": 3366
+      }
+    },
+    {
+      "id": "singlestoredb-dev-0.2.79",
+      "displayName": "SingleStoreDB Dev 0.2.79",
+      "version": "0.2.79",
+      "releaseYear": 2026,
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=3367;Username=root;Password=password;AllowUserVariables=True;",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 3367
       }
     }
   ]

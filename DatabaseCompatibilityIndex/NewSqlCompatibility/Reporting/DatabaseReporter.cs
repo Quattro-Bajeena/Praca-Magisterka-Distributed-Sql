@@ -43,12 +43,13 @@ public class DatabaseReporter
 
         DatabaseEntity? dbEntity = context.Databases
             .Include(d => d.TestResults)
-            .FirstOrDefault(d => d.Name == dbConfig.Name);
+            .FirstOrDefault(d => d.DatabaseId == dbConfig.DatabaseId);
 
         if (dbEntity == null)
         {
             dbEntity = new DatabaseEntity
             {
+                DatabaseId = dbConfig.DatabaseId,
                 Name = dbConfig.Name,
                 Type = dbConfig.Type.ToString(),
                 Product = dbConfig.Product,

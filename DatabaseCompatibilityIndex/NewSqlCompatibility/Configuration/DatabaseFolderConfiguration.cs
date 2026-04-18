@@ -30,6 +30,7 @@ public class DatabaseFolderConfiguration
         {
             yield return new DatabaseConfiguration
             {
+                DatabaseId = instance.Id,
                 Name = instance.DisplayName,
                 Enabled = Enabled && instance.Enabled,
                 Type = DatabaseType,

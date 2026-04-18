@@ -16,12 +16,14 @@ public class NsciDbContext : DbContext
         {
             entity.ToTable("databases");
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.DatabaseId).HasColumnName("database_id").HasMaxLength(100).IsRequired();
             entity.Property(e => e.Name).HasColumnName("name").HasMaxLength(255).IsRequired();
             entity.Property(e => e.Type).HasColumnName("type").HasMaxLength(100).IsRequired();
             entity.Property(e => e.Product).HasColumnName("product").HasMaxLength(100);
             entity.Property(e => e.Version).HasColumnName("version").HasMaxLength(50);
             entity.Property(e => e.ReleaseYear).HasColumnName("release_year");
             entity.Property(e => e.Result).HasColumnName("result").HasPrecision(5, 4);
+            entity.HasIndex(e => e.DatabaseId).IsUnique();
             entity.HasIndex(e => e.Name).IsUnique();
         });
 

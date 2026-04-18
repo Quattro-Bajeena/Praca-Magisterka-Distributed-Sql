@@ -5,14 +5,51 @@
   "enabled": true,
   "instances": [
     {
-      "id": "oceanbase-ce-latest",
-      "displayName": "OceanBase CE latest",
-      "version": "latest",
+      "id": "oceanbase-ce-3.1.4",
+      "displayName": "OceanBase CE 3.1.4",
+      "version": "3.1.4",
+      "releaseYear": 2022,
       "enabled": true,
-      "connectionString": "Host=localhost;Port=2881;Username=root;Password=root_password;Database=test;AllowUserVariables=True;",
+      "connectionString": "Host=localhost;Port=2882;Username=root;Password=root_password;Database=test;AllowUserVariables=True;",
       "healthCheck": {
         "host": "localhost",
-        "port": 2881
+        "port": 2882
+      }
+    },
+    {
+      "id": "oceanbase-ce-4.2.1-lts",
+      "displayName": "OceanBase CE 4.2.1 LTS",
+      "version": "4.2.1",
+      "releaseYear": 2024,
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=2883;Username=root;Password=root_password;Database=test;AllowUserVariables=True;",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 2883
+      }
+    },
+    {
+      "id": "oceanbase-ce-4.3.5-lts",
+      "displayName": "OceanBase CE 4.3.5 LTS",
+      "version": "4.3.5",
+      "releaseYear": 2025,
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=2884;Username=root;Password=root_password;Database=test;AllowUserVariables=True;",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 2884
+      }
+    },
+    {
+      "id": "oceanbase-ce-4.4.2",
+      "displayName": "OceanBase CE 4.4.2",
+      "version": "4.4.2",
+      "releaseYear": 2026,
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=2885;Username=root;Password=root_password;Database=test;AllowUserVariables=True;",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 2885
       }
     }
   ]
