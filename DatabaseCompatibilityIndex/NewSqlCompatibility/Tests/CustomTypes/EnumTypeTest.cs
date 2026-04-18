@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.CustomTypes;
 
-[SqlTest(SqlFeatureCategory.CustomTypes, "Test enumerated type (ENUM) enforces valid values and supports ordering")]
+[SqlTest(SqlFeatureCategory.CustomTypes, "Test enumerated type enforces valid values")]
 public class EnumTypeTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)

@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.Transactions;
 
-[SqlTest(SqlFeatureCategory.Transactions, "Test SAVEPOINT (if supported)")]
+[SqlTest(SqlFeatureCategory.Transactions, "Test SAVEPOINT")]
 public class SavePointTest : SqlTest
 {
     protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)

@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.BasicQueries;
 
-// TODO Wykorzystać COPY from file
+
 [SqlTest(SqlFeatureCategory.BasicQueries, "Test PostgreSQL COPY command for bulk data", DatabaseType.PostgreSql)]
 public class PostgresCopyCommandTest : SqlTest
 {
