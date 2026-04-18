@@ -36,6 +36,7 @@ public class TestConfiguration
 
         List<string> configFiles = Directory
             .EnumerateFiles(databaseRootPath, "db.config.json", SearchOption.AllDirectories)
+            .Where(path => !Path.GetDirectoryName(path)?.Contains('.') ?? true)
             .OrderBy(path => path, StringComparer.OrdinalIgnoreCase)
             .ToList();
 
@@ -64,7 +65,8 @@ public class TestConfiguration
             Converters =
             {
                 new JsonStringEnumConverter()
-            }
+            },
+            ReadCommentHandling = JsonCommentHandling.Skip,
         };
 
         return options;

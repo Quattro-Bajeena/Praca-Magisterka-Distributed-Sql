@@ -128,6 +128,32 @@ Opis:
 
 
 ## Pytania
-- Czy dodać wagi dla każdego z testu? jak dodać wagi? Czy powinny być 0.1, 0.2 czy może Ważne/ średnie/ mało ważne
-- Czy zostawić kilka testów dla featurów jak GiS
-- 
+Czy dodać wagi dla każdego z testu? jak dodać wagi? Czy powinny być 0.1, 0.2 czy może Ważne/ średnie/ mało ważne
+
+Czy zostawić wiele testów dla featurów jak GiS
+- Istnieją skomplikowane zaawansowane funkcjonalności
+  - GROUP BY CUBE
+  - Rollup
+  - TABLESAMPLE
+  - CREATE RULE
+  - PARTITION OF
+  - LISTEN/NOTIFY
+  - Spatial PostGIS
+  - array subquery
+  - Postgres LATERAL subqeury 
+  - SUM OVER
+  - LAG and LEAD window functions
+  - NTILE window function
+
+
+Jakie powinny być kategorie niezgodności? 
+Czy powinnienem oceniać błędy pod względem tego jak łatwo je naprawić lub jak jasno są opisane, np. komunikat że dana funkcjonalność jest niewspierana - dobrze, zupełnie inne zachowanie niż podstawowa baza danych - źle.
+Kategorie:
+- Wiadomość wprost o niewspieranej funkcjonalności (dobrze)
+- Wiadomość o nierozpoznanej komendzie / składnie (nieźle)
+- Nie mówiący dużo błąd (słabo)
+- Inny wynik niż w bazowej bazie danych (źle)
+- Możliwy do poprawienia? Czy to osobna kategoria czy spróbować ocenić czy błąd jest możliwy do poprawienia.
+
+
+Czy to jest okej, że tylko część baz danych będzie miała porównania pomiędzy wersjami (te z docker compose)

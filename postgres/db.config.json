@@ -1,14 +1,15 @@
 {
   "name": "PostgreSQL",
   "startupType": "docker-compose",
-  "databaseType": "PostgreSql",
-  "enabled": false,
+  "databaseType": "PostgreSQL",
+  "enabled": true,
   "instances": [
     {
       "id": "postgres-v18",
       "displayName": "PostgreSQL 18",
       "version": "18",
       "enabled": true,
+      "releaseYear": 2025,
       "connectionString": "Host=localhost;Port=5432;Username=postgres;Password=password;Database=postgres",
       "healthCheck": {
         "host": "localhost",
