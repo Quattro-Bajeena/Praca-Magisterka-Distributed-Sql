@@ -5,6 +5,9 @@ public class DatabaseInfo
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Type { get; set; } = string.Empty;
+    public string? Product { get; set; }
+    public string? Version { get; set; }
+    public int? ReleaseYear { get; set; }
     public decimal? Result { get; set; }
     public int TotalTests { get; set; }
     public int PassedTests { get; set; }

@@ -5,14 +5,51 @@
   "enabled": true,
   "instances": [
     {
-      "id": "cratedb-latest",
-      "displayName": "CrateDB latest",
-      "version": "latest",
+      "id": "cratedb-v3",
+      "displayName": "CrateDB 3",
+      "version": "3.3.5",
+      "releaseYear": 2021,
       "enabled": true,
-      "connectionString": "Host=localhost;Port=5434;Username=crate;Include Error Detail=true",
+      "connectionString": "Host=localhost;Port=5480;Username=crate;Include Error Detail=true",
       "healthCheck": {
         "host": "localhost",
-        "port": 5434
+        "port": 5480
+      }
+    },
+    {
+      "id": "cratedb-v4",
+      "displayName": "CrateDB 4",
+      "version": "4.8.4",
+      "releaseYear": 2022,
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=5481;Username=crate;Include Error Detail=true",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 5481
+      }
+    },
+    {
+      "id": "cratedb-v5",
+      "displayName": "CrateDB 5",
+      "version": "5.10.16",
+      "releaseYear": 2026,
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=5482;Username=crate;Include Error Detail=true",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 5482
+      }
+    },
+    {
+      "id": "cratedb-v6",
+      "displayName": "CrateDB 6",
+      "version": "6.2.4",
+      "releaseYear": 2026,
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=5483;Username=crate;Include Error Detail=true",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 5483
       }
     }
   ]

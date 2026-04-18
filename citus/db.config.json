@@ -5,14 +5,58 @@
   "enabled": true,
   "instances": [
     {
-      "id": "citus-v13.0",
-      "displayName": "Citus 13.0",
-      "version": "13.0",
+      "id": "citus-v10",
+      "displayName": "Citus 10",
+      "version": "10.2.5",
       "enabled": true,
-      "connectionString": "Host=localhost;Port=5433;Username=postgres;Password=mypass;Database=postgres;Include Error Detail=true",
+      "connectionString": "Host=localhost;Port=5460;Username=postgres;Password=mypass;Database=postgres;Include Error Detail=true",
       "healthCheck": {
         "host": "localhost",
-        "port": 5433
+        "port": 5460
+      }
+    },
+    {
+      "id": "citus-v11",
+      "displayName": "Citus 11",
+      "version": "11.3.0",
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=5461;Username=postgres;Password=mypass;Database=postgres;Include Error Detail=true",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 5461
+      }
+    },
+    {
+      "id": "citus-v12",
+      "displayName": "Citus 12",
+      "version": "12.1.6",
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=5462;Username=postgres;Password=mypass;Database=postgres;Include Error Detail=true",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 5462
+      }
+    },
+    {
+      "id": "citus-v13",
+      "displayName": "Citus 13",
+      "version": "13.2.0",
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=5463;Username=postgres;Password=mypass;Database=postgres;Include Error Detail=true",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 5463
+      }
+    },
+    {
+      "id": "citus-v14",
+      "displayName": "Citus 14",
+      "version": "14.0.0",
+      "enabled": true,
+      "connectionString": "Host=localhost;Port=5464;Username=postgres;Password=mypass;Database=postgres;Include Error Detail=true",
+      "healthCheck": {
+        "host": "localhost",
+        "port": 5464
       }
     }
   ]

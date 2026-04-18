@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using NSCI.Data;
 using NSCI.Visualize.Services;
 
 namespace NSCI.Visualize
@@ -8,21 +10,21 @@ namespace NSCI.Visualize
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
             builder.Services.AddRazorPages();
 
             string connectionString = builder.Configuration.GetConnectionString("StatDb")
                 ?? "Host=localhost;Port=5432;Username=postgres;Password=password;Database=NewSqlCompatibilityIndex";
 
-            builder.Services.AddSingleton(new TestDataService(connectionString));
+            builder.Services.AddDbContextFactory<NsciDbContext>(options =>
+                options.UseNpgsql(connectionString));
+
+            builder.Services.AddSingleton<TestDataService>();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

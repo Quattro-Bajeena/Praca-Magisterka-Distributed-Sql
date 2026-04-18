@@ -1,12 +1,40 @@
-#sh$ docker run --publish 4200:4200 --publish 5432:5432 --env CRATE_HEAP_SIZE=1g crate '-Cdiscovery.type=single-node'
-
 services:
-  crate:
-    image: crate:latest
-    container_name: crate
+  crate-3:
+    image: crate:3.3.5
+    container_name: crate-3
     ports:
-      - "4204:4200" # Admin UI
-      - "5434:5432" # Postgres protocol
+      - "4280:4200"
+      - "5480:5432"
+    environment:
+      CRATE_HEAP_SIZE: 1g
+    command: ['-Cdiscovery.type=single-node']
+
+  crate-4:
+    image: crate:4.8.4
+    container_name: crate-4
+    ports:
+      - "4281:4200"
+      - "5481:5432"
+    environment:
+      CRATE_HEAP_SIZE: 1g
+    command: ['-Cdiscovery.type=single-node']
+
+  crate-5:
+    image: crate:5.10.16
+    container_name: crate-5
+    ports:
+      - "4282:4200"
+      - "5482:5432"
+    environment:
+      CRATE_HEAP_SIZE: 1g
+    command: ['-Cdiscovery.type=single-node']
+
+  crate-6:
+    image: crate:6.2.4
+    container_name: crate-6
+    ports:
+      - "4283:4200"
+      - "5483:5432"
     environment:
       CRATE_HEAP_SIZE: 1g
     command: ['-Cdiscovery.type=single-node']
