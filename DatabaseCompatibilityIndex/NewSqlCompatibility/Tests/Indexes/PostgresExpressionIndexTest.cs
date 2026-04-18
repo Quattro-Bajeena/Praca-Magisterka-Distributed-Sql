@@ -10,7 +10,7 @@ public class PostgresExpressionIndexTest : SqlTest
     protected override void SetupPg(DbConnection connection)
     {
         using DbCommand cmd = connection.CreateCommand();
-        
+
         cmd.CommandText = @"CREATE TABLE users_expr (
                             id SERIAL PRIMARY KEY,
                             email VARCHAR(100),

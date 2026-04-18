@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(dotnet build *)"
+      "Bash(dotnet build *)",
+      "Bash(find /c/Coding/Studia/Praca-Magisterka-Distributed-Sql/DatabaseCompatibilityIndex/NewSqlCompatibility/Tests -name \"*.cs\" -type f -exec grep -l \"class.*Test.*SqlTest\" {} \\\\;)",
+      "Bash(find /c/Coding/Studia/Praca-Magisterka-Distributed-Sql/DatabaseCompatibilityIndex/NewSqlCompatibility/Tests -name \"*.cs\" -type f -exec grep -H \"^\\\\[SqlTest\\\\|^public class\" {} \\\\;)"
     ]
   }
 }

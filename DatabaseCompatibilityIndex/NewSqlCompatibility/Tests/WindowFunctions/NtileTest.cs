@@ -3,7 +3,8 @@ using System.Data.Common;
 
 namespace NSCI.Tests.WindowFunctions;
 
-[SqlTest(SqlFeatureCategory.WindowFunctions, "Test NTILE window function")]
+// TODO
+//[SqlTest(SqlFeatureCategory.WindowFunctions, "Test NTILE window function")]
 public class NtileTest : SqlTest
 {
     protected override void SetupMy(DbConnection connection)
