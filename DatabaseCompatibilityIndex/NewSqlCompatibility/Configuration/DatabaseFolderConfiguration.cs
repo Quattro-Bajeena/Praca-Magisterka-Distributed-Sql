@@ -34,7 +34,10 @@ public class DatabaseFolderConfiguration
                 Enabled = Enabled && instance.Enabled,
                 Type = DatabaseType,
                 ConnectionString = instance.ConnectionString,
-                Cleanup = true
+                Cleanup = true,
+                Product = Name,
+                Version = instance.Version,
+                ReleaseYear = instance.ReleaseYear
             };
         }
     }
@@ -92,6 +95,7 @@ public class DatabaseInstanceDefinition
     public string Id { get; set; } = string.Empty;
     public string DisplayName { get; set; } = string.Empty;
     public string Version { get; set; } = string.Empty;
+    public int? ReleaseYear { get; set; } = null;
     public bool Enabled { get; set; } = true;
     public string ConnectionString { get; set; } = string.Empty;
     public DatabaseHealthCheckDefinition HealthCheck { get; set; } = new();
