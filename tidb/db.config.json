@@ -2,7 +2,7 @@
   "name": "TiDB",
   "startupType": "kubernetes",
   "databaseType": "MySql",
-  "enabled": false,
+  "enabled": true,
   "instances": [
     {
       "id": "tidb-v8.5",

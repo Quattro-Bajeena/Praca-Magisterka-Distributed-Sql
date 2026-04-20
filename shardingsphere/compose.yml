@@ -1,14 +1,54 @@
 services:
+  postgres-5.1.2:
+    image: postgres:16-alpine
+    container_name: postgres-5.1.2
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      net-5.1.2:
+        aliases:
+          - postgres
+
   shardingsphere-5.1.2:
     image: apache/shardingsphere-proxy:5.1.2
     container_name: shardingsphere-proxy-5.1.2
     ports:
       - 13308:3308
     environment:
-      - PORT=3308
+      PORT: 3308
     volumes:
-      - ./conf-5.1.2:/opt/shardingsphere-proxy/conf
-      - ./logs-5.1.2:/opt/shardingsphere-proxy/logs
+      - ./conf/conf-5.1.2:/opt/shardingsphere-proxy/conf
+      - ./logs/logs-5.1.2:/opt/shardingsphere-proxy/logs
+      - ./ext-lib:/opt/shardingsphere-proxy/ext-lib
+    depends_on:
+      postgres-5.1.2:
+        condition: service_healthy
+    networks:
+      - net-5.1.2
+
+  postgres-5.2.1:
+    image: postgres:16-alpine
+    container_name: postgres-5.2.1
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      net-5.2.1:
+        aliases:
+          - postgres
 
   shardingsphere-5.2.1:
     image: apache/shardingsphere-proxy:5.2.1
@@ -16,10 +56,33 @@ services:
     ports:
       - 13309:3308
     environment:
-      - PORT=3308
+      PORT: 3308
     volumes:
-      - ./conf-5.2.1:/opt/shardingsphere-proxy/conf
-      - ./logs-5.2.1:/opt/shardingsphere-proxy/logs
+      - ./conf/conf-5.2.1:/opt/shardingsphere-proxy/conf
+      - ./logs/logs-5.2.1:/opt/shardingsphere-proxy/logs
+      - ./ext-lib:/opt/shardingsphere-proxy/ext-lib
+    depends_on:
+      postgres-5.2.1:
+        condition: service_healthy
+    networks:
+      - net-5.2.1
+
+  postgres-5.3.2:
+    image: postgres:16-alpine
+    container_name: postgres-5.3.2
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      net-5.3.2:
+        aliases:
+          - postgres
 
   shardingsphere-5.3.2:
     image: apache/shardingsphere-proxy:5.3.2
@@ -27,10 +90,33 @@ services:
     ports:
       - 13310:3308
     environment:
-      - PORT=3308
+      PORT: 3308
     volumes:
-      - ./conf-5.3.2:/opt/shardingsphere-proxy/conf
-      - ./logs-5.3.2:/opt/shardingsphere-proxy/logs
+      - ./conf/conf-5.3.2:/opt/shardingsphere-proxy/conf
+      - ./logs/logs-5.3.2:/opt/shardingsphere-proxy/logs
+      - ./ext-lib:/opt/shardingsphere-proxy/ext-lib
+    depends_on:
+      postgres-5.3.2:
+        condition: service_healthy
+    networks:
+      - net-5.3.2
+
+  postgres-5.4.1:
+    image: postgres:16-alpine
+    container_name: postgres-5.4.1
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      net-5.4.1:
+        aliases:
+          - postgres
 
   shardingsphere-5.4.1:
     image: apache/shardingsphere-proxy:5.4.1
@@ -38,10 +124,33 @@ services:
     ports:
       - 13311:3308
     environment:
-      - PORT=3308
+      PORT: 3308
     volumes:
-      - ./conf-5.4.1:/opt/shardingsphere-proxy/conf
-      - ./logs-5.4.1:/opt/shardingsphere-proxy/logs
+      - ./conf/conf-5.4.1:/opt/shardingsphere-proxy/conf
+      - ./logs/logs-5.4.1:/opt/shardingsphere-proxy/logs
+      - ./ext-lib:/opt/shardingsphere-proxy/ext-lib
+    depends_on:
+      postgres-5.4.1:
+        condition: service_healthy
+    networks:
+      - net-5.4.1
+
+  postgres-5.5.3:
+    image: postgres:16-alpine
+    container_name: postgres-5.5.3
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      net-5.5.3:
+        aliases:
+          - postgres
 
   shardingsphere-5.5.3:
     image: apache/shardingsphere-proxy:5.5.3
@@ -49,7 +158,20 @@ services:
     ports:
       - 13312:3308
     environment:
-      - PORT=3308
+      PORT: 3308
     volumes:
-      - ./conf-5.5.3:/opt/shardingsphere-proxy/conf
-      - ./logs-5.5.3:/opt/shardingsphere-proxy/logs
+      - ./conf/conf-5.5.3:/opt/shardingsphere-proxy/conf
+      - ./logs/logs-5.5.3:/opt/shardingsphere-proxy/logs
+      - ./ext-lib:/opt/shardingsphere-proxy/ext-lib
+    depends_on:
+      postgres-5.5.3:
+        condition: service_healthy
+    networks:
+      - net-5.5.3
+
+networks:
+  net-5.1.2:
+  net-5.2.1:
+  net-5.3.2:
+  net-5.4.1:
+  net-5.5.3:

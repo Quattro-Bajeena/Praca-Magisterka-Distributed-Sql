@@ -1,0 +1,1282 @@
+{
+  "generatedAt": "2026-04-21T00:12:22.056744+02:00",
+  "reports": {
+    "ShardingSphere Proxy 5.5.3": {
+      "generatedAt": "2026-04-20T22:12:22.0650159Z",
+      "databaseType": "PostgreSql",
+      "configurationName": "ShardingSphere Proxy 5.5.3",
+      "databaseName": "test_2026-04-21T00:11:19",
+      "connectionString": "Host=localhost;Port=13312;Username=root;Password=root;Database=sharding_db;Include Error Detail=true",
+      "summary": {
+        "total": 137,
+        "passed": 102,
+        "failed": 35
+      },
+      "resultsByCategory": {
+        "BasicQueries": {
+          "total": 10,
+          "passed": 7,
+          "tests": [
+            {
+              "name": "CreateDropTableTest",
+              "className": "NSCI.Tests.BasicQueries.CreateDropTableTest",
+              "category": "BasicQueries",
+              "description": "Create and drop simple table",
+              "passed": true,
+              "duration": "00:00:01.224"
+            },
+            {
+              "name": "CreateTableAsSelectTest",
+              "className": "NSCI.Tests.BasicQueries.CreateTableAsSelectTest",
+              "category": "BasicQueries",
+              "description": "Test CREATE TABLE AS SELECT ",
+              "passed": false,
+              "duration": "00:00:00.957",
+              "error": "PostgresException: 99999: You have an error in your SQL syntax: no viable alternative at input \u0027AS\u0027"
+            },
+            {
+              "name": "DeleteTest",
+              "className": "NSCI.Tests.BasicQueries.DeleteTest",
+              "category": "BasicQueries",
+              "description": "DELETE operation",
+              "passed": true,
+              "duration": "00:00:00.917"
+            },
+            {
+              "name": "InsertSelectTest",
+              "className": "NSCI.Tests.BasicQueries.InsertSelectTest",
+              "category": "BasicQueries",
+              "description": "INSERT and SELECT data",
+              "passed": true,
+              "duration": "00:00:00.712"
+            },
+            {
+              "name": "PostgresCopyCommandTest",
+              "className": "NSCI.Tests.BasicQueries.PostgresCopyCommandTest",
+              "category": "BasicQueries",
+              "description": "Test PostgreSQL COPY command for bulk data",
+              "passed": false,
+              "duration": "00:00:00.491",
+              "error": "PostgresException: 58000: Unknown exception.\nMore details: java.lang.NullPointerException: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.model.ShardingSphereTable.getName()\u0022 because \u0022each\u0022 is null"
+            },
+            {
+              "name": "PostgresCopyFromStdinTest",
+              "className": "NSCI.Tests.BasicQueries.PostgresCopyFromStdinTest",
+              "category": "BasicQueries",
+              "description": "Bulk insert rows using COPY FROM STDIN with CSV format",
+              "passed": false,
+              "duration": "00:00:01.068",
+              "error": "PostgresException: 57014: COPY from stdin failed: COPY commands are only supported using the CopyManager API."
+            },
+            {
+              "name": "SelectConstantTest",
+              "className": "NSCI.Tests.BasicQueries.SelectConstantTest",
+              "category": "BasicQueries",
+              "description": "SELECT constant value 1",
+              "passed": true,
+              "duration": "00:00:00.058"
+            },
+            {
+              "name": "SelectNowTest",
+              "className": "NSCI.Tests.BasicQueries.SelectNowTest",
+              "category": "BasicQueries",
+              "description": "SELECT current timestamp",
+              "passed": true,
+              "duration": "00:00:00.056"
+            },
+            {
+              "name": "TruncateTest",
+              "className": "NSCI.Tests.BasicQueries.TruncateTest",
+              "category": "BasicQueries",
+              "description": "TRUNCATE table operation",
+              "passed": true,
+              "duration": "00:00:00.686"
+            },
+            {
+              "name": "UpdateTest",
+              "className": "NSCI.Tests.BasicQueries.UpdateTest",
+              "category": "BasicQueries",
+              "description": "UPDATE operation",
+              "passed": true,
+              "duration": "00:00:00.626"
+            }
+          ]
+        },
+        "DataTypes": {
+          "total": 9,
+          "passed": 8,
+          "tests": [
+            {
+              "name": "BigIntTypeTest",
+              "className": "NSCI.Tests.DataTypes.BigIntTypeTest",
+              "category": "DataTypes",
+              "description": "Test BIGINT data type",
+              "passed": true,
+              "duration": "00:00:00.685"
+            },
+            {
+              "name": "BooleanTypeTest",
+              "className": "NSCI.Tests.DataTypes.BooleanTypeTest",
+              "category": "DataTypes",
+              "description": "Test BOOLEAN type (TINYINT)",
+              "passed": true,
+              "duration": "00:00:00.621"
+            },
+            {
+              "name": "DateTimeTypeTest",
+              "className": "NSCI.Tests.DataTypes.DateTimeTypeTest",
+              "category": "DataTypes",
+              "description": "Test DATETIME type",
+              "passed": true,
+              "duration": "00:00:00.563"
+            },
+            {
+              "name": "DateTypeTest",
+              "className": "NSCI.Tests.DataTypes.DateTypeTest",
+              "category": "DataTypes",
+              "description": "Test DATE type",
+              "passed": true,
+              "duration": "00:00:00.505"
+            },
+            {
+              "name": "DecimalPrecisionTest",
+              "className": "NSCI.Tests.DataTypes.DecimalPrecisionTest",
+              "category": "DataTypes",
+              "description": "Test DECIMAL precision (10,4)",
+              "passed": true,
+              "duration": "00:00:00.691"
+            },
+            {
+              "name": "IntTypeTest",
+              "className": "NSCI.Tests.DataTypes.IntTypeTest",
+              "category": "DataTypes",
+              "description": "Test INT data type",
+              "passed": true,
+              "duration": "00:00:00.633"
+            },
+            {
+              "name": "JsonTypeTest",
+              "className": "NSCI.Tests.DataTypes.JsonTypeTest",
+              "category": "DataTypes",
+              "description": "Test JSON data type",
+              "passed": false,
+              "duration": "00:00:00.352",
+              "error": "PostgresException: 58000: Cannot find PostgreSQL type \u0027JSON\u0027 in column type when process binary protocol value"
+            },
+            {
+              "name": "TextTypeTest",
+              "className": "NSCI.Tests.DataTypes.TextTypeTest",
+              "category": "DataTypes",
+              "description": "Test TEXT type for large strings",
+              "passed": true,
+              "duration": "00:00:00.633"
+            },
+            {
+              "name": "VarcharTypeTest",
+              "className": "NSCI.Tests.DataTypes.VarcharTypeTest",
+              "category": "DataTypes",
+              "description": "Test VARCHAR length and storage",
+              "passed": true,
+              "duration": "00:00:00.577"
+            }
+          ]
+        },
+        "Constraints": {
+          "total": 7,
+          "passed": 7,
+          "tests": [
+            {
+              "name": "AutoIncrementTest",
+              "className": "NSCI.Tests.Constraints.AutoIncrementTest",
+              "category": "Constraints",
+              "description": "Test AUTO_INCREMENT",
+              "passed": true,
+              "duration": "00:00:00.583"
+            },
+            {
+              "name": "CheckConstraintTest",
+              "className": "NSCI.Tests.Constraints.CheckConstraintTest",
+              "category": "Constraints",
+              "description": "Test CHECK constraint (if supported)",
+              "passed": true,
+              "duration": "00:00:00.600"
+            },
+            {
+              "name": "DefaultValueTest",
+              "className": "NSCI.Tests.Constraints.DefaultValueTest",
+              "category": "Constraints",
+              "description": "Test DEFAULT value",
+              "passed": true,
+              "duration": "00:00:00.557"
+            },
+            {
+              "name": "ForeignKeyTest",
+              "className": "NSCI.Tests.Constraints.ForeignKeyTest",
+              "category": "Constraints",
+              "description": "Test FOREIGN KEY constraint",
+              "passed": true,
+              "duration": "00:00:01.353"
+            },
+            {
+              "name": "NotNullConstraintTest",
+              "className": "NSCI.Tests.Constraints.NotNullConstraintTest",
+              "category": "Constraints",
+              "description": "Test NOT NULL constraint",
+              "passed": true,
+              "duration": "00:00:00.548"
+            },
+            {
+              "name": "PrimaryKeyTest",
+              "className": "NSCI.Tests.Constraints.PrimaryKeyTest",
+              "category": "Constraints",
+              "description": "Test PRIMARY KEY constraint",
+              "passed": true,
+              "duration": "00:00:00.347"
+            },
+            {
+              "name": "UniqueConstraintTest",
+              "className": "NSCI.Tests.Constraints.UniqueConstraintTest",
+              "category": "Constraints",
+              "description": "Test UNIQUE constraint",
+              "passed": true,
+              "duration": "00:00:00.379"
+            }
+          ]
+        },
+        "Transactions": {
+          "total": 17,
+          "passed": 10,
+          "tests": [
+            {
+              "name": "BasicTransactionCommitTest",
+              "className": "NSCI.Tests.Transactions.BasicTransactionCommitTest",
+              "category": "Transactions",
+              "description": "Test basic transaction COMMIT",
+              "passed": false,
+              "duration": "00:00:00.054",
+              "error": "PostgresException: 99999: org.apache.shardingsphere.database.exception.postgresql.exception.PostgreSQLException"
+            },
+            {
+              "name": "LockingBehaviorDifferenceTest",
+              "className": "NSCI.Tests.IsolationLevels.LockingBehaviorDifferenceTest",
+              "category": "Transactions",
+              "description": "Test locking difference between REPEATABLE READ and READ COMMITTED",
+              "passed": true,
+              "duration": "00:00:00.416"
+            },
+            {
+              "name": "MultipleStatementsTransactionTest",
+              "className": "NSCI.Tests.Transactions.MultipleStatementsTransactionTest",
+              "category": "Transactions",
+              "description": "Test multiple statements in transaction",
+              "passed": false,
+              "duration": "00:00:00.043",
+              "error": "PostgresException: 99999: org.apache.shardingsphere.database.exception.postgresql.exception.PostgreSQLException"
+            },
+            {
+              "name": "PostgresAdvisoryLocksTest",
+              "className": "NSCI.Tests.Transactions.PostgresAdvisoryLocksTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL advisory locks",
+              "passed": false,
+              "duration": "00:00:00.049",
+              "error": "Assertion: Assertion failed: Second connection should fail to acquire same advisory lock"
+            },
+            {
+              "name": "PostgresDeferredConstraintsTest",
+              "className": "NSCI.Tests.Transactions.PostgresDeferredConstraintsTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL deferred constraints",
+              "passed": true,
+              "duration": "00:00:00.414"
+            },
+            {
+              "name": "PostgresNestedSavepointsTest",
+              "className": "NSCI.Tests.Transactions.PostgresNestedSavepointsTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL subtransactions with nested savepoints",
+              "passed": true,
+              "duration": "00:00:00.273"
+            },
+            {
+              "name": "PostgresSerializableIsolationTest",
+              "className": "NSCI.Tests.Transactions.PostgresSerializableIsolationTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL Serializable Snapshot Isolation",
+              "passed": true,
+              "duration": "00:00:00.320"
+            },
+            {
+              "name": "PostgresTransactionControlTest",
+              "className": "NSCI.Tests.Transactions.PostgresTransactionControlTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL transaction control commands",
+              "passed": false,
+              "duration": "00:00:00.251",
+              "error": "Assertion: Assertion failed: READ ONLY transaction should block writes"
+            },
+            {
+              "name": "ReadCommittedLockReleaseTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedLockReleaseTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED releases non-matching row locks",
+              "passed": true,
+              "duration": "00:00:00.382"
+            },
+            {
+              "name": "ReadCommittedNonRepeatableTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedNonRepeatableTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED allows non-repeatable reads",
+              "passed": true,
+              "duration": "00:00:00.365"
+            },
+            {
+              "name": "ReadCommittedPhantomTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedPhantomTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED allows phantom reads",
+              "passed": true,
+              "duration": "00:00:00.348"
+            },
+            {
+              "name": "ReadUncommittedDirtyReadTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadUncommittedDirtyReadTest",
+              "category": "Transactions",
+              "description": "Test READ UNCOMMITTED allows dirty reads",
+              "passed": true,
+              "duration": "00:00:00.486"
+            },
+            {
+              "name": "RepeatableReadPhantomPreventionTest",
+              "className": "NSCI.Tests.IsolationLevels.RepeatableReadPhantomPreventionTest",
+              "category": "Transactions",
+              "description": "Test REPEATABLE READ prevents phantom reads in range",
+              "passed": false,
+              "duration": "00:00:00.246",
+              "error": "Assertion: Should still see 2 rows (no phantom) (expected \u00272\u0027 but got \u00273\u0027)"
+            },
+            {
+              "name": "RepeatableReadSnapshotTest",
+              "className": "NSCI.Tests.IsolationLevels.RepeatableReadSnapshotTest",
+              "category": "Transactions",
+              "description": "Test REPEATABLE READ snapshot consistency",
+              "passed": false,
+              "duration": "00:00:00.244",
+              "error": "Assertion: Second read should still see snapshot value (expected \u0027100\u0027 but got \u0027999\u0027)"
+            },
+            {
+              "name": "SavePointTest",
+              "className": "NSCI.Tests.Transactions.SavePointTest",
+              "category": "Transactions",
+              "description": "Test SAVEPOINT",
+              "passed": false,
+              "duration": "00:00:00.034",
+              "error": "PostgresException: 42P07: Table \u0027savepoint_test\u0027 already exists"
+            },
+            {
+              "name": "TransactionIsolationReadCommittedTest",
+              "className": "NSCI.Tests.Transactions.TransactionIsolationReadCommittedTest",
+              "category": "Transactions",
+              "description": "Test transaction isolation READ_COMMITTED",
+              "passed": true,
+              "duration": "00:00:00.331"
+            },
+            {
+              "name": "TransactionRollbackTest",
+              "className": "NSCI.Tests.Transactions.TransactionRollbackTest",
+              "category": "Transactions",
+              "description": "Test transaction ROLLBACK",
+              "passed": true,
+              "duration": "00:00:00.359"
+            }
+          ]
+        },
+        "Joins": {
+          "total": 6,
+          "passed": 6,
+          "tests": [
+            {
+              "name": "CrossJoinTest",
+              "className": "NSCI.Tests.Joins.CrossJoinTest",
+              "category": "Joins",
+              "description": "Test CROSS JOIN",
+              "passed": true,
+              "duration": "00:00:00.647"
+            },
+            {
+              "name": "InnerJoinTest",
+              "className": "NSCI.Tests.Joins.InnerJoinTest",
+              "category": "Joins",
+              "description": "Test INNER JOIN",
+              "passed": true,
+              "duration": "00:00:00.630"
+            },
+            {
+              "name": "LeftJoinTest",
+              "className": "NSCI.Tests.Joins.LeftJoinTest",
+              "category": "Joins",
+              "description": "Test LEFT JOIN",
+              "passed": true,
+              "duration": "00:00:00.629"
+            },
+            {
+              "name": "MultipleJoinTest",
+              "className": "NSCI.Tests.Joins.MultipleJoinTest",
+              "category": "Joins",
+              "description": "Test multiple table JOIN",
+              "passed": true,
+              "duration": "00:00:01.414"
+            },
+            {
+              "name": "RightJoinTest",
+              "className": "NSCI.Tests.Joins.RightJoinTest",
+              "category": "Joins",
+              "description": "Test RIGHT JOIN (if supported)",
+              "passed": true,
+              "duration": "00:00:01.327"
+            },
+            {
+              "name": "SelfJoinTest",
+              "className": "NSCI.Tests.Joins.SelfJoinTest",
+              "category": "Joins",
+              "description": "Test SELF JOIN",
+              "passed": true,
+              "duration": "00:00:00.528"
+            }
+          ]
+        },
+        "Aggregations": {
+          "total": 8,
+          "passed": 8,
+          "tests": [
+            {
+              "name": "AggregateNullTest",
+              "className": "NSCI.Tests.Aggregations.AggregateNullTest",
+              "category": "Aggregations",
+              "description": "Test aggregate with NULL values",
+              "passed": true,
+              "duration": "00:00:00.531"
+            },
+            {
+              "name": "AvgAggregateTest",
+              "className": "NSCI.Tests.Aggregations.AvgAggregateTest",
+              "category": "Aggregations",
+              "description": "Test AVG aggregate function",
+              "passed": true,
+              "duration": "00:00:00.582"
+            },
+            {
+              "name": "CountAggregateTest",
+              "className": "NSCI.Tests.Aggregations.CountAggregateTest",
+              "category": "Aggregations",
+              "description": "Test COUNT aggregate function",
+              "passed": true,
+              "duration": "00:00:00.538"
+            },
+            {
+              "name": "DistinctTest",
+              "className": "NSCI.Tests.Aggregations.DistinctTest",
+              "category": "Aggregations",
+              "description": "Test DISTINCT",
+              "passed": true,
+              "duration": "00:00:00.325"
+            },
+            {
+              "name": "GroupByTest",
+              "className": "NSCI.Tests.Aggregations.GroupByTest",
+              "category": "Aggregations",
+              "description": "Test GROUP BY clause",
+              "passed": true,
+              "duration": "00:00:00.342"
+            },
+            {
+              "name": "HavingClauseTest",
+              "className": "NSCI.Tests.Aggregations.HavingClauseTest",
+              "category": "Aggregations",
+              "description": "Test HAVING clause with GROUP BY",
+              "passed": true,
+              "duration": "00:00:00.335"
+            },
+            {
+              "name": "MinMaxAggregateTest",
+              "className": "NSCI.Tests.Aggregations.MinMaxAggregateTest",
+              "category": "Aggregations",
+              "description": "Test MIN and MAX aggregate functions",
+              "passed": true,
+              "duration": "00:00:00.341"
+            },
+            {
+              "name": "SumAggregateTest",
+              "className": "NSCI.Tests.Aggregations.SumAggregateTest",
+              "category": "Aggregations",
+              "description": "Test SUM aggregate function",
+              "passed": true,
+              "duration": "00:00:00.358"
+            }
+          ]
+        },
+        "Subqueries": {
+          "total": 8,
+          "passed": 8,
+          "tests": [
+            {
+              "name": "CorrelatedSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.CorrelatedSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test correlated subquery",
+              "passed": true,
+              "duration": "00:00:00.682"
+            },
+            {
+              "name": "ExistsSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.ExistsSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test EXISTS subquery",
+              "passed": true,
+              "duration": "00:00:00.626"
+            },
+            {
+              "name": "InSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.InSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test IN subquery",
+              "passed": true,
+              "duration": "00:00:00.770"
+            },
+            {
+              "name": "NotExistsSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.NotExistsSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test NOT EXISTS subquery",
+              "passed": true,
+              "duration": "00:00:00.634"
+            },
+            {
+              "name": "NotInSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.NotInSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test NOT IN subquery",
+              "passed": true,
+              "duration": "00:00:00.619"
+            },
+            {
+              "name": "PostgresScalarSubqueryOperatorsTest",
+              "className": "NSCI.Tests.Subqueries.PostgresScalarSubqueryOperatorsTest",
+              "category": "Subqueries",
+              "description": "Test PostgreSQL scalar subquery operators (ALL, ANY, SOME)",
+              "passed": true,
+              "duration": "00:00:00.454"
+            },
+            {
+              "name": "ScalarSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.ScalarSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test scalar subquery",
+              "passed": true,
+              "duration": "00:00:00.334"
+            },
+            {
+              "name": "SubqueryFromClauseTest",
+              "className": "NSCI.Tests.Subqueries.SubqueryFromClauseTest",
+              "category": "Subqueries",
+              "description": "Test subquery in FROM clause",
+              "passed": true,
+              "duration": "00:00:00.327"
+            }
+          ]
+        },
+        "Indexes": {
+          "total": 8,
+          "passed": 8,
+          "tests": [
+            {
+              "name": "CompositeIndexTest",
+              "className": "NSCI.Tests.Indexes.CompositeIndexTest",
+              "category": "Indexes",
+              "description": "Test composite INDEX",
+              "passed": true,
+              "duration": "00:00:00.376"
+            },
+            {
+              "name": "CreateIndexTest",
+              "className": "NSCI.Tests.Indexes.CreateIndexTest",
+              "category": "Indexes",
+              "description": "Test CREATE INDEX",
+              "passed": true,
+              "duration": "00:00:00.309"
+            },
+            {
+              "name": "DescendingIndexTest",
+              "className": "NSCI.Tests.Indexes.DescendingIndexTest",
+              "category": "Indexes",
+              "description": "Test Descending Index ",
+              "passed": true,
+              "duration": "00:00:00.469"
+            },
+            {
+              "name": "PostgresExpressionIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresExpressionIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL expression indexes",
+              "passed": true,
+              "duration": "00:00:00.277"
+            },
+            {
+              "name": "PostgresIncludeIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresIncludeIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL INCLUDE columns in indexes",
+              "passed": true,
+              "duration": "00:00:00.233"
+            },
+            {
+              "name": "PostgresPartialIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresPartialIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL partial indexes",
+              "passed": true,
+              "duration": "00:00:00.228"
+            },
+            {
+              "name": "PostgresReindexTest",
+              "className": "NSCI.Tests.Indexes.PostgresReindexTest",
+              "category": "Indexes",
+              "description": "Test REINDEX rebuilds index structures while preserving query correctness",
+              "passed": true,
+              "duration": "00:00:00.360"
+            },
+            {
+              "name": "UniqueIndexTest",
+              "className": "NSCI.Tests.Indexes.UniqueIndexTest",
+              "category": "Indexes",
+              "description": "Test UNIQUE INDEX",
+              "passed": true,
+              "duration": "00:00:00.243"
+            }
+          ]
+        },
+        "Views": {
+          "total": 7,
+          "passed": 3,
+          "tests": [
+            {
+              "name": "PostgresMaterializedViewTest",
+              "className": "NSCI.Tests.Views.PostgresMaterializedViewTest",
+              "category": "Views",
+              "description": "Test PostgreSQL materialized views",
+              "passed": false,
+              "duration": "00:00:00.260",
+              "error": "PostgresException: 42S02: Table or view \u0027sales_summary\u0027 does not exist."
+            },
+            {
+              "name": "PostgresRecursiveViewTest",
+              "className": "NSCI.Tests.Views.PostgresRecursiveViewTest",
+              "category": "Views",
+              "description": "Test PostgreSQL recursive views",
+              "passed": false,
+              "duration": "00:00:00.326",
+              "error": "PostgresException: 42S02: Unknown column \u0027t.id\u0027 in \u0027on clause\u0027."
+            },
+            {
+              "name": "PostgresViewCheckOptionTest",
+              "className": "NSCI.Tests.Views.PostgresViewCheckOptionTest",
+              "category": "Views",
+              "description": "Test PostgreSQL WITH CHECK OPTION on views",
+              "passed": true,
+              "duration": "00:00:00.497"
+            },
+            {
+              "name": "PostgresViewDependenciesTest",
+              "className": "NSCI.Tests.Views.PostgresViewDependenciesTest",
+              "category": "Views",
+              "description": "Test PostgreSQL view dependencies and CASCADE",
+              "passed": true,
+              "duration": "00:00:00.489"
+            },
+            {
+              "name": "PostgresViewInsteadOfTriggersTest",
+              "className": "NSCI.Tests.Views.PostgresViewInsteadOfTriggersTest",
+              "category": "Views",
+              "description": "Test PostgreSQL INSTEAD OF triggers on views",
+              "passed": false,
+              "duration": "00:00:00.227",
+              "error": "PostgresException: 58000: Unknown exception.\nMore details: java.lang.NullPointerException: Cannot invoke \u0022org.apache.shardingsphere.sql.parser.statement.core.statement.SQLStatement.buildAttributes()\u0022 because \u0022result\u0022 is null"
+            },
+            {
+              "name": "UpdatableViewTest",
+              "className": "NSCI.Tests.Views.UpdatableViewTest",
+              "category": "Views",
+              "description": "Test Updatable Views",
+              "passed": true,
+              "duration": "00:00:00.535"
+            },
+            {
+              "name": "ViewTest",
+              "className": "NSCI.Tests.Views.ViewTest",
+              "category": "Views",
+              "description": "Test CREATE and SELECT from VIEW",
+              "passed": false,
+              "duration": "00:00:00.051",
+              "error": "PostgresException: 42P07: Table \u0027view_base\u0027 already exists"
+            }
+          ]
+        },
+        "StoredProcedures": {
+          "total": 1,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "StoredProcedureTest",
+              "className": "NSCI.Tests.StoredProcedures.StoredProcedureTest",
+              "category": "StoredProcedures",
+              "description": "Test STORED PROCEDURE",
+              "passed": true,
+              "duration": "00:00:00.491"
+            }
+          ]
+        },
+        "Triggers": {
+          "total": 1,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "TriggerTest",
+              "className": "NSCI.Tests.Triggers.TriggerTest",
+              "category": "Triggers",
+              "description": "Test TRIGGER",
+              "passed": false,
+              "duration": "00:00:00.186",
+              "error": "PostgresException: 58000: Unknown exception.\nMore details: java.lang.NullPointerException: Cannot invoke \u0022org.apache.shardingsphere.sql.parser.statement.core.statement.SQLStatement.buildAttributes()\u0022 because \u0022result\u0022 is null"
+            }
+          ]
+        },
+        "CTE": {
+          "total": 2,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "CteTest",
+              "className": "NSCI.Tests.CTE.CteTest",
+              "category": "CTE",
+              "description": "Test Common Table Expression (CTE)",
+              "passed": true,
+              "duration": "00:00:00.400"
+            },
+            {
+              "name": "RecursiveCteTest",
+              "className": "NSCI.Tests.CTE.RecursiveCteTest",
+              "category": "CTE",
+              "description": "Test recursive CTE",
+              "passed": false,
+              "duration": "00:00:00.372",
+              "error": "PostgresException: 42S02: Unknown column \u0027c.id\u0027 in \u0027on clause\u0027."
+            }
+          ]
+        },
+        "FullTextSearch": {
+          "total": 5,
+          "passed": 5,
+          "tests": [
+            {
+              "name": "PostgresFullTextSearchBasicTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchBasicTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search basics with tsvector and tsquery",
+              "passed": true,
+              "duration": "00:00:00.225"
+            },
+            {
+              "name": "PostgresFullTextSearchBooleanTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchBooleanTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search with boolean operators",
+              "passed": true,
+              "duration": "00:00:00.199"
+            },
+            {
+              "name": "PostgresFullTextSearchGeneratedTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchGeneratedTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search with generated tsvector column",
+              "passed": true,
+              "duration": "00:00:00.223"
+            },
+            {
+              "name": "PostgresFullTextSearchPhraseTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchPhraseTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text phrase search with phraseto_tsquery",
+              "passed": true,
+              "duration": "00:00:00.205"
+            },
+            {
+              "name": "PostgresFullTextSearchRankingTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchRankingTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search ranking with ts_rank",
+              "passed": true,
+              "duration": "00:00:00.253"
+            }
+          ]
+        },
+        "Locking": {
+          "total": 6,
+          "passed": 5,
+          "tests": [
+            {
+              "name": "PostgresOnlyAdvancedLockingTest",
+              "className": "NSCI.Tests.Locking.PostgresOnlyAdvancedLockingTest",
+              "category": "Locking",
+              "description": "FOR KEY SHARE and FOR NO KEY UPDATE",
+              "passed": true,
+              "duration": "00:00:00.379"
+            },
+            {
+              "name": "RowLockingPreventsConcurrentModificationTest",
+              "className": "NSCI.Tests.Locking.RowLockingPreventsConcurrentModificationTest",
+              "category": "Locking",
+              "description": "Test row locking prevents concurrent modification",
+              "passed": true,
+              "duration": "00:00:00.351"
+            },
+            {
+              "name": "SelectForShareTest",
+              "className": "NSCI.Tests.Locking.SelectForShareTest",
+              "category": "Locking",
+              "description": "Test SELECT...FOR SHARE (shared lock)",
+              "passed": true,
+              "duration": "00:00:00.374"
+            },
+            {
+              "name": "SelectForUpdateTest",
+              "className": "NSCI.Tests.Locking.SelectForUpdateTest",
+              "category": "Locking",
+              "description": "Test SELECT...FOR UPDATE row locking",
+              "passed": true,
+              "duration": "00:00:00.353"
+            },
+            {
+              "name": "SelectForUpdateWithWhereTest",
+              "className": "NSCI.Tests.Locking.SelectForUpdateWithWhereTest",
+              "category": "Locking",
+              "description": "Test FOR UPDATE with WHERE clause",
+              "passed": true,
+              "duration": "00:00:00.322"
+            },
+            {
+              "name": "SkipLockedTest",
+              "className": "NSCI.Tests.Locking.SkipLockedTest",
+              "category": "Locking",
+              "description": "Test SKIP LOCKED ",
+              "passed": false,
+              "duration": "00:00:00.212",
+              "error": "PostgresException: 99999: You have an error in your SQL syntax: SELECT id FROM queue WHERE status = \u0027pending\u0027 ORDER BY id LIMIT 1 FOR UPDATE SKIP LOCKED, null"
+            }
+          ]
+        },
+        "Upsert": {
+          "total": 5,
+          "passed": 5,
+          "tests": [
+            {
+              "name": "PostgresOnConflictDoUpdateTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictDoUpdateTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL INSERT...ON CONFLICT DO UPDATE",
+              "passed": true,
+              "duration": "00:00:00.235"
+            },
+            {
+              "name": "PostgresOnConflictMultipleConstraintsTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictMultipleConstraintsTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with multiple columns and unique constraints",
+              "passed": true,
+              "duration": "00:00:00.238"
+            },
+            {
+              "name": "PostgresOnConflictPartialIndexTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictPartialIndexTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with partial indexes",
+              "passed": true,
+              "duration": "00:00:00.249"
+            },
+            {
+              "name": "PostgresOnConflictReturningTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictReturningTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with RETURNING clause",
+              "passed": true,
+              "duration": "00:00:00.220"
+            },
+            {
+              "name": "PostgresOnConflictWhereTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictWhereTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with WHERE clause",
+              "passed": true,
+              "duration": "00:00:00.318"
+            }
+          ]
+        },
+        "Partitioning": {
+          "total": 4,
+          "passed": 3,
+          "tests": [
+            {
+              "name": "ListPartitioningTest",
+              "className": "NSCI.Tests.Partitioning.ListPartitioningTest",
+              "category": "Partitioning",
+              "description": "Test LIST partitioning",
+              "passed": true,
+              "duration": "00:00:01.085"
+            },
+            {
+              "name": "PartitionPruningTest",
+              "className": "NSCI.Tests.Partitioning.PartitionPruningTest",
+              "category": "Partitioning",
+              "description": "Test partition pruning in queries",
+              "passed": true,
+              "duration": "00:00:00.710"
+            },
+            {
+              "name": "RangePartitioningByColumnTest",
+              "className": "NSCI.Tests.Partitioning.RangePartitioningByColumnTest",
+              "category": "Partitioning",
+              "description": "Test RANGE partitioning by column",
+              "passed": true,
+              "duration": "00:00:00.708"
+            },
+            {
+              "name": "RangePartitioningTest",
+              "className": "NSCI.Tests.Partitioning.RangePartitioningTest",
+              "category": "Partitioning",
+              "description": "Test RANGE partitioning by date",
+              "passed": false,
+              "duration": "00:00:00.035",
+              "error": "PostgresException: 42P07: Table \u0027sales_data\u0027 already exists"
+            }
+          ]
+        },
+        "UserManagement": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresColumnPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresColumnPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL column-level privileges",
+              "passed": false,
+              "duration": "00:00:00.249",
+              "error": "PostgresException: 0A000: Unsupported SQL operation: unsupported SQL statement \u0060GrantStatement\u0060."
+            },
+            {
+              "name": "PostgresCreateRoleTest",
+              "className": "NSCI.Tests.UserManagement.PostgresCreateRoleTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL CREATE ROLE and CREATE USER",
+              "passed": false,
+              "duration": "00:00:00.055",
+              "error": "PostgresException: 0A000: Unsupported SQL operation: unsupported SQL statement \u0060CreateRoleStatement\u0060."
+            },
+            {
+              "name": "PostgresDefaultPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresDefaultPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL default privileges and schema permissions",
+              "passed": false,
+              "duration": "00:00:00.057",
+              "error": "PostgresException: 0A000: Unsupported SQL operation: unsupported SQL statement \u0060GrantStatement\u0060."
+            },
+            {
+              "name": "PostgresGrantPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresGrantPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL GRANT privileges on tables",
+              "passed": false,
+              "duration": "00:00:00.247",
+              "error": "PostgresException: 0A000: Unsupported SQL operation: unsupported SQL statement \u0060GrantStatement\u0060."
+            },
+            {
+              "name": "PostgresRoleMembershipTest",
+              "className": "NSCI.Tests.UserManagement.PostgresRoleMembershipTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL role membership and inheritance",
+              "passed": false,
+              "duration": "00:00:00.038",
+              "error": "PostgresException: 0A000: Unsupported SQL operation: unsupported SQL statement \u0060GrantStatement\u0060."
+            }
+          ]
+        },
+        "JSONOperations": {
+          "total": 5,
+          "passed": 4,
+          "tests": [
+            {
+              "name": "JsonContainsTest",
+              "className": "NSCI.Tests.JSONOperations.JsonContainsTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_CONTAINS function",
+              "passed": true,
+              "duration": "00:00:00.357"
+            },
+            {
+              "name": "JsonCreationTest",
+              "className": "NSCI.Tests.JSONOperations.JsonCreationTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_ARRAY and JSON_OBJECT functions",
+              "passed": false,
+              "duration": "00:00:00.213",
+              "error": "PostgresException: 58000: Cannot find PostgreSQL type \u0027JSON\u0027 in column type when process binary protocol value"
+            },
+            {
+              "name": "JsonExtractTest",
+              "className": "NSCI.Tests.JSONOperations.JsonExtractTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_EXTRACT function",
+              "passed": true,
+              "duration": "00:00:00.436"
+            },
+            {
+              "name": "JsonLengthTest",
+              "className": "NSCI.Tests.JSONOperations.JsonLengthTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_LENGTH function",
+              "passed": true,
+              "duration": "00:00:00.353"
+            },
+            {
+              "name": "JsonSetTest",
+              "className": "NSCI.Tests.JSONOperations.JsonSetTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_SET function",
+              "passed": true,
+              "duration": "00:00:00.358"
+            }
+          ]
+        },
+        "DDL": {
+          "total": 12,
+          "passed": 7,
+          "tests": [
+            {
+              "name": "AlterTableDataTypeConversionTest",
+              "className": "NSCI.Tests.TableDefinition.AlterTableDataTypeConversionTest",
+              "category": "DDL",
+              "description": "Test ALTER TABLE data type conversions",
+              "passed": false,
+              "duration": "00:00:00.349",
+              "error": "PostgresException: 58000: Cannot find PostgreSQL type \u0027JSON\u0027 in column type when process binary protocol value"
+            },
+            {
+              "name": "AlterTableMultipleChangesTest",
+              "className": "NSCI.Tests.TableDefinition.AlterTableMultipleChangesTest",
+              "category": "DDL",
+              "description": "Test ALTER TABLE with multiple changes to same column",
+              "passed": true,
+              "duration": "00:00:00.459"
+            },
+            {
+              "name": "CollateColumnTest",
+              "className": "NSCI.Tests.TableDefinition.CollateColumnTest",
+              "category": "DDL",
+              "description": "Test COLLATE on columns affects string comparison and ordering",
+              "passed": true,
+              "duration": "00:00:00.243"
+            },
+            {
+              "name": "GeneratedColumnTest",
+              "className": "NSCI.Tests.TableDefinition.GeneratedColumnTest",
+              "category": "DDL",
+              "description": "Test GENERATED (computed/virtual) columns update automatically",
+              "passed": true,
+              "duration": "00:00:00.220"
+            },
+            {
+              "name": "PostgresColumnCompressionTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresColumnCompressionTest",
+              "category": "DDL",
+              "description": "Test COMPRESSION attribute on TEXT columns is recorded in pg_attribute",
+              "passed": false,
+              "duration": "00:00:00.029",
+              "error": "PostgresException: 99999: You have an error in your SQL syntax: CREATE TABLE compression_test (\r\n            id         SERIAL PRIMARY KEY,\r\n            data_pglz  TEXT COMPRESSION pglz\r\n        ), null"
+            },
+            {
+              "name": "PostgresColumnStorageTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresColumnStorageTest",
+              "category": "DDL",
+              "description": "Test STORAGE clause on columns is recorded in pg_attribute",
+              "passed": false,
+              "duration": "00:00:00.029",
+              "error": "PostgresException: 99999: You have an error in your SQL syntax: CREATE TABLE storage_test (\r\n            id           SERIAL PRIMARY KEY,\r\n            plain_col    INT        STORAGE PLAIN,\r\n            external_col TEXT       STORAGE EXTERNAL,\r\n            extended_col TEXT       STORAGE EXTENDED,\r\n            main_col     TEXT       STORAGE MAIN\r\n        ), null"
+            },
+            {
+              "name": "PostgresIdentityColumnTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresIdentityColumnTest",
+              "category": "DDL",
+              "description": "Test IDENTITY columns with GENERATED ALWAYS and GENERATED BY DEFAULT",
+              "passed": true,
+              "duration": "00:00:00.226"
+            },
+            {
+              "name": "PostgresSequenceTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresSequenceTest",
+              "category": "DDL",
+              "description": "Test CREATE SEQUENCE with NEXTVAL and CURRVAL",
+              "passed": true,
+              "duration": "00:00:00.048"
+            },
+            {
+              "name": "PostgresTableInheritsTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresTableInheritsTest",
+              "category": "DDL",
+              "description": "Test table inheritance with INHERITS clause",
+              "passed": true,
+              "duration": "00:00:00.414"
+            },
+            {
+              "name": "PostgresTypedTableTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresTypedTableTest",
+              "category": "DDL",
+              "description": "Test typed table creation using OF type_name",
+              "passed": false,
+              "duration": "00:00:00.054",
+              "error": "PostgresException: 42P07: Table \u0027employees\u0027 already exists"
+            },
+            {
+              "name": "PostgresUnloggedTableTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresUnloggedTableTest",
+              "category": "DDL",
+              "description": "Test UNLOGGED table creation that skips WAL",
+              "passed": false,
+              "duration": "00:00:00.307",
+              "error": "InvalidCastException: Reading as \u0027System.Object\u0027 is not supported for fields having DataTypeName \u0027-.-\u0027"
+            },
+            {
+              "name": "TableLikeTest",
+              "className": "NSCI.Tests.TableDefinition.TableLikeTest",
+              "category": "DDL",
+              "description": "Test CREATE TABLE LIKE copies structure from an existing table",
+              "passed": true,
+              "duration": "00:00:00.383"
+            }
+          ]
+        },
+        "CustomTypes": {
+          "total": 3,
+          "passed": 3,
+          "tests": [
+            {
+              "name": "EnumTypeTest",
+              "className": "NSCI.Tests.CustomTypes.EnumTypeTest",
+              "category": "CustomTypes",
+              "description": "Test enumerated type enforces valid values",
+              "passed": true,
+              "duration": "00:00:00.221"
+            },
+            {
+              "name": "PostgresCompositeTypeTest",
+              "className": "NSCI.Tests.CustomTypes.PostgresCompositeTypeTest",
+              "category": "CustomTypes",
+              "description": "Test CREATE TYPE composite type used as a column type",
+              "passed": true,
+              "duration": "00:00:00.244"
+            },
+            {
+              "name": "PostgresDomainTest",
+              "className": "NSCI.Tests.CustomTypes.PostgresDomainTest",
+              "category": "CustomTypes",
+              "description": "Test CREATE DOMAIN enforces constraints on columns that use it",
+              "passed": true,
+              "duration": "00:00:00.212"
+            }
+          ]
+        },
+        "Misc": {
+          "total": 3,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "OptimizeTableTest",
+              "className": "NSCI.Tests.Misc.OptimizeTableTest",
+              "category": "Misc",
+              "description": "Test OPTIMIZE TABLE syntax ",
+              "passed": true,
+              "duration": "00:00:00.343"
+            },
+            {
+              "name": "XATransactionTest",
+              "className": "NSCI.Tests.Misc.XATransactionTest",
+              "category": "Misc",
+              "description": "Test XA Transaction syntax ",
+              "passed": false,
+              "duration": "00:00:00.205",
+              "error": "PostgresException: 55000: prepared transactions are disabled"
+            },
+            {
+              "name": "XmlFunctionsTest",
+              "className": "NSCI.Tests.Misc.XmlFunctionsTest",
+              "category": "Misc",
+              "description": "Test XML Functions ",
+              "passed": false,
+              "duration": "00:00:00.209",
+              "error": "PostgresException: 58000: Unsupported SQL operation: PostgreSQLTextArrayBinaryProtocolValue.getColumnLength()."
+            }
+          ]
+        },
+        "PerformanceHints": {
+          "total": 5,
+          "passed": 2,
+          "tests": [
+            {
+              "name": "PostgresCTEMaterializationTest",
+              "className": "NSCI.Tests.Performance.PostgresCTEMaterializationTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL CTE materialization hints",
+              "passed": false,
+              "duration": "00:00:00.467",
+              "error": "PostgresException: 42S02: Unknown column \u0027h.id\u0027 in \u0027on clause\u0027."
+            },
+            {
+              "name": "PostgresExplainAnalyzeTest",
+              "className": "NSCI.Tests.Performance.PostgresExplainAnalyzeTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL EXPLAIN and EXPLAIN ANALYZE",
+              "passed": false,
+              "duration": "00:00:00.877",
+              "error": "PostgresException: 99999: You have an error in your SQL syntax: no viable alternative at input \u0027(FORMAT\u0027"
+            },
+            {
+              "name": "PostgresJoinOrderPlanningTest",
+              "className": "NSCI.Tests.Performance.PostgresJoinOrderPlanningTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL join order and planning settings",
+              "passed": true,
+              "duration": "00:00:00.999"
+            },
+            {
+              "name": "PostgresParallelQueryTest",
+              "className": "NSCI.Tests.Performance.PostgresParallelQueryTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL parallel query settings",
+              "passed": true,
+              "duration": "00:00:04.165"
+            },
+            {
+              "name": "PostgresQueryPlannerSettingsTest",
+              "className": "NSCI.Tests.Performance.PostgresQueryPlannerSettingsTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL query planner settings",
+              "passed": false,
+              "duration": "00:00:00.236",
+              "error": "PostgresException: 42P07: relation \u0022idx_value\u0022 already exists"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

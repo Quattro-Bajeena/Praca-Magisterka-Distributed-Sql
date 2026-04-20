@@ -15,7 +15,15 @@ public class PostgreSqlDatabaseProvider : IDatabaseProvider
 
     public DbConnection CreateConnection(string connectionString)
     {
-        return new NpgsqlConnection(connectionString);
+        NpgsqlDataSourceBuilder dataSourceBuilder = new NpgsqlDataSourceBuilder(connectionString);
+        if (_configuration.Product == "ShardingSphere")
+        {
+            dataSourceBuilder.ConfigureTypeLoading(x => x.EnableTypeLoading(false));
+        }
+
+        // memeory leak bu whatever
+        NpgsqlDataSource dataSource = dataSourceBuilder.Build();
+        return dataSource.CreateConnection();
     }
 
     public string GenerateCreateDatabaseSql(string databaseName)

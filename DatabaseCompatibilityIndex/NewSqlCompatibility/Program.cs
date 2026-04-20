@@ -142,8 +142,15 @@ internal static class Program
 
                 if (databaseReporter != null)
                 {
-                    databaseReporter.SaveResult(resultToSave);
-                    Console.WriteLine("✓ Results saved to database");
+                    try
+                    {
+                        databaseReporter.SaveResult(resultToSave);
+                        Console.WriteLine("✓ Results saved to database");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"✗ Failed to save results to database: {ex}");
+                    }
                 }
             }
 
@@ -156,8 +163,15 @@ internal static class Program
 
         if (databaseReporter != null && databaseResults.Count > 0)
         {
-            databaseReporter.SaveResults(databaseResults);
-            Console.WriteLine("✓ Results saved to database");
+            try
+            {
+                databaseReporter.SaveResults(databaseResults);
+                Console.WriteLine("✓ Results saved to database");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"✗ Failed to save results to database: {ex}");
+            }
         }
     }
 }

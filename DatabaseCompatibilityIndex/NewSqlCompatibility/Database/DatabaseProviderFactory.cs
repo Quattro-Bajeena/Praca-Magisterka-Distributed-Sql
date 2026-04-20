@@ -8,7 +8,7 @@ public static class DatabaseProviderFactory
     {
         return configuration.Type switch
         {
-            DatabaseType.MySql => new MySqlDatabaseProvider(),
+            DatabaseType.MySql => new MySqlDatabaseProvider(configuration),
             DatabaseType.PostgreSql => new PostgreSqlDatabaseProvider(configuration),
             _ => throw new ArgumentException($"Unknown database type: {configuration.Type}")
         };

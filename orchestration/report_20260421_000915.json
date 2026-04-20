@@ -1,0 +1,2737 @@
+{
+  "generatedAt": "2026-04-21T00:09:15.2237815+02:00",
+  "reports": {
+    "ShardingSphere Proxy 5.2.1": {
+      "generatedAt": "2026-04-20T22:09:15.2308650Z",
+      "databaseType": "PostgreSql",
+      "configurationName": "ShardingSphere Proxy 5.2.1",
+      "databaseName": "test_2026-04-21T00:08:36",
+      "connectionString": "Host=localhost;Port=13309;Username=root;Password=root;Database=sharding_db;Include Error Detail=true",
+      "summary": {
+        "total": 137,
+        "passed": 12,
+        "failed": 125
+      },
+      "resultsByCategory": {
+        "BasicQueries": {
+          "total": 10,
+          "passed": 3,
+          "tests": [
+            {
+              "name": "CreateDropTableTest",
+              "className": "NSCI.Tests.BasicQueries.CreateDropTableTest",
+              "category": "BasicQueries",
+              "description": "Create and drop simple table",
+              "passed": true,
+              "duration": "00:00:00.635"
+            },
+            {
+              "name": "CreateTableAsSelectTest",
+              "className": "NSCI.Tests.BasicQueries.CreateTableAsSelectTest",
+              "category": "BasicQueries",
+              "description": "Test CREATE TABLE AS SELECT ",
+              "passed": false,
+              "duration": "00:00:01.004",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: CREATE TABLE destination_table AS SELECT * FROM source_table WHERE value \u003E 100, no viable alternative at input \u0027AS\u0027 at line 1, position 31, near [@3,31:32=\u0027AS\u0027,\u003C484\u003E,1:31]"
+            },
+            {
+              "name": "DeleteTest",
+              "className": "NSCI.Tests.BasicQueries.DeleteTest",
+              "category": "BasicQueries",
+              "description": "DELETE operation",
+              "passed": false,
+              "duration": "00:00:00.310",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "InsertSelectTest",
+              "className": "NSCI.Tests.BasicQueries.InsertSelectTest",
+              "category": "BasicQueries",
+              "description": "INSERT and SELECT data",
+              "passed": false,
+              "duration": "00:00:00.156",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "PostgresCopyCommandTest",
+              "className": "NSCI.Tests.BasicQueries.PostgresCopyCommandTest",
+              "category": "BasicQueries",
+              "description": "Test PostgreSQL COPY command for bulk data",
+              "passed": false,
+              "duration": "00:00:00.240",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\n\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresCopyFromStdinTest",
+              "className": "NSCI.Tests.BasicQueries.PostgresCopyFromStdinTest",
+              "category": "BasicQueries",
+              "description": "Bulk insert rows using COPY FROM STDIN with CSV format",
+              "passed": false,
+              "duration": "00:00:00.137",
+              "error": "PostgresException: 57014: COPY from stdin failed: COPY commands are only supported using the CopyManager API."
+            },
+            {
+              "name": "SelectConstantTest",
+              "className": "NSCI.Tests.BasicQueries.SelectConstantTest",
+              "category": "BasicQueries",
+              "description": "SELECT constant value 1",
+              "passed": true,
+              "duration": "00:00:00.042"
+            },
+            {
+              "name": "SelectNowTest",
+              "className": "NSCI.Tests.BasicQueries.SelectNowTest",
+              "category": "BasicQueries",
+              "description": "SELECT current timestamp",
+              "passed": true,
+              "duration": "00:00:00.049"
+            },
+            {
+              "name": "TruncateTest",
+              "className": "NSCI.Tests.BasicQueries.TruncateTest",
+              "category": "BasicQueries",
+              "description": "TRUNCATE table operation",
+              "passed": false,
+              "duration": "00:00:00.106",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "UpdateTest",
+              "className": "NSCI.Tests.BasicQueries.UpdateTest",
+              "category": "BasicQueries",
+              "description": "UPDATE operation",
+              "passed": false,
+              "duration": "00:00:00.154",
+              "error": "DecoderFallbackException: Unable to translate bytes [AC] at index 11 from specified code page to Unicode."
+            }
+          ]
+        },
+        "DataTypes": {
+          "total": 9,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "BigIntTypeTest",
+              "className": "NSCI.Tests.DataTypes.BigIntTypeTest",
+              "category": "DataTypes",
+              "description": "Test BIGINT data type",
+              "passed": false,
+              "duration": "00:00:00.088",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "BooleanTypeTest",
+              "className": "NSCI.Tests.DataTypes.BooleanTypeTest",
+              "category": "DataTypes",
+              "description": "Test BOOLEAN type (TINYINT)",
+              "passed": false,
+              "duration": "00:00:00.091",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "DateTimeTypeTest",
+              "className": "NSCI.Tests.DataTypes.DateTimeTypeTest",
+              "category": "DataTypes",
+              "description": "Test DATETIME type",
+              "passed": false,
+              "duration": "00:00:00.085",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "DateTypeTest",
+              "className": "NSCI.Tests.DataTypes.DateTypeTest",
+              "category": "DataTypes",
+              "description": "Test DATE type",
+              "passed": false,
+              "duration": "00:00:00.085",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "DecimalPrecisionTest",
+              "className": "NSCI.Tests.DataTypes.DecimalPrecisionTest",
+              "category": "DataTypes",
+              "description": "Test DECIMAL precision (10,4)",
+              "passed": false,
+              "duration": "00:00:00.087",
+              "error": "DecoderFallbackException: Unable to translate bytes [D7] at index 11 from specified code page to Unicode."
+            },
+            {
+              "name": "IntTypeTest",
+              "className": "NSCI.Tests.DataTypes.IntTypeTest",
+              "category": "DataTypes",
+              "description": "Test INT data type",
+              "passed": false,
+              "duration": "00:00:00.158",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "JsonTypeTest",
+              "className": "NSCI.Tests.DataTypes.JsonTypeTest",
+              "category": "DataTypes",
+              "description": "Test JSON data type",
+              "passed": false,
+              "duration": "00:00:00.100",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "TextTypeTest",
+              "className": "NSCI.Tests.DataTypes.TextTypeTest",
+              "category": "DataTypes",
+              "description": "Test TEXT type for large strings",
+              "passed": false,
+              "duration": "00:00:00.131",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0027\u0010\u0027 was not in a correct format."
+            },
+            {
+              "name": "VarcharTypeTest",
+              "className": "NSCI.Tests.DataTypes.VarcharTypeTest",
+              "category": "DataTypes",
+              "description": "Test VARCHAR length and storage",
+              "passed": false,
+              "duration": "00:00:00.102",
+              "error": "DecoderFallbackException: Unable to translate bytes [FF] at index 3 from specified code page to Unicode."
+            }
+          ]
+        },
+        "Constraints": {
+          "total": 7,
+          "passed": 6,
+          "tests": [
+            {
+              "name": "AutoIncrementTest",
+              "className": "NSCI.Tests.Constraints.AutoIncrementTest",
+              "category": "Constraints",
+              "description": "Test AUTO_INCREMENT",
+              "passed": false,
+              "duration": "00:00:00.105",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "CheckConstraintTest",
+              "className": "NSCI.Tests.Constraints.CheckConstraintTest",
+              "category": "Constraints",
+              "description": "Test CHECK constraint (if supported)",
+              "passed": true,
+              "duration": "00:00:00.107"
+            },
+            {
+              "name": "DefaultValueTest",
+              "className": "NSCI.Tests.Constraints.DefaultValueTest",
+              "category": "Constraints",
+              "description": "Test DEFAULT value",
+              "passed": true,
+              "duration": "00:00:00.100"
+            },
+            {
+              "name": "ForeignKeyTest",
+              "className": "NSCI.Tests.Constraints.ForeignKeyTest",
+              "category": "Constraints",
+              "description": "Test FOREIGN KEY constraint",
+              "passed": true,
+              "duration": "00:00:00.122"
+            },
+            {
+              "name": "NotNullConstraintTest",
+              "className": "NSCI.Tests.Constraints.NotNullConstraintTest",
+              "category": "Constraints",
+              "description": "Test NOT NULL constraint",
+              "passed": true,
+              "duration": "00:00:00.065"
+            },
+            {
+              "name": "PrimaryKeyTest",
+              "className": "NSCI.Tests.Constraints.PrimaryKeyTest",
+              "category": "Constraints",
+              "description": "Test PRIMARY KEY constraint",
+              "passed": true,
+              "duration": "00:00:00.081"
+            },
+            {
+              "name": "UniqueConstraintTest",
+              "className": "NSCI.Tests.Constraints.UniqueConstraintTest",
+              "category": "Constraints",
+              "description": "Test UNIQUE constraint",
+              "passed": true,
+              "duration": "00:00:00.076"
+            }
+          ]
+        },
+        "Transactions": {
+          "total": 17,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "BasicTransactionCommitTest",
+              "className": "NSCI.Tests.Transactions.BasicTransactionCommitTest",
+              "category": "Transactions",
+              "description": "Test basic transaction COMMIT",
+              "passed": false,
+              "duration": "00:00:00.049",
+              "error": "PostgresException: 99999: org.postgresql.util.PSQLException"
+            },
+            {
+              "name": "LockingBehaviorDifferenceTest",
+              "className": "NSCI.Tests.IsolationLevels.LockingBehaviorDifferenceTest",
+              "category": "Transactions",
+              "description": "Test locking difference between REPEATABLE READ and READ COMMITTED",
+              "passed": false,
+              "duration": "00:00:00.223",
+              "error": "InvalidCastException: Reading as \u0027System.Int32\u0027 is not supported for fields having DataTypeName \u0027text\u0027"
+            },
+            {
+              "name": "MultipleStatementsTransactionTest",
+              "className": "NSCI.Tests.Transactions.MultipleStatementsTransactionTest",
+              "category": "Transactions",
+              "description": "Test multiple statements in transaction",
+              "passed": false,
+              "duration": "00:00:00.032",
+              "error": "PostgresException: 99999: org.postgresql.util.PSQLException"
+            },
+            {
+              "name": "PostgresAdvisoryLocksTest",
+              "className": "NSCI.Tests.Transactions.PostgresAdvisoryLocksTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL advisory locks",
+              "passed": false,
+              "duration": "00:00:00.040",
+              "error": "PostgresException: 58000: Cannot find PostgreSQL type \u0027POSTGRESQL_TYPE_BIT\u0027 in column type when process binary protocol value"
+            },
+            {
+              "name": "PostgresDeferredConstraintsTest",
+              "className": "NSCI.Tests.Transactions.PostgresDeferredConstraintsTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL deferred constraints",
+              "passed": false,
+              "duration": "00:00:00.153",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresNestedSavepointsTest",
+              "className": "NSCI.Tests.Transactions.PostgresNestedSavepointsTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL subtransactions with nested savepoints",
+              "passed": false,
+              "duration": "00:00:00.099",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresSerializableIsolationTest",
+              "className": "NSCI.Tests.Transactions.PostgresSerializableIsolationTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL Serializable Snapshot Isolation",
+              "passed": false,
+              "duration": "00:00:00.079",
+              "error": "DecoderFallbackException: Unable to translate bytes [E8] at index 9 from specified code page to Unicode."
+            },
+            {
+              "name": "PostgresTransactionControlTest",
+              "className": "NSCI.Tests.Transactions.PostgresTransactionControlTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL transaction control commands",
+              "passed": false,
+              "duration": "00:00:00.141",
+              "error": "Assertion: Assertion failed: READ ONLY transaction should block writes"
+            },
+            {
+              "name": "ReadCommittedLockReleaseTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedLockReleaseTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED releases non-matching row locks",
+              "passed": false,
+              "duration": "00:00:00.098",
+              "error": "InvalidCastException: Reading as \u0027System.Int32\u0027 is not supported for fields having DataTypeName \u0027text\u0027"
+            },
+            {
+              "name": "ReadCommittedNonRepeatableTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedNonRepeatableTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED allows non-repeatable reads",
+              "passed": false,
+              "duration": "00:00:00.088",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000d\u0027 was not in a correct format."
+            },
+            {
+              "name": "ReadCommittedPhantomTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedPhantomTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED allows phantom reads",
+              "passed": false,
+              "duration": "00:00:00.077",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "ReadUncommittedDirtyReadTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadUncommittedDirtyReadTest",
+              "category": "Transactions",
+              "description": "Test READ UNCOMMITTED allows dirty reads",
+              "passed": false,
+              "duration": "00:00:00.120",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000d\u0027 was not in a correct format."
+            },
+            {
+              "name": "RepeatableReadPhantomPreventionTest",
+              "className": "NSCI.Tests.IsolationLevels.RepeatableReadPhantomPreventionTest",
+              "category": "Transactions",
+              "description": "Test REPEATABLE READ prevents phantom reads in range",
+              "passed": false,
+              "duration": "00:00:00.086",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "RepeatableReadSnapshotTest",
+              "className": "NSCI.Tests.IsolationLevels.RepeatableReadSnapshotTest",
+              "category": "Transactions",
+              "description": "Test REPEATABLE READ snapshot consistency",
+              "passed": false,
+              "duration": "00:00:00.079",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000d\u0027 was not in a correct format."
+            },
+            {
+              "name": "SavePointTest",
+              "className": "NSCI.Tests.Transactions.SavePointTest",
+              "category": "Transactions",
+              "description": "Test SAVEPOINT",
+              "passed": false,
+              "duration": "00:00:00.028",
+              "error": "PostgresException: 42P07: relation \u0022savepoint_test\u0022 already exists"
+            },
+            {
+              "name": "TransactionIsolationReadCommittedTest",
+              "className": "NSCI.Tests.Transactions.TransactionIsolationReadCommittedTest",
+              "category": "Transactions",
+              "description": "Test transaction isolation READ_COMMITTED",
+              "passed": false,
+              "duration": "00:00:00.068",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000d\u0027 was not in a correct format."
+            },
+            {
+              "name": "TransactionRollbackTest",
+              "className": "NSCI.Tests.Transactions.TransactionRollbackTest",
+              "category": "Transactions",
+              "description": "Test transaction ROLLBACK",
+              "passed": false,
+              "duration": "00:00:00.078",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            }
+          ]
+        },
+        "Joins": {
+          "total": 6,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "CrossJoinTest",
+              "className": "NSCI.Tests.Joins.CrossJoinTest",
+              "category": "Joins",
+              "description": "Test CROSS JOIN",
+              "passed": false,
+              "duration": "00:00:00.105",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "InnerJoinTest",
+              "className": "NSCI.Tests.Joins.InnerJoinTest",
+              "category": "Joins",
+              "description": "Test INNER JOIN",
+              "passed": false,
+              "duration": "00:00:00.116",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "LeftJoinTest",
+              "className": "NSCI.Tests.Joins.LeftJoinTest",
+              "category": "Joins",
+              "description": "Test LEFT JOIN",
+              "passed": false,
+              "duration": "00:00:00.111",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "MultipleJoinTest",
+              "className": "NSCI.Tests.Joins.MultipleJoinTest",
+              "category": "Joins",
+              "description": "Test multiple table JOIN",
+              "passed": false,
+              "duration": "00:00:00.087",
+              "error": "PostgresException: 42P07: relation \u0022products\u0022 already exists"
+            },
+            {
+              "name": "RightJoinTest",
+              "className": "NSCI.Tests.Joins.RightJoinTest",
+              "category": "Joins",
+              "description": "Test RIGHT JOIN (if supported)",
+              "passed": false,
+              "duration": "00:00:00.119",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "SelfJoinTest",
+              "className": "NSCI.Tests.Joins.SelfJoinTest",
+              "category": "Joins",
+              "description": "Test SELF JOIN",
+              "passed": false,
+              "duration": "00:00:00.075",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            }
+          ]
+        },
+        "Aggregations": {
+          "total": 8,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "AggregateNullTest",
+              "className": "NSCI.Tests.Aggregations.AggregateNullTest",
+              "category": "Aggregations",
+              "description": "Test aggregate with NULL values",
+              "passed": false,
+              "duration": "00:00:00.074",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "AvgAggregateTest",
+              "className": "NSCI.Tests.Aggregations.AvgAggregateTest",
+              "category": "Aggregations",
+              "description": "Test AVG aggregate function",
+              "passed": false,
+              "duration": "00:00:00.088",
+              "error": "FormatException: The input string \u0027\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0010\u0000Z\u0027 was not in a correct format."
+            },
+            {
+              "name": "CountAggregateTest",
+              "className": "NSCI.Tests.Aggregations.CountAggregateTest",
+              "category": "Aggregations",
+              "description": "Test COUNT aggregate function",
+              "passed": false,
+              "duration": "00:00:00.088",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "DistinctTest",
+              "className": "NSCI.Tests.Aggregations.DistinctTest",
+              "category": "Aggregations",
+              "description": "Test DISTINCT",
+              "passed": false,
+              "duration": "00:00:00.074",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "GroupByTest",
+              "className": "NSCI.Tests.Aggregations.GroupByTest",
+              "category": "Aggregations",
+              "description": "Test GROUP BY clause",
+              "passed": false,
+              "duration": "00:00:00.098",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0003\u0027 was not in a correct format."
+            },
+            {
+              "name": "HavingClauseTest",
+              "className": "NSCI.Tests.Aggregations.HavingClauseTest",
+              "category": "Aggregations",
+              "description": "Test HAVING clause with GROUP BY",
+              "passed": false,
+              "duration": "00:00:00.095",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "MinMaxAggregateTest",
+              "className": "NSCI.Tests.Aggregations.MinMaxAggregateTest",
+              "category": "Aggregations",
+              "description": "Test MIN and MAX aggregate functions",
+              "passed": false,
+              "duration": "00:00:00.065",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\n\u0027 was not in a correct format."
+            },
+            {
+              "name": "SumAggregateTest",
+              "className": "NSCI.Tests.Aggregations.SumAggregateTest",
+              "category": "Aggregations",
+              "description": "Test SUM aggregate function",
+              "passed": false,
+              "duration": "00:00:00.057",
+              "error": "DecoderFallbackException: Unable to translate bytes [88] at index 11 from specified code page to Unicode."
+            }
+          ]
+        },
+        "Subqueries": {
+          "total": 8,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "CorrelatedSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.CorrelatedSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test correlated subquery",
+              "passed": false,
+              "duration": "00:00:00.136",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "ExistsSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.ExistsSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test EXISTS subquery",
+              "passed": false,
+              "duration": "00:00:00.122",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "InSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.InSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test IN subquery",
+              "passed": false,
+              "duration": "00:00:00.109",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0003\u0027 was not in a correct format."
+            },
+            {
+              "name": "NotExistsSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.NotExistsSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test NOT EXISTS subquery",
+              "passed": false,
+              "duration": "00:00:00.112",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "NotInSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.NotInSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test NOT IN subquery",
+              "passed": false,
+              "duration": "00:00:00.091",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresScalarSubqueryOperatorsTest",
+              "className": "NSCI.Tests.Subqueries.PostgresScalarSubqueryOperatorsTest",
+              "category": "Subqueries",
+              "description": "Test PostgreSQL scalar subquery operators (ALL, ANY, SOME)",
+              "passed": false,
+              "duration": "00:00:00.160",
+              "error": "InvalidCastException: Reading as \u0027System.Decimal\u0027 is not supported for fields having DataTypeName \u0027text\u0027"
+            },
+            {
+              "name": "ScalarSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.ScalarSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test scalar subquery",
+              "passed": true,
+              "duration": "00:00:00.074"
+            },
+            {
+              "name": "SubqueryFromClauseTest",
+              "className": "NSCI.Tests.Subqueries.SubqueryFromClauseTest",
+              "category": "Subqueries",
+              "description": "Test subquery in FROM clause",
+              "passed": false,
+              "duration": "00:00:00.082",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            }
+          ]
+        },
+        "Indexes": {
+          "total": 8,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "CompositeIndexTest",
+              "className": "NSCI.Tests.Indexes.CompositeIndexTest",
+              "category": "Indexes",
+              "description": "Test composite INDEX",
+              "passed": false,
+              "duration": "00:00:00.094",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "CreateIndexTest",
+              "className": "NSCI.Tests.Indexes.CreateIndexTest",
+              "category": "Indexes",
+              "description": "Test CREATE INDEX",
+              "passed": false,
+              "duration": "00:00:00.080",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "DescendingIndexTest",
+              "className": "NSCI.Tests.Indexes.DescendingIndexTest",
+              "category": "Indexes",
+              "description": "Test Descending Index ",
+              "passed": false,
+              "duration": "00:00:00.084",
+              "error": "DecoderFallbackException: Unable to translate bytes [C8] at index 3 from specified code page to Unicode."
+            },
+            {
+              "name": "PostgresExpressionIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresExpressionIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL expression indexes",
+              "passed": false,
+              "duration": "00:00:00.099",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresIncludeIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresIncludeIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL INCLUDE columns in indexes",
+              "passed": false,
+              "duration": "00:00:00.087",
+              "error": "InvalidCastException: Reading as \u0027System.Decimal\u0027 is not supported for fields having DataTypeName \u0027text\u0027"
+            },
+            {
+              "name": "PostgresPartialIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresPartialIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL partial indexes",
+              "passed": false,
+              "duration": "00:00:00.089",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresReindexTest",
+              "className": "NSCI.Tests.Indexes.PostgresReindexTest",
+              "category": "Indexes",
+              "description": "Test REINDEX rebuilds index structures while preserving query correctness",
+              "passed": false,
+              "duration": "00:00:00.151",
+              "error": "DecoderFallbackException: Unable to translate bytes [C8] at index 7 from specified code page to Unicode."
+            },
+            {
+              "name": "UniqueIndexTest",
+              "className": "NSCI.Tests.Indexes.UniqueIndexTest",
+              "category": "Indexes",
+              "description": "Test UNIQUE INDEX",
+              "passed": true,
+              "duration": "00:00:00.079"
+            }
+          ]
+        },
+        "Views": {
+          "total": 7,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresMaterializedViewTest",
+              "className": "NSCI.Tests.Views.PostgresMaterializedViewTest",
+              "category": "Views",
+              "description": "Test PostgreSQL materialized views",
+              "passed": false,
+              "duration": "00:00:00.108",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresRecursiveViewTest",
+              "className": "NSCI.Tests.Views.PostgresRecursiveViewTest",
+              "category": "Views",
+              "description": "Test PostgreSQL recursive views",
+              "passed": false,
+              "duration": "00:00:00.262",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0004\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresViewCheckOptionTest",
+              "className": "NSCI.Tests.Views.PostgresViewCheckOptionTest",
+              "category": "Views",
+              "description": "Test PostgreSQL WITH CHECK OPTION on views",
+              "passed": false,
+              "duration": "00:00:00.101",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresViewDependenciesTest",
+              "className": "NSCI.Tests.Views.PostgresViewDependenciesTest",
+              "category": "Views",
+              "description": "Test PostgreSQL view dependencies and CASCADE",
+              "passed": false,
+              "duration": "00:00:00.141",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresViewInsteadOfTriggersTest",
+              "className": "NSCI.Tests.Views.PostgresViewInsteadOfTriggersTest",
+              "category": "Views",
+              "description": "Test PostgreSQL INSTEAD OF triggers on views",
+              "passed": false,
+              "duration": "00:00:00.130",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: CREATE OR REPLACE FUNCTION view_insert_fn() RETURNS TRIGGER AS $$\n                           BEGIN\n                               INSERT INTO products_trigger (name, price) VALUES (NEW.name, NEW.price);\n                               RETURN NEW;\n                           END;\n                           $$ LANGUAGE plpgsql, no viable alternative at input \u0027$$\u0027 at line 1, position 63, near [@10,63:64=\u0027$$\u0027,\u003C1\u003E,1:63]"
+            },
+            {
+              "name": "UpdatableViewTest",
+              "className": "NSCI.Tests.Views.UpdatableViewTest",
+              "category": "Views",
+              "description": "Test Updatable Views",
+              "passed": false,
+              "duration": "00:00:00.105",
+              "error": "DecoderFallbackException: Unable to translate bytes [88] at index 11 from specified code page to Unicode."
+            },
+            {
+              "name": "ViewTest",
+              "className": "NSCI.Tests.Views.ViewTest",
+              "category": "Views",
+              "description": "Test CREATE and SELECT from VIEW",
+              "passed": false,
+              "duration": "00:00:00.093",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            }
+          ]
+        },
+        "StoredProcedures": {
+          "total": 1,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "StoredProcedureTest",
+              "className": "NSCI.Tests.StoredProcedures.StoredProcedureTest",
+              "category": "StoredProcedures",
+              "description": "Test STORED PROCEDURE",
+              "passed": false,
+              "duration": "00:00:00.078",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: CREATE OR REPLACE FUNCTION GetSum(OUT total INT) AS $$\r\n            BEGIN\r\n                SELECT SUM(value) INTO total FROM proc_test;\r\n            END;\r\n            $$ LANGUAGE plpgsql, no viable alternative at input \u0027$$\u0027 at line 1, position 52, near [@11,52:53=\u0027$$\u0027,\u003C1\u003E,1:52]"
+            }
+          ]
+        },
+        "Triggers": {
+          "total": 1,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "TriggerTest",
+              "className": "NSCI.Tests.Triggers.TriggerTest",
+              "category": "Triggers",
+              "description": "Test TRIGGER",
+              "passed": false,
+              "duration": "00:00:00.079",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: CREATE OR REPLACE FUNCTION tr_test_func() RETURNS TRIGGER AS $$\r\n            BEGIN\r\n                NEW.value := NEW.value * 2;\r\n                RETURN NEW;\r\n            END;\r\n            $$ LANGUAGE plpgsql, no viable alternative at input \u0027$$\u0027 at line 1, position 61, near [@10,61:62=\u0027$$\u0027,\u003C1\u003E,1:61]"
+            }
+          ]
+        },
+        "CTE": {
+          "total": 2,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "CteTest",
+              "className": "NSCI.Tests.CTE.CteTest",
+              "category": "CTE",
+              "description": "Test Common Table Expression (CTE)",
+              "passed": false,
+              "duration": "00:00:00.104",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "RecursiveCteTest",
+              "className": "NSCI.Tests.CTE.RecursiveCteTest",
+              "category": "CTE",
+              "description": "Test recursive CTE",
+              "passed": false,
+              "duration": "00:00:00.111",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0004\u0027 was not in a correct format."
+            }
+          ]
+        },
+        "FullTextSearch": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresFullTextSearchBasicTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchBasicTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search basics with tsvector and tsquery",
+              "passed": false,
+              "duration": "00:00:00.136",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresFullTextSearchBooleanTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchBooleanTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search with boolean operators",
+              "passed": false,
+              "duration": "00:00:00.091",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresFullTextSearchGeneratedTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchGeneratedTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search with generated tsvector column",
+              "passed": false,
+              "duration": "00:00:00.145",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresFullTextSearchPhraseTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchPhraseTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text phrase search with phraseto_tsquery",
+              "passed": false,
+              "duration": "00:00:00.134",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresFullTextSearchRankingTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchRankingTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search ranking with ts_rank",
+              "passed": false,
+              "duration": "00:00:00.252",
+              "error": "InvalidCastException: Reading as \u0027System.Double\u0027 is not supported for fields having DataTypeName \u0027text\u0027"
+            }
+          ]
+        },
+        "Locking": {
+          "total": 6,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresOnlyAdvancedLockingTest",
+              "className": "NSCI.Tests.Locking.PostgresOnlyAdvancedLockingTest",
+              "category": "Locking",
+              "description": "FOR KEY SHARE and FOR NO KEY UPDATE",
+              "passed": false,
+              "duration": "00:00:00.076",
+              "error": "PostgresException: 42P07: relation \u0022products\u0022 already exists"
+            },
+            {
+              "name": "RowLockingPreventsConcurrentModificationTest",
+              "className": "NSCI.Tests.Locking.RowLockingPreventsConcurrentModificationTest",
+              "category": "Locking",
+              "description": "Test row locking prevents concurrent modification",
+              "passed": false,
+              "duration": "00:00:00.050",
+              "error": "PostgresException: 42P07: relation \u0022orders\u0022 already exists"
+            },
+            {
+              "name": "SelectForShareTest",
+              "className": "NSCI.Tests.Locking.SelectForShareTest",
+              "category": "Locking",
+              "description": "Test SELECT...FOR SHARE (shared lock)",
+              "passed": false,
+              "duration": "00:00:00.077",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int32\u0027."
+            },
+            {
+              "name": "SelectForUpdateTest",
+              "className": "NSCI.Tests.Locking.SelectForUpdateTest",
+              "category": "Locking",
+              "description": "Test SELECT...FOR UPDATE row locking",
+              "passed": false,
+              "duration": "00:00:00.065",
+              "error": "DecoderFallbackException: Unable to translate bytes [E8] at index 9 from specified code page to Unicode."
+            },
+            {
+              "name": "SelectForUpdateWithWhereTest",
+              "className": "NSCI.Tests.Locking.SelectForUpdateWithWhereTest",
+              "category": "Locking",
+              "description": "Test FOR UPDATE with WHERE clause",
+              "passed": false,
+              "duration": "00:00:00.033",
+              "error": "PostgresException: 42P07: relation \u0022items\u0022 already exists"
+            },
+            {
+              "name": "SkipLockedTest",
+              "className": "NSCI.Tests.Locking.SkipLockedTest",
+              "category": "Locking",
+              "description": "Test SKIP LOCKED ",
+              "passed": false,
+              "duration": "00:00:00.080",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: SELECT id FROM queue WHERE status = \u0027pending\u0027 ORDER BY id LIMIT 1 FOR UPDATE SKIP LOCKED, null"
+            }
+          ]
+        },
+        "Upsert": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresOnConflictDoUpdateTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictDoUpdateTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL INSERT...ON CONFLICT DO UPDATE",
+              "passed": false,
+              "duration": "00:00:00.076",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresOnConflictMultipleConstraintsTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictMultipleConstraintsTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with multiple columns and unique constraints",
+              "passed": false,
+              "duration": "00:00:00.083",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresOnConflictPartialIndexTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictPartialIndexTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with partial indexes",
+              "passed": false,
+              "duration": "00:00:00.096",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresOnConflictReturningTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictReturningTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with RETURNING clause",
+              "passed": false,
+              "duration": "00:00:00.077",
+              "error": "InvalidCastException: Reading as \u0027System.Int32\u0027 is not supported for fields having DataTypeName \u0027text\u0027"
+            },
+            {
+              "name": "PostgresOnConflictWhereTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictWhereTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with WHERE clause",
+              "passed": false,
+              "duration": "00:00:00.083",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u000F\u0027 was not in a correct format."
+            }
+          ]
+        },
+        "Partitioning": {
+          "total": 4,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "ListPartitioningTest",
+              "className": "NSCI.Tests.Partitioning.ListPartitioningTest",
+              "category": "Partitioning",
+              "description": "Test LIST partitioning",
+              "passed": false,
+              "duration": "00:00:00.147",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PartitionPruningTest",
+              "className": "NSCI.Tests.Partitioning.PartitionPruningTest",
+              "category": "Partitioning",
+              "description": "Test partition pruning in queries",
+              "passed": false,
+              "duration": "00:00:00.159",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "RangePartitioningByColumnTest",
+              "className": "NSCI.Tests.Partitioning.RangePartitioningByColumnTest",
+              "category": "Partitioning",
+              "description": "Test RANGE partitioning by column",
+              "passed": false,
+              "duration": "00:00:00.035",
+              "error": "PostgresException: 42P07: relation \u0022employees\u0022 already exists"
+            },
+            {
+              "name": "RangePartitioningTest",
+              "className": "NSCI.Tests.Partitioning.RangePartitioningTest",
+              "category": "Partitioning",
+              "description": "Test RANGE partitioning by date",
+              "passed": false,
+              "duration": "00:00:00.171",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            }
+          ]
+        },
+        "UserManagement": {
+          "total": 5,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "PostgresColumnPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresColumnPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL column-level privileges",
+              "passed": false,
+              "duration": "00:00:00.132",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresCreateRoleTest",
+              "className": "NSCI.Tests.UserManagement.PostgresCreateRoleTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL CREATE ROLE and CREATE USER",
+              "passed": false,
+              "duration": "00:00:00.069",
+              "error": "FormatException: String \u0027f\u0027 was not recognized as a valid Boolean."
+            },
+            {
+              "name": "PostgresDefaultPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresDefaultPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL default privileges and schema permissions",
+              "passed": false,
+              "duration": "00:00:00.124",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: ALTER DEFAULT PRIVILEGES IN SCHEMA app_schema_pg GRANT USAGE ON SEQUENCES TO app_user_pg, no viable alternative at input \u0027USAGE\u0027 at line 1, position 55, near [@7,55:59=\u0027USAGE\u0027,\u003C178\u003E,1:55]"
+            },
+            {
+              "name": "PostgresGrantPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresGrantPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL GRANT privileges on tables",
+              "passed": false,
+              "duration": "00:00:00.076",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "PostgresRoleMembershipTest",
+              "className": "NSCI.Tests.UserManagement.PostgresRoleMembershipTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL role membership and inheritance",
+              "passed": true,
+              "duration": "00:00:00.074"
+            }
+          ]
+        },
+        "JSONOperations": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "JsonContainsTest",
+              "className": "NSCI.Tests.JSONOperations.JsonContainsTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_CONTAINS function",
+              "passed": false,
+              "duration": "00:00:00.057",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "JsonCreationTest",
+              "className": "NSCI.Tests.JSONOperations.JsonCreationTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_ARRAY and JSON_OBJECT functions",
+              "passed": false,
+              "duration": "00:00:00.058",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "JsonExtractTest",
+              "className": "NSCI.Tests.JSONOperations.JsonExtractTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_EXTRACT function",
+              "passed": false,
+              "duration": "00:00:00.036",
+              "error": "PostgresException: 42P07: relation \u0022users\u0022 already exists"
+            },
+            {
+              "name": "JsonLengthTest",
+              "className": "NSCI.Tests.JSONOperations.JsonLengthTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_LENGTH function",
+              "passed": false,
+              "duration": "00:00:00.061",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "JsonSetTest",
+              "className": "NSCI.Tests.JSONOperations.JsonSetTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_SET function",
+              "passed": false,
+              "duration": "00:00:00.054",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            }
+          ]
+        },
+        "DDL": {
+          "total": 12,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "AlterTableDataTypeConversionTest",
+              "className": "NSCI.Tests.TableDefinition.AlterTableDataTypeConversionTest",
+              "category": "DDL",
+              "description": "Test ALTER TABLE data type conversions",
+              "passed": false,
+              "duration": "00:00:00.057",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "AlterTableMultipleChangesTest",
+              "className": "NSCI.Tests.TableDefinition.AlterTableMultipleChangesTest",
+              "category": "DDL",
+              "description": "Test ALTER TABLE with multiple changes to same column",
+              "passed": false,
+              "duration": "00:00:00.066",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "CollateColumnTest",
+              "className": "NSCI.Tests.TableDefinition.CollateColumnTest",
+              "category": "DDL",
+              "description": "Test COLLATE on columns affects string comparison and ordering",
+              "passed": false,
+              "duration": "00:00:00.061",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "GeneratedColumnTest",
+              "className": "NSCI.Tests.TableDefinition.GeneratedColumnTest",
+              "category": "DDL",
+              "description": "Test GENERATED (computed/virtual) columns update automatically",
+              "passed": false,
+              "duration": "00:00:00.060",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "PostgresColumnCompressionTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresColumnCompressionTest",
+              "category": "DDL",
+              "description": "Test COMPRESSION attribute on TEXT columns is recorded in pg_attribute",
+              "passed": false,
+              "duration": "00:00:00.033",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: CREATE TABLE compression_test (\r\n            id         SERIAL PRIMARY KEY,\r\n            data_pglz  TEXT COMPRESSION pglz\r\n        ), null"
+            },
+            {
+              "name": "PostgresColumnStorageTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresColumnStorageTest",
+              "category": "DDL",
+              "description": "Test STORAGE clause on columns is recorded in pg_attribute",
+              "passed": false,
+              "duration": "00:00:00.031",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: CREATE TABLE storage_test (\r\n            id           SERIAL PRIMARY KEY,\r\n            plain_col    INT        STORAGE PLAIN,\r\n            external_col TEXT       STORAGE EXTERNAL,\r\n            extended_col TEXT       STORAGE EXTENDED,\r\n            main_col     TEXT       STORAGE MAIN\r\n        ), null"
+            },
+            {
+              "name": "PostgresIdentityColumnTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresIdentityColumnTest",
+              "category": "DDL",
+              "description": "Test IDENTITY columns with GENERATED ALWAYS and GENERATED BY DEFAULT",
+              "passed": false,
+              "duration": "00:00:00.059",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "PostgresSequenceTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresSequenceTest",
+              "category": "DDL",
+              "description": "Test CREATE SEQUENCE with NEXTVAL and CURRVAL",
+              "passed": false,
+              "duration": "00:00:00.042",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\n\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresTableInheritsTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresTableInheritsTest",
+              "category": "DDL",
+              "description": "Test table inheritance with INHERITS clause",
+              "passed": false,
+              "duration": "00:00:00.061",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "PostgresTypedTableTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresTypedTableTest",
+              "category": "DDL",
+              "description": "Test typed table creation using OF type_name",
+              "passed": false,
+              "duration": "00:00:00.117",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "PostgresUnloggedTableTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresUnloggedTableTest",
+              "category": "DDL",
+              "description": "Test UNLOGGED table creation that skips WAL",
+              "passed": false,
+              "duration": "00:00:00.063",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "TableLikeTest",
+              "className": "NSCI.Tests.TableDefinition.TableLikeTest",
+              "category": "DDL",
+              "description": "Test CREATE TABLE LIKE copies structure from an existing table",
+              "passed": false,
+              "duration": "00:00:00.071",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            }
+          ]
+        },
+        "CustomTypes": {
+          "total": 3,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "EnumTypeTest",
+              "className": "NSCI.Tests.CustomTypes.EnumTypeTest",
+              "category": "CustomTypes",
+              "description": "Test enumerated type enforces valid values",
+              "passed": false,
+              "duration": "00:00:00.068",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "PostgresCompositeTypeTest",
+              "className": "NSCI.Tests.CustomTypes.PostgresCompositeTypeTest",
+              "category": "CustomTypes",
+              "description": "Test CREATE TYPE composite type used as a column type",
+              "passed": false,
+              "duration": "00:00:00.088",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "PostgresDomainTest",
+              "className": "NSCI.Tests.CustomTypes.PostgresDomainTest",
+              "category": "CustomTypes",
+              "description": "Test CREATE DOMAIN enforces constraints on columns that use it",
+              "passed": false,
+              "duration": "00:00:00.071",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            }
+          ]
+        },
+        "Misc": {
+          "total": 3,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "OptimizeTableTest",
+              "className": "NSCI.Tests.Misc.OptimizeTableTest",
+              "category": "Misc",
+              "description": "Test OPTIMIZE TABLE syntax ",
+              "passed": false,
+              "duration": "00:00:00.056",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "XATransactionTest",
+              "className": "NSCI.Tests.Misc.XATransactionTest",
+              "category": "Misc",
+              "description": "Test XA Transaction syntax ",
+              "passed": false,
+              "duration": "00:00:00.058",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "XmlFunctionsTest",
+              "className": "NSCI.Tests.Misc.XmlFunctionsTest",
+              "category": "Misc",
+              "description": "Test XML Functions ",
+              "passed": false,
+              "duration": "00:00:00.062",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            }
+          ]
+        },
+        "PerformanceHints": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresCTEMaterializationTest",
+              "className": "NSCI.Tests.Performance.PostgresCTEMaterializationTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL CTE materialization hints",
+              "passed": false,
+              "duration": "00:00:00.050",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "PostgresExplainAnalyzeTest",
+              "className": "NSCI.Tests.Performance.PostgresExplainAnalyzeTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL EXPLAIN and EXPLAIN ANALYZE",
+              "passed": false,
+              "duration": "00:00:00.053",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "PostgresJoinOrderPlanningTest",
+              "className": "NSCI.Tests.Performance.PostgresJoinOrderPlanningTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL join order and planning settings",
+              "passed": false,
+              "duration": "00:00:00.052",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "PostgresParallelQueryTest",
+              "className": "NSCI.Tests.Performance.PostgresParallelQueryTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL parallel query settings",
+              "passed": false,
+              "duration": "00:00:00.051",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            },
+            {
+              "name": "PostgresQueryPlannerSettingsTest",
+              "className": "NSCI.Tests.Performance.PostgresQueryPlannerSettingsTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL query planner settings",
+              "passed": false,
+              "duration": "00:00:00.051",
+              "error": "PostgresException: 58000: Cannot invoke \u0022org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereSchema.putTable(String, org.apache.shardingsphere.infra.metadata.database.schema.decorator.model.ShardingSphereTable)\u0022 because the return value of \u0022org.apache.shardingsphere.infra.metadata.database.ShardingSphereDatabase.getSchema(String)\u0022 is null"
+            }
+          ]
+        }
+      }
+    },
+    "ShardingSphere Proxy 5.3.2": {
+      "generatedAt": "2026-04-20T22:09:15.2312534Z",
+      "databaseType": "PostgreSql",
+      "configurationName": "ShardingSphere Proxy 5.3.2",
+      "databaseName": "test_2026-04-21T00:08:52",
+      "connectionString": "Host=localhost;Port=13310;Username=root;Password=root;Database=sharding_db;Include Error Detail=true",
+      "summary": {
+        "total": 137,
+        "passed": 14,
+        "failed": 123
+      },
+      "resultsByCategory": {
+        "BasicQueries": {
+          "total": 10,
+          "passed": 3,
+          "tests": [
+            {
+              "name": "CreateDropTableTest",
+              "className": "NSCI.Tests.BasicQueries.CreateDropTableTest",
+              "category": "BasicQueries",
+              "description": "Create and drop simple table",
+              "passed": true,
+              "duration": "00:00:00.475"
+            },
+            {
+              "name": "CreateTableAsSelectTest",
+              "className": "NSCI.Tests.BasicQueries.CreateTableAsSelectTest",
+              "category": "BasicQueries",
+              "description": "Test CREATE TABLE AS SELECT ",
+              "passed": false,
+              "duration": "00:00:00.580",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: CREATE TABLE destination_table AS SELECT * FROM source_table WHERE value \u003E 100, no viable alternative at input \u0027AS\u0027 at line 1, position 31, near [@3,31:32=\u0027AS\u0027,\u003C483\u003E,1:31]"
+            },
+            {
+              "name": "DeleteTest",
+              "className": "NSCI.Tests.BasicQueries.DeleteTest",
+              "category": "BasicQueries",
+              "description": "DELETE operation",
+              "passed": false,
+              "duration": "00:00:00.327",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "InsertSelectTest",
+              "className": "NSCI.Tests.BasicQueries.InsertSelectTest",
+              "category": "BasicQueries",
+              "description": "INSERT and SELECT data",
+              "passed": false,
+              "duration": "00:00:00.185",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "PostgresCopyCommandTest",
+              "className": "NSCI.Tests.BasicQueries.PostgresCopyCommandTest",
+              "category": "BasicQueries",
+              "description": "Test PostgreSQL COPY command for bulk data",
+              "passed": false,
+              "duration": "00:00:00.256",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\n\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresCopyFromStdinTest",
+              "className": "NSCI.Tests.BasicQueries.PostgresCopyFromStdinTest",
+              "category": "BasicQueries",
+              "description": "Bulk insert rows using COPY FROM STDIN with CSV format",
+              "passed": false,
+              "duration": "00:00:00.115",
+              "error": "PostgresException: 57014: COPY from stdin failed: COPY commands are only supported using the CopyManager API."
+            },
+            {
+              "name": "SelectConstantTest",
+              "className": "NSCI.Tests.BasicQueries.SelectConstantTest",
+              "category": "BasicQueries",
+              "description": "SELECT constant value 1",
+              "passed": true,
+              "duration": "00:00:00.045"
+            },
+            {
+              "name": "SelectNowTest",
+              "className": "NSCI.Tests.BasicQueries.SelectNowTest",
+              "category": "BasicQueries",
+              "description": "SELECT current timestamp",
+              "passed": true,
+              "duration": "00:00:00.041"
+            },
+            {
+              "name": "TruncateTest",
+              "className": "NSCI.Tests.BasicQueries.TruncateTest",
+              "category": "BasicQueries",
+              "description": "TRUNCATE table operation",
+              "passed": false,
+              "duration": "00:00:00.100",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "UpdateTest",
+              "className": "NSCI.Tests.BasicQueries.UpdateTest",
+              "category": "BasicQueries",
+              "description": "UPDATE operation",
+              "passed": false,
+              "duration": "00:00:00.132",
+              "error": "DecoderFallbackException: Unable to translate bytes [AC] at index 11 from specified code page to Unicode."
+            }
+          ]
+        },
+        "DataTypes": {
+          "total": 9,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "BigIntTypeTest",
+              "className": "NSCI.Tests.DataTypes.BigIntTypeTest",
+              "category": "DataTypes",
+              "description": "Test BIGINT data type",
+              "passed": false,
+              "duration": "00:00:00.148",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "BooleanTypeTest",
+              "className": "NSCI.Tests.DataTypes.BooleanTypeTest",
+              "category": "DataTypes",
+              "description": "Test BOOLEAN type (TINYINT)",
+              "passed": false,
+              "duration": "00:00:00.091",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "DateTimeTypeTest",
+              "className": "NSCI.Tests.DataTypes.DateTimeTypeTest",
+              "category": "DataTypes",
+              "description": "Test DATETIME type",
+              "passed": false,
+              "duration": "00:00:00.095",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "DateTypeTest",
+              "className": "NSCI.Tests.DataTypes.DateTypeTest",
+              "category": "DataTypes",
+              "description": "Test DATE type",
+              "passed": false,
+              "duration": "00:00:00.114",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "DecimalPrecisionTest",
+              "className": "NSCI.Tests.DataTypes.DecimalPrecisionTest",
+              "category": "DataTypes",
+              "description": "Test DECIMAL precision (10,4)",
+              "passed": false,
+              "duration": "00:00:00.097",
+              "error": "DecoderFallbackException: Unable to translate bytes [D7] at index 11 from specified code page to Unicode."
+            },
+            {
+              "name": "IntTypeTest",
+              "className": "NSCI.Tests.DataTypes.IntTypeTest",
+              "category": "DataTypes",
+              "description": "Test INT data type",
+              "passed": false,
+              "duration": "00:00:00.125",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "JsonTypeTest",
+              "className": "NSCI.Tests.DataTypes.JsonTypeTest",
+              "category": "DataTypes",
+              "description": "Test JSON data type",
+              "passed": false,
+              "duration": "00:00:00.105",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "TextTypeTest",
+              "className": "NSCI.Tests.DataTypes.TextTypeTest",
+              "category": "DataTypes",
+              "description": "Test TEXT type for large strings",
+              "passed": false,
+              "duration": "00:00:00.138",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0027\u0010\u0027 was not in a correct format."
+            },
+            {
+              "name": "VarcharTypeTest",
+              "className": "NSCI.Tests.DataTypes.VarcharTypeTest",
+              "category": "DataTypes",
+              "description": "Test VARCHAR length and storage",
+              "passed": false,
+              "duration": "00:00:00.092",
+              "error": "DecoderFallbackException: Unable to translate bytes [FF] at index 3 from specified code page to Unicode."
+            }
+          ]
+        },
+        "Constraints": {
+          "total": 7,
+          "passed": 6,
+          "tests": [
+            {
+              "name": "AutoIncrementTest",
+              "className": "NSCI.Tests.Constraints.AutoIncrementTest",
+              "category": "Constraints",
+              "description": "Test AUTO_INCREMENT",
+              "passed": false,
+              "duration": "00:00:00.121",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "CheckConstraintTest",
+              "className": "NSCI.Tests.Constraints.CheckConstraintTest",
+              "category": "Constraints",
+              "description": "Test CHECK constraint (if supported)",
+              "passed": true,
+              "duration": "00:00:00.203"
+            },
+            {
+              "name": "DefaultValueTest",
+              "className": "NSCI.Tests.Constraints.DefaultValueTest",
+              "category": "Constraints",
+              "description": "Test DEFAULT value",
+              "passed": true,
+              "duration": "00:00:00.087"
+            },
+            {
+              "name": "ForeignKeyTest",
+              "className": "NSCI.Tests.Constraints.ForeignKeyTest",
+              "category": "Constraints",
+              "description": "Test FOREIGN KEY constraint",
+              "passed": true,
+              "duration": "00:00:00.146"
+            },
+            {
+              "name": "NotNullConstraintTest",
+              "className": "NSCI.Tests.Constraints.NotNullConstraintTest",
+              "category": "Constraints",
+              "description": "Test NOT NULL constraint",
+              "passed": true,
+              "duration": "00:00:00.069"
+            },
+            {
+              "name": "PrimaryKeyTest",
+              "className": "NSCI.Tests.Constraints.PrimaryKeyTest",
+              "category": "Constraints",
+              "description": "Test PRIMARY KEY constraint",
+              "passed": true,
+              "duration": "00:00:00.074"
+            },
+            {
+              "name": "UniqueConstraintTest",
+              "className": "NSCI.Tests.Constraints.UniqueConstraintTest",
+              "category": "Constraints",
+              "description": "Test UNIQUE constraint",
+              "passed": true,
+              "duration": "00:00:00.120"
+            }
+          ]
+        },
+        "Transactions": {
+          "total": 17,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "BasicTransactionCommitTest",
+              "className": "NSCI.Tests.Transactions.BasicTransactionCommitTest",
+              "category": "Transactions",
+              "description": "Test basic transaction COMMIT",
+              "passed": false,
+              "duration": "00:00:00.112",
+              "error": "PostgresException: 99999: org.postgresql.util.PSQLException"
+            },
+            {
+              "name": "LockingBehaviorDifferenceTest",
+              "className": "NSCI.Tests.IsolationLevels.LockingBehaviorDifferenceTest",
+              "category": "Transactions",
+              "description": "Test locking difference between REPEATABLE READ and READ COMMITTED",
+              "passed": false,
+              "duration": "00:00:00.180",
+              "error": "InvalidCastException: Reading as \u0027System.Int32\u0027 is not supported for fields having DataTypeName \u0027text\u0027"
+            },
+            {
+              "name": "MultipleStatementsTransactionTest",
+              "className": "NSCI.Tests.Transactions.MultipleStatementsTransactionTest",
+              "category": "Transactions",
+              "description": "Test multiple statements in transaction",
+              "passed": false,
+              "duration": "00:00:00.050",
+              "error": "PostgresException: 99999: org.postgresql.util.PSQLException"
+            },
+            {
+              "name": "PostgresAdvisoryLocksTest",
+              "className": "NSCI.Tests.Transactions.PostgresAdvisoryLocksTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL advisory locks",
+              "passed": false,
+              "duration": "00:00:00.058",
+              "error": "PostgresException: 58000: Cannot find PostgreSQL type \u0027POSTGRESQL_TYPE_BIT\u0027 in column type when process binary protocol value"
+            },
+            {
+              "name": "PostgresDeferredConstraintsTest",
+              "className": "NSCI.Tests.Transactions.PostgresDeferredConstraintsTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL deferred constraints",
+              "passed": false,
+              "duration": "00:00:00.213",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresNestedSavepointsTest",
+              "className": "NSCI.Tests.Transactions.PostgresNestedSavepointsTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL subtransactions with nested savepoints",
+              "passed": false,
+              "duration": "00:00:00.130",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresSerializableIsolationTest",
+              "className": "NSCI.Tests.Transactions.PostgresSerializableIsolationTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL Serializable Snapshot Isolation",
+              "passed": false,
+              "duration": "00:00:00.077",
+              "error": "DecoderFallbackException: Unable to translate bytes [E8] at index 9 from specified code page to Unicode."
+            },
+            {
+              "name": "PostgresTransactionControlTest",
+              "className": "NSCI.Tests.Transactions.PostgresTransactionControlTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL transaction control commands",
+              "passed": false,
+              "duration": "00:00:00.111",
+              "error": "Assertion: Assertion failed: READ ONLY transaction should block writes"
+            },
+            {
+              "name": "ReadCommittedLockReleaseTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedLockReleaseTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED releases non-matching row locks",
+              "passed": false,
+              "duration": "00:00:00.081",
+              "error": "InvalidCastException: Reading as \u0027System.Int32\u0027 is not supported for fields having DataTypeName \u0027text\u0027"
+            },
+            {
+              "name": "ReadCommittedNonRepeatableTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedNonRepeatableTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED allows non-repeatable reads",
+              "passed": false,
+              "duration": "00:00:00.104",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000d\u0027 was not in a correct format."
+            },
+            {
+              "name": "ReadCommittedPhantomTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedPhantomTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED allows phantom reads",
+              "passed": false,
+              "duration": "00:00:00.077",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "ReadUncommittedDirtyReadTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadUncommittedDirtyReadTest",
+              "category": "Transactions",
+              "description": "Test READ UNCOMMITTED allows dirty reads",
+              "passed": false,
+              "duration": "00:00:00.107",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000d\u0027 was not in a correct format."
+            },
+            {
+              "name": "RepeatableReadPhantomPreventionTest",
+              "className": "NSCI.Tests.IsolationLevels.RepeatableReadPhantomPreventionTest",
+              "category": "Transactions",
+              "description": "Test REPEATABLE READ prevents phantom reads in range",
+              "passed": false,
+              "duration": "00:00:00.112",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "RepeatableReadSnapshotTest",
+              "className": "NSCI.Tests.IsolationLevels.RepeatableReadSnapshotTest",
+              "category": "Transactions",
+              "description": "Test REPEATABLE READ snapshot consistency",
+              "passed": false,
+              "duration": "00:00:00.112",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000d\u0027 was not in a correct format."
+            },
+            {
+              "name": "SavePointTest",
+              "className": "NSCI.Tests.Transactions.SavePointTest",
+              "category": "Transactions",
+              "description": "Test SAVEPOINT",
+              "passed": false,
+              "duration": "00:00:00.044",
+              "error": "PostgresException: 42P07: relation \u0022savepoint_test\u0022 already exists"
+            },
+            {
+              "name": "TransactionIsolationReadCommittedTest",
+              "className": "NSCI.Tests.Transactions.TransactionIsolationReadCommittedTest",
+              "category": "Transactions",
+              "description": "Test transaction isolation READ_COMMITTED",
+              "passed": false,
+              "duration": "00:00:00.114",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000d\u0027 was not in a correct format."
+            },
+            {
+              "name": "TransactionRollbackTest",
+              "className": "NSCI.Tests.Transactions.TransactionRollbackTest",
+              "category": "Transactions",
+              "description": "Test transaction ROLLBACK",
+              "passed": false,
+              "duration": "00:00:00.131",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            }
+          ]
+        },
+        "Joins": {
+          "total": 6,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "CrossJoinTest",
+              "className": "NSCI.Tests.Joins.CrossJoinTest",
+              "category": "Joins",
+              "description": "Test CROSS JOIN",
+              "passed": false,
+              "duration": "00:00:00.151",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "InnerJoinTest",
+              "className": "NSCI.Tests.Joins.InnerJoinTest",
+              "category": "Joins",
+              "description": "Test INNER JOIN",
+              "passed": false,
+              "duration": "00:00:00.151",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "LeftJoinTest",
+              "className": "NSCI.Tests.Joins.LeftJoinTest",
+              "category": "Joins",
+              "description": "Test LEFT JOIN",
+              "passed": false,
+              "duration": "00:00:00.116",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "MultipleJoinTest",
+              "className": "NSCI.Tests.Joins.MultipleJoinTest",
+              "category": "Joins",
+              "description": "Test multiple table JOIN",
+              "passed": false,
+              "duration": "00:00:00.084",
+              "error": "PostgresException: 42P07: relation \u0022products\u0022 already exists"
+            },
+            {
+              "name": "RightJoinTest",
+              "className": "NSCI.Tests.Joins.RightJoinTest",
+              "category": "Joins",
+              "description": "Test RIGHT JOIN (if supported)",
+              "passed": false,
+              "duration": "00:00:00.123",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "SelfJoinTest",
+              "className": "NSCI.Tests.Joins.SelfJoinTest",
+              "category": "Joins",
+              "description": "Test SELF JOIN",
+              "passed": false,
+              "duration": "00:00:00.072",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            }
+          ]
+        },
+        "Aggregations": {
+          "total": 8,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "AggregateNullTest",
+              "className": "NSCI.Tests.Aggregations.AggregateNullTest",
+              "category": "Aggregations",
+              "description": "Test aggregate with NULL values",
+              "passed": false,
+              "duration": "00:00:00.071",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "AvgAggregateTest",
+              "className": "NSCI.Tests.Aggregations.AvgAggregateTest",
+              "category": "Aggregations",
+              "description": "Test AVG aggregate function",
+              "passed": false,
+              "duration": "00:00:00.070",
+              "error": "FormatException: The input string \u0027\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0010\u0000Z\u0027 was not in a correct format."
+            },
+            {
+              "name": "CountAggregateTest",
+              "className": "NSCI.Tests.Aggregations.CountAggregateTest",
+              "category": "Aggregations",
+              "description": "Test COUNT aggregate function",
+              "passed": false,
+              "duration": "00:00:00.061",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "DistinctTest",
+              "className": "NSCI.Tests.Aggregations.DistinctTest",
+              "category": "Aggregations",
+              "description": "Test DISTINCT",
+              "passed": false,
+              "duration": "00:00:00.089",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "GroupByTest",
+              "className": "NSCI.Tests.Aggregations.GroupByTest",
+              "category": "Aggregations",
+              "description": "Test GROUP BY clause",
+              "passed": false,
+              "duration": "00:00:00.088",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0003\u0027 was not in a correct format."
+            },
+            {
+              "name": "HavingClauseTest",
+              "className": "NSCI.Tests.Aggregations.HavingClauseTest",
+              "category": "Aggregations",
+              "description": "Test HAVING clause with GROUP BY",
+              "passed": false,
+              "duration": "00:00:00.080",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "MinMaxAggregateTest",
+              "className": "NSCI.Tests.Aggregations.MinMaxAggregateTest",
+              "category": "Aggregations",
+              "description": "Test MIN and MAX aggregate functions",
+              "passed": false,
+              "duration": "00:00:00.069",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\n\u0027 was not in a correct format."
+            },
+            {
+              "name": "SumAggregateTest",
+              "className": "NSCI.Tests.Aggregations.SumAggregateTest",
+              "category": "Aggregations",
+              "description": "Test SUM aggregate function",
+              "passed": false,
+              "duration": "00:00:00.068",
+              "error": "DecoderFallbackException: Unable to translate bytes [88] at index 11 from specified code page to Unicode."
+            }
+          ]
+        },
+        "Subqueries": {
+          "total": 8,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "CorrelatedSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.CorrelatedSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test correlated subquery",
+              "passed": false,
+              "duration": "00:00:00.141",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "ExistsSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.ExistsSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test EXISTS subquery",
+              "passed": false,
+              "duration": "00:00:00.126",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "InSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.InSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test IN subquery",
+              "passed": false,
+              "duration": "00:00:00.103",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0003\u0027 was not in a correct format."
+            },
+            {
+              "name": "NotExistsSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.NotExistsSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test NOT EXISTS subquery",
+              "passed": false,
+              "duration": "00:00:00.135",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "NotInSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.NotInSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test NOT IN subquery",
+              "passed": false,
+              "duration": "00:00:00.109",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresScalarSubqueryOperatorsTest",
+              "className": "NSCI.Tests.Subqueries.PostgresScalarSubqueryOperatorsTest",
+              "category": "Subqueries",
+              "description": "Test PostgreSQL scalar subquery operators (ALL, ANY, SOME)",
+              "passed": false,
+              "duration": "00:00:00.147",
+              "error": "InvalidCastException: Reading as \u0027System.Decimal\u0027 is not supported for fields having DataTypeName \u0027text\u0027"
+            },
+            {
+              "name": "ScalarSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.ScalarSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test scalar subquery",
+              "passed": true,
+              "duration": "00:00:00.084"
+            },
+            {
+              "name": "SubqueryFromClauseTest",
+              "className": "NSCI.Tests.Subqueries.SubqueryFromClauseTest",
+              "category": "Subqueries",
+              "description": "Test subquery in FROM clause",
+              "passed": false,
+              "duration": "00:00:00.086",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            }
+          ]
+        },
+        "Indexes": {
+          "total": 8,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "CompositeIndexTest",
+              "className": "NSCI.Tests.Indexes.CompositeIndexTest",
+              "category": "Indexes",
+              "description": "Test composite INDEX",
+              "passed": false,
+              "duration": "00:00:00.102",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "CreateIndexTest",
+              "className": "NSCI.Tests.Indexes.CreateIndexTest",
+              "category": "Indexes",
+              "description": "Test CREATE INDEX",
+              "passed": false,
+              "duration": "00:00:00.085",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "DescendingIndexTest",
+              "className": "NSCI.Tests.Indexes.DescendingIndexTest",
+              "category": "Indexes",
+              "description": "Test Descending Index ",
+              "passed": false,
+              "duration": "00:00:00.081",
+              "error": "DecoderFallbackException: Unable to translate bytes [C8] at index 3 from specified code page to Unicode."
+            },
+            {
+              "name": "PostgresExpressionIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresExpressionIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL expression indexes",
+              "passed": false,
+              "duration": "00:00:00.098",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresIncludeIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresIncludeIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL INCLUDE columns in indexes",
+              "passed": false,
+              "duration": "00:00:00.107",
+              "error": "InvalidCastException: Reading as \u0027System.Decimal\u0027 is not supported for fields having DataTypeName \u0027text\u0027"
+            },
+            {
+              "name": "PostgresPartialIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresPartialIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL partial indexes",
+              "passed": false,
+              "duration": "00:00:00.089",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresReindexTest",
+              "className": "NSCI.Tests.Indexes.PostgresReindexTest",
+              "category": "Indexes",
+              "description": "Test REINDEX rebuilds index structures while preserving query correctness",
+              "passed": false,
+              "duration": "00:00:00.177",
+              "error": "DecoderFallbackException: Unable to translate bytes [C8] at index 7 from specified code page to Unicode."
+            },
+            {
+              "name": "UniqueIndexTest",
+              "className": "NSCI.Tests.Indexes.UniqueIndexTest",
+              "category": "Indexes",
+              "description": "Test UNIQUE INDEX",
+              "passed": true,
+              "duration": "00:00:00.083"
+            }
+          ]
+        },
+        "Views": {
+          "total": 7,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresMaterializedViewTest",
+              "className": "NSCI.Tests.Views.PostgresMaterializedViewTest",
+              "category": "Views",
+              "description": "Test PostgreSQL materialized views",
+              "passed": false,
+              "duration": "00:00:00.138",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresRecursiveViewTest",
+              "className": "NSCI.Tests.Views.PostgresRecursiveViewTest",
+              "category": "Views",
+              "description": "Test PostgreSQL recursive views",
+              "passed": false,
+              "duration": "00:00:00.347",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0004\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresViewCheckOptionTest",
+              "className": "NSCI.Tests.Views.PostgresViewCheckOptionTest",
+              "category": "Views",
+              "description": "Test PostgreSQL WITH CHECK OPTION on views",
+              "passed": false,
+              "duration": "00:00:00.123",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresViewDependenciesTest",
+              "className": "NSCI.Tests.Views.PostgresViewDependenciesTest",
+              "category": "Views",
+              "description": "Test PostgreSQL view dependencies and CASCADE",
+              "passed": false,
+              "duration": "00:00:00.155",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresViewInsteadOfTriggersTest",
+              "className": "NSCI.Tests.Views.PostgresViewInsteadOfTriggersTest",
+              "category": "Views",
+              "description": "Test PostgreSQL INSTEAD OF triggers on views",
+              "passed": false,
+              "duration": "00:00:00.147",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: CREATE OR REPLACE FUNCTION view_insert_fn() RETURNS TRIGGER AS $$\n                           BEGIN\n                               INSERT INTO products_trigger (name, price) VALUES (NEW.name, NEW.price);\n                               RETURN NEW;\n                           END;\n                           $$ LANGUAGE plpgsql, no viable alternative at input \u0027$$\u0027 at line 1, position 63, near [@10,63:64=\u0027$$\u0027,\u003C1\u003E,1:63]"
+            },
+            {
+              "name": "UpdatableViewTest",
+              "className": "NSCI.Tests.Views.UpdatableViewTest",
+              "category": "Views",
+              "description": "Test Updatable Views",
+              "passed": false,
+              "duration": "00:00:00.114",
+              "error": "DecoderFallbackException: Unable to translate bytes [88] at index 11 from specified code page to Unicode."
+            },
+            {
+              "name": "ViewTest",
+              "className": "NSCI.Tests.Views.ViewTest",
+              "category": "Views",
+              "description": "Test CREATE and SELECT from VIEW",
+              "passed": false,
+              "duration": "00:00:00.140",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            }
+          ]
+        },
+        "StoredProcedures": {
+          "total": 1,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "StoredProcedureTest",
+              "className": "NSCI.Tests.StoredProcedures.StoredProcedureTest",
+              "category": "StoredProcedures",
+              "description": "Test STORED PROCEDURE",
+              "passed": false,
+              "duration": "00:00:00.084",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: CREATE OR REPLACE FUNCTION GetSum(OUT total INT) AS $$\r\n            BEGIN\r\n                SELECT SUM(value) INTO total FROM proc_test;\r\n            END;\r\n            $$ LANGUAGE plpgsql, no viable alternative at input \u0027$$\u0027 at line 1, position 52, near [@11,52:53=\u0027$$\u0027,\u003C1\u003E,1:52]"
+            }
+          ]
+        },
+        "Triggers": {
+          "total": 1,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "TriggerTest",
+              "className": "NSCI.Tests.Triggers.TriggerTest",
+              "category": "Triggers",
+              "description": "Test TRIGGER",
+              "passed": false,
+              "duration": "00:00:00.073",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: CREATE OR REPLACE FUNCTION tr_test_func() RETURNS TRIGGER AS $$\r\n            BEGIN\r\n                NEW.value := NEW.value * 2;\r\n                RETURN NEW;\r\n            END;\r\n            $$ LANGUAGE plpgsql, no viable alternative at input \u0027$$\u0027 at line 1, position 61, near [@10,61:62=\u0027$$\u0027,\u003C1\u003E,1:61]"
+            }
+          ]
+        },
+        "CTE": {
+          "total": 2,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "CteTest",
+              "className": "NSCI.Tests.CTE.CteTest",
+              "category": "CTE",
+              "description": "Test Common Table Expression (CTE)",
+              "passed": false,
+              "duration": "00:00:00.115",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "RecursiveCteTest",
+              "className": "NSCI.Tests.CTE.RecursiveCteTest",
+              "category": "CTE",
+              "description": "Test recursive CTE",
+              "passed": false,
+              "duration": "00:00:00.225",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0004\u0027 was not in a correct format."
+            }
+          ]
+        },
+        "FullTextSearch": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresFullTextSearchBasicTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchBasicTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search basics with tsvector and tsquery",
+              "passed": false,
+              "duration": "00:00:00.353",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresFullTextSearchBooleanTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchBooleanTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search with boolean operators",
+              "passed": false,
+              "duration": "00:00:00.113",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresFullTextSearchGeneratedTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchGeneratedTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search with generated tsvector column",
+              "passed": false,
+              "duration": "00:00:00.126",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresFullTextSearchPhraseTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchPhraseTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text phrase search with phraseto_tsquery",
+              "passed": false,
+              "duration": "00:00:00.084",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresFullTextSearchRankingTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchRankingTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search ranking with ts_rank",
+              "passed": false,
+              "duration": "00:00:00.171",
+              "error": "InvalidCastException: Reading as \u0027System.Double\u0027 is not supported for fields having DataTypeName \u0027text\u0027"
+            }
+          ]
+        },
+        "Locking": {
+          "total": 6,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresOnlyAdvancedLockingTest",
+              "className": "NSCI.Tests.Locking.PostgresOnlyAdvancedLockingTest",
+              "category": "Locking",
+              "description": "FOR KEY SHARE and FOR NO KEY UPDATE",
+              "passed": false,
+              "duration": "00:00:00.032",
+              "error": "PostgresException: 42P07: relation \u0022products\u0022 already exists"
+            },
+            {
+              "name": "RowLockingPreventsConcurrentModificationTest",
+              "className": "NSCI.Tests.Locking.RowLockingPreventsConcurrentModificationTest",
+              "category": "Locking",
+              "description": "Test row locking prevents concurrent modification",
+              "passed": false,
+              "duration": "00:00:00.031",
+              "error": "PostgresException: 42P07: relation \u0022orders\u0022 already exists"
+            },
+            {
+              "name": "SelectForShareTest",
+              "className": "NSCI.Tests.Locking.SelectForShareTest",
+              "category": "Locking",
+              "description": "Test SELECT...FOR SHARE (shared lock)",
+              "passed": false,
+              "duration": "00:00:00.071",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int32\u0027."
+            },
+            {
+              "name": "SelectForUpdateTest",
+              "className": "NSCI.Tests.Locking.SelectForUpdateTest",
+              "category": "Locking",
+              "description": "Test SELECT...FOR UPDATE row locking",
+              "passed": false,
+              "duration": "00:00:00.069",
+              "error": "DecoderFallbackException: Unable to translate bytes [E8] at index 9 from specified code page to Unicode."
+            },
+            {
+              "name": "SelectForUpdateWithWhereTest",
+              "className": "NSCI.Tests.Locking.SelectForUpdateWithWhereTest",
+              "category": "Locking",
+              "description": "Test FOR UPDATE with WHERE clause",
+              "passed": false,
+              "duration": "00:00:00.032",
+              "error": "PostgresException: 42P07: relation \u0022items\u0022 already exists"
+            },
+            {
+              "name": "SkipLockedTest",
+              "className": "NSCI.Tests.Locking.SkipLockedTest",
+              "category": "Locking",
+              "description": "Test SKIP LOCKED ",
+              "passed": false,
+              "duration": "00:00:00.082",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: SELECT id FROM queue WHERE status = \u0027pending\u0027 ORDER BY id LIMIT 1 FOR UPDATE SKIP LOCKED, null"
+            }
+          ]
+        },
+        "Upsert": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresOnConflictDoUpdateTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictDoUpdateTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL INSERT...ON CONFLICT DO UPDATE",
+              "passed": false,
+              "duration": "00:00:00.091",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresOnConflictMultipleConstraintsTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictMultipleConstraintsTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with multiple columns and unique constraints",
+              "passed": false,
+              "duration": "00:00:00.098",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresOnConflictPartialIndexTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictPartialIndexTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with partial indexes",
+              "passed": false,
+              "duration": "00:00:00.107",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresOnConflictReturningTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictReturningTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with RETURNING clause",
+              "passed": false,
+              "duration": "00:00:00.093",
+              "error": "InvalidCastException: Reading as \u0027System.Int32\u0027 is not supported for fields having DataTypeName \u0027text\u0027"
+            },
+            {
+              "name": "PostgresOnConflictWhereTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictWhereTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with WHERE clause",
+              "passed": false,
+              "duration": "00:00:00.084",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u000F\u0027 was not in a correct format."
+            }
+          ]
+        },
+        "Partitioning": {
+          "total": 4,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "ListPartitioningTest",
+              "className": "NSCI.Tests.Partitioning.ListPartitioningTest",
+              "category": "Partitioning",
+              "description": "Test LIST partitioning",
+              "passed": false,
+              "duration": "00:00:00.161",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PartitionPruningTest",
+              "className": "NSCI.Tests.Partitioning.PartitionPruningTest",
+              "category": "Partitioning",
+              "description": "Test partition pruning in queries",
+              "passed": false,
+              "duration": "00:00:00.162",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "RangePartitioningByColumnTest",
+              "className": "NSCI.Tests.Partitioning.RangePartitioningByColumnTest",
+              "category": "Partitioning",
+              "description": "Test RANGE partitioning by column",
+              "passed": false,
+              "duration": "00:00:00.038",
+              "error": "PostgresException: 42P07: relation \u0022employees\u0022 already exists"
+            },
+            {
+              "name": "RangePartitioningTest",
+              "className": "NSCI.Tests.Partitioning.RangePartitioningTest",
+              "category": "Partitioning",
+              "description": "Test RANGE partitioning by date",
+              "passed": false,
+              "duration": "00:00:00.187",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            }
+          ]
+        },
+        "UserManagement": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresColumnPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresColumnPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL column-level privileges",
+              "passed": false,
+              "duration": "00:00:00.087",
+              "error": "PostgresException: 0A000: Unsupported SQL operation: Unsupported operation"
+            },
+            {
+              "name": "PostgresCreateRoleTest",
+              "className": "NSCI.Tests.UserManagement.PostgresCreateRoleTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL CREATE ROLE and CREATE USER",
+              "passed": false,
+              "duration": "00:00:00.030",
+              "error": "PostgresException: 0A000: Unsupported SQL operation: Unsupported operation"
+            },
+            {
+              "name": "PostgresDefaultPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresDefaultPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL default privileges and schema permissions",
+              "passed": false,
+              "duration": "00:00:00.045",
+              "error": "PostgresException: 0A000: Unsupported SQL operation: Unsupported operation"
+            },
+            {
+              "name": "PostgresGrantPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresGrantPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL GRANT privileges on tables",
+              "passed": false,
+              "duration": "00:00:00.086",
+              "error": "PostgresException: 0A000: Unsupported SQL operation: Unsupported operation"
+            },
+            {
+              "name": "PostgresRoleMembershipTest",
+              "className": "NSCI.Tests.UserManagement.PostgresRoleMembershipTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL role membership and inheritance",
+              "passed": false,
+              "duration": "00:00:00.030",
+              "error": "PostgresException: 0A000: Unsupported SQL operation: Unsupported operation"
+            }
+          ]
+        },
+        "JSONOperations": {
+          "total": 5,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "JsonContainsTest",
+              "className": "NSCI.Tests.JSONOperations.JsonContainsTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_CONTAINS function",
+              "passed": false,
+              "duration": "00:00:00.115",
+              "error": "InvalidCastException: Unable to cast object of type \u0027System.String\u0027 to type \u0027System.Int64\u0027."
+            },
+            {
+              "name": "JsonCreationTest",
+              "className": "NSCI.Tests.JSONOperations.JsonCreationTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_ARRAY and JSON_OBJECT functions",
+              "passed": false,
+              "duration": "00:00:00.100",
+              "error": "PostgresException: 58000: Cannot find PostgreSQL type \u0027POSTGRESQL_TYPE_JSON\u0027 in column type when process binary protocol value"
+            },
+            {
+              "name": "JsonExtractTest",
+              "className": "NSCI.Tests.JSONOperations.JsonExtractTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_EXTRACT function",
+              "passed": false,
+              "duration": "00:00:00.033",
+              "error": "PostgresException: 42P07: relation \u0022users\u0022 already exists"
+            },
+            {
+              "name": "JsonLengthTest",
+              "className": "NSCI.Tests.JSONOperations.JsonLengthTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_LENGTH function",
+              "passed": false,
+              "duration": "00:00:00.090",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0003\u0027 was not in a correct format."
+            },
+            {
+              "name": "JsonSetTest",
+              "className": "NSCI.Tests.JSONOperations.JsonSetTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_SET function",
+              "passed": true,
+              "duration": "00:00:00.109"
+            }
+          ]
+        },
+        "DDL": {
+          "total": 12,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "AlterTableDataTypeConversionTest",
+              "className": "NSCI.Tests.TableDefinition.AlterTableDataTypeConversionTest",
+              "category": "DDL",
+              "description": "Test ALTER TABLE data type conversions",
+              "passed": false,
+              "duration": "00:00:00.144",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000*\u0027 was not in a correct format."
+            },
+            {
+              "name": "AlterTableMultipleChangesTest",
+              "className": "NSCI.Tests.TableDefinition.AlterTableMultipleChangesTest",
+              "category": "DDL",
+              "description": "Test ALTER TABLE with multiple changes to same column",
+              "passed": true,
+              "duration": "00:00:00.177"
+            },
+            {
+              "name": "CollateColumnTest",
+              "className": "NSCI.Tests.TableDefinition.CollateColumnTest",
+              "category": "DDL",
+              "description": "Test COLLATE on columns affects string comparison and ordering",
+              "passed": false,
+              "duration": "00:00:00.093",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "GeneratedColumnTest",
+              "className": "NSCI.Tests.TableDefinition.GeneratedColumnTest",
+              "category": "DDL",
+              "description": "Test GENERATED (computed/virtual) columns update automatically",
+              "passed": false,
+              "duration": "00:00:00.100",
+              "error": "DecoderFallbackException: Unable to translate bytes [E4] at index 11 from specified code page to Unicode."
+            },
+            {
+              "name": "PostgresColumnCompressionTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresColumnCompressionTest",
+              "category": "DDL",
+              "description": "Test COMPRESSION attribute on TEXT columns is recorded in pg_attribute",
+              "passed": false,
+              "duration": "00:00:00.055",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: CREATE TABLE compression_test (\r\n            id         SERIAL PRIMARY KEY,\r\n            data_pglz  TEXT COMPRESSION pglz\r\n        ), null"
+            },
+            {
+              "name": "PostgresColumnStorageTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresColumnStorageTest",
+              "category": "DDL",
+              "description": "Test STORAGE clause on columns is recorded in pg_attribute",
+              "passed": false,
+              "duration": "00:00:00.055",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: CREATE TABLE storage_test (\r\n            id           SERIAL PRIMARY KEY,\r\n            plain_col    INT        STORAGE PLAIN,\r\n            external_col TEXT       STORAGE EXTERNAL,\r\n            extended_col TEXT       STORAGE EXTENDED,\r\n            main_col     TEXT       STORAGE MAIN\r\n        ), null"
+            },
+            {
+              "name": "PostgresIdentityColumnTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresIdentityColumnTest",
+              "category": "DDL",
+              "description": "Test IDENTITY columns with GENERATED ALWAYS and GENERATED BY DEFAULT",
+              "passed": false,
+              "duration": "00:00:00.143",
+              "error": "InvalidCastException: Reading as \u0027System.Int32\u0027 is not supported for fields having DataTypeName \u0027text\u0027"
+            },
+            {
+              "name": "PostgresSequenceTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresSequenceTest",
+              "category": "DDL",
+              "description": "Test CREATE SEQUENCE with NEXTVAL and CURRVAL",
+              "passed": false,
+              "duration": "00:00:00.076",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\n\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresTableInheritsTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresTableInheritsTest",
+              "category": "DDL",
+              "description": "Test table inheritance with INHERITS clause",
+              "passed": false,
+              "duration": "00:00:00.182",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresTypedTableTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresTypedTableTest",
+              "category": "DDL",
+              "description": "Test typed table creation using OF type_name",
+              "passed": false,
+              "duration": "00:00:00.207",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresUnloggedTableTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresUnloggedTableTest",
+              "category": "DDL",
+              "description": "Test UNLOGGED table creation that skips WAL",
+              "passed": false,
+              "duration": "00:00:00.102",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0003\u0027 was not in a correct format."
+            },
+            {
+              "name": "TableLikeTest",
+              "className": "NSCI.Tests.TableDefinition.TableLikeTest",
+              "category": "DDL",
+              "description": "Test CREATE TABLE LIKE copies structure from an existing table",
+              "passed": false,
+              "duration": "00:00:00.135",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            }
+          ]
+        },
+        "CustomTypes": {
+          "total": 3,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "EnumTypeTest",
+              "className": "NSCI.Tests.CustomTypes.EnumTypeTest",
+              "category": "CustomTypes",
+              "description": "Test enumerated type enforces valid values",
+              "passed": false,
+              "duration": "00:00:00.090",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresCompositeTypeTest",
+              "className": "NSCI.Tests.CustomTypes.PostgresCompositeTypeTest",
+              "category": "CustomTypes",
+              "description": "Test CREATE TYPE composite type used as a column type",
+              "passed": false,
+              "duration": "00:00:00.142",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresDomainTest",
+              "className": "NSCI.Tests.CustomTypes.PostgresDomainTest",
+              "category": "CustomTypes",
+              "description": "Test CREATE DOMAIN enforces constraints on columns that use it",
+              "passed": false,
+              "duration": "00:00:00.086",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            }
+          ]
+        },
+        "Misc": {
+          "total": 3,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "OptimizeTableTest",
+              "className": "NSCI.Tests.Misc.OptimizeTableTest",
+              "category": "Misc",
+              "description": "Test OPTIMIZE TABLE syntax ",
+              "passed": false,
+              "duration": "00:00:00.077",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0027 was not in a correct format."
+            },
+            {
+              "name": "XATransactionTest",
+              "className": "NSCI.Tests.Misc.XATransactionTest",
+              "category": "Misc",
+              "description": "Test XA Transaction syntax ",
+              "passed": false,
+              "duration": "00:00:00.064",
+              "error": "PostgresException: 55000: prepared transactions are disabled"
+            },
+            {
+              "name": "XmlFunctionsTest",
+              "className": "NSCI.Tests.Misc.XmlFunctionsTest",
+              "category": "Misc",
+              "description": "Test XML Functions ",
+              "passed": false,
+              "duration": "00:00:00.094",
+              "error": "PostgresException: 58000: Can not find JDBC type \u00602003\u0060 in PostgreSQL column type"
+            }
+          ]
+        },
+        "PerformanceHints": {
+          "total": 5,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "PostgresCTEMaterializationTest",
+              "className": "NSCI.Tests.Performance.PostgresCTEMaterializationTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL CTE materialization hints",
+              "passed": false,
+              "duration": "00:00:00.409",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000\n\u0027 was not in a correct format."
+            },
+            {
+              "name": "PostgresExplainAnalyzeTest",
+              "className": "NSCI.Tests.Performance.PostgresExplainAnalyzeTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL EXPLAIN and EXPLAIN ANALYZE",
+              "passed": false,
+              "duration": "00:00:00.493",
+              "error": "PostgresException: 42000: You have an error in your SQL syntax: EXPLAIN (FORMAT JSON) SELECT * FROM explain_test WHERE value \u003C 100, no viable alternative at input \u0027(FORMAT\u0027 at line 1, position 9, near [@2,9:14=\u0027FORMAT\u0027,\u003C415\u003E,1:9]"
+            },
+            {
+              "name": "PostgresJoinOrderPlanningTest",
+              "className": "NSCI.Tests.Performance.PostgresJoinOrderPlanningTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL join order and planning settings",
+              "passed": true,
+              "duration": "00:00:00.496"
+            },
+            {
+              "name": "PostgresParallelQueryTest",
+              "className": "NSCI.Tests.Performance.PostgresParallelQueryTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL parallel query settings",
+              "passed": false,
+              "duration": "00:00:03.748",
+              "error": "DecoderFallbackException: Unable to translate bytes [E8] at index 7 from specified code page to Unicode."
+            },
+            {
+              "name": "PostgresQueryPlannerSettingsTest",
+              "className": "NSCI.Tests.Performance.PostgresQueryPlannerSettingsTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL query planner settings",
+              "passed": false,
+              "duration": "00:00:00.439",
+              "error": "FormatException: The input string \u0027\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\u0027 was not in a correct format."
+            }
+          ]
+        }
+      }
+    }
+  }
+}

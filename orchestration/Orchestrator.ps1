@@ -11,7 +11,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 
-$HealthMaxRetries = 20
+$HealthMaxRetries = 3
 $HealthConnectTimeoutSeconds = 2
 $HealthRetryDelaySeconds = 3
 $BuildConfiguration = 'Release'
@@ -250,6 +250,7 @@ function Wait-ForHealth {
     }
 
     $instances = $DbEntry.Config.Instances | Where-Object { $_.Enabled }
+    Start-Sleep -Seconds 3
 
     foreach ($instance in $instances) {
         $endpointAddress = $instance.HealthCheck.HostName

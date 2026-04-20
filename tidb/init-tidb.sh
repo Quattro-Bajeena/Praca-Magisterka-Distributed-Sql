@@ -5,6 +5,7 @@ kubectl create namespace tidb
 kubectl create namespace tidb-admin
 kubectl create namespace tidb-cluster
 
+helm repo update
 helm install --namespace tidb tidb-operator pingcap/tidb-operator --version v1.6.3
 kubectl get pods --namespace tidb -l app.kubernetes.io/instance=tidb-operator
 kubectl -n tidb apply -f ./tidb-cluster.yaml

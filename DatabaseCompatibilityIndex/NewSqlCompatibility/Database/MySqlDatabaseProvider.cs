@@ -1,10 +1,19 @@
 using MySqlConnector;
+using NSCI.Configuration;
 using System.Data.Common;
 
 namespace NSCI.Database;
 
 public class MySqlDatabaseProvider : IDatabaseProvider
 {
+
+    readonly DatabaseConfiguration _configuration;
+
+    public MySqlDatabaseProvider(DatabaseConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+
     public DbConnection CreateConnection(string connectionString)
     {
         return new MySqlConnection(connectionString);

@@ -84,7 +84,7 @@ public class DatabaseReporter
                     Description = tr.Description,
                     Passed = tr.Passed,
                     Duration = $"{tr.Duration:hh\\:mm\\:ss\\.fff}",
-                    Error = tr.ErrorMessage
+                    Error = tr.ErrorMessage?.Replace('\0', '0')
                 });
             }
             else
@@ -94,7 +94,7 @@ public class DatabaseReporter
                 existing.Description = tr.Description;
                 existing.Passed = tr.Passed;
                 existing.Duration = $"{tr.Duration:hh\\:mm\\:ss\\.fff}";
-                existing.Error = tr.ErrorMessage;
+                existing.Error = tr.ErrorMessage?.Replace('\0', '0');
             }
         }
 
