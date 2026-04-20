@@ -100,6 +100,13 @@ Każdy folder bazy zawiera `db.config.json`:
 | PolarDB-X | 2.4 | MySql |
 | Neon | cloud | PostgreSql |
 
+## Zasady pracy z kodem
+
+- **Po każdej zmianie w NSCI.Visualize zawsze uruchom `dotnet build`** żeby upewnić się że kod się kompiluje przed zgłoszeniem gotowości.
+  ```bash
+  cd DatabaseCompatibilityIndex/NSCI.Visualize && dotnet build
+  ```
+
 ## Uruchamianie
 
 ```bash
