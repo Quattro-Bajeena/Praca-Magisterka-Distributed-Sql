@@ -24,6 +24,7 @@ public class PostgreSqlDatabaseProvider : IDatabaseProvider
         {
             // CrateDB uses schemas instead of databases
             // https://community.cratedb.com/t/create-new-schema/828/2
+            Console.WriteLine("CrateDB versions before 6.2.4 do not support CREATE SCHEMA, skipping database creation");
             return string.Empty;
         }
 
