@@ -17,7 +17,7 @@ public class TestRunner
     {
         _config = config;
         _consoleReporter = consoleReporter;
-        _databaseProvider = DatabaseProviderFactory.Create(_config.Type, _config.Product);
+        _databaseProvider = DatabaseProviderFactory.Create(_config);
     }
 
     public List<TestResult>? RunAllTests(List<(Type Type, SqlTestAttribute Attribute)> discoveredTests)

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "NSCI.Visualize (Blazor)",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["run", "--project", "DatabaseCompatibilityIndex/NSCI.Visualize/NSCI.Visualize.csproj", "--launch-profile", "http"],
+      "port": 5182
+    }
+  ]
+}

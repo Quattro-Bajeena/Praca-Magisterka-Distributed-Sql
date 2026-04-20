@@ -1,0 +1,213 @@
+@page "/database/{Id:int}"
+
+<PageTitle>@(database?.Name ?? "Baza danych") — NSCI</PageTitle>
+
+@inject TestDataService TestDataService
+
+@if (database == null)
+{
+    <p class="text-muted">Ładowanie...</p>
+}
+else
+{
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+            <li class="breadcrumb-item active">@database.Name</li>
+        </ol>
+    </nav>
+
+    <h2>@database.Name</h2>
+    <p class="text-muted mb-3">
+        @database.Product @database.Version — @database.Type
+        @if (database.ReleaseYear != null)
+        {
+            <span>(@database.ReleaseYear)</span>
+        }
+    </p>
+
+    <div class="row g-2 mb-4">
+        <div class="col-auto">
+            <div class="card text-center px-3 py-2">
+                <div class="fs-3 fw-bold @ResultClass(database.Result)">@PassPct(database.Result).ToString("F1")%</div>
+                <small class="text-muted">Wynik</small>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="card text-center px-3 py-2">
+                <div class="fs-3 fw-bold">@database.TotalTests</div>
+                <small class="text-muted">Wszystkich</small>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="card text-center px-3 py-2">
+                <div class="fs-3 fw-bold text-success">@database.PassedTests</div>
+                <small class="text-muted">Zdanych</small>
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="card text-center px-3 py-2">
+                <div class="fs-3 fw-bold text-danger">@database.FailedTests</div>
+                <small class="text-muted">Niezdanych</small>
+            </div>
+        </div>
+    </div>
+
+    @if (categoryStats != null && categoryStats.Count > 0)
+    {
+        <h5>Wyniki per kategoria</h5>
+        <div class="mb-4">
+            <RadzenChart Style="@($"height: {categoryStats.Count * 40 + 100}px")">
+                <RadzenStackedBarSeries Data="@categoryStats"
+                                        CategoryProperty="Category"
+                                        ValueProperty="Passed"
+                                        Title="Zdane"
+                                        Fill="#198754"
+                                        Stroke="#198754" />
+                <RadzenStackedBarSeries Data="@categoryStats"
+                                        CategoryProperty="Category"
+                                        ValueProperty="Failed"
+                                        Title="Niezdane"
+                                        Fill="#dc3545"
+                                        Stroke="#dc3545" />
+                <RadzenValueAxis>
+                    <RadzenGridLines Visible="true" />
+                    <RadzenAxisTitle Text="Liczba testów" />
+                </RadzenValueAxis>
+                <RadzenBarOptions Radius="0" />
+                <RadzenLegend Position="LegendPosition.Bottom" />
+            </RadzenChart>
+        </div>
+    }
+
+    <h5>Wyniki testów</h5>
+
+    <div class="row g-2 mb-2">
+        <div class="col-auto">
+            <select class="form-select form-select-sm" @bind="filterCategory">
+                <option value="">Wszystkie kategorie</option>
+                @foreach (var cat in availableCategories)
+                {
+                    <option value="@cat">@cat</option>
+                }
+            </select>
+        </div>
+        <div class="col-auto">
+            <select class="form-select form-select-sm" @bind="filterStatus">
+                <option value="">Wszystkie</option>
+                <option value="pass">Zdane</option>
+                <option value="fail">Niezdane</option>
+            </select>
+        </div>
+        <div class="col-auto align-self-center">
+            <small class="text-muted">@FilteredTests.Count() wyników</small>
+        </div>
+    </div>
+
+    <table class="table table-sm table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Test</th>
+                <th>Kategoria</th>
+                <th>Wynik</th>
+                <th>Czas</th>
+                <th>Typ błędu</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var test in FilteredTests)
+            {
+                <tr>
+                    <td>
+                        <div class="fw-medium">@test.Name</div>
+                        @if (!string.IsNullOrEmpty(test.Description))
+                        {
+                            <div class="text-muted small">@test.Description</div>
+                        }
+                        @if (!test.Passed && !string.IsNullOrEmpty(test.Error))
+                        {
+                            <details class="mt-1" open="@(test.FailureCategory == null)">
+                                <summary class="text-danger small" style="cursor:pointer">Błąd</summary>
+                                <pre class="text-danger mt-1" style="font-size:0.72rem;white-space:pre-wrap;max-height:150px;overflow-y:auto">@test.Error</pre>
+                            </details>
+                        }
+                    </td>
+                    <td><span class="badge bg-secondary">@test.Category</span></td>
+                    <td>
+                        @if (test.Passed)
+                        {
+                            <span class="badge bg-success">PASS</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">FAIL</span>
+                        }
+                    </td>
+                    <td><small class="text-muted">@test.Duration</small></td>
+                    <td>
+                        @if (!test.Passed)
+                        {
+                            <select class="form-select form-select-sm"
+                                    value="@(test.FailureCategory?.ToString() ?? "")"
+                                    @onchange="e => OnCategoryChange(test, e.Value?.ToString())">
+                                <option value="">— wybierz —</option>
+                                @foreach (var opt in FailureCategoryHelper.AllOptions)
+                                {
+                                    <option value="@opt.Value.ToString()">@opt.Label</option>
+                                }
+                            </select>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private DatabaseInfo? database;
+    private List<CategoryStats>? categoryStats;
+    private List<TestResultInfo>? testResults;
+    private string filterCategory = "";
+    private string filterStatus = "";
+
+    private IEnumerable<string> availableCategories =>
+        testResults?.Select(t => t.Category).Distinct().OrderBy(c => c) ?? Enumerable.Empty<string>();
+
+    private IEnumerable<TestResultInfo> FilteredTests =>
+        (testResults ?? new List<TestResultInfo>())
+        .Where(t => string.IsNullOrEmpty(filterCategory) || t.Category == filterCategory)
+        .Where(t => filterStatus switch
+        {
+            "pass" => t.Passed,
+            "fail" => !t.Passed,
+            _ => true
+        });
+
+    protected override void OnInitialized()
+    {
+        database = TestDataService.GetDatabase(Id);
+        testResults = TestDataService.GetTestResultsForDatabase(Id);
+        categoryStats = TestDataService.GetCategoryStatsForDatabase(Id)
+            .Values.OrderBy(c => c.Category).ToList();
+    }
+
+    private void OnCategoryChange(TestResultInfo test, string? value)
+    {
+        test.FailureCategory = string.IsNullOrEmpty(value)
+            ? null
+            : Enum.TryParse<FailureCategory>(value, out var parsed) ? parsed : null;
+        TestDataService.UpdateFailureCategory(test.Id, test.FailureCategory);
+    }
+
+    private static decimal PassPct(decimal? result) => (result ?? 0) * 100;
+
+    private static string ResultClass(decimal? result) => (result ?? 0) switch
+    {
+        >= 0.9m => "text-success",
+        >= 0.6m => "text-warning",
+        _ => "text-danger"
+    };
+}
