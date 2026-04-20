@@ -1,0 +1,203 @@
+@page "/"
+
+<PageTitle>NSCI Dashboard</PageTitle>
+
+@inject TestDataService TestDataService
+
+<h2 class="mb-3">Bazy danych</h2>
+
+@if (databases == null)
+{
+    <p class="text-muted">Ładowanie...</p>
+}
+else if (databases.Count == 0)
+{
+    <div class="alert alert-info">Brak wyników w bazie danych.</div>
+}
+else
+{
+    <div class="row g-2 mb-3 align-items-center">
+        <div class="col-auto">
+            <RadzenDropDown @bind-Value="selectedProduct"
+                            Data="@productOptions"
+                            AllowClear="true"
+                            Placeholder="Produkt"
+                            Style="min-width:140px" />
+        </div>
+        <div class="col-auto">
+            <RadzenDropDown @bind-Value="selectedType"
+                            Data="@typeOptions"
+                            AllowClear="true"
+                            Placeholder="Typ"
+                            Style="min-width:120px" />
+        </div>
+        <div class="col-auto">
+            <RadzenTextBox @bind-Value="nameSearch" Placeholder="Szukaj nazwy…" Style="min-width:200px" />
+        </div>
+        @if (selectedProduct != null || selectedType != null || !string.IsNullOrEmpty(nameSearch))
+        {
+            <div class="col-auto">
+                <RadzenButton Text="Wyczyść" ButtonStyle="ButtonStyle.Light" Size="ButtonSize.Small"
+                              Click="@ClearFilters" />
+            </div>
+        }
+        <div class="col-auto ms-auto">
+            <small class="text-muted">@DisplayData.Count() wyników</small>
+        </div>
+    </div>
+
+    <RadzenDataGrid Data="@DisplayData"
+                    TItem="DatabaseInfo"
+                    AllowSorting="false"
+                    AllowFiltering="false"
+                    AllowColumnResize="true"
+                    Density="Density.Compact"
+                    GridLines="DataGridGridLines.Horizontal"
+                    Style="width:100%">
+        <Columns>
+
+            <RadzenDataGridColumn TItem="DatabaseInfo" Property="Name" Title="Nazwa" MinWidth="160px">
+                <Template Context="db">
+                    <a href="/database/@db.Id">@db.Name</a>
+                </Template>
+            </RadzenDataGridColumn>
+
+            <RadzenDataGridColumn TItem="DatabaseInfo" Property="Product" Title="Produkt" Width="130px">
+                <Template Context="db">@(db.Product ?? "-")</Template>
+            </RadzenDataGridColumn>
+
+            <RadzenDataGridColumn TItem="DatabaseInfo" Property="Version" Width="110px">
+                <HeaderTemplate>
+                    <span @onclick="SortByVersion" style="cursor:pointer; user-select:none">
+                        Wersja @SortIcon("Version")
+                    </span>
+                </HeaderTemplate>
+                <Template Context="db">@(db.Version ?? "-")</Template>
+            </RadzenDataGridColumn>
+
+            <RadzenDataGridColumn TItem="DatabaseInfo" Property="Type" Title="Typ" Width="120px">
+                <Template Context="db">
+                    <span class="badge bg-secondary">@db.Type</span>
+                </Template>
+            </RadzenDataGridColumn>
+
+            <RadzenDataGridColumn TItem="DatabaseInfo" Property="Result" Width="190px">
+                <HeaderTemplate>
+                    <span @onclick="SortByResult" style="cursor:pointer; user-select:none">
+                        Wynik @SortIcon("Result")
+                    </span>
+                </HeaderTemplate>
+                <Template Context="db">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="progress flex-grow-1" style="height:6px">
+                            <div class="progress-bar @PassClass(db.Result)"
+                                 style="width:@PassPct(db.Result).ToString("F0")%"></div>
+                        </div>
+                        <small class="text-nowrap">@PassPct(db.Result).ToString("F1")%</small>
+                    </div>
+                </Template>
+            </RadzenDataGridColumn>
+
+            <RadzenDataGridColumn TItem="DatabaseInfo" Property="PassedTests" Title="Zdane" Width="80px" TextAlign="TextAlign.Right">
+                <Template Context="db"><span class="text-success">@db.PassedTests</span></Template>
+            </RadzenDataGridColumn>
+
+            <RadzenDataGridColumn TItem="DatabaseInfo" Property="FailedTests" Title="Niezdane" Width="90px" TextAlign="TextAlign.Right">
+                <Template Context="db"><span class="text-danger">@db.FailedTests</span></Template>
+            </RadzenDataGridColumn>
+
+            <RadzenDataGridColumn TItem="DatabaseInfo" Property="TotalTests" Title="Łącznie" Width="80px" TextAlign="TextAlign.Right" />
+
+        </Columns>
+    </RadzenDataGrid>
+}
+
+@code {
+    private List<DatabaseInfo>? databases;
+
+    // Filters
+    private string? selectedProduct;
+    private string? selectedType;
+    private string nameSearch = "";
+
+    // Sort state
+    private string sortColumn = "";
+    private bool sortAsc = true;
+
+    private IEnumerable<string> productOptions =>
+        databases?.Select(d => d.Product ?? "-").Distinct().OrderBy(p => p)
+        ?? Enumerable.Empty<string>();
+
+    private IEnumerable<string> typeOptions =>
+        databases?.Select(d => d.Type).Distinct().OrderBy(t => t)
+        ?? Enumerable.Empty<string>();
+
+    private IEnumerable<DatabaseInfo> DisplayData
+    {
+        get
+        {
+            IEnumerable<DatabaseInfo> data = databases ?? [];
+
+            if (selectedProduct != null)
+                data = data.Where(d => (d.Product ?? "-") == selectedProduct);
+            if (selectedType != null)
+                data = data.Where(d => d.Type == selectedType);
+            if (!string.IsNullOrWhiteSpace(nameSearch))
+                data = data.Where(d => d.Name.Contains(nameSearch, StringComparison.OrdinalIgnoreCase));
+
+            data = sortColumn switch
+            {
+                "Version" => sortAsc
+                    ? data.OrderBy(d => ParseVersion(d.Version))
+                    : data.OrderByDescending(d => ParseVersion(d.Version)),
+                "Result" => sortAsc
+                    ? data.OrderBy(d => d.Result ?? 0)
+                    : data.OrderByDescending(d => d.Result ?? 0),
+                _ => data
+            };
+
+            return data;
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        databases = TestDataService.GetAllDatabases();
+    }
+
+    private void SortByVersion() => ToggleSort("Version");
+    private void SortByResult() => ToggleSort("Result");
+
+    private void ToggleSort(string column)
+    {
+        if (sortColumn == column)
+            sortAsc = !sortAsc;
+        else
+        {
+            sortColumn = column;
+            sortAsc = true;
+        }
+    }
+
+    private void ClearFilters()
+    {
+        selectedProduct = null;
+        selectedType = null;
+        nameSearch = "";
+    }
+
+    private string SortIcon(string col) =>
+        sortColumn == col ? (sortAsc ? " ↑" : " ↓") : " ⇅";
+
+    private static System.Version ParseVersion(string? v) =>
+        System.Version.TryParse(v, out var ver) ? ver : new System.Version(0, 0);
+
+    private static decimal PassPct(decimal? result) => (result ?? 0) * 100;
+
+    private static string PassClass(decimal? result) => (result ?? 0) switch
+    {
+        >= 0.9m => "bg-success",
+        >= 0.6m => "bg-warning",
+        _ => "bg-danger"
+    };
+}
