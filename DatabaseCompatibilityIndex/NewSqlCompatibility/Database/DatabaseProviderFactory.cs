@@ -4,13 +4,13 @@ namespace NSCI.Database;
 
 public static class DatabaseProviderFactory
 {
-    public static IDatabaseProvider Create(DatabaseType databaseType, string? product)
+    public static IDatabaseProvider Create(DatabaseConfiguration configuration)
     {
-        return databaseType switch
+        return configuration.Type switch
         {
             DatabaseType.MySql => new MySqlDatabaseProvider(),
-            DatabaseType.PostgreSql => new PostgreSqlDatabaseProvider(product),
-            _ => throw new ArgumentException($"Unknown database type: {databaseType}")
+            DatabaseType.PostgreSql => new PostgreSqlDatabaseProvider(configuration),
+            _ => throw new ArgumentException($"Unknown database type: {configuration.Type}")
         };
     }
 }

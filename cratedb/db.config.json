@@ -2,14 +2,14 @@
   "name": "CrateDB",
   "startupType": "docker-compose",
   "databaseType": "PostgreSql",
-  "enabled": true,
+  "enabled": false,
   "instances": [
     {
       "id": "cratedb-v3",
       "displayName": "CrateDB 3",
       "version": "3.3.5",
       "releaseYear": 2021,
-      "enabled": false,
+      "enabled": true,
       "connectionString": "Host=localhost;Port=5480;Username=crate;Include Error Detail=true",
       "healthCheck": {
         "host": "localhost",
@@ -21,7 +21,7 @@
       "displayName": "CrateDB 4",
       "version": "4.8.4",
       "releaseYear": 2022,
-      "enabled": false,
+      "enabled": true,
       "connectionString": "Host=localhost;Port=5481;Username=crate;Include Error Detail=true",
       "healthCheck": {
         "host": "localhost",
@@ -45,7 +45,7 @@
       "displayName": "CrateDB 6",
       "version": "6.2.4",
       "releaseYear": 2026,
-      "enabled": false,
+      "enabled": true,
       "connectionString": "Host=localhost;Port=5483;Username=crate;Include Error Detail=true",
       "healthCheck": {
         "host": "localhost",

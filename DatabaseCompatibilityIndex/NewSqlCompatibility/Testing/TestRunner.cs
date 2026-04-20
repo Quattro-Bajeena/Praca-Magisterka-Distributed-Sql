@@ -9,7 +9,7 @@ namespace NSCI.Testing;
 public class TestRunner
 {
     private readonly DatabaseConfiguration _config;
-    private string _testDatabaseName = "";
+    private string _testDatabaseName = null!;
     private readonly ConsoleReporter _consoleReporter;
     private readonly IDatabaseProvider _databaseProvider;
 
@@ -17,17 +17,23 @@ public class TestRunner
     {
         _config = config;
         _consoleReporter = consoleReporter;
-        _databaseProvider = DatabaseProviderFactory.Create(_config.Type, _config.Product);
+        _databaseProvider = DatabaseProviderFactory.Create(_config);
     }
 
     public List<TestResult>? RunAllTests(List<(Type Type, SqlTestAttribute Attribute)> discoveredTests)
     {
         List<TestResult> results = new List<TestResult>();
-        _testDatabaseName = CreateTestDatabase();
-        if (_testDatabaseName == null)
+        string? name = CreateTestDatabase();
+
+        if (name == null)
         {
             return null;
         }
+        else
+        {
+            _testDatabaseName = name;
+        }
+
         _config.DatabaseName = _testDatabaseName;
 
         foreach ((Type testType, SqlTestAttribute attribute) in discoveredTests)
@@ -106,7 +112,14 @@ public class TestRunner
                 {
                     try
                     {
-                        testInstance.Cleanup(connection);
+                        if (connection.State == System.Data.ConnectionState.Open)
+                        {
+                            testInstance.Cleanup(connection);
+                        }
+                        else
+                        {
+                            Console.WriteLine($"! Connection was closed before cleanup for test {testName}");
+                        }
                     }
                     catch (Exception cleanupEx)
                     {

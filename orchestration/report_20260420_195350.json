@@ -1,0 +1,2733 @@
+{
+  "generatedAt": "2026-04-20T19:53:50.6920711+02:00",
+  "reports": {
+    "CrateDB 5": {
+      "generatedAt": "2026-04-20T17:53:50.6993525Z",
+      "databaseType": "PostgreSql",
+      "configurationName": "CrateDB 5",
+      "databaseName": "test_2026-04-20T19:52:32",
+      "connectionString": "Host=localhost;Port=5482;Username=crate;Include Error Detail=true",
+      "summary": {
+        "total": 137,
+        "passed": 15,
+        "failed": 122
+      },
+      "resultsByCategory": {
+        "BasicQueries": {
+          "total": 10,
+          "passed": 4,
+          "tests": [
+            {
+              "name": "CreateDropTableTest",
+              "className": "NSCI.Tests.BasicQueries.CreateDropTableTest",
+              "category": "BasicQueries",
+              "description": "Create and drop simple table",
+              "passed": true,
+              "duration": "00:00:00.661"
+            },
+            {
+              "name": "CreateTableAsSelectTest",
+              "className": "NSCI.Tests.BasicQueries.CreateTableAsSelectTest",
+              "category": "BasicQueries",
+              "description": "Test CREATE TABLE AS SELECT ",
+              "passed": false,
+              "duration": "00:00:00.934",
+              "error": "Assertion: New table should have 2 rows (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "DeleteTest",
+              "className": "NSCI.Tests.BasicQueries.DeleteTest",
+              "category": "BasicQueries",
+              "description": "DELETE operation",
+              "passed": false,
+              "duration": "00:00:00.516",
+              "error": "Assertion: Should have 2 records left (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "InsertSelectTest",
+              "className": "NSCI.Tests.BasicQueries.InsertSelectTest",
+              "category": "BasicQueries",
+              "description": "INSERT and SELECT data",
+              "passed": false,
+              "duration": "00:00:00.013",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresCopyCommandTest",
+              "className": "NSCI.Tests.BasicQueries.PostgresCopyCommandTest",
+              "category": "BasicQueries",
+              "description": "Test PostgreSQL COPY command for bulk data",
+              "passed": false,
+              "duration": "00:00:00.498",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE TEMP\u0027"
+            },
+            {
+              "name": "PostgresCopyFromStdinTest",
+              "className": "NSCI.Tests.BasicQueries.PostgresCopyFromStdinTest",
+              "category": "BasicQueries",
+              "description": "Bulk insert rows using COPY FROM STDIN with CSV format",
+              "passed": false,
+              "duration": "00:00:00.458",
+              "error": "PostgresException: XX000: line 1:58: extraneous input \u0027CSV\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            },
+            {
+              "name": "SelectConstantTest",
+              "className": "NSCI.Tests.BasicQueries.SelectConstantTest",
+              "category": "BasicQueries",
+              "description": "SELECT constant value 1",
+              "passed": true,
+              "duration": "00:00:00.028"
+            },
+            {
+              "name": "SelectNowTest",
+              "className": "NSCI.Tests.BasicQueries.SelectNowTest",
+              "category": "BasicQueries",
+              "description": "SELECT current timestamp",
+              "passed": true,
+              "duration": "00:00:00.009"
+            },
+            {
+              "name": "TruncateTest",
+              "className": "NSCI.Tests.BasicQueries.TruncateTest",
+              "category": "BasicQueries",
+              "description": "TRUNCATE table operation",
+              "passed": false,
+              "duration": "00:00:00.468",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027TRUNCATE\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "UpdateTest",
+              "className": "NSCI.Tests.BasicQueries.UpdateTest",
+              "category": "BasicQueries",
+              "description": "UPDATE operation",
+              "passed": true,
+              "duration": "00:00:00.587"
+            }
+          ]
+        },
+        "DataTypes": {
+          "total": 9,
+          "passed": 3,
+          "tests": [
+            {
+              "name": "BigIntTypeTest",
+              "className": "NSCI.Tests.DataTypes.BigIntTypeTest",
+              "category": "DataTypes",
+              "description": "Test BIGINT data type",
+              "passed": false,
+              "duration": "00:00:00.410",
+              "error": "PostgresException: XX000: Cannot cast \u0060-9223372036854775808\u0060 of type \u0060numeric(19,0)\u0060 to type \u0060bigint\u0060"
+            },
+            {
+              "name": "BooleanTypeTest",
+              "className": "NSCI.Tests.DataTypes.BooleanTypeTest",
+              "category": "DataTypes",
+              "description": "Test BOOLEAN type (TINYINT)",
+              "passed": false,
+              "duration": "00:00:00.452",
+              "error": "Assertion: BOOLEAN filtering should work (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "DateTimeTypeTest",
+              "className": "NSCI.Tests.DataTypes.DateTimeTypeTest",
+              "category": "DataTypes",
+              "description": "Test DATETIME type",
+              "passed": false,
+              "duration": "00:00:00.506",
+              "error": "Assertion: TIMESTAMP values should be stored (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "DateTypeTest",
+              "className": "NSCI.Tests.DataTypes.DateTypeTest",
+              "category": "DataTypes",
+              "description": "Test DATE type",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: Type \u0060date\u0060 does not support storage"
+            },
+            {
+              "name": "DecimalPrecisionTest",
+              "className": "NSCI.Tests.DataTypes.DecimalPrecisionTest",
+              "category": "DataTypes",
+              "description": "Test DECIMAL precision (10,4)",
+              "passed": true,
+              "duration": "00:00:00.761"
+            },
+            {
+              "name": "IntTypeTest",
+              "className": "NSCI.Tests.DataTypes.IntTypeTest",
+              "category": "DataTypes",
+              "description": "Test INT data type",
+              "passed": false,
+              "duration": "00:00:00.421",
+              "error": "Assertion: Should have 3 INT values (expected \u00273\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "JsonTypeTest",
+              "className": "NSCI.Tests.DataTypes.JsonTypeTest",
+              "category": "DataTypes",
+              "description": "Test JSON data type",
+              "passed": false,
+              "duration": "00:00:00.007",
+              "error": "PostgresException: XX000: Cannot find data type: jsonb"
+            },
+            {
+              "name": "TextTypeTest",
+              "className": "NSCI.Tests.DataTypes.TextTypeTest",
+              "category": "DataTypes",
+              "description": "Test TEXT type for large strings",
+              "passed": true,
+              "duration": "00:00:00.537"
+            },
+            {
+              "name": "VarcharTypeTest",
+              "className": "NSCI.Tests.DataTypes.VarcharTypeTest",
+              "category": "DataTypes",
+              "description": "Test VARCHAR length and storage",
+              "passed": true,
+              "duration": "00:00:00.511"
+            }
+          ]
+        },
+        "Constraints": {
+          "total": 7,
+          "passed": 4,
+          "tests": [
+            {
+              "name": "AutoIncrementTest",
+              "className": "NSCI.Tests.Constraints.AutoIncrementTest",
+              "category": "Constraints",
+              "description": "Test AUTO_INCREMENT",
+              "passed": false,
+              "duration": "00:00:00.009",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "CheckConstraintTest",
+              "className": "NSCI.Tests.Constraints.CheckConstraintTest",
+              "category": "Constraints",
+              "description": "Test CHECK constraint (if supported)",
+              "passed": true,
+              "duration": "00:00:00.482"
+            },
+            {
+              "name": "DefaultValueTest",
+              "className": "NSCI.Tests.Constraints.DefaultValueTest",
+              "category": "Constraints",
+              "description": "Test DEFAULT value",
+              "passed": true,
+              "duration": "00:00:00.573"
+            },
+            {
+              "name": "ForeignKeyTest",
+              "className": "NSCI.Tests.Constraints.ForeignKeyTest",
+              "category": "Constraints",
+              "description": "Test FOREIGN KEY constraint",
+              "passed": false,
+              "duration": "00:00:00.415",
+              "error": "PostgresException: XX000: line 1:75: mismatched input \u0027parent_id\u0027 expecting INTEGER_VALUE"
+            },
+            {
+              "name": "NotNullConstraintTest",
+              "className": "NSCI.Tests.Constraints.NotNullConstraintTest",
+              "category": "Constraints",
+              "description": "Test NOT NULL constraint",
+              "passed": true,
+              "duration": "00:00:00.415"
+            },
+            {
+              "name": "PrimaryKeyTest",
+              "className": "NSCI.Tests.Constraints.PrimaryKeyTest",
+              "category": "Constraints",
+              "description": "Test PRIMARY KEY constraint",
+              "passed": true,
+              "duration": "00:00:00.527"
+            },
+            {
+              "name": "UniqueConstraintTest",
+              "className": "NSCI.Tests.Constraints.UniqueConstraintTest",
+              "category": "Constraints",
+              "description": "Test UNIQUE constraint",
+              "passed": false,
+              "duration": "00:00:00.007",
+              "error": "PostgresException: XX000: line 1:66: extraneous input \u0027UNIQUE\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            }
+          ]
+        },
+        "Transactions": {
+          "total": 17,
+          "passed": 2,
+          "tests": [
+            {
+              "name": "BasicTransactionCommitTest",
+              "className": "NSCI.Tests.Transactions.BasicTransactionCommitTest",
+              "category": "Transactions",
+              "description": "Test basic transaction COMMIT",
+              "passed": false,
+              "duration": "00:00:00.430",
+              "error": "Assertion: Transaction should be committed (expected \u00271\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "LockingBehaviorDifferenceTest",
+              "className": "NSCI.Tests.IsolationLevels.LockingBehaviorDifferenceTest",
+              "category": "Transactions",
+              "description": "Test locking difference between REPEATABLE READ and READ COMMITTED",
+              "passed": false,
+              "duration": "00:00:00.572",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "MultipleStatementsTransactionTest",
+              "className": "NSCI.Tests.Transactions.MultipleStatementsTransactionTest",
+              "category": "Transactions",
+              "description": "Test multiple statements in transaction",
+              "passed": false,
+              "duration": "00:00:00.465",
+              "error": "Assertion: Should have 2 rows after all operations (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "PostgresAdvisoryLocksTest",
+              "className": "NSCI.Tests.Transactions.PostgresAdvisoryLocksTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL advisory locks",
+              "passed": false,
+              "duration": "00:00:00.013",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "PostgresDeferredConstraintsTest",
+              "className": "NSCI.Tests.Transactions.PostgresDeferredConstraintsTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL deferred constraints",
+              "passed": false,
+              "duration": "00:00:00.468",
+              "error": "PostgresException: XX000: line 4:50: no viable alternative at input \u0027CONSTRAINT fk_parent FOREIGN\u0027"
+            },
+            {
+              "name": "PostgresNestedSavepointsTest",
+              "className": "NSCI.Tests.Transactions.PostgresNestedSavepointsTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL subtransactions with nested savepoints",
+              "passed": false,
+              "duration": "00:00:00.503",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027SAVEPOINT\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "PostgresSerializableIsolationTest",
+              "className": "NSCI.Tests.Transactions.PostgresSerializableIsolationTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL Serializable Snapshot Isolation",
+              "passed": false,
+              "duration": "00:00:00.549",
+              "error": "Assertion: Should have 2 accounts (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "PostgresTransactionControlTest",
+              "className": "NSCI.Tests.Transactions.PostgresTransactionControlTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL transaction control commands",
+              "passed": false,
+              "duration": "00:00:00.541",
+              "error": "Assertion: Assertion failed: READ ONLY transaction should block writes"
+            },
+            {
+              "name": "ReadCommittedLockReleaseTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedLockReleaseTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED releases non-matching row locks",
+              "passed": false,
+              "duration": "00:00:00.555",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "ReadCommittedNonRepeatableTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedNonRepeatableTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED allows non-repeatable reads",
+              "passed": true,
+              "duration": "00:00:00.611"
+            },
+            {
+              "name": "ReadCommittedPhantomTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedPhantomTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED allows phantom reads",
+              "passed": false,
+              "duration": "00:00:00.597",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "ReadUncommittedDirtyReadTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadUncommittedDirtyReadTest",
+              "category": "Transactions",
+              "description": "Test READ UNCOMMITTED allows dirty reads",
+              "passed": false,
+              "duration": "00:00:00.706",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "RepeatableReadPhantomPreventionTest",
+              "className": "NSCI.Tests.IsolationLevels.RepeatableReadPhantomPreventionTest",
+              "category": "Transactions",
+              "description": "Test REPEATABLE READ prevents phantom reads in range",
+              "passed": false,
+              "duration": "00:00:00.479",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "RepeatableReadSnapshotTest",
+              "className": "NSCI.Tests.IsolationLevels.RepeatableReadSnapshotTest",
+              "category": "Transactions",
+              "description": "Test REPEATABLE READ snapshot consistency",
+              "passed": false,
+              "duration": "00:00:00.313",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "SavePointTest",
+              "className": "NSCI.Tests.Transactions.SavePointTest",
+              "category": "Transactions",
+              "description": "Test SAVEPOINT",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "PostgresException: 42P07: Relation \u0027test_2026-04-20T19:52:32.savepoint_test\u0027 already exists."
+            },
+            {
+              "name": "TransactionIsolationReadCommittedTest",
+              "className": "NSCI.Tests.Transactions.TransactionIsolationReadCommittedTest",
+              "category": "Transactions",
+              "description": "Test transaction isolation READ_COMMITTED",
+              "passed": true,
+              "duration": "00:00:00.259"
+            },
+            {
+              "name": "TransactionRollbackTest",
+              "className": "NSCI.Tests.Transactions.TransactionRollbackTest",
+              "category": "Transactions",
+              "description": "Test transaction ROLLBACK",
+              "passed": false,
+              "duration": "00:00:00.239",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            }
+          ]
+        },
+        "Joins": {
+          "total": 6,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "CrossJoinTest",
+              "className": "NSCI.Tests.Joins.CrossJoinTest",
+              "category": "Joins",
+              "description": "Test CROSS JOIN",
+              "passed": false,
+              "duration": "00:00:00.447",
+              "error": "Assertion: CROSS JOIN should return 3x3=9 combinations (expected \u00279\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "InnerJoinTest",
+              "className": "NSCI.Tests.Joins.InnerJoinTest",
+              "category": "Joins",
+              "description": "Test INNER JOIN",
+              "passed": false,
+              "duration": "00:00:00.491",
+              "error": "Assertion: INNER JOIN should return 2 books for Author A (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "LeftJoinTest",
+              "className": "NSCI.Tests.Joins.LeftJoinTest",
+              "category": "Joins",
+              "description": "Test LEFT JOIN",
+              "passed": true,
+              "duration": "00:00:00.551"
+            },
+            {
+              "name": "MultipleJoinTest",
+              "className": "NSCI.Tests.Joins.MultipleJoinTest",
+              "category": "Joins",
+              "description": "Test multiple table JOIN",
+              "passed": false,
+              "duration": "00:00:00.655",
+              "error": "Assertion: Multiple JOINs should work correctly (expected \u00273\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "RightJoinTest",
+              "className": "NSCI.Tests.Joins.RightJoinTest",
+              "category": "Joins",
+              "description": "Test RIGHT JOIN (if supported)",
+              "passed": false,
+              "duration": "00:00:00.585",
+              "error": "Assertion: RIGHT JOIN should work correctly (expected \u00273\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "SelfJoinTest",
+              "className": "NSCI.Tests.Joins.SelfJoinTest",
+              "category": "Joins",
+              "description": "Test SELF JOIN",
+              "passed": false,
+              "duration": "00:00:00.259",
+              "error": "Assertion: SELF JOIN should find all manager-employee relationships (expected \u00273\u0027 but got \u00270\u0027)"
+            }
+          ]
+        },
+        "Aggregations": {
+          "total": 8,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "AggregateNullTest",
+              "className": "NSCI.Tests.Aggregations.AggregateNullTest",
+              "category": "Aggregations",
+              "description": "Test aggregate with NULL values",
+              "passed": false,
+              "duration": "00:00:00.224",
+              "error": "Assertion: COUNT(*) should count all rows including NULLs (expected \u00275\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "AvgAggregateTest",
+              "className": "NSCI.Tests.Aggregations.AvgAggregateTest",
+              "category": "Aggregations",
+              "description": "Test AVG aggregate function",
+              "passed": false,
+              "duration": "00:00:00.231",
+              "error": "InvalidCastException: Object cannot be cast from DBNull to other types."
+            },
+            {
+              "name": "CountAggregateTest",
+              "className": "NSCI.Tests.Aggregations.CountAggregateTest",
+              "category": "Aggregations",
+              "description": "Test COUNT aggregate function",
+              "passed": false,
+              "duration": "00:00:00.241",
+              "error": "Assertion: COUNT should return 4 (expected \u00274\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "DistinctTest",
+              "className": "NSCI.Tests.Aggregations.DistinctTest",
+              "category": "Aggregations",
+              "description": "Test DISTINCT",
+              "passed": false,
+              "duration": "00:00:00.220",
+              "error": "Assertion: DISTINCT should count 3 unique categories (expected \u00273\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "GroupByTest",
+              "className": "NSCI.Tests.Aggregations.GroupByTest",
+              "category": "Aggregations",
+              "description": "Test GROUP BY clause",
+              "passed": false,
+              "duration": "00:00:00.229",
+              "error": "Assertion: GROUP BY should work with subquery (expected \u00273\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "HavingClauseTest",
+              "className": "NSCI.Tests.Aggregations.HavingClauseTest",
+              "category": "Aggregations",
+              "description": "Test HAVING clause with GROUP BY",
+              "passed": false,
+              "duration": "00:00:00.223",
+              "error": "Assertion: HAVING clause should filter grouped results (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "MinMaxAggregateTest",
+              "className": "NSCI.Tests.Aggregations.MinMaxAggregateTest",
+              "category": "Aggregations",
+              "description": "Test MIN and MAX aggregate functions",
+              "passed": false,
+              "duration": "00:00:00.217",
+              "error": "InvalidCastException: Object cannot be cast from DBNull to other types."
+            },
+            {
+              "name": "SumAggregateTest",
+              "className": "NSCI.Tests.Aggregations.SumAggregateTest",
+              "category": "Aggregations",
+              "description": "Test SUM aggregate function",
+              "passed": false,
+              "duration": "00:00:00.222",
+              "error": "InvalidCastException: Object cannot be cast from DBNull to other types."
+            }
+          ]
+        },
+        "Subqueries": {
+          "total": 8,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "CorrelatedSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.CorrelatedSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test correlated subquery",
+              "passed": false,
+              "duration": "00:00:00.438",
+              "error": "Assertion: Correlated subquery should find 2 above-average salary employees (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "ExistsSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.ExistsSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test EXISTS subquery",
+              "passed": false,
+              "duration": "00:00:00.442",
+              "error": "Assertion: EXISTS subquery should find 2 customers with orders (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "InSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.InSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test IN subquery",
+              "passed": false,
+              "duration": "00:00:00.449",
+              "error": "Assertion: IN subquery should return 3 products (expected \u00273\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "NotExistsSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.NotExistsSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test NOT EXISTS subquery",
+              "passed": false,
+              "duration": "00:00:00.463",
+              "error": "Assertion: NOT EXISTS subquery should find 1 parent without children (expected \u00271\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "NotInSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.NotInSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test NOT IN subquery",
+              "passed": false,
+              "duration": "00:00:00.445",
+              "error": "Assertion: NOT IN subquery should return 2 records (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "PostgresScalarSubqueryOperatorsTest",
+              "className": "NSCI.Tests.Subqueries.PostgresScalarSubqueryOperatorsTest",
+              "category": "Subqueries",
+              "description": "Test PostgreSQL scalar subquery operators (ALL, ANY, SOME)",
+              "passed": false,
+              "duration": "00:00:00.008",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "ScalarSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.ScalarSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test scalar subquery",
+              "passed": false,
+              "duration": "00:00:00.244",
+              "error": "Assertion: Scalar subquery should return 1 row (expected \u00271\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "SubqueryFromClauseTest",
+              "className": "NSCI.Tests.Subqueries.SubqueryFromClauseTest",
+              "category": "Subqueries",
+              "description": "Test subquery in FROM clause",
+              "passed": false,
+              "duration": "00:00:00.271",
+              "error": "Assertion: Subquery in FROM clause should work (expected \u00272\u0027 but got \u00270\u0027)"
+            }
+          ]
+        },
+        "Indexes": {
+          "total": 8,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "CompositeIndexTest",
+              "className": "NSCI.Tests.Indexes.CompositeIndexTest",
+              "category": "Indexes",
+              "description": "Test composite INDEX",
+              "passed": false,
+              "duration": "00:00:00.203",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE INDEX\u0027"
+            },
+            {
+              "name": "CreateIndexTest",
+              "className": "NSCI.Tests.Indexes.CreateIndexTest",
+              "category": "Indexes",
+              "description": "Test CREATE INDEX",
+              "passed": false,
+              "duration": "00:00:00.241",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE INDEX\u0027"
+            },
+            {
+              "name": "DescendingIndexTest",
+              "className": "NSCI.Tests.Indexes.DescendingIndexTest",
+              "category": "Indexes",
+              "description": "Test Descending Index ",
+              "passed": false,
+              "duration": "00:00:00.347",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE INDEX\u0027"
+            },
+            {
+              "name": "PostgresExpressionIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresExpressionIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL expression indexes",
+              "passed": false,
+              "duration": "00:00:00.027",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresIncludeIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresIncludeIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL INCLUDE columns in indexes",
+              "passed": false,
+              "duration": "00:00:00.034",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresPartialIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresPartialIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL partial indexes",
+              "passed": false,
+              "duration": "00:00:00.036",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresReindexTest",
+              "className": "NSCI.Tests.Indexes.PostgresReindexTest",
+              "category": "Indexes",
+              "description": "Test REINDEX rebuilds index structures while preserving query correctness",
+              "passed": false,
+              "duration": "00:00:00.027",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "UniqueIndexTest",
+              "className": "NSCI.Tests.Indexes.UniqueIndexTest",
+              "category": "Indexes",
+              "description": "Test UNIQUE INDEX",
+              "passed": false,
+              "duration": "00:00:00.301",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE UNIQUE\u0027"
+            }
+          ]
+        },
+        "Views": {
+          "total": 7,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresMaterializedViewTest",
+              "className": "NSCI.Tests.Views.PostgresMaterializedViewTest",
+              "category": "Views",
+              "description": "Test PostgreSQL materialized views",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresRecursiveViewTest",
+              "className": "NSCI.Tests.Views.PostgresRecursiveViewTest",
+              "category": "Views",
+              "description": "Test PostgreSQL recursive views",
+              "passed": false,
+              "duration": "00:00:00.266",
+              "error": "PostgresException: XX000: line 2:33: extraneous input \u0027RECURSIVE\u0027 expecting {\u0027AUTHORIZATION\u0027, \u0027TO\u0027, \u0027AT\u0027, \u0027DEALLOCATE\u0027, \u0027ILIKE\u0027, \u0027IGNORE\u0027, \u0027RESPECT\u0027, \u0027FETCH\u0027, \u0027NEXT\u0027, \u0027SUBSTRING\u0027, \u0027POSITION\u0027, \u0027TRIM\u0027, \u0027LEADING\u0027, \u0027TRAILING\u0027, \u0027BOTH\u0027, \u0027TIME\u0027, \u0027ZONE\u0027, \u0027YEAR\u0027, \u0027MONTH\u0027, \u0027DAY\u0027, \u0027HOUR\u0027, \u0027MINUTE\u0027, \u0027SECOND\u0027, \u0027MILLISECOND\u0027, \u0027CURRENT_DATE\u0027, \u0027CURRENT_TIME\u0027, \u0027CURRENT_TIMESTAMP\u0027, \u0027CURRENT_SCHEMA\u0027, \u0027INTERVAL\u0027, \u0027OVER\u0027, \u0027WINDOW\u0027, \u0027PARTITION\u0027, \u0027PROMOTE\u0027, \u0027RANGE\u0027, \u0027ROWS\u0027, \u0027PRECEDING\u0027, \u0027FOLLOWING\u0027, \u0027CURRENT\u0027, \u0027ROW\u0027, \u0027WITHOUT\u0027, \u0027BLOB\u0027, \u0027SWAP\u0027, \u0027GC\u0027, \u0027DANGLING\u0027, \u0027ARTIFACTS\u0027, \u0027DECOMMISSION\u0027, \u0027CLUSTER\u0027, \u0027REPOSITORY\u0027, \u0027SNAPSHOT\u0027, \u0027KILL\u0027, \u0027ONLY\u0027, \u0027OPEN\u0027, \u0027CLOSE\u0027, \u0027RENAME\u0027, \u0027REROUTE\u0027, \u0027MOVE\u0027, \u0027SHARD\u0027, \u0027ALLOCATE\u0027, \u0027REPLICA\u0027, \u0027CANCEL\u0027, \u0027RETRY\u0027, \u0027FAILED\u0027, \u0027BOOLEAN\u0027, \u0027BYTE\u0027, \u0027SHORT\u0027, \u0027INTEGER\u0027, \u0027INT\u0027, \u0027LONG\u0027, \u0027FLOAT\u0027, \u0027DOUBLE\u0027, \u0027PRECISION\u0027, \u0027TIMESTAMP\u0027, \u0027IP\u0027, \u0027CHARACTER\u0027, \u0027CHAR\u0027, \u0027\u0022CHAR\u0022\u0027, \u0027VARYING\u0027, \u0027STRING\u0027, \u0027GEO_POINT\u0027, \u0027GEO_SHAPE\u0027, \u0027GLOBAL\u0027, \u0027SESSION\u0027, \u0027LOCAL\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027WORK\u0027, \u0027TRANSACTION\u0027, \u0027TRANSACTION_ISOLATION\u0027, \u0027CHARACTERISTICS\u0027, \u0027ISOLATION\u0027, \u0027LEVEL\u0027, \u0027SERIALIZABLE\u0027, \u0027REPEATABLE\u0027, \u0027COMMITTED\u0027, \u0027UNCOMMITTED\u0027, \u0027READ\u0027, \u0027WRITE\u0027, \u0027DEFERRABLE\u0027, \u0027REPLACE\u0027, \u0027LANGUAGE\u0027, \u0027ANALYZE\u0027, \u0027VERBOSE\u0027, \u0027DISCARD\u0027, \u0027PLANS\u0027, \u0027SEQUENCES\u0027, \u0027TEMPORARY\u0027, \u0027TEMP\u0027, \u0027CHECK\u0027, \u0027EXPLAIN\u0027, \u0027FORMAT\u0027, \u0027TYPE\u0027, \u0027TEXT\u0027, \u0027GRAPHVIZ\u0027, \u0027LOGICAL\u0027, \u0027DISTRIBUTED\u0027, \u0027SHOW\u0027, \u0027TABLES\u0027, \u0027SCHEMAS\u0027, \u0027CATALOGS\u0027, \u0027COLUMNS\u0027, \u0027PARTITIONS\u0027, \u0027FUNCTIONS\u0027, \u0027MATERIALIZED\u0027, \u0027VIEW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027ALIAS\u0027, \u0027SYSTEM\u0027, \u0027BERNOULLI\u0027, \u0027TABLESAMPLE\u0027, \u0027VALUES\u0027, \u0027KEY\u0027, \u0027DUPLICATE\u0027, \u0027CONFLICT\u0027, \u0027DO\u0027, \u0027NOTHING\u0027, \u0027COPY\u0027, \u0027CLUSTERED\u0027, \u0027SHARDS\u0027, \u0027OFF\u0027, \u0027FULLTEXT\u0027, \u0027FILTER\u0027, \u0027PLAIN\u0027, \u0027STORAGE\u0027, \u0027RETURNING\u0027, \u0027DYNAMIC\u0027, \u0027STRICT\u0027, \u0027IGNORED\u0027, \u0027ANALYZER\u0027, \u0027EXTENDS\u0027, \u0027TOKENIZER\u0027, \u0027TOKEN_FILTERS\u0027, \u0027CHAR_FILTERS\u0027, \u0027PARTITIONED\u0027, \u0027PREPARE\u0027, \u0027GENERATED\u0027, \u0027ALWAYS\u0027, \u0027ROLE\u0027, \u0027PRIVILEGES\u0027, \u0027SCHEMA\u0027, \u0027RETURN\u0027, \u0027SUMMARY\u0027, \u0027METADATA\u0027, \u0027PUBLICATION\u0027, \u0027SUBSCRIPTION\u0027, \u0027CONNECTION\u0027, \u0027ENABLE\u0027, \u0027DISABLE\u0027, \u0027DECLARE\u0027, \u0027CURSOR\u0027, \u0027ASENSITIVE\u0027, \u0027INSENSITIVE\u0027, \u0027BINARY\u0027, \u0027NO\u0027, \u0027SCROLL\u0027, \u0027HOLD\u0027, \u0027ABSOLUTE\u0027, \u0027FORWARD\u0027, \u0027BACKWARD\u0027, \u0027RELATIVE\u0027, \u0027PRIOR\u0027, \u0027SERVER\u0027, \u0027FOREIGN\u0027, \u0027DATA\u0027, \u0027WRAPPER\u0027, \u0027OPTIONS\u0027, \u0027MAPPING\u0027, \u0027CASCADE\u0027, \u0027RESTRICT\u0027, IDENTIFIER, DIGIT_IDENTIFIER, QUOTED_IDENTIFIER, BACKQUOTED_IDENTIFIER}"
+            },
+            {
+              "name": "PostgresViewCheckOptionTest",
+              "className": "NSCI.Tests.Views.PostgresViewCheckOptionTest",
+              "category": "Views",
+              "description": "Test PostgreSQL WITH CHECK OPTION on views",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresViewDependenciesTest",
+              "className": "NSCI.Tests.Views.PostgresViewDependenciesTest",
+              "category": "Views",
+              "description": "Test PostgreSQL view dependencies and CASCADE",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresViewInsteadOfTriggersTest",
+              "className": "NSCI.Tests.Views.PostgresViewInsteadOfTriggersTest",
+              "category": "Views",
+              "description": "Test PostgreSQL INSTEAD OF triggers on views",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "UpdatableViewTest",
+              "className": "NSCI.Tests.Views.UpdatableViewTest",
+              "category": "Views",
+              "description": "Test Updatable Views",
+              "passed": false,
+              "duration": "00:00:00.282",
+              "error": "PostgresException: XX000: The relation \u0022test_2026-04-20T19:52:32.employee_view\u0022 doesn\u0027t support or allow UPDATE operations"
+            },
+            {
+              "name": "ViewTest",
+              "className": "NSCI.Tests.Views.ViewTest",
+              "category": "Views",
+              "description": "Test CREATE and SELECT from VIEW",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: 42P07: Relation \u0027test_2026-04-20T19:52:32.view_base\u0027 already exists."
+            }
+          ]
+        },
+        "StoredProcedures": {
+          "total": 1,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "StoredProcedureTest",
+              "className": "NSCI.Tests.StoredProcedures.StoredProcedureTest",
+              "category": "StoredProcedures",
+              "description": "Test STORED PROCEDURE",
+              "passed": false,
+              "duration": "00:00:00.224",
+              "error": "PostgresException: XX000: line 1:45: extraneous input \u0027INT\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            }
+          ]
+        },
+        "Triggers": {
+          "total": 1,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "TriggerTest",
+              "className": "NSCI.Tests.Triggers.TriggerTest",
+              "category": "Triggers",
+              "description": "Test TRIGGER",
+              "passed": false,
+              "duration": "00:00:00.236",
+              "error": "PostgresException: XX000: line 1:59: mismatched input \u0027AS\u0027 expecting {\u0027LANGUAGE\u0027, \u0027(\u0027, \u0027[]\u0027}"
+            }
+          ]
+        },
+        "CTE": {
+          "total": 2,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "CteTest",
+              "className": "NSCI.Tests.CTE.CteTest",
+              "category": "CTE",
+              "description": "Test Common Table Expression (CTE)",
+              "passed": false,
+              "duration": "00:00:00.284",
+              "error": "Assertion: CTE should work correctly (expected \u00271\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "RecursiveCteTest",
+              "className": "NSCI.Tests.CTE.RecursiveCteTest",
+              "category": "CTE",
+              "description": "Test recursive CTE",
+              "passed": false,
+              "duration": "00:00:00.225",
+              "error": "PostgresException: XX000: line 2:18: extraneous input \u0027RECURSIVE\u0027 expecting {\u0027AUTHORIZATION\u0027, \u0027TO\u0027, \u0027AT\u0027, \u0027DEALLOCATE\u0027, \u0027ILIKE\u0027, \u0027IGNORE\u0027, \u0027RESPECT\u0027, \u0027FETCH\u0027, \u0027NEXT\u0027, \u0027SUBSTRING\u0027, \u0027POSITION\u0027, \u0027TRIM\u0027, \u0027LEADING\u0027, \u0027TRAILING\u0027, \u0027BOTH\u0027, \u0027TIME\u0027, \u0027ZONE\u0027, \u0027YEAR\u0027, \u0027MONTH\u0027, \u0027DAY\u0027, \u0027HOUR\u0027, \u0027MINUTE\u0027, \u0027SECOND\u0027, \u0027MILLISECOND\u0027, \u0027CURRENT_DATE\u0027, \u0027CURRENT_TIME\u0027, \u0027CURRENT_TIMESTAMP\u0027, \u0027CURRENT_SCHEMA\u0027, \u0027INTERVAL\u0027, \u0027OVER\u0027, \u0027WINDOW\u0027, \u0027PARTITION\u0027, \u0027PROMOTE\u0027, \u0027RANGE\u0027, \u0027ROWS\u0027, \u0027PRECEDING\u0027, \u0027FOLLOWING\u0027, \u0027CURRENT\u0027, \u0027ROW\u0027, \u0027WITHOUT\u0027, \u0027BLOB\u0027, \u0027SWAP\u0027, \u0027GC\u0027, \u0027DANGLING\u0027, \u0027ARTIFACTS\u0027, \u0027DECOMMISSION\u0027, \u0027CLUSTER\u0027, \u0027REPOSITORY\u0027, \u0027SNAPSHOT\u0027, \u0027KILL\u0027, \u0027ONLY\u0027, \u0027OPEN\u0027, \u0027CLOSE\u0027, \u0027RENAME\u0027, \u0027REROUTE\u0027, \u0027MOVE\u0027, \u0027SHARD\u0027, \u0027ALLOCATE\u0027, \u0027REPLICA\u0027, \u0027CANCEL\u0027, \u0027RETRY\u0027, \u0027FAILED\u0027, \u0027BOOLEAN\u0027, \u0027BYTE\u0027, \u0027SHORT\u0027, \u0027INTEGER\u0027, \u0027INT\u0027, \u0027LONG\u0027, \u0027FLOAT\u0027, \u0027DOUBLE\u0027, \u0027PRECISION\u0027, \u0027TIMESTAMP\u0027, \u0027IP\u0027, \u0027CHARACTER\u0027, \u0027CHAR\u0027, \u0027\u0022CHAR\u0022\u0027, \u0027VARYING\u0027, \u0027STRING\u0027, \u0027GEO_POINT\u0027, \u0027GEO_SHAPE\u0027, \u0027GLOBAL\u0027, \u0027SESSION\u0027, \u0027LOCAL\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027WORK\u0027, \u0027TRANSACTION\u0027, \u0027TRANSACTION_ISOLATION\u0027, \u0027CHARACTERISTICS\u0027, \u0027ISOLATION\u0027, \u0027LEVEL\u0027, \u0027SERIALIZABLE\u0027, \u0027REPEATABLE\u0027, \u0027COMMITTED\u0027, \u0027UNCOMMITTED\u0027, \u0027READ\u0027, \u0027WRITE\u0027, \u0027DEFERRABLE\u0027, \u0027REPLACE\u0027, \u0027LANGUAGE\u0027, \u0027ANALYZE\u0027, \u0027VERBOSE\u0027, \u0027DISCARD\u0027, \u0027PLANS\u0027, \u0027SEQUENCES\u0027, \u0027TEMPORARY\u0027, \u0027TEMP\u0027, \u0027CHECK\u0027, \u0027EXPLAIN\u0027, \u0027FORMAT\u0027, \u0027TYPE\u0027, \u0027TEXT\u0027, \u0027GRAPHVIZ\u0027, \u0027LOGICAL\u0027, \u0027DISTRIBUTED\u0027, \u0027SHOW\u0027, \u0027TABLES\u0027, \u0027SCHEMAS\u0027, \u0027CATALOGS\u0027, \u0027COLUMNS\u0027, \u0027PARTITIONS\u0027, \u0027FUNCTIONS\u0027, \u0027MATERIALIZED\u0027, \u0027VIEW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027ALIAS\u0027, \u0027SYSTEM\u0027, \u0027BERNOULLI\u0027, \u0027TABLESAMPLE\u0027, \u0027VALUES\u0027, \u0027KEY\u0027, \u0027DUPLICATE\u0027, \u0027CONFLICT\u0027, \u0027DO\u0027, \u0027NOTHING\u0027, \u0027COPY\u0027, \u0027CLUSTERED\u0027, \u0027SHARDS\u0027, \u0027OFF\u0027, \u0027FULLTEXT\u0027, \u0027FILTER\u0027, \u0027PLAIN\u0027, \u0027STORAGE\u0027, \u0027RETURNING\u0027, \u0027DYNAMIC\u0027, \u0027STRICT\u0027, \u0027IGNORED\u0027, \u0027ANALYZER\u0027, \u0027EXTENDS\u0027, \u0027TOKENIZER\u0027, \u0027TOKEN_FILTERS\u0027, \u0027CHAR_FILTERS\u0027, \u0027PARTITIONED\u0027, \u0027PREPARE\u0027, \u0027GENERATED\u0027, \u0027ALWAYS\u0027, \u0027ROLE\u0027, \u0027PRIVILEGES\u0027, \u0027SCHEMA\u0027, \u0027RETURN\u0027, \u0027SUMMARY\u0027, \u0027METADATA\u0027, \u0027PUBLICATION\u0027, \u0027SUBSCRIPTION\u0027, \u0027CONNECTION\u0027, \u0027ENABLE\u0027, \u0027DISABLE\u0027, \u0027DECLARE\u0027, \u0027CURSOR\u0027, \u0027ASENSITIVE\u0027, \u0027INSENSITIVE\u0027, \u0027BINARY\u0027, \u0027NO\u0027, \u0027SCROLL\u0027, \u0027HOLD\u0027, \u0027ABSOLUTE\u0027, \u0027FORWARD\u0027, \u0027BACKWARD\u0027, \u0027RELATIVE\u0027, \u0027PRIOR\u0027, \u0027SERVER\u0027, \u0027FOREIGN\u0027, \u0027DATA\u0027, \u0027WRAPPER\u0027, \u0027OPTIONS\u0027, \u0027MAPPING\u0027, \u0027CASCADE\u0027, \u0027RESTRICT\u0027, IDENTIFIER, DIGIT_IDENTIFIER, QUOTED_IDENTIFIER, BACKQUOTED_IDENTIFIER}"
+            }
+          ]
+        },
+        "FullTextSearch": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresFullTextSearchBasicTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchBasicTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search basics with tsvector and tsquery",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresFullTextSearchBooleanTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchBooleanTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search with boolean operators",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresFullTextSearchGeneratedTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchGeneratedTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search with generated tsvector column",
+              "passed": false,
+              "duration": "00:00:00.023",
+              "error": "PostgresException: XX000: line 5:122: extraneous input \u0027STORED\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            },
+            {
+              "name": "PostgresFullTextSearchPhraseTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchPhraseTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text phrase search with phraseto_tsquery",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresFullTextSearchRankingTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchRankingTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search ranking with ts_rank",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            }
+          ]
+        },
+        "Locking": {
+          "total": 6,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresOnlyAdvancedLockingTest",
+              "className": "NSCI.Tests.Locking.PostgresOnlyAdvancedLockingTest",
+              "category": "Locking",
+              "description": "FOR KEY SHARE and FOR NO KEY UPDATE",
+              "passed": false,
+              "duration": "00:00:00.087",
+              "error": "PostgresException: 42P07: Relation \u0027test_2026-04-20T19:52:32.products\u0027 already exists."
+            },
+            {
+              "name": "RowLockingPreventsConcurrentModificationTest",
+              "className": "NSCI.Tests.Locking.RowLockingPreventsConcurrentModificationTest",
+              "category": "Locking",
+              "description": "Test row locking prevents concurrent modification",
+              "passed": false,
+              "duration": "00:00:00.090",
+              "error": "PostgresException: 42P07: Relation \u0027test_2026-04-20T19:52:32.orders\u0027 already exists."
+            },
+            {
+              "name": "SelectForShareTest",
+              "className": "NSCI.Tests.Locking.SelectForShareTest",
+              "category": "Locking",
+              "description": "Test SELECT...FOR SHARE (shared lock)",
+              "passed": false,
+              "duration": "00:00:00.258",
+              "error": "PostgresException: XX000: line 1:50: mismatched input \u0027FOR\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            },
+            {
+              "name": "SelectForUpdateTest",
+              "className": "NSCI.Tests.Locking.SelectForUpdateTest",
+              "category": "Locking",
+              "description": "Test SELECT...FOR UPDATE row locking",
+              "passed": false,
+              "duration": "00:00:00.274",
+              "error": "PostgresException: XX000: line 1:43: mismatched input \u0027FOR\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            },
+            {
+              "name": "SelectForUpdateWithWhereTest",
+              "className": "NSCI.Tests.Locking.SelectForUpdateWithWhereTest",
+              "category": "Locking",
+              "description": "Test FOR UPDATE with WHERE clause",
+              "passed": false,
+              "duration": "00:00:00.087",
+              "error": "PostgresException: 42P07: Relation \u0027test_2026-04-20T19:52:32.items\u0027 already exists."
+            },
+            {
+              "name": "SkipLockedTest",
+              "className": "NSCI.Tests.Locking.SkipLockedTest",
+              "category": "Locking",
+              "description": "Test SKIP LOCKED ",
+              "passed": false,
+              "duration": "00:00:00.258",
+              "error": "PostgresException: XX000: line 1:34: mismatched input \u0027FOR\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            }
+          ]
+        },
+        "Upsert": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresOnConflictDoUpdateTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictDoUpdateTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL INSERT...ON CONFLICT DO UPDATE",
+              "passed": false,
+              "duration": "00:00:00.275",
+              "error": "Assertion: Should have 2 rows (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "PostgresOnConflictMultipleConstraintsTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictMultipleConstraintsTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with multiple columns and unique constraints",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "PostgresException: XX000: line 3:50: extraneous input \u0027UNIQUE\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            },
+            {
+              "name": "PostgresOnConflictPartialIndexTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictPartialIndexTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with partial indexes",
+              "passed": false,
+              "duration": "00:00:00.021",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresOnConflictReturningTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictReturningTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with RETURNING clause",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: line 3:53: extraneous input \u0027UNIQUE\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            },
+            {
+              "name": "PostgresOnConflictWhereTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictWhereTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with WHERE clause",
+              "passed": false,
+              "duration": "00:00:00.246",
+              "error": "PostgresException: XX000: line 6:28: mismatched input \u0027WHERE\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            }
+          ]
+        },
+        "Partitioning": {
+          "total": 4,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "ListPartitioningTest",
+              "className": "NSCI.Tests.Partitioning.ListPartitioningTest",
+              "category": "Partitioning",
+              "description": "Test LIST partitioning",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: line 5:27: mismatched input \u0027PARTITION\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            },
+            {
+              "name": "PartitionPruningTest",
+              "className": "NSCI.Tests.Partitioning.PartitionPruningTest",
+              "category": "Partitioning",
+              "description": "Test partition pruning in queries",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: line 5:27: mismatched input \u0027PARTITION\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            },
+            {
+              "name": "RangePartitioningByColumnTest",
+              "className": "NSCI.Tests.Partitioning.RangePartitioningByColumnTest",
+              "category": "Partitioning",
+              "description": "Test RANGE partitioning by column",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: line 5:27: mismatched input \u0027PARTITION\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            },
+            {
+              "name": "RangePartitioningTest",
+              "className": "NSCI.Tests.Partitioning.RangePartitioningTest",
+              "category": "Partitioning",
+              "description": "Test RANGE partitioning by date",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: line 5:27: mismatched input \u0027PARTITION\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            }
+          ]
+        },
+        "UserManagement": {
+          "total": 5,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "PostgresColumnPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresColumnPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL column-level privileges",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "InvalidOperationException: Connection is not open"
+            },
+            {
+              "name": "PostgresCreateRoleTest",
+              "className": "NSCI.Tests.UserManagement.PostgresCreateRoleTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL CREATE ROLE and CREATE USER",
+              "passed": true,
+              "duration": "00:00:00.385"
+            },
+            {
+              "name": "PostgresDefaultPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresDefaultPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL default privileges and schema permissions",
+              "passed": false,
+              "duration": "00:00:00.008",
+              "error": "InvalidOperationException: Connection is not open"
+            },
+            {
+              "name": "PostgresGrantPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresGrantPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL GRANT privileges on tables",
+              "passed": false,
+              "duration": "00:00:00.022",
+              "error": "InvalidOperationException: Connection is not open"
+            },
+            {
+              "name": "PostgresRoleMembershipTest",
+              "className": "NSCI.Tests.UserManagement.PostgresRoleMembershipTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL role membership and inheritance",
+              "passed": false,
+              "duration": "00:00:00.052",
+              "error": "InvalidOperationException: Connection is not open"
+            }
+          ]
+        },
+        "JSONOperations": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "JsonContainsTest",
+              "className": "NSCI.Tests.JSONOperations.JsonContainsTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_CONTAINS function",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: Cannot find data type: jsonb"
+            },
+            {
+              "name": "JsonCreationTest",
+              "className": "NSCI.Tests.JSONOperations.JsonCreationTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_ARRAY and JSON_OBJECT functions",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "JsonExtractTest",
+              "className": "NSCI.Tests.JSONOperations.JsonExtractTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_EXTRACT function",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: Cannot find data type: jsonb"
+            },
+            {
+              "name": "JsonLengthTest",
+              "className": "NSCI.Tests.JSONOperations.JsonLengthTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_LENGTH function",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: Cannot find data type: jsonb"
+            },
+            {
+              "name": "JsonSetTest",
+              "className": "NSCI.Tests.JSONOperations.JsonSetTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_SET function",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: Cannot find data type: jsonb"
+            }
+          ]
+        },
+        "DDL": {
+          "total": 12,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "AlterTableDataTypeConversionTest",
+              "className": "NSCI.Tests.TableDefinition.AlterTableDataTypeConversionTest",
+              "category": "DDL",
+              "description": "Test ALTER TABLE data type conversions",
+              "passed": false,
+              "duration": "00:00:00.233",
+              "error": "PostgresException: XX000: line 1:29: no viable alternative at input \u0027ALTER TABLE type_conversion ALTER\u0027"
+            },
+            {
+              "name": "AlterTableMultipleChangesTest",
+              "className": "NSCI.Tests.TableDefinition.AlterTableMultipleChangesTest",
+              "category": "DDL",
+              "description": "Test ALTER TABLE with multiple changes to same column",
+              "passed": false,
+              "duration": "00:00:00.227",
+              "error": "PostgresException: XX000: line 1:25: no viable alternative at input \u0027ALTER TABLE alter_multi ALTER\u0027"
+            },
+            {
+              "name": "CollateColumnTest",
+              "className": "NSCI.Tests.TableDefinition.CollateColumnTest",
+              "category": "DDL",
+              "description": "Test COLLATE on columns affects string comparison and ordering",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: line 3:27: extraneous input \u0027COLLATE\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            },
+            {
+              "name": "GeneratedColumnTest",
+              "className": "NSCI.Tests.TableDefinition.GeneratedColumnTest",
+              "category": "DDL",
+              "description": "Test GENERATED (computed/virtual) columns update automatically",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: line 5:83: extraneous input \u0027STORED\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            },
+            {
+              "name": "PostgresColumnCompressionTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresColumnCompressionTest",
+              "category": "DDL",
+              "description": "Test COMPRESSION attribute on TEXT columns is recorded in pg_attribute",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: line 3:29: extraneous input \u0027COMPRESSION\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            },
+            {
+              "name": "PostgresColumnStorageTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresColumnStorageTest",
+              "category": "DDL",
+              "description": "Test STORAGE clause on columns is recorded in pg_attribute",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: line 3:45: mismatched input \u0027PLAIN\u0027 expecting \u0027WITH\u0027"
+            },
+            {
+              "name": "PostgresIdentityColumnTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresIdentityColumnTest",
+              "category": "DDL",
+              "description": "Test IDENTITY columns with GENERATED ALWAYS and GENERATED BY DEFAULT",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: line 3:32: mismatched input \u0027BY\u0027 expecting \u0027ALWAYS\u0027"
+            },
+            {
+              "name": "PostgresSequenceTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresSequenceTest",
+              "category": "DDL",
+              "description": "Test CREATE SEQUENCE with NEXTVAL and CURRVAL",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE SEQUENCE\u0027"
+            },
+            {
+              "name": "PostgresTableInheritsTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresTableInheritsTest",
+              "category": "DDL",
+              "description": "Test table inheritance with INHERITS clause",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresTypedTableTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresTypedTableTest",
+              "category": "DDL",
+              "description": "Test typed table creation using OF type_name",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE TYPE\u0027"
+            },
+            {
+              "name": "PostgresUnloggedTableTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresUnloggedTableTest",
+              "category": "DDL",
+              "description": "Test UNLOGGED table creation that skips WAL",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE UNLOGGED\u0027"
+            },
+            {
+              "name": "TableLikeTest",
+              "className": "NSCI.Tests.TableDefinition.TableLikeTest",
+              "category": "DDL",
+              "description": "Test CREATE TABLE LIKE copies structure from an existing table",
+              "passed": false,
+              "duration": "00:00:00.041",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            }
+          ]
+        },
+        "CustomTypes": {
+          "total": 3,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "EnumTypeTest",
+              "className": "NSCI.Tests.CustomTypes.EnumTypeTest",
+              "category": "CustomTypes",
+              "description": "Test enumerated type enforces valid values",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE TYPE\u0027"
+            },
+            {
+              "name": "PostgresCompositeTypeTest",
+              "className": "NSCI.Tests.CustomTypes.PostgresCompositeTypeTest",
+              "category": "CustomTypes",
+              "description": "Test CREATE TYPE composite type used as a column type",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE TYPE\u0027"
+            },
+            {
+              "name": "PostgresDomainTest",
+              "className": "NSCI.Tests.CustomTypes.PostgresDomainTest",
+              "category": "CustomTypes",
+              "description": "Test CREATE DOMAIN enforces constraints on columns that use it",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE DOMAIN\u0027"
+            }
+          ]
+        },
+        "Misc": {
+          "total": 3,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "OptimizeTableTest",
+              "className": "NSCI.Tests.Misc.OptimizeTableTest",
+              "category": "Misc",
+              "description": "Test OPTIMIZE TABLE syntax ",
+              "passed": false,
+              "duration": "00:00:00.243",
+              "error": "PostgresException: XX000: line 1:1: extraneous input \u0027VACUUM\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "XATransactionTest",
+              "className": "NSCI.Tests.Misc.XATransactionTest",
+              "category": "Misc",
+              "description": "Test XA Transaction syntax ",
+              "passed": false,
+              "duration": "00:00:00.264",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027PREPARE\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "XmlFunctionsTest",
+              "className": "NSCI.Tests.Misc.XmlFunctionsTest",
+              "category": "Misc",
+              "description": "Test XML Functions ",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: Cannot find data type: xml"
+            }
+          ]
+        },
+        "PerformanceHints": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresCTEMaterializationTest",
+              "className": "NSCI.Tests.Performance.PostgresCTEMaterializationTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL CTE materialization hints",
+              "passed": false,
+              "duration": "00:00:00.590",
+              "error": "PostgresException: XX000: line 2:32: extraneous input \u0027MATERIALIZED\u0027 expecting \u0027(\u0027"
+            },
+            {
+              "name": "PostgresExplainAnalyzeTest",
+              "className": "NSCI.Tests.Performance.PostgresExplainAnalyzeTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL EXPLAIN and EXPLAIN ANALYZE",
+              "passed": false,
+              "duration": "00:00:00.221",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE INDEX\u0027"
+            },
+            {
+              "name": "PostgresJoinOrderPlanningTest",
+              "className": "NSCI.Tests.Performance.PostgresJoinOrderPlanningTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL join order and planning settings",
+              "passed": false,
+              "duration": "00:00:00.653",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE INDEX\u0027"
+            },
+            {
+              "name": "PostgresParallelQueryTest",
+              "className": "NSCI.Tests.Performance.PostgresParallelQueryTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL parallel query settings",
+              "passed": false,
+              "duration": "00:00:06.821",
+              "error": "PostgresException: XX000: Unknown session setting name \u0027max_parallel_workers_per_gather\u0027."
+            },
+            {
+              "name": "PostgresQueryPlannerSettingsTest",
+              "className": "NSCI.Tests.Performance.PostgresQueryPlannerSettingsTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL query planner settings",
+              "passed": false,
+              "duration": "00:00:00.226",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE INDEX\u0027"
+            }
+          ]
+        }
+      }
+    },
+    "CrateDB 6": {
+      "generatedAt": "2026-04-20T17:53:50.6997798Z",
+      "databaseType": "PostgreSql",
+      "configurationName": "CrateDB 6",
+      "databaseName": "test_2026-04-20T19:53:14",
+      "connectionString": "Host=localhost;Port=5483;Username=crate;Include Error Detail=true",
+      "summary": {
+        "total": 137,
+        "passed": 15,
+        "failed": 122
+      },
+      "resultsByCategory": {
+        "BasicQueries": {
+          "total": 10,
+          "passed": 4,
+          "tests": [
+            {
+              "name": "CreateDropTableTest",
+              "className": "NSCI.Tests.BasicQueries.CreateDropTableTest",
+              "category": "BasicQueries",
+              "description": "Create and drop simple table",
+              "passed": true,
+              "duration": "00:00:00.467"
+            },
+            {
+              "name": "CreateTableAsSelectTest",
+              "className": "NSCI.Tests.BasicQueries.CreateTableAsSelectTest",
+              "category": "BasicQueries",
+              "description": "Test CREATE TABLE AS SELECT ",
+              "passed": false,
+              "duration": "00:00:00.587",
+              "error": "Assertion: New table should have 2 rows (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "DeleteTest",
+              "className": "NSCI.Tests.BasicQueries.DeleteTest",
+              "category": "BasicQueries",
+              "description": "DELETE operation",
+              "passed": false,
+              "duration": "00:00:00.285",
+              "error": "Assertion: Should have 2 records left (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "InsertSelectTest",
+              "className": "NSCI.Tests.BasicQueries.InsertSelectTest",
+              "category": "BasicQueries",
+              "description": "INSERT and SELECT data",
+              "passed": false,
+              "duration": "00:00:00.009",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresCopyCommandTest",
+              "className": "NSCI.Tests.BasicQueries.PostgresCopyCommandTest",
+              "category": "BasicQueries",
+              "description": "Test PostgreSQL COPY command for bulk data",
+              "passed": false,
+              "duration": "00:00:00.235",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE TEMP\u0027"
+            },
+            {
+              "name": "PostgresCopyFromStdinTest",
+              "className": "NSCI.Tests.BasicQueries.PostgresCopyFromStdinTest",
+              "category": "BasicQueries",
+              "description": "Bulk insert rows using COPY FROM STDIN with CSV format",
+              "passed": false,
+              "duration": "00:00:00.231",
+              "error": "PostgresException: XX000: line 1:58: extraneous input \u0027CSV\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            },
+            {
+              "name": "SelectConstantTest",
+              "className": "NSCI.Tests.BasicQueries.SelectConstantTest",
+              "category": "BasicQueries",
+              "description": "SELECT constant value 1",
+              "passed": true,
+              "duration": "00:00:00.024"
+            },
+            {
+              "name": "SelectNowTest",
+              "className": "NSCI.Tests.BasicQueries.SelectNowTest",
+              "category": "BasicQueries",
+              "description": "SELECT current timestamp",
+              "passed": true,
+              "duration": "00:00:00.008"
+            },
+            {
+              "name": "TruncateTest",
+              "className": "NSCI.Tests.BasicQueries.TruncateTest",
+              "category": "BasicQueries",
+              "description": "TRUNCATE table operation",
+              "passed": false,
+              "duration": "00:00:00.246",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027TRUNCATE\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "UpdateTest",
+              "className": "NSCI.Tests.BasicQueries.UpdateTest",
+              "category": "BasicQueries",
+              "description": "UPDATE operation",
+              "passed": true,
+              "duration": "00:00:00.342"
+            }
+          ]
+        },
+        "DataTypes": {
+          "total": 9,
+          "passed": 3,
+          "tests": [
+            {
+              "name": "BigIntTypeTest",
+              "className": "NSCI.Tests.DataTypes.BigIntTypeTest",
+              "category": "DataTypes",
+              "description": "Test BIGINT data type",
+              "passed": false,
+              "duration": "00:00:00.282",
+              "error": "PostgresException: XX000: Cannot cast \u0060-9223372036854775808\u0060 of type \u0060numeric(19,0)\u0060 to type \u0060bigint\u0060"
+            },
+            {
+              "name": "BooleanTypeTest",
+              "className": "NSCI.Tests.DataTypes.BooleanTypeTest",
+              "category": "DataTypes",
+              "description": "Test BOOLEAN type (TINYINT)",
+              "passed": false,
+              "duration": "00:00:00.260",
+              "error": "Assertion: BOOLEAN filtering should work (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "DateTimeTypeTest",
+              "className": "NSCI.Tests.DataTypes.DateTimeTypeTest",
+              "category": "DataTypes",
+              "description": "Test DATETIME type",
+              "passed": false,
+              "duration": "00:00:00.240",
+              "error": "Assertion: TIMESTAMP values should be stored (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "DateTypeTest",
+              "className": "NSCI.Tests.DataTypes.DateTypeTest",
+              "category": "DataTypes",
+              "description": "Test DATE type",
+              "passed": false,
+              "duration": "00:00:00.006",
+              "error": "PostgresException: XX000: Type \u0060date\u0060 does not support storage"
+            },
+            {
+              "name": "DecimalPrecisionTest",
+              "className": "NSCI.Tests.DataTypes.DecimalPrecisionTest",
+              "category": "DataTypes",
+              "description": "Test DECIMAL precision (10,4)",
+              "passed": true,
+              "duration": "00:00:00.311"
+            },
+            {
+              "name": "IntTypeTest",
+              "className": "NSCI.Tests.DataTypes.IntTypeTest",
+              "category": "DataTypes",
+              "description": "Test INT data type",
+              "passed": false,
+              "duration": "00:00:00.325",
+              "error": "Assertion: Should have 3 INT values (expected \u00273\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "JsonTypeTest",
+              "className": "NSCI.Tests.DataTypes.JsonTypeTest",
+              "category": "DataTypes",
+              "description": "Test JSON data type",
+              "passed": false,
+              "duration": "00:00:00.008",
+              "error": "PostgresException: XX000: Cannot find data type: jsonb"
+            },
+            {
+              "name": "TextTypeTest",
+              "className": "NSCI.Tests.DataTypes.TextTypeTest",
+              "category": "DataTypes",
+              "description": "Test TEXT type for large strings",
+              "passed": true,
+              "duration": "00:00:00.436"
+            },
+            {
+              "name": "VarcharTypeTest",
+              "className": "NSCI.Tests.DataTypes.VarcharTypeTest",
+              "category": "DataTypes",
+              "description": "Test VARCHAR length and storage",
+              "passed": true,
+              "duration": "00:00:00.288"
+            }
+          ]
+        },
+        "Constraints": {
+          "total": 7,
+          "passed": 4,
+          "tests": [
+            {
+              "name": "AutoIncrementTest",
+              "className": "NSCI.Tests.Constraints.AutoIncrementTest",
+              "category": "Constraints",
+              "description": "Test AUTO_INCREMENT",
+              "passed": false,
+              "duration": "00:00:00.006",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "CheckConstraintTest",
+              "className": "NSCI.Tests.Constraints.CheckConstraintTest",
+              "category": "Constraints",
+              "description": "Test CHECK constraint (if supported)",
+              "passed": true,
+              "duration": "00:00:00.228"
+            },
+            {
+              "name": "DefaultValueTest",
+              "className": "NSCI.Tests.Constraints.DefaultValueTest",
+              "category": "Constraints",
+              "description": "Test DEFAULT value",
+              "passed": true,
+              "duration": "00:00:00.284"
+            },
+            {
+              "name": "ForeignKeyTest",
+              "className": "NSCI.Tests.Constraints.ForeignKeyTest",
+              "category": "Constraints",
+              "description": "Test FOREIGN KEY constraint",
+              "passed": false,
+              "duration": "00:00:00.215",
+              "error": "PostgresException: XX000: line 1:75: mismatched input \u0027parent_id\u0027 expecting INTEGER_VALUE"
+            },
+            {
+              "name": "NotNullConstraintTest",
+              "className": "NSCI.Tests.Constraints.NotNullConstraintTest",
+              "category": "Constraints",
+              "description": "Test NOT NULL constraint",
+              "passed": true,
+              "duration": "00:00:00.230"
+            },
+            {
+              "name": "PrimaryKeyTest",
+              "className": "NSCI.Tests.Constraints.PrimaryKeyTest",
+              "category": "Constraints",
+              "description": "Test PRIMARY KEY constraint",
+              "passed": true,
+              "duration": "00:00:00.274"
+            },
+            {
+              "name": "UniqueConstraintTest",
+              "className": "NSCI.Tests.Constraints.UniqueConstraintTest",
+              "category": "Constraints",
+              "description": "Test UNIQUE constraint",
+              "passed": false,
+              "duration": "00:00:00.007",
+              "error": "PostgresException: XX000: line 1:66: extraneous input \u0027UNIQUE\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            }
+          ]
+        },
+        "Transactions": {
+          "total": 17,
+          "passed": 2,
+          "tests": [
+            {
+              "name": "BasicTransactionCommitTest",
+              "className": "NSCI.Tests.Transactions.BasicTransactionCommitTest",
+              "category": "Transactions",
+              "description": "Test basic transaction COMMIT",
+              "passed": false,
+              "duration": "00:00:00.222",
+              "error": "Assertion: Transaction should be committed (expected \u00271\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "LockingBehaviorDifferenceTest",
+              "className": "NSCI.Tests.IsolationLevels.LockingBehaviorDifferenceTest",
+              "category": "Transactions",
+              "description": "Test locking difference between REPEATABLE READ and READ COMMITTED",
+              "passed": false,
+              "duration": "00:00:00.379",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "MultipleStatementsTransactionTest",
+              "className": "NSCI.Tests.Transactions.MultipleStatementsTransactionTest",
+              "category": "Transactions",
+              "description": "Test multiple statements in transaction",
+              "passed": false,
+              "duration": "00:00:00.266",
+              "error": "Assertion: Should have 2 rows after all operations (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "PostgresAdvisoryLocksTest",
+              "className": "NSCI.Tests.Transactions.PostgresAdvisoryLocksTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL advisory locks",
+              "passed": false,
+              "duration": "00:00:00.013",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "PostgresDeferredConstraintsTest",
+              "className": "NSCI.Tests.Transactions.PostgresDeferredConstraintsTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL deferred constraints",
+              "passed": false,
+              "duration": "00:00:00.262",
+              "error": "PostgresException: XX000: line 4:50: no viable alternative at input \u0027CONSTRAINT fk_parent FOREIGN\u0027"
+            },
+            {
+              "name": "PostgresNestedSavepointsTest",
+              "className": "NSCI.Tests.Transactions.PostgresNestedSavepointsTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL subtransactions with nested savepoints",
+              "passed": false,
+              "duration": "00:00:00.213",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027SAVEPOINT\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "PostgresSerializableIsolationTest",
+              "className": "NSCI.Tests.Transactions.PostgresSerializableIsolationTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL Serializable Snapshot Isolation",
+              "passed": false,
+              "duration": "00:00:00.322",
+              "error": "Assertion: Should have 2 accounts (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "PostgresTransactionControlTest",
+              "className": "NSCI.Tests.Transactions.PostgresTransactionControlTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL transaction control commands",
+              "passed": false,
+              "duration": "00:00:00.287",
+              "error": "Assertion: Assertion failed: READ ONLY transaction should block writes"
+            },
+            {
+              "name": "ReadCommittedLockReleaseTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedLockReleaseTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED releases non-matching row locks",
+              "passed": false,
+              "duration": "00:00:00.306",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "ReadCommittedNonRepeatableTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedNonRepeatableTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED allows non-repeatable reads",
+              "passed": true,
+              "duration": "00:00:00.322"
+            },
+            {
+              "name": "ReadCommittedPhantomTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedPhantomTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED allows phantom reads",
+              "passed": false,
+              "duration": "00:00:00.263",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "ReadUncommittedDirtyReadTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadUncommittedDirtyReadTest",
+              "category": "Transactions",
+              "description": "Test READ UNCOMMITTED allows dirty reads",
+              "passed": false,
+              "duration": "00:00:00.305",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "RepeatableReadPhantomPreventionTest",
+              "className": "NSCI.Tests.IsolationLevels.RepeatableReadPhantomPreventionTest",
+              "category": "Transactions",
+              "description": "Test REPEATABLE READ prevents phantom reads in range",
+              "passed": false,
+              "duration": "00:00:00.288",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "RepeatableReadSnapshotTest",
+              "className": "NSCI.Tests.IsolationLevels.RepeatableReadSnapshotTest",
+              "category": "Transactions",
+              "description": "Test REPEATABLE READ snapshot consistency",
+              "passed": false,
+              "duration": "00:00:00.323",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "SavePointTest",
+              "className": "NSCI.Tests.Transactions.SavePointTest",
+              "category": "Transactions",
+              "description": "Test SAVEPOINT",
+              "passed": false,
+              "duration": "00:00:00.022",
+              "error": "PostgresException: 42P07: Relation \u0027test_2026-04-20T19:53:14.savepoint_test\u0027 already exists."
+            },
+            {
+              "name": "TransactionIsolationReadCommittedTest",
+              "className": "NSCI.Tests.Transactions.TransactionIsolationReadCommittedTest",
+              "category": "Transactions",
+              "description": "Test transaction isolation READ_COMMITTED",
+              "passed": true,
+              "duration": "00:00:00.261"
+            },
+            {
+              "name": "TransactionRollbackTest",
+              "className": "NSCI.Tests.Transactions.TransactionRollbackTest",
+              "category": "Transactions",
+              "description": "Test transaction ROLLBACK",
+              "passed": false,
+              "duration": "00:00:00.221",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027ROLLBACK\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            }
+          ]
+        },
+        "Joins": {
+          "total": 6,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "CrossJoinTest",
+              "className": "NSCI.Tests.Joins.CrossJoinTest",
+              "category": "Joins",
+              "description": "Test CROSS JOIN",
+              "passed": false,
+              "duration": "00:00:00.459",
+              "error": "Assertion: CROSS JOIN should return 3x3=9 combinations (expected \u00279\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "InnerJoinTest",
+              "className": "NSCI.Tests.Joins.InnerJoinTest",
+              "category": "Joins",
+              "description": "Test INNER JOIN",
+              "passed": false,
+              "duration": "00:00:00.439",
+              "error": "Assertion: INNER JOIN should return 2 books for Author A (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "LeftJoinTest",
+              "className": "NSCI.Tests.Joins.LeftJoinTest",
+              "category": "Joins",
+              "description": "Test LEFT JOIN",
+              "passed": true,
+              "duration": "00:00:00.580"
+            },
+            {
+              "name": "MultipleJoinTest",
+              "className": "NSCI.Tests.Joins.MultipleJoinTest",
+              "category": "Joins",
+              "description": "Test multiple table JOIN",
+              "passed": false,
+              "duration": "00:00:00.728",
+              "error": "Assertion: Multiple JOINs should work correctly (expected \u00273\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "RightJoinTest",
+              "className": "NSCI.Tests.Joins.RightJoinTest",
+              "category": "Joins",
+              "description": "Test RIGHT JOIN (if supported)",
+              "passed": false,
+              "duration": "00:00:02.179",
+              "error": "Assertion: RIGHT JOIN should work correctly (expected \u00273\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "SelfJoinTest",
+              "className": "NSCI.Tests.Joins.SelfJoinTest",
+              "category": "Joins",
+              "description": "Test SELF JOIN",
+              "passed": false,
+              "duration": "00:00:00.377",
+              "error": "Assertion: SELF JOIN should find all manager-employee relationships (expected \u00273\u0027 but got \u00270\u0027)"
+            }
+          ]
+        },
+        "Aggregations": {
+          "total": 8,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "AggregateNullTest",
+              "className": "NSCI.Tests.Aggregations.AggregateNullTest",
+              "category": "Aggregations",
+              "description": "Test aggregate with NULL values",
+              "passed": false,
+              "duration": "00:00:00.277",
+              "error": "Assertion: COUNT(*) should count all rows including NULLs (expected \u00275\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "AvgAggregateTest",
+              "className": "NSCI.Tests.Aggregations.AvgAggregateTest",
+              "category": "Aggregations",
+              "description": "Test AVG aggregate function",
+              "passed": false,
+              "duration": "00:00:00.237",
+              "error": "InvalidCastException: Object cannot be cast from DBNull to other types."
+            },
+            {
+              "name": "CountAggregateTest",
+              "className": "NSCI.Tests.Aggregations.CountAggregateTest",
+              "category": "Aggregations",
+              "description": "Test COUNT aggregate function",
+              "passed": false,
+              "duration": "00:00:00.220",
+              "error": "Assertion: COUNT should return 4 (expected \u00274\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "DistinctTest",
+              "className": "NSCI.Tests.Aggregations.DistinctTest",
+              "category": "Aggregations",
+              "description": "Test DISTINCT",
+              "passed": false,
+              "duration": "00:00:00.255",
+              "error": "Assertion: DISTINCT should count 3 unique categories (expected \u00273\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "GroupByTest",
+              "className": "NSCI.Tests.Aggregations.GroupByTest",
+              "category": "Aggregations",
+              "description": "Test GROUP BY clause",
+              "passed": false,
+              "duration": "00:00:00.293",
+              "error": "Assertion: GROUP BY should work with subquery (expected \u00273\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "HavingClauseTest",
+              "className": "NSCI.Tests.Aggregations.HavingClauseTest",
+              "category": "Aggregations",
+              "description": "Test HAVING clause with GROUP BY",
+              "passed": false,
+              "duration": "00:00:00.274",
+              "error": "Assertion: HAVING clause should filter grouped results (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "MinMaxAggregateTest",
+              "className": "NSCI.Tests.Aggregations.MinMaxAggregateTest",
+              "category": "Aggregations",
+              "description": "Test MIN and MAX aggregate functions",
+              "passed": false,
+              "duration": "00:00:00.222",
+              "error": "InvalidCastException: Object cannot be cast from DBNull to other types."
+            },
+            {
+              "name": "SumAggregateTest",
+              "className": "NSCI.Tests.Aggregations.SumAggregateTest",
+              "category": "Aggregations",
+              "description": "Test SUM aggregate function",
+              "passed": false,
+              "duration": "00:00:00.220",
+              "error": "InvalidCastException: Object cannot be cast from DBNull to other types."
+            }
+          ]
+        },
+        "Subqueries": {
+          "total": 8,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "CorrelatedSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.CorrelatedSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test correlated subquery",
+              "passed": false,
+              "duration": "00:00:00.444",
+              "error": "Assertion: Correlated subquery should find 2 above-average salary employees (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "ExistsSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.ExistsSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test EXISTS subquery",
+              "passed": false,
+              "duration": "00:00:00.471",
+              "error": "Assertion: EXISTS subquery should find 2 customers with orders (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "InSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.InSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test IN subquery",
+              "passed": false,
+              "duration": "00:00:00.493",
+              "error": "Assertion: IN subquery should return 3 products (expected \u00273\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "NotExistsSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.NotExistsSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test NOT EXISTS subquery",
+              "passed": false,
+              "duration": "00:00:00.482",
+              "error": "Assertion: NOT EXISTS subquery should find 1 parent without children (expected \u00271\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "NotInSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.NotInSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test NOT IN subquery",
+              "passed": false,
+              "duration": "00:00:00.498",
+              "error": "Assertion: NOT IN subquery should return 2 records (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "PostgresScalarSubqueryOperatorsTest",
+              "className": "NSCI.Tests.Subqueries.PostgresScalarSubqueryOperatorsTest",
+              "category": "Subqueries",
+              "description": "Test PostgreSQL scalar subquery operators (ALL, ANY, SOME)",
+              "passed": false,
+              "duration": "00:00:00.006",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "ScalarSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.ScalarSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test scalar subquery",
+              "passed": false,
+              "duration": "00:00:00.250",
+              "error": "Assertion: Scalar subquery should return 1 row (expected \u00271\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "SubqueryFromClauseTest",
+              "className": "NSCI.Tests.Subqueries.SubqueryFromClauseTest",
+              "category": "Subqueries",
+              "description": "Test subquery in FROM clause",
+              "passed": false,
+              "duration": "00:00:00.287",
+              "error": "Assertion: Subquery in FROM clause should work (expected \u00272\u0027 but got \u00270\u0027)"
+            }
+          ]
+        },
+        "Indexes": {
+          "total": 8,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "CompositeIndexTest",
+              "className": "NSCI.Tests.Indexes.CompositeIndexTest",
+              "category": "Indexes",
+              "description": "Test composite INDEX",
+              "passed": false,
+              "duration": "00:00:00.204",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE INDEX\u0027"
+            },
+            {
+              "name": "CreateIndexTest",
+              "className": "NSCI.Tests.Indexes.CreateIndexTest",
+              "category": "Indexes",
+              "description": "Test CREATE INDEX",
+              "passed": false,
+              "duration": "00:00:00.238",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE INDEX\u0027"
+            },
+            {
+              "name": "DescendingIndexTest",
+              "className": "NSCI.Tests.Indexes.DescendingIndexTest",
+              "category": "Indexes",
+              "description": "Test Descending Index ",
+              "passed": false,
+              "duration": "00:00:00.238",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE INDEX\u0027"
+            },
+            {
+              "name": "PostgresExpressionIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresExpressionIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL expression indexes",
+              "passed": false,
+              "duration": "00:00:00.026",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresIncludeIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresIncludeIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL INCLUDE columns in indexes",
+              "passed": false,
+              "duration": "00:00:00.023",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresPartialIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresPartialIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL partial indexes",
+              "passed": false,
+              "duration": "00:00:00.022",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresReindexTest",
+              "className": "NSCI.Tests.Indexes.PostgresReindexTest",
+              "category": "Indexes",
+              "description": "Test REINDEX rebuilds index structures while preserving query correctness",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "UniqueIndexTest",
+              "className": "NSCI.Tests.Indexes.UniqueIndexTest",
+              "category": "Indexes",
+              "description": "Test UNIQUE INDEX",
+              "passed": false,
+              "duration": "00:00:00.262",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE UNIQUE\u0027"
+            }
+          ]
+        },
+        "Views": {
+          "total": 7,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresMaterializedViewTest",
+              "className": "NSCI.Tests.Views.PostgresMaterializedViewTest",
+              "category": "Views",
+              "description": "Test PostgreSQL materialized views",
+              "passed": false,
+              "duration": "00:00:00.021",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresRecursiveViewTest",
+              "className": "NSCI.Tests.Views.PostgresRecursiveViewTest",
+              "category": "Views",
+              "description": "Test PostgreSQL recursive views",
+              "passed": false,
+              "duration": "00:00:00.271",
+              "error": "PostgresException: XX000: line 2:33: extraneous input \u0027RECURSIVE\u0027 expecting {\u0027AUTHORIZATION\u0027, \u0027TO\u0027, \u0027AT\u0027, \u0027DEALLOCATE\u0027, \u0027ILIKE\u0027, \u0027IGNORE\u0027, \u0027RESPECT\u0027, \u0027FETCH\u0027, \u0027NEXT\u0027, \u0027SUBSTRING\u0027, \u0027POSITION\u0027, \u0027TRIM\u0027, \u0027LEADING\u0027, \u0027TRAILING\u0027, \u0027BOTH\u0027, \u0027TIME\u0027, \u0027ZONE\u0027, \u0027YEAR\u0027, \u0027MONTH\u0027, \u0027DAY\u0027, \u0027HOUR\u0027, \u0027MINUTE\u0027, \u0027SECOND\u0027, \u0027MILLISECOND\u0027, \u0027CURRENT_DATE\u0027, \u0027CURRENT_TIME\u0027, \u0027CURRENT_TIMESTAMP\u0027, \u0027CURRENT_SCHEMA\u0027, \u0027INTERVAL\u0027, \u0027OVER\u0027, \u0027WINDOW\u0027, \u0027PARTITION\u0027, \u0027PROMOTE\u0027, \u0027RANGE\u0027, \u0027ROWS\u0027, \u0027PRECEDING\u0027, \u0027FOLLOWING\u0027, \u0027CURRENT\u0027, \u0027ROW\u0027, \u0027WITHOUT\u0027, \u0027BLOB\u0027, \u0027SWAP\u0027, \u0027GC\u0027, \u0027DANGLING\u0027, \u0027ARTIFACTS\u0027, \u0027DECOMMISSION\u0027, \u0027CLUSTER\u0027, \u0027REPOSITORY\u0027, \u0027SNAPSHOT\u0027, \u0027KILL\u0027, \u0027ONLY\u0027, \u0027OPEN\u0027, \u0027CLOSE\u0027, \u0027RENAME\u0027, \u0027REROUTE\u0027, \u0027MOVE\u0027, \u0027SHARD\u0027, \u0027ALLOCATE\u0027, \u0027REPLICA\u0027, \u0027CANCEL\u0027, \u0027RETRY\u0027, \u0027FAILED\u0027, \u0027BOOLEAN\u0027, \u0027BYTE\u0027, \u0027SHORT\u0027, \u0027INTEGER\u0027, \u0027INT\u0027, \u0027LONG\u0027, \u0027FLOAT\u0027, \u0027DOUBLE\u0027, \u0027PRECISION\u0027, \u0027TIMESTAMP\u0027, \u0027IP\u0027, \u0027CHARACTER\u0027, \u0027CHAR\u0027, \u0027\u0022CHAR\u0022\u0027, \u0027VARYING\u0027, \u0027STRING\u0027, \u0027GEO_POINT\u0027, \u0027GEO_SHAPE\u0027, \u0027GLOBAL\u0027, \u0027SESSION\u0027, \u0027LOCAL\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027WORK\u0027, \u0027TRANSACTION\u0027, \u0027TRANSACTION_ISOLATION\u0027, \u0027CHARACTERISTICS\u0027, \u0027ISOLATION\u0027, \u0027LEVEL\u0027, \u0027SERIALIZABLE\u0027, \u0027REPEATABLE\u0027, \u0027COMMITTED\u0027, \u0027UNCOMMITTED\u0027, \u0027READ\u0027, \u0027WRITE\u0027, \u0027DEFERRABLE\u0027, \u0027REPLACE\u0027, \u0027LANGUAGE\u0027, \u0027ANALYZE\u0027, \u0027VERBOSE\u0027, \u0027DISCARD\u0027, \u0027PLANS\u0027, \u0027SEQUENCES\u0027, \u0027TEMPORARY\u0027, \u0027TEMP\u0027, \u0027CHECK\u0027, \u0027EXPLAIN\u0027, \u0027FORMAT\u0027, \u0027TYPE\u0027, \u0027TEXT\u0027, \u0027GRAPHVIZ\u0027, \u0027LOGICAL\u0027, \u0027DISTRIBUTED\u0027, \u0027SHOW\u0027, \u0027TABLES\u0027, \u0027SCHEMAS\u0027, \u0027CATALOGS\u0027, \u0027COLUMNS\u0027, \u0027PARTITIONS\u0027, \u0027FUNCTIONS\u0027, \u0027MATERIALIZED\u0027, \u0027VIEW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027ALIAS\u0027, \u0027SYSTEM\u0027, \u0027BERNOULLI\u0027, \u0027TABLESAMPLE\u0027, \u0027VALUES\u0027, \u0027KEY\u0027, \u0027DUPLICATE\u0027, \u0027CONFLICT\u0027, \u0027DO\u0027, \u0027NOTHING\u0027, \u0027COPY\u0027, \u0027CLUSTERED\u0027, \u0027SHARDS\u0027, \u0027OFF\u0027, \u0027FULLTEXT\u0027, \u0027FILTER\u0027, \u0027PLAIN\u0027, \u0027STORAGE\u0027, \u0027RETURNING\u0027, \u0027DYNAMIC\u0027, \u0027STRICT\u0027, \u0027IGNORED\u0027, \u0027ANALYZER\u0027, \u0027EXTENDS\u0027, \u0027TOKENIZER\u0027, \u0027TOKEN_FILTERS\u0027, \u0027CHAR_FILTERS\u0027, \u0027PARTITIONED\u0027, \u0027PREPARE\u0027, \u0027GENERATED\u0027, \u0027ALWAYS\u0027, \u0027ROLE\u0027, \u0027PRIVILEGES\u0027, \u0027SCHEMA\u0027, \u0027RETURN\u0027, \u0027SUMMARY\u0027, \u0027METADATA\u0027, \u0027PUBLICATION\u0027, \u0027SUBSCRIPTION\u0027, \u0027CONNECTION\u0027, \u0027ENABLE\u0027, \u0027DISABLE\u0027, \u0027DECLARE\u0027, \u0027CURSOR\u0027, \u0027ASENSITIVE\u0027, \u0027INSENSITIVE\u0027, \u0027BINARY\u0027, \u0027NO\u0027, \u0027SCROLL\u0027, \u0027HOLD\u0027, \u0027ABSOLUTE\u0027, \u0027FORWARD\u0027, \u0027BACKWARD\u0027, \u0027RELATIVE\u0027, \u0027PRIOR\u0027, \u0027SERVER\u0027, \u0027FOREIGN\u0027, \u0027DATA\u0027, \u0027WRAPPER\u0027, \u0027OPTIONS\u0027, \u0027MAPPING\u0027, \u0027CASCADE\u0027, \u0027RESTRICT\u0027, IDENTIFIER, DIGIT_IDENTIFIER, QUOTED_IDENTIFIER, BACKQUOTED_IDENTIFIER}"
+            },
+            {
+              "name": "PostgresViewCheckOptionTest",
+              "className": "NSCI.Tests.Views.PostgresViewCheckOptionTest",
+              "category": "Views",
+              "description": "Test PostgreSQL WITH CHECK OPTION on views",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresViewDependenciesTest",
+              "className": "NSCI.Tests.Views.PostgresViewDependenciesTest",
+              "category": "Views",
+              "description": "Test PostgreSQL view dependencies and CASCADE",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresViewInsteadOfTriggersTest",
+              "className": "NSCI.Tests.Views.PostgresViewInsteadOfTriggersTest",
+              "category": "Views",
+              "description": "Test PostgreSQL INSTEAD OF triggers on views",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "UpdatableViewTest",
+              "className": "NSCI.Tests.Views.UpdatableViewTest",
+              "category": "Views",
+              "description": "Test Updatable Views",
+              "passed": false,
+              "duration": "00:00:00.312",
+              "error": "PostgresException: XX000: The relation \u0022test_2026-04-20T19:53:14.employee_view\u0022 doesn\u0027t support or allow UPDATE operations"
+            },
+            {
+              "name": "ViewTest",
+              "className": "NSCI.Tests.Views.ViewTest",
+              "category": "Views",
+              "description": "Test CREATE and SELECT from VIEW",
+              "passed": false,
+              "duration": "00:00:00.023",
+              "error": "PostgresException: 42P07: Relation \u0027test_2026-04-20T19:53:14.view_base\u0027 already exists."
+            }
+          ]
+        },
+        "StoredProcedures": {
+          "total": 1,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "StoredProcedureTest",
+              "className": "NSCI.Tests.StoredProcedures.StoredProcedureTest",
+              "category": "StoredProcedures",
+              "description": "Test STORED PROCEDURE",
+              "passed": false,
+              "duration": "00:00:00.233",
+              "error": "PostgresException: XX000: line 1:45: extraneous input \u0027INT\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            }
+          ]
+        },
+        "Triggers": {
+          "total": 1,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "TriggerTest",
+              "className": "NSCI.Tests.Triggers.TriggerTest",
+              "category": "Triggers",
+              "description": "Test TRIGGER",
+              "passed": false,
+              "duration": "00:00:00.314",
+              "error": "PostgresException: XX000: line 1:59: mismatched input \u0027AS\u0027 expecting {\u0027LANGUAGE\u0027, \u0027(\u0027, \u0027[]\u0027}"
+            }
+          ]
+        },
+        "CTE": {
+          "total": 2,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "CteTest",
+              "className": "NSCI.Tests.CTE.CteTest",
+              "category": "CTE",
+              "description": "Test Common Table Expression (CTE)",
+              "passed": false,
+              "duration": "00:00:00.320",
+              "error": "Assertion: CTE should work correctly (expected \u00271\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "RecursiveCteTest",
+              "className": "NSCI.Tests.CTE.RecursiveCteTest",
+              "category": "CTE",
+              "description": "Test recursive CTE",
+              "passed": false,
+              "duration": "00:00:00.239",
+              "error": "PostgresException: XX000: line 2:18: extraneous input \u0027RECURSIVE\u0027 expecting {\u0027AUTHORIZATION\u0027, \u0027TO\u0027, \u0027AT\u0027, \u0027DEALLOCATE\u0027, \u0027ILIKE\u0027, \u0027IGNORE\u0027, \u0027RESPECT\u0027, \u0027FETCH\u0027, \u0027NEXT\u0027, \u0027SUBSTRING\u0027, \u0027POSITION\u0027, \u0027TRIM\u0027, \u0027LEADING\u0027, \u0027TRAILING\u0027, \u0027BOTH\u0027, \u0027TIME\u0027, \u0027ZONE\u0027, \u0027YEAR\u0027, \u0027MONTH\u0027, \u0027DAY\u0027, \u0027HOUR\u0027, \u0027MINUTE\u0027, \u0027SECOND\u0027, \u0027MILLISECOND\u0027, \u0027CURRENT_DATE\u0027, \u0027CURRENT_TIME\u0027, \u0027CURRENT_TIMESTAMP\u0027, \u0027CURRENT_SCHEMA\u0027, \u0027INTERVAL\u0027, \u0027OVER\u0027, \u0027WINDOW\u0027, \u0027PARTITION\u0027, \u0027PROMOTE\u0027, \u0027RANGE\u0027, \u0027ROWS\u0027, \u0027PRECEDING\u0027, \u0027FOLLOWING\u0027, \u0027CURRENT\u0027, \u0027ROW\u0027, \u0027WITHOUT\u0027, \u0027BLOB\u0027, \u0027SWAP\u0027, \u0027GC\u0027, \u0027DANGLING\u0027, \u0027ARTIFACTS\u0027, \u0027DECOMMISSION\u0027, \u0027CLUSTER\u0027, \u0027REPOSITORY\u0027, \u0027SNAPSHOT\u0027, \u0027KILL\u0027, \u0027ONLY\u0027, \u0027OPEN\u0027, \u0027CLOSE\u0027, \u0027RENAME\u0027, \u0027REROUTE\u0027, \u0027MOVE\u0027, \u0027SHARD\u0027, \u0027ALLOCATE\u0027, \u0027REPLICA\u0027, \u0027CANCEL\u0027, \u0027RETRY\u0027, \u0027FAILED\u0027, \u0027BOOLEAN\u0027, \u0027BYTE\u0027, \u0027SHORT\u0027, \u0027INTEGER\u0027, \u0027INT\u0027, \u0027LONG\u0027, \u0027FLOAT\u0027, \u0027DOUBLE\u0027, \u0027PRECISION\u0027, \u0027TIMESTAMP\u0027, \u0027IP\u0027, \u0027CHARACTER\u0027, \u0027CHAR\u0027, \u0027\u0022CHAR\u0022\u0027, \u0027VARYING\u0027, \u0027STRING\u0027, \u0027GEO_POINT\u0027, \u0027GEO_SHAPE\u0027, \u0027GLOBAL\u0027, \u0027SESSION\u0027, \u0027LOCAL\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027WORK\u0027, \u0027TRANSACTION\u0027, \u0027TRANSACTION_ISOLATION\u0027, \u0027CHARACTERISTICS\u0027, \u0027ISOLATION\u0027, \u0027LEVEL\u0027, \u0027SERIALIZABLE\u0027, \u0027REPEATABLE\u0027, \u0027COMMITTED\u0027, \u0027UNCOMMITTED\u0027, \u0027READ\u0027, \u0027WRITE\u0027, \u0027DEFERRABLE\u0027, \u0027REPLACE\u0027, \u0027LANGUAGE\u0027, \u0027ANALYZE\u0027, \u0027VERBOSE\u0027, \u0027DISCARD\u0027, \u0027PLANS\u0027, \u0027SEQUENCES\u0027, \u0027TEMPORARY\u0027, \u0027TEMP\u0027, \u0027CHECK\u0027, \u0027EXPLAIN\u0027, \u0027FORMAT\u0027, \u0027TYPE\u0027, \u0027TEXT\u0027, \u0027GRAPHVIZ\u0027, \u0027LOGICAL\u0027, \u0027DISTRIBUTED\u0027, \u0027SHOW\u0027, \u0027TABLES\u0027, \u0027SCHEMAS\u0027, \u0027CATALOGS\u0027, \u0027COLUMNS\u0027, \u0027PARTITIONS\u0027, \u0027FUNCTIONS\u0027, \u0027MATERIALIZED\u0027, \u0027VIEW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027ALIAS\u0027, \u0027SYSTEM\u0027, \u0027BERNOULLI\u0027, \u0027TABLESAMPLE\u0027, \u0027VALUES\u0027, \u0027KEY\u0027, \u0027DUPLICATE\u0027, \u0027CONFLICT\u0027, \u0027DO\u0027, \u0027NOTHING\u0027, \u0027COPY\u0027, \u0027CLUSTERED\u0027, \u0027SHARDS\u0027, \u0027OFF\u0027, \u0027FULLTEXT\u0027, \u0027FILTER\u0027, \u0027PLAIN\u0027, \u0027STORAGE\u0027, \u0027RETURNING\u0027, \u0027DYNAMIC\u0027, \u0027STRICT\u0027, \u0027IGNORED\u0027, \u0027ANALYZER\u0027, \u0027EXTENDS\u0027, \u0027TOKENIZER\u0027, \u0027TOKEN_FILTERS\u0027, \u0027CHAR_FILTERS\u0027, \u0027PARTITIONED\u0027, \u0027PREPARE\u0027, \u0027GENERATED\u0027, \u0027ALWAYS\u0027, \u0027ROLE\u0027, \u0027PRIVILEGES\u0027, \u0027SCHEMA\u0027, \u0027RETURN\u0027, \u0027SUMMARY\u0027, \u0027METADATA\u0027, \u0027PUBLICATION\u0027, \u0027SUBSCRIPTION\u0027, \u0027CONNECTION\u0027, \u0027ENABLE\u0027, \u0027DISABLE\u0027, \u0027DECLARE\u0027, \u0027CURSOR\u0027, \u0027ASENSITIVE\u0027, \u0027INSENSITIVE\u0027, \u0027BINARY\u0027, \u0027NO\u0027, \u0027SCROLL\u0027, \u0027HOLD\u0027, \u0027ABSOLUTE\u0027, \u0027FORWARD\u0027, \u0027BACKWARD\u0027, \u0027RELATIVE\u0027, \u0027PRIOR\u0027, \u0027SERVER\u0027, \u0027FOREIGN\u0027, \u0027DATA\u0027, \u0027WRAPPER\u0027, \u0027OPTIONS\u0027, \u0027MAPPING\u0027, \u0027CASCADE\u0027, \u0027RESTRICT\u0027, IDENTIFIER, DIGIT_IDENTIFIER, QUOTED_IDENTIFIER, BACKQUOTED_IDENTIFIER}"
+            }
+          ]
+        },
+        "FullTextSearch": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresFullTextSearchBasicTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchBasicTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search basics with tsvector and tsquery",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresFullTextSearchBooleanTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchBooleanTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search with boolean operators",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresFullTextSearchGeneratedTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchGeneratedTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search with generated tsvector column",
+              "passed": false,
+              "duration": "00:00:00.028",
+              "error": "PostgresException: XX000: line 5:122: extraneous input \u0027STORED\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            },
+            {
+              "name": "PostgresFullTextSearchPhraseTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchPhraseTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text phrase search with phraseto_tsquery",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresFullTextSearchRankingTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchRankingTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search ranking with ts_rank",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            }
+          ]
+        },
+        "Locking": {
+          "total": 6,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresOnlyAdvancedLockingTest",
+              "className": "NSCI.Tests.Locking.PostgresOnlyAdvancedLockingTest",
+              "category": "Locking",
+              "description": "FOR KEY SHARE and FOR NO KEY UPDATE",
+              "passed": false,
+              "duration": "00:00:00.080",
+              "error": "PostgresException: 42P07: Relation \u0027test_2026-04-20T19:53:14.products\u0027 already exists."
+            },
+            {
+              "name": "RowLockingPreventsConcurrentModificationTest",
+              "className": "NSCI.Tests.Locking.RowLockingPreventsConcurrentModificationTest",
+              "category": "Locking",
+              "description": "Test row locking prevents concurrent modification",
+              "passed": false,
+              "duration": "00:00:00.073",
+              "error": "PostgresException: 42P07: Relation \u0027test_2026-04-20T19:53:14.orders\u0027 already exists."
+            },
+            {
+              "name": "SelectForShareTest",
+              "className": "NSCI.Tests.Locking.SelectForShareTest",
+              "category": "Locking",
+              "description": "Test SELECT...FOR SHARE (shared lock)",
+              "passed": false,
+              "duration": "00:00:00.249",
+              "error": "PostgresException: XX000: line 1:50: mismatched input \u0027FOR\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            },
+            {
+              "name": "SelectForUpdateTest",
+              "className": "NSCI.Tests.Locking.SelectForUpdateTest",
+              "category": "Locking",
+              "description": "Test SELECT...FOR UPDATE row locking",
+              "passed": false,
+              "duration": "00:00:00.253",
+              "error": "PostgresException: XX000: line 1:43: mismatched input \u0027FOR\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            },
+            {
+              "name": "SelectForUpdateWithWhereTest",
+              "className": "NSCI.Tests.Locking.SelectForUpdateWithWhereTest",
+              "category": "Locking",
+              "description": "Test FOR UPDATE with WHERE clause",
+              "passed": false,
+              "duration": "00:00:00.102",
+              "error": "PostgresException: 42P07: Relation \u0027test_2026-04-20T19:53:14.items\u0027 already exists."
+            },
+            {
+              "name": "SkipLockedTest",
+              "className": "NSCI.Tests.Locking.SkipLockedTest",
+              "category": "Locking",
+              "description": "Test SKIP LOCKED ",
+              "passed": false,
+              "duration": "00:00:00.474",
+              "error": "PostgresException: XX000: line 1:34: mismatched input \u0027FOR\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            }
+          ]
+        },
+        "Upsert": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresOnConflictDoUpdateTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictDoUpdateTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL INSERT...ON CONFLICT DO UPDATE",
+              "passed": false,
+              "duration": "00:00:00.550",
+              "error": "Assertion: Should have 2 rows (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "PostgresOnConflictMultipleConstraintsTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictMultipleConstraintsTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with multiple columns and unique constraints",
+              "passed": false,
+              "duration": "00:00:00.022",
+              "error": "PostgresException: XX000: line 3:50: extraneous input \u0027UNIQUE\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            },
+            {
+              "name": "PostgresOnConflictPartialIndexTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictPartialIndexTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with partial indexes",
+              "passed": false,
+              "duration": "00:00:00.023",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresOnConflictReturningTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictReturningTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with RETURNING clause",
+              "passed": false,
+              "duration": "00:00:00.022",
+              "error": "PostgresException: XX000: line 3:53: extraneous input \u0027UNIQUE\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            },
+            {
+              "name": "PostgresOnConflictWhereTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictWhereTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with WHERE clause",
+              "passed": false,
+              "duration": "00:00:00.262",
+              "error": "PostgresException: XX000: line 6:28: mismatched input \u0027WHERE\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            }
+          ]
+        },
+        "Partitioning": {
+          "total": 4,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "ListPartitioningTest",
+              "className": "NSCI.Tests.Partitioning.ListPartitioningTest",
+              "category": "Partitioning",
+              "description": "Test LIST partitioning",
+              "passed": false,
+              "duration": "00:00:00.023",
+              "error": "PostgresException: XX000: line 5:27: mismatched input \u0027PARTITION\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            },
+            {
+              "name": "PartitionPruningTest",
+              "className": "NSCI.Tests.Partitioning.PartitionPruningTest",
+              "category": "Partitioning",
+              "description": "Test partition pruning in queries",
+              "passed": false,
+              "duration": "00:00:00.043",
+              "error": "PostgresException: XX000: line 5:27: mismatched input \u0027PARTITION\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            },
+            {
+              "name": "RangePartitioningByColumnTest",
+              "className": "NSCI.Tests.Partitioning.RangePartitioningByColumnTest",
+              "category": "Partitioning",
+              "description": "Test RANGE partitioning by column",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: line 5:27: mismatched input \u0027PARTITION\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            },
+            {
+              "name": "RangePartitioningTest",
+              "className": "NSCI.Tests.Partitioning.RangePartitioningTest",
+              "category": "Partitioning",
+              "description": "Test RANGE partitioning by date",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: line 5:27: mismatched input \u0027PARTITION\u0027 expecting {\u003CEOF\u003E, \u0027;\u0027}"
+            }
+          ]
+        },
+        "UserManagement": {
+          "total": 5,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "PostgresColumnPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresColumnPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL column-level privileges",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "InvalidOperationException: Connection is not open"
+            },
+            {
+              "name": "PostgresCreateRoleTest",
+              "className": "NSCI.Tests.UserManagement.PostgresCreateRoleTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL CREATE ROLE and CREATE USER",
+              "passed": true,
+              "duration": "00:00:00.438"
+            },
+            {
+              "name": "PostgresDefaultPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresDefaultPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL default privileges and schema permissions",
+              "passed": false,
+              "duration": "00:00:00.011",
+              "error": "InvalidOperationException: Connection is not open"
+            },
+            {
+              "name": "PostgresGrantPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresGrantPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL GRANT privileges on tables",
+              "passed": false,
+              "duration": "00:00:00.023",
+              "error": "InvalidOperationException: Connection is not open"
+            },
+            {
+              "name": "PostgresRoleMembershipTest",
+              "className": "NSCI.Tests.UserManagement.PostgresRoleMembershipTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL role membership and inheritance",
+              "passed": false,
+              "duration": "00:00:00.055",
+              "error": "InvalidOperationException: Connection is not open"
+            }
+          ]
+        },
+        "JSONOperations": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "JsonContainsTest",
+              "className": "NSCI.Tests.JSONOperations.JsonContainsTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_CONTAINS function",
+              "passed": false,
+              "duration": "00:00:00.021",
+              "error": "PostgresException: XX000: Cannot find data type: jsonb"
+            },
+            {
+              "name": "JsonCreationTest",
+              "className": "NSCI.Tests.JSONOperations.JsonCreationTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_ARRAY and JSON_OBJECT functions",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "JsonExtractTest",
+              "className": "NSCI.Tests.JSONOperations.JsonExtractTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_EXTRACT function",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: Cannot find data type: jsonb"
+            },
+            {
+              "name": "JsonLengthTest",
+              "className": "NSCI.Tests.JSONOperations.JsonLengthTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_LENGTH function",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: Cannot find data type: jsonb"
+            },
+            {
+              "name": "JsonSetTest",
+              "className": "NSCI.Tests.JSONOperations.JsonSetTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_SET function",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: Cannot find data type: jsonb"
+            }
+          ]
+        },
+        "DDL": {
+          "total": 12,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "AlterTableDataTypeConversionTest",
+              "className": "NSCI.Tests.TableDefinition.AlterTableDataTypeConversionTest",
+              "category": "DDL",
+              "description": "Test ALTER TABLE data type conversions",
+              "passed": false,
+              "duration": "00:00:00.281",
+              "error": "PostgresException: XX000: line 1:29: no viable alternative at input \u0027ALTER TABLE type_conversion ALTER\u0027"
+            },
+            {
+              "name": "AlterTableMultipleChangesTest",
+              "className": "NSCI.Tests.TableDefinition.AlterTableMultipleChangesTest",
+              "category": "DDL",
+              "description": "Test ALTER TABLE with multiple changes to same column",
+              "passed": false,
+              "duration": "00:00:00.252",
+              "error": "PostgresException: XX000: line 1:25: no viable alternative at input \u0027ALTER TABLE alter_multi ALTER\u0027"
+            },
+            {
+              "name": "CollateColumnTest",
+              "className": "NSCI.Tests.TableDefinition.CollateColumnTest",
+              "category": "DDL",
+              "description": "Test COLLATE on columns affects string comparison and ordering",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: line 3:27: extraneous input \u0027COLLATE\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            },
+            {
+              "name": "GeneratedColumnTest",
+              "className": "NSCI.Tests.TableDefinition.GeneratedColumnTest",
+              "category": "DDL",
+              "description": "Test GENERATED (computed/virtual) columns update automatically",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: line 5:83: extraneous input \u0027STORED\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            },
+            {
+              "name": "PostgresColumnCompressionTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresColumnCompressionTest",
+              "category": "DDL",
+              "description": "Test COMPRESSION attribute on TEXT columns is recorded in pg_attribute",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: line 3:29: extraneous input \u0027COMPRESSION\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            },
+            {
+              "name": "PostgresColumnStorageTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresColumnStorageTest",
+              "category": "DDL",
+              "description": "Test STORAGE clause on columns is recorded in pg_attribute",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: line 3:45: mismatched input \u0027PLAIN\u0027 expecting \u0027WITH\u0027"
+            },
+            {
+              "name": "PostgresIdentityColumnTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresIdentityColumnTest",
+              "category": "DDL",
+              "description": "Test IDENTITY columns with GENERATED ALWAYS and GENERATED BY DEFAULT",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: line 3:32: mismatched input \u0027BY\u0027 expecting \u0027ALWAYS\u0027"
+            },
+            {
+              "name": "PostgresSequenceTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresSequenceTest",
+              "category": "DDL",
+              "description": "Test CREATE SEQUENCE with NEXTVAL and CURRVAL",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE SEQUENCE\u0027"
+            },
+            {
+              "name": "PostgresTableInheritsTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresTableInheritsTest",
+              "category": "DDL",
+              "description": "Test table inheritance with INHERITS clause",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresTypedTableTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresTypedTableTest",
+              "category": "DDL",
+              "description": "Test typed table creation using OF type_name",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE TYPE\u0027"
+            },
+            {
+              "name": "PostgresUnloggedTableTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresUnloggedTableTest",
+              "category": "DDL",
+              "description": "Test UNLOGGED table creation that skips WAL",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE UNLOGGED\u0027"
+            },
+            {
+              "name": "TableLikeTest",
+              "className": "NSCI.Tests.TableDefinition.TableLikeTest",
+              "category": "DDL",
+              "description": "Test CREATE TABLE LIKE copies structure from an existing table",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: Cannot find data type: serial"
+            }
+          ]
+        },
+        "CustomTypes": {
+          "total": 3,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "EnumTypeTest",
+              "className": "NSCI.Tests.CustomTypes.EnumTypeTest",
+              "category": "CustomTypes",
+              "description": "Test enumerated type enforces valid values",
+              "passed": false,
+              "duration": "00:00:00.024",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE TYPE\u0027"
+            },
+            {
+              "name": "PostgresCompositeTypeTest",
+              "className": "NSCI.Tests.CustomTypes.PostgresCompositeTypeTest",
+              "category": "CustomTypes",
+              "description": "Test CREATE TYPE composite type used as a column type",
+              "passed": false,
+              "duration": "00:00:00.028",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE TYPE\u0027"
+            },
+            {
+              "name": "PostgresDomainTest",
+              "className": "NSCI.Tests.CustomTypes.PostgresDomainTest",
+              "category": "CustomTypes",
+              "description": "Test CREATE DOMAIN enforces constraints on columns that use it",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE DOMAIN\u0027"
+            }
+          ]
+        },
+        "Misc": {
+          "total": 3,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "OptimizeTableTest",
+              "className": "NSCI.Tests.Misc.OptimizeTableTest",
+              "category": "Misc",
+              "description": "Test OPTIMIZE TABLE syntax ",
+              "passed": false,
+              "duration": "00:00:00.254",
+              "error": "PostgresException: XX000: line 1:1: extraneous input \u0027VACUUM\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "XATransactionTest",
+              "className": "NSCI.Tests.Misc.XATransactionTest",
+              "category": "Misc",
+              "description": "Test XA Transaction syntax ",
+              "passed": false,
+              "duration": "00:00:00.254",
+              "error": "PostgresException: XX000: line 1:1: mismatched input \u0027PREPARE\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027FETCH\u0027, \u0027END\u0027, \u0027WITH\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027CLOSE\u0027, \u0027BEGIN\u0027, \u0027START\u0027, \u0027COMMIT\u0027, \u0027ANALYZE\u0027, \u0027DISCARD\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027VALUES\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027, \u0027DECLARE\u0027}"
+            },
+            {
+              "name": "XmlFunctionsTest",
+              "className": "NSCI.Tests.Misc.XmlFunctionsTest",
+              "category": "Misc",
+              "description": "Test XML Functions ",
+              "passed": false,
+              "duration": "00:00:00.021",
+              "error": "PostgresException: XX000: Cannot find data type: xml"
+            }
+          ]
+        },
+        "PerformanceHints": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresCTEMaterializationTest",
+              "className": "NSCI.Tests.Performance.PostgresCTEMaterializationTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL CTE materialization hints",
+              "passed": false,
+              "duration": "00:00:00.628",
+              "error": "PostgresException: XX000: line 2:32: extraneous input \u0027MATERIALIZED\u0027 expecting \u0027(\u0027"
+            },
+            {
+              "name": "PostgresExplainAnalyzeTest",
+              "className": "NSCI.Tests.Performance.PostgresExplainAnalyzeTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL EXPLAIN and EXPLAIN ANALYZE",
+              "passed": false,
+              "duration": "00:00:00.236",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE INDEX\u0027"
+            },
+            {
+              "name": "PostgresJoinOrderPlanningTest",
+              "className": "NSCI.Tests.Performance.PostgresJoinOrderPlanningTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL join order and planning settings",
+              "passed": false,
+              "duration": "00:00:00.705",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE INDEX\u0027"
+            },
+            {
+              "name": "PostgresParallelQueryTest",
+              "className": "NSCI.Tests.Performance.PostgresParallelQueryTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL parallel query settings",
+              "passed": false,
+              "duration": "00:00:07.378",
+              "error": "PostgresException: XX000: Unknown session setting name \u0027max_parallel_workers_per_gather\u0027."
+            },
+            {
+              "name": "PostgresQueryPlannerSettingsTest",
+              "className": "NSCI.Tests.Performance.PostgresQueryPlannerSettingsTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL query planner settings",
+              "passed": false,
+              "duration": "00:00:00.251",
+              "error": "PostgresException: XX000: line 1:8: no viable alternative at input \u0027CREATE INDEX\u0027"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

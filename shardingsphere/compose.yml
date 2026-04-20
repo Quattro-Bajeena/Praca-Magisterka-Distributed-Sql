@@ -7,8 +7,8 @@ services:
     environment:
       - PORT=3308
     volumes:
-      - ./conf:/opt/shardingsphere-proxy/conf
-      - ./logs:/opt/shardingsphere-proxy/logs
+      - ./conf-5.1.2:/opt/shardingsphere-proxy/conf
+      - ./logs-5.1.2:/opt/shardingsphere-proxy/logs
 
   shardingsphere-5.2.1:
     image: apache/shardingsphere-proxy:5.2.1
@@ -18,8 +18,8 @@ services:
     environment:
       - PORT=3308
     volumes:
-      - ./conf:/opt/shardingsphere-proxy/conf
-      - ./logs:/opt/shardingsphere-proxy/logs
+      - ./conf-5.2.1:/opt/shardingsphere-proxy/conf
+      - ./logs-5.2.1:/opt/shardingsphere-proxy/logs
 
   shardingsphere-5.3.2:
     image: apache/shardingsphere-proxy:5.3.2
@@ -29,8 +29,8 @@ services:
     environment:
       - PORT=3308
     volumes:
-      - ./conf:/opt/shardingsphere-proxy/conf
-      - ./logs:/opt/shardingsphere-proxy/logs
+      - ./conf-5.3.2:/opt/shardingsphere-proxy/conf
+      - ./logs-5.3.2:/opt/shardingsphere-proxy/logs
 
   shardingsphere-5.4.1:
     image: apache/shardingsphere-proxy:5.4.1
@@ -40,8 +40,8 @@ services:
     environment:
       - PORT=3308
     volumes:
-      - ./conf:/opt/shardingsphere-proxy/conf
-      - ./logs:/opt/shardingsphere-proxy/logs
+      - ./conf-5.4.1:/opt/shardingsphere-proxy/conf
+      - ./logs-5.4.1:/opt/shardingsphere-proxy/logs
 
   shardingsphere-5.5.3:
     image: apache/shardingsphere-proxy:5.5.3
@@ -51,5 +51,5 @@ services:
     environment:
       - PORT=3308
     volumes:
-      - ./conf:/opt/shardingsphere-proxy/conf
-      - ./logs:/opt/shardingsphere-proxy/logs
+      - ./conf-5.5.3:/opt/shardingsphere-proxy/conf
+      - ./logs-5.5.3:/opt/shardingsphere-proxy/logs
