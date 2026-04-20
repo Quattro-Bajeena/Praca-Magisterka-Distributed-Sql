@@ -1,15 +1,16 @@
 using Npgsql;
+using NSCI.Configuration;
 using System.Data.Common;
 
 namespace NSCI.Database;
 
 public class PostgreSqlDatabaseProvider : IDatabaseProvider
 {
-    readonly string _product;
+    readonly DatabaseConfiguration _configuration;
 
-    public PostgreSqlDatabaseProvider(string product)
+    public PostgreSqlDatabaseProvider(DatabaseConfiguration configuration)
     {
-        _product = product;
+        _configuration = configuration;
     }
 
     public DbConnection CreateConnection(string connectionString)
@@ -19,6 +20,13 @@ public class PostgreSqlDatabaseProvider : IDatabaseProvider
 
     public string GenerateCreateDatabaseSql(string databaseName)
     {
+        if (_configuration.Product == "CrateDB" && _configuration.Version != null && Version.Parse(_configuration.Version) < new Version(6, 2, 4))
+        {
+            // CrateDB uses schemas instead of databases
+            // https://community.cratedb.com/t/create-new-schema/828/2
+            return string.Empty;
+        }
+
         return $"CREATE SCHEMA \"{databaseName}\"";
     }
 

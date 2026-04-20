@@ -17,7 +17,7 @@ public class TestRunner
     {
         _config = config;
         _consoleReporter = consoleReporter;
-        _databaseProvider = DatabaseProviderFactory.Create(_config.Type);
+        _databaseProvider = DatabaseProviderFactory.Create(_config.Type, _config.Product);
     }
 
     public List<TestResult>? RunAllTests(List<(Type Type, SqlTestAttribute Attribute)> discoveredTests)
@@ -59,12 +59,15 @@ public class TestRunner
 
             string dbName = GenerateTestDatabaseName();
             string createDbSql = _databaseProvider.GenerateCreateDatabaseSql(dbName);
+            if (!string.IsNullOrEmpty(createDbSql))
+            {
+                using DbCommand command = connection.CreateCommand();
+                command.CommandText = createDbSql;
+                command.ExecuteNonQuery();
+                Console.WriteLine($"✓ Test database created: {dbName}");
+            }
 
-            using DbCommand command = connection.CreateCommand();
-            command.CommandText = createDbSql;
-            command.ExecuteNonQuery();
 
-            Console.WriteLine($"✓ Test database created: {dbName}");
             return dbName;
         }
         catch (Exception ex)

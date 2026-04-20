@@ -39,6 +39,7 @@ public class NsciDbContext : DbContext
             entity.Property(e => e.Passed).HasColumnName("passed");
             entity.Property(e => e.Duration).HasColumnName("duration").HasMaxLength(50);
             entity.Property(e => e.Error).HasColumnName("error");
+            entity.Property(e => e.FailureCategory).HasColumnName("failure_category").HasConversion<int?>();
 
             entity.HasIndex(e => new { e.DatabaseId, e.Name }).IsUnique();
 

@@ -1,4 +1,29 @@
+using NSCI.Data;
+
 namespace NSCI.Visualize.Models;
+
+public static class FailureCategoryHelper
+{
+    public static string DisplayName(FailureCategory? category) => category switch
+    {
+        FailureCategory.UnsupportedFeatureExplicit => "Jawna informacja o braku wsparcia",
+        FailureCategory.UnrecognizedSyntax => "Nierozpoznana składnia / komenda",
+        FailureCategory.VagueError => "Nieprecyzyjny błąd",
+        FailureCategory.WrongResult => "Inny wynik niż oczekiwany",
+        FailureCategory.Fixable => "Potencjalnie naprawialny",
+        null => "— Niesklasyfikowany —",
+        _ => category.ToString()!,
+    };
+
+    public static IReadOnlyList<(FailureCategory Value, string Label)> AllOptions { get; } =
+    [
+        (FailureCategory.UnsupportedFeatureExplicit, "Jawna informacja o braku wsparcia"),
+        (FailureCategory.UnrecognizedSyntax,         "Nierozpoznana składnia / komenda"),
+        (FailureCategory.VagueError,                 "Nieprecyzyjny błąd"),
+        (FailureCategory.WrongResult,                "Inny wynik niż oczekiwany"),
+        (FailureCategory.Fixable,                    "Potencjalnie naprawialny"),
+    ];
+}
 
 public class DatabaseInfo
 {
@@ -26,6 +51,7 @@ public class TestResultInfo
     public bool Passed { get; set; }
     public string Duration { get; set; } = string.Empty;
     public string? Error { get; set; }
+    public FailureCategory? FailureCategory { get; set; }
 }
 
 public class CategoryStats

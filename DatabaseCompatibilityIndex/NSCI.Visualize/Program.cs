@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NSCI.Data;
 using NSCI.Visualize.Services;
@@ -38,7 +39,19 @@ namespace NSCI.Visualize
             app.MapRazorPages()
                .WithStaticAssets();
 
+            // API: update failure category for a single test result
+            app.MapPost("/api/failure-category", (
+                [FromBody] UpdateFailureCategoryRequest req,
+                TestDataService testDataService) =>
+            {
+                bool found = testDataService.UpdateFailureCategory(req.TestResultId, req.Category);
+                return found ? Results.Ok() : Results.NotFound();
+            });
+
             app.Run();
         }
     }
 }
+
+// Request model for the failure category API endpoint
+public record UpdateFailureCategoryRequest(int TestResultId, FailureCategory? Category);

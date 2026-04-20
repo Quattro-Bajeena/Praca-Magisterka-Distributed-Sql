@@ -12,5 +12,11 @@ public class TestResultEntity
     public string Duration { get; set; } = "";
     public string? Error { get; set; }
 
+    /// <summary>
+    /// Manual classification of the failure type. Null if not yet classified or test passed.
+    /// Stored as an integer in the database.
+    /// </summary>
+    public FailureCategory? FailureCategory { get; set; }
+
     public DatabaseEntity Database { get; set; } = null!;
 }

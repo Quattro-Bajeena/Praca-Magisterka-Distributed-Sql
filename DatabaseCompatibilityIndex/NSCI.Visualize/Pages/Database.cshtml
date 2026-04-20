@@ -1,4 +1,5 @@
 @page
+@using NSCI.Visualize.Models
 @model DatabaseModel
 @{
     ViewData["Title"] = Model.Database?.Name ?? "Database Details";
@@ -92,7 +93,7 @@ else
                                     <span class="badge bg-danger">Failed: @category.Value.Failed</span>
                                     <span class="badge bg-info">Pass Rate: @category.Value.PassRate.ToString("F2")%</span>
                                 </div>
-                                
+
                                 <div class="table-responsive">
                                     <table class="table table-sm table-striped">
                                         <thead>
@@ -102,6 +103,7 @@ else
                                                 <th>Class</th>
                                                 <th>Description</th>
                                                 <th>Duration</th>
+                                                <th>Typ błędu</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -122,11 +124,35 @@ else
                                                     <td><small>@test.ClassName</small></td>
                                                     <td>@test.Description</td>
                                                     <td><small>@test.Duration</small></td>
+                                                    <td>
+                                                        @if (!test.Passed)
+                                                        {
+                                                            <div class="d-flex align-items-center gap-1">
+                                                                <select class="form-select form-select-sm failure-category-select"
+                                                                        data-test-id="@test.Id"
+                                                                        style="min-width: 220px;">
+                                                                    <option value="">— Niesklasyfikowany —</option>
+                                                                    @foreach (var opt in FailureCategoryHelper.AllOptions)
+                                                                    {
+                                                                        if (test.FailureCategory == opt.Value)
+                                                                        {
+                                                                            <option value="@((int)opt.Value)" selected>@opt.Label</option>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <option value="@((int)opt.Value)">@opt.Label</option>
+                                                                        }
+                                                                    }
+                                                                </select>
+                                                                <span class="save-indicator" data-test-id="@test.Id" style="font-size: 0.85rem; display: none;"></span>
+                                                            </div>
+                                                        }
+                                                    </td>
                                                 </tr>
                                                 @if (!test.Passed && !string.IsNullOrEmpty(test.Error))
                                                 {
                                                     <tr class="table-danger">
-                                                        <td colspan="5">
+                                                        <td colspan="6">
                                                             <strong>Error:</strong>
                                                             <pre class="mb-0" style="font-size: 0.8rem; white-space: pre-wrap;">@test.Error</pre>
                                                         </td>
@@ -193,22 +219,50 @@ else
                     responsive: true,
                     maintainAspectRatio: true,
                     scales: {
-                        x: {
-                            stacked: true
-                        },
-                        y: {
-                            stacked: true,
-                            beginAtZero: true
-                        }
+                        x: { stacked: true },
+                        y: { stacked: true, beginAtZero: true }
                     },
                     plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
+                        legend: { position: 'bottom' }
                     }
                 }
             });
             </text>
         }
+
+        // Failure category dropdown — save on change via AJAX
+        document.querySelectorAll('.failure-category-select').forEach(function (select) {
+            select.addEventListener('change', async function () {
+                const testId = parseInt(this.dataset.testId);
+                const rawValue = this.value;
+                const category = rawValue === '' ? null : parseInt(rawValue);
+                const indicator = document.querySelector(`.save-indicator[data-test-id="${testId}"]`);
+
+                indicator.style.display = 'inline';
+                indicator.textContent = '⏳';
+                indicator.style.color = '#6c757d';
+
+                try {
+                    const response = await fetch('/api/failure-category', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ testResultId: testId, category: category })
+                    });
+
+                    if (response.ok) {
+                        indicator.textContent = '✓';
+                        indicator.style.color = '#28a745';
+                    } else {
+                        indicator.textContent = '✗';
+                        indicator.style.color = '#dc3545';
+                    }
+                } catch {
+                    indicator.textContent = '✗';
+                    indicator.style.color = '#dc3545';
+                }
+
+                setTimeout(() => { indicator.style.display = 'none'; }, 2000);
+            });
+        });
     </script>
 }

@@ -78,7 +78,8 @@ public class TestDataService
                 Description = tr.Description ?? "",
                 Passed = tr.Passed,
                 Duration = tr.Duration,
-                Error = tr.Error
+                Error = tr.Error,
+                FailureCategory = tr.FailureCategory
             })
             .ToList();
     }
@@ -136,5 +137,22 @@ public class TestDataService
         }
 
         return data;
+    }
+
+    /// <summary>
+    /// Updates the failure category for a single test result.
+    /// Returns false if the test result was not found.
+    /// </summary>
+    public bool UpdateFailureCategory(int testResultId, FailureCategory? category)
+    {
+        using NsciDbContext context = _contextFactory.CreateDbContext();
+
+        TestResultEntity? entity = context.TestResults.Find(testResultId);
+        if (entity == null)
+            return false;
+
+        entity.FailureCategory = category;
+        context.SaveChanges();
+        return true;
     }
 }
