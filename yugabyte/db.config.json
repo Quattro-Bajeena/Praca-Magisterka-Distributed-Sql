@@ -8,10 +8,21 @@
       "id": "yugabyte-v2.25",
       "displayName": "YugabyteDB 2.25",
       "version": "2.25",
-      "enabled": true,
+      "enabled": false,
       "connectionString": "Host=localhost;Port=5433;Username=yugabyte;Password=;Database=yugabyte;Include Error Detail=true",
       "healthCheck": {
         "host": "localhost",
+        "port": 5433
+      }
+    },
+    {
+      "id": "yugabyte-v2.25",
+      "displayName": "YugabyteDB 2.25",
+      "version": "2.25",
+      "enabled": true,
+      "connectionString": "Host=192.168.1.31;Port=5433;Username=yugabyte;Password=;Database=yb;Include Error Detail=true",
+      "healthCheck": {
+        "host": "192.168.1.31",
         "port": 5433
       }
     }

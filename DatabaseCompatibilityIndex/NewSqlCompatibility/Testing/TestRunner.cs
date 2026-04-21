@@ -63,7 +63,7 @@ public class TestRunner
             using DbConnection connection = _databaseProvider.CreateConnection(_config.ConnectionString);
             connection.Open();
 
-            string dbName = GenerateTestDatabaseName();
+            string dbName = _databaseProvider.GenerateTestDatabaseName();
             string createDbSql = _databaseProvider.GenerateCreateDatabaseSql(dbName);
             if (!string.IsNullOrEmpty(createDbSql))
             {

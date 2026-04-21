@@ -1,1 +1,4 @@
-Error from server (NotFound): services "basic-tidb" not found
+E0421 00:33:20.723159   25288 portforward.go:424] "Unhandled Error" err=<
+	an error occurred forwarding 14000 -> 4000: error forwarding port 4000 to pod f4432ed8d4ce6a4bf802496b1ed93195d0695d4e4b339532c7301580f2644380, uid : exit status 1: 2026/04/20 22:33:20 socat[226961] E connect(6, AF=2 127.0.0.1:4000, 16): Connection refused
+ >
+error: lost connection to pod

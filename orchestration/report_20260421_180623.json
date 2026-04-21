@@ -1,0 +1,1407 @@
+{
+  "generatedAt": "2026-04-21T18:06:23.3521807+02:00",
+  "reports": {
+    "CrateDB 3": {
+      "generatedAt": "2026-04-21T16:06:23.3605452Z",
+      "databaseType": "PostgreSql",
+      "configurationName": "CrateDB 3",
+      "databaseName": "test_22746",
+      "connectionString": "Host=localhost;Port=5480;Username=crate;Include Error Detail=true",
+      "summary": {
+        "total": 139,
+        "passed": 1,
+        "failed": 138
+      },
+      "resultsByCategory": {
+        "BasicQueries": {
+          "total": 10,
+          "passed": 1,
+          "tests": [
+            {
+              "name": "CreateDropTableTest",
+              "className": "NSCI.Tests.BasicQueries.CreateDropTableTest",
+              "category": "BasicQueries",
+              "description": "Create and drop simple table",
+              "passed": false,
+              "duration": "00:00:00.028",
+              "error": "PostgresException: XX000: SQLParseException: line 1:58: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "CreateTableAsSelectTest",
+              "className": "NSCI.Tests.BasicQueries.CreateTableAsSelectTest",
+              "category": "BasicQueries",
+              "description": "Test CREATE TABLE AS SELECT ",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: SQLParseException: line 1:60: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "DeleteTest",
+              "className": "NSCI.Tests.BasicQueries.DeleteTest",
+              "category": "BasicQueries",
+              "description": "DELETE operation",
+              "passed": false,
+              "duration": "00:00:00.671",
+              "error": "Assertion: Should have 2 records left (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "InsertSelectTest",
+              "className": "NSCI.Tests.BasicQueries.InsertSelectTest",
+              "category": "BasicQueries",
+              "description": "INSERT and SELECT data",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 1:60: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresCopyCommandTest",
+              "className": "NSCI.Tests.BasicQueries.PostgresCopyCommandTest",
+              "category": "BasicQueries",
+              "description": "Test PostgreSQL COPY command for bulk data",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 3:41: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresCopyFromStdinTest",
+              "className": "NSCI.Tests.BasicQueries.PostgresCopyFromStdinTest",
+              "category": "BasicQueries",
+              "description": "Bulk insert rows using COPY FROM STDIN with CSV format",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 3:25: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "SelectConstantTest",
+              "className": "NSCI.Tests.BasicQueries.SelectConstantTest",
+              "category": "BasicQueries",
+              "description": "SELECT constant value 1",
+              "passed": true,
+              "duration": "00:00:00.027"
+            },
+            {
+              "name": "SelectNowTest",
+              "className": "NSCI.Tests.BasicQueries.SelectNowTest",
+              "category": "BasicQueries",
+              "description": "SELECT current timestamp",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: UnsupportedFeatureException: unknown function: now()"
+            },
+            {
+              "name": "TruncateTest",
+              "className": "NSCI.Tests.BasicQueries.TruncateTest",
+              "category": "BasicQueries",
+              "description": "TRUNCATE table operation",
+              "passed": false,
+              "duration": "00:00:00.021",
+              "error": "PostgresException: XX000: SQLParseException: line 1:57: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "UpdateTest",
+              "className": "NSCI.Tests.BasicQueries.UpdateTest",
+              "category": "BasicQueries",
+              "description": "UPDATE operation",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: SQLParseException: line 1:56: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "DataTypes": {
+          "total": 9,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "BigIntTypeTest",
+              "className": "NSCI.Tests.DataTypes.BigIntTypeTest",
+              "category": "DataTypes",
+              "description": "Test BIGINT data type",
+              "passed": false,
+              "duration": "00:00:00.170",
+              "error": "PostgresException: XX000: SQLParseException: For input string: \u00229223372036854775808\u0022"
+            },
+            {
+              "name": "BooleanTypeTest",
+              "className": "NSCI.Tests.DataTypes.BooleanTypeTest",
+              "category": "DataTypes",
+              "description": "Test BOOLEAN type (TINYINT)",
+              "passed": false,
+              "duration": "00:00:01.103",
+              "error": "Assertion: BOOLEAN filtering should work (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "DateTimeTypeTest",
+              "className": "NSCI.Tests.DataTypes.DateTimeTypeTest",
+              "category": "DataTypes",
+              "description": "Test DATETIME type",
+              "passed": false,
+              "duration": "00:00:00.204",
+              "error": "PostgresException: XX000: ColumnValidationException: Validation failed for timestamp_col: Cannot cast \u00272024-01-15 14:30:45\u0027 to type timestamp"
+            },
+            {
+              "name": "DateTypeTest",
+              "className": "NSCI.Tests.DataTypes.DateTypeTest",
+              "category": "DataTypes",
+              "description": "Test DATE type",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: Cannot find data type: date"
+            },
+            {
+              "name": "DecimalPrecisionTest",
+              "className": "NSCI.Tests.DataTypes.DecimalPrecisionTest",
+              "category": "DataTypes",
+              "description": "Test DECIMAL precision (10,4)",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: SQLParseException: line 1:62: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "IntTypeTest",
+              "className": "NSCI.Tests.DataTypes.IntTypeTest",
+              "category": "DataTypes",
+              "description": "Test INT data type",
+              "passed": false,
+              "duration": "00:00:00.183",
+              "error": "Assertion: Should have 3 INT values (expected \u00273\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "JsonTypeTest",
+              "className": "NSCI.Tests.DataTypes.JsonTypeTest",
+              "category": "DataTypes",
+              "description": "Test JSON data type",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: SQLParseException: Cannot find data type: json"
+            },
+            {
+              "name": "TextTypeTest",
+              "className": "NSCI.Tests.DataTypes.TextTypeTest",
+              "category": "DataTypes",
+              "description": "Test TEXT type for large strings",
+              "passed": false,
+              "duration": "00:00:00.021",
+              "error": "PostgresException: XX000: SQLParseException: Cannot find data type: text"
+            },
+            {
+              "name": "VarcharTypeTest",
+              "className": "NSCI.Tests.DataTypes.VarcharTypeTest",
+              "category": "DataTypes",
+              "description": "Test VARCHAR length and storage",
+              "passed": false,
+              "duration": "00:00:00.022",
+              "error": "PostgresException: XX000: SQLParseException: line 1:60: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "Constraints": {
+          "total": 7,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "AutoIncrementTest",
+              "className": "NSCI.Tests.Constraints.AutoIncrementTest",
+              "category": "Constraints",
+              "description": "Test AUTO_INCREMENT",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 1:63: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "CheckConstraintTest",
+              "className": "NSCI.Tests.Constraints.CheckConstraintTest",
+              "category": "Constraints",
+              "description": "Test CHECK constraint (if supported)",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 1:54: mismatched input \u0027CHECK\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "DefaultValueTest",
+              "className": "NSCI.Tests.Constraints.DefaultValueTest",
+              "category": "Constraints",
+              "description": "Test DEFAULT value",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 1:62: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "ForeignKeyTest",
+              "className": "NSCI.Tests.Constraints.ForeignKeyTest",
+              "category": "Constraints",
+              "description": "Test FOREIGN KEY constraint",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 1:60: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "NotNullConstraintTest",
+              "className": "NSCI.Tests.Constraints.NotNullConstraintTest",
+              "category": "Constraints",
+              "description": "Test NOT NULL constraint",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 1:70: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PrimaryKeyTest",
+              "className": "NSCI.Tests.Constraints.PrimaryKeyTest",
+              "category": "Constraints",
+              "description": "Test PRIMARY KEY constraint",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 1:55: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "UniqueConstraintTest",
+              "className": "NSCI.Tests.Constraints.UniqueConstraintTest",
+              "category": "Constraints",
+              "description": "Test UNIQUE constraint",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 1:60: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "Transactions": {
+          "total": 17,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "BasicTransactionCommitTest",
+              "className": "NSCI.Tests.Transactions.BasicTransactionCommitTest",
+              "category": "Transactions",
+              "description": "Test basic transaction COMMIT",
+              "passed": false,
+              "duration": "00:00:00.176",
+              "error": "InvalidOperationException: This NpgsqlTransaction has completed; it is no longer usable."
+            },
+            {
+              "name": "LockingBehaviorDifferenceTest",
+              "className": "NSCI.Tests.IsolationLevels.LockingBehaviorDifferenceTest",
+              "category": "Transactions",
+              "description": "Test locking difference between REPEATABLE READ and READ COMMITTED",
+              "passed": false,
+              "duration": "00:00:00.322",
+              "error": "Assertion: Assertion failed: Should have updated rows"
+            },
+            {
+              "name": "MultipleStatementsTransactionTest",
+              "className": "NSCI.Tests.Transactions.MultipleStatementsTransactionTest",
+              "category": "Transactions",
+              "description": "Test multiple statements in transaction",
+              "passed": false,
+              "duration": "00:00:00.206",
+              "error": "InvalidOperationException: This NpgsqlTransaction has completed; it is no longer usable."
+            },
+            {
+              "name": "PostgresAdvisoryLocksTest",
+              "className": "NSCI.Tests.Transactions.PostgresAdvisoryLocksTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL advisory locks",
+              "passed": false,
+              "duration": "00:00:00.025",
+              "error": "PostgresException: XX000: UnsupportedFeatureException: unknown function: pg_try_advisory_lock(long)"
+            },
+            {
+              "name": "PostgresDeferredConstraintsTest",
+              "className": "NSCI.Tests.Transactions.PostgresDeferredConstraintsTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL deferred constraints",
+              "passed": false,
+              "duration": "00:00:00.029",
+              "error": "PostgresException: XX000: SQLParseException: line 3:41: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresNestedSavepointsTest",
+              "className": "NSCI.Tests.Transactions.PostgresNestedSavepointsTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL subtransactions with nested savepoints",
+              "passed": false,
+              "duration": "00:00:00.026",
+              "error": "PostgresException: XX000: SQLParseException: line 3:42: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresSerializableIsolationTest",
+              "className": "NSCI.Tests.Transactions.PostgresSerializableIsolationTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL Serializable Snapshot Isolation",
+              "passed": false,
+              "duration": "00:00:00.022",
+              "error": "PostgresException: XX000: SQLParseException: line 3:44: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresTransactionControlTest",
+              "className": "NSCI.Tests.Transactions.PostgresTransactionControlTest",
+              "category": "Transactions",
+              "description": "Test PostgreSQL transaction control commands",
+              "passed": false,
+              "duration": "00:00:00.023",
+              "error": "PostgresException: XX000: SQLParseException: line 3:43: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "ReadCommittedLockReleaseTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedLockReleaseTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED releases non-matching row locks",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 1:64: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "ReadCommittedNonRepeatableTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedNonRepeatableTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED allows non-repeatable reads",
+              "passed": false,
+              "duration": "00:00:00.166",
+              "error": "PostgresException: XX000: SQLParseException: line 1:17: mismatched input \u0027ISOLATION\u0027 expecting {\u0027.\u0027, \u0027TO\u0027, \u0027=\u0027}"
+            },
+            {
+              "name": "ReadCommittedPhantomTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadCommittedPhantomTest",
+              "category": "Transactions",
+              "description": "Test READ COMMITTED allows phantom reads",
+              "passed": false,
+              "duration": "00:00:00.021",
+              "error": "PostgresException: XX000: SQLParseException: line 1:62: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "ReadUncommittedDirtyReadTest",
+              "className": "NSCI.Tests.IsolationLevels.ReadUncommittedDirtyReadTest",
+              "category": "Transactions",
+              "description": "Test READ UNCOMMITTED allows dirty reads",
+              "passed": false,
+              "duration": "00:00:00.149",
+              "error": "PostgresException: XX000: SQLParseException: line 1:17: mismatched input \u0027ISOLATION\u0027 expecting {\u0027.\u0027, \u0027TO\u0027, \u0027=\u0027}"
+            },
+            {
+              "name": "RepeatableReadPhantomPreventionTest",
+              "className": "NSCI.Tests.IsolationLevels.RepeatableReadPhantomPreventionTest",
+              "category": "Transactions",
+              "description": "Test REPEATABLE READ prevents phantom reads in range",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 1:62: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "RepeatableReadSnapshotTest",
+              "className": "NSCI.Tests.IsolationLevels.RepeatableReadSnapshotTest",
+              "category": "Transactions",
+              "description": "Test REPEATABLE READ snapshot consistency",
+              "passed": false,
+              "duration": "00:00:00.242",
+              "error": "Assertion: Second read should still see snapshot value (expected \u0027100\u0027 but got \u0027999\u0027)"
+            },
+            {
+              "name": "SavePointTest",
+              "className": "NSCI.Tests.Transactions.SavePointTest",
+              "category": "Transactions",
+              "description": "Test SAVEPOINT",
+              "passed": false,
+              "duration": "00:00:00.162",
+              "error": "PostgresException: XX000: SQLParseException: line 1:1: mismatched input \u0027SAVEPOINT\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027BEGIN\u0027, \u0027COMMIT\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027}"
+            },
+            {
+              "name": "TransactionIsolationReadCommittedTest",
+              "className": "NSCI.Tests.Transactions.TransactionIsolationReadCommittedTest",
+              "category": "Transactions",
+              "description": "Test transaction isolation READ_COMMITTED",
+              "passed": false,
+              "duration": "00:00:00.166",
+              "error": "InvalidOperationException: This NpgsqlTransaction has completed; it is no longer usable."
+            },
+            {
+              "name": "TransactionRollbackTest",
+              "className": "NSCI.Tests.Transactions.TransactionRollbackTest",
+              "category": "Transactions",
+              "description": "Test transaction ROLLBACK",
+              "passed": false,
+              "duration": "00:00:00.167",
+              "error": "InvalidOperationException: This NpgsqlTransaction has completed; it is no longer usable."
+            }
+          ]
+        },
+        "Joins": {
+          "total": 6,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "CrossJoinTest",
+              "className": "NSCI.Tests.Joins.CrossJoinTest",
+              "category": "Joins",
+              "description": "Test CROSS JOIN",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 1:55: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "InnerJoinTest",
+              "className": "NSCI.Tests.Joins.InnerJoinTest",
+              "category": "Joins",
+              "description": "Test INNER JOIN",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 1:55: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "LeftJoinTest",
+              "className": "NSCI.Tests.Joins.LeftJoinTest",
+              "category": "Joins",
+              "description": "Test LEFT JOIN",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 1:59: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "MultipleJoinTest",
+              "className": "NSCI.Tests.Joins.MultipleJoinTest",
+              "category": "Joins",
+              "description": "Test multiple table JOIN",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: line 1:57: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "RightJoinTest",
+              "className": "NSCI.Tests.Joins.RightJoinTest",
+              "category": "Joins",
+              "description": "Test RIGHT JOIN (if supported)",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 1:54: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "SelfJoinTest",
+              "className": "NSCI.Tests.Joins.SelfJoinTest",
+              "category": "Joins",
+              "description": "Test SELF JOIN",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 1:62: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "Aggregations": {
+          "total": 8,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "AggregateNullTest",
+              "className": "NSCI.Tests.Aggregations.AggregateNullTest",
+              "category": "Aggregations",
+              "description": "Test aggregate with NULL values",
+              "passed": false,
+              "duration": "00:00:00.207",
+              "error": "Assertion: COUNT(*) should count all rows including NULLs (expected \u00275\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "AvgAggregateTest",
+              "className": "NSCI.Tests.Aggregations.AvgAggregateTest",
+              "category": "Aggregations",
+              "description": "Test AVG aggregate function",
+              "passed": false,
+              "duration": "00:00:00.582",
+              "error": "InvalidCastException: Object cannot be cast from DBNull to other types."
+            },
+            {
+              "name": "CountAggregateTest",
+              "className": "NSCI.Tests.Aggregations.CountAggregateTest",
+              "category": "Aggregations",
+              "description": "Test COUNT aggregate function",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "PostgresException: XX000: SQLParseException: line 1:57: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "DistinctTest",
+              "className": "NSCI.Tests.Aggregations.DistinctTest",
+              "category": "Aggregations",
+              "description": "Test DISTINCT",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "PostgresException: XX000: SQLParseException: line 1:69: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "GroupByTest",
+              "className": "NSCI.Tests.Aggregations.GroupByTest",
+              "category": "Aggregations",
+              "description": "Test GROUP BY clause",
+              "passed": false,
+              "duration": "00:00:00.026",
+              "error": "PostgresException: XX000: SQLParseException: line 1:70: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "HavingClauseTest",
+              "className": "NSCI.Tests.Aggregations.HavingClauseTest",
+              "category": "Aggregations",
+              "description": "Test HAVING clause with GROUP BY",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "PostgresException: XX000: SQLParseException: line 1:79: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "MinMaxAggregateTest",
+              "className": "NSCI.Tests.Aggregations.MinMaxAggregateTest",
+              "category": "Aggregations",
+              "description": "Test MIN and MAX aggregate functions",
+              "passed": false,
+              "duration": "00:00:00.464",
+              "error": "InvalidCastException: Object cannot be cast from DBNull to other types."
+            },
+            {
+              "name": "SumAggregateTest",
+              "className": "NSCI.Tests.Aggregations.SumAggregateTest",
+              "category": "Aggregations",
+              "description": "Test SUM aggregate function",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 1:55: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "Subqueries": {
+          "total": 8,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "CorrelatedSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.CorrelatedSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test correlated subquery",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 1:63: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "ExistsSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.ExistsSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test EXISTS subquery",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 1:61: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "InSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.InSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test IN subquery",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 1:58: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "NotExistsSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.NotExistsSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test NOT EXISTS subquery",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 1:62: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "NotInSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.NotInSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test NOT IN subquery",
+              "passed": false,
+              "duration": "00:00:00.906",
+              "error": "Assertion: NOT IN subquery should return 2 records (expected \u00272\u0027 but got \u00270\u0027)"
+            },
+            {
+              "name": "PostgresScalarSubqueryOperatorsTest",
+              "className": "NSCI.Tests.Subqueries.PostgresScalarSubqueryOperatorsTest",
+              "category": "Subqueries",
+              "description": "Test PostgreSQL scalar subquery operators (ALL, ANY, SOME)",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "PostgresException: XX000: SQLParseException: line 3:41: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "ScalarSubqueryTest",
+              "className": "NSCI.Tests.Subqueries.ScalarSubqueryTest",
+              "category": "Subqueries",
+              "description": "Test scalar subquery",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "PostgresException: XX000: SQLParseException: line 1:61: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "SubqueryFromClauseTest",
+              "className": "NSCI.Tests.Subqueries.SubqueryFromClauseTest",
+              "category": "Subqueries",
+              "description": "Test subquery in FROM clause",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: SQLParseException: line 1:71: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "Indexes": {
+          "total": 8,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "CompositeIndexTest",
+              "className": "NSCI.Tests.Indexes.CompositeIndexTest",
+              "category": "Indexes",
+              "description": "Test composite INDEX",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 1:67: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "CreateIndexTest",
+              "className": "NSCI.Tests.Indexes.CreateIndexTest",
+              "category": "Indexes",
+              "description": "Test CREATE INDEX",
+              "passed": false,
+              "duration": "00:00:00.022",
+              "error": "PostgresException: XX000: SQLParseException: line 1:62: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "DescendingIndexTest",
+              "className": "NSCI.Tests.Indexes.DescendingIndexTest",
+              "category": "Indexes",
+              "description": "Test Descending Index ",
+              "passed": false,
+              "duration": "00:00:00.355",
+              "error": "PostgresException: XX000: SQLParseException: line 1:8: no viable alternative at input \u0027CREATE INDEX\u0027"
+            },
+            {
+              "name": "PostgresExpressionIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresExpressionIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL expression indexes",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: line 3:42: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresIncludeIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresIncludeIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL INCLUDE columns in indexes",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 3:40: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresPartialIndexTest",
+              "className": "NSCI.Tests.Indexes.PostgresPartialIndexTest",
+              "category": "Indexes",
+              "description": "Test PostgreSQL partial indexes",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: SQLParseException: line 4:43: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresReindexTest",
+              "className": "NSCI.Tests.Indexes.PostgresReindexTest",
+              "category": "Indexes",
+              "description": "Test REINDEX rebuilds index structures while preserving query correctness",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: Cannot find data type: serial"
+            },
+            {
+              "name": "UniqueIndexTest",
+              "className": "NSCI.Tests.Indexes.UniqueIndexTest",
+              "category": "Indexes",
+              "description": "Test UNIQUE INDEX",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 1:62: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "Views": {
+          "total": 7,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresMaterializedViewTest",
+              "className": "NSCI.Tests.Views.PostgresMaterializedViewTest",
+              "category": "Views",
+              "description": "Test PostgreSQL materialized views",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 3:44: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresRecursiveViewTest",
+              "className": "NSCI.Tests.Views.PostgresRecursiveViewTest",
+              "category": "Views",
+              "description": "Test PostgreSQL recursive views",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 3:41: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresViewCheckOptionTest",
+              "className": "NSCI.Tests.Views.PostgresViewCheckOptionTest",
+              "category": "Views",
+              "description": "Test PostgreSQL WITH CHECK OPTION on views",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 3:41: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresViewDependenciesTest",
+              "className": "NSCI.Tests.Views.PostgresViewDependenciesTest",
+              "category": "Views",
+              "description": "Test PostgreSQL view dependencies and CASCADE",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 3:41: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresViewInsteadOfTriggersTest",
+              "className": "NSCI.Tests.Views.PostgresViewInsteadOfTriggersTest",
+              "category": "Views",
+              "description": "Test PostgreSQL INSTEAD OF triggers on views",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 3:41: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "UpdatableViewTest",
+              "className": "NSCI.Tests.Views.UpdatableViewTest",
+              "category": "Views",
+              "description": "Test Updatable Views",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 1:57: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "ViewTest",
+              "className": "NSCI.Tests.Views.ViewTest",
+              "category": "Views",
+              "description": "Test CREATE and SELECT from VIEW",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 1:57: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "StoredProcedures": {
+          "total": 1,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "StoredProcedureTest",
+              "className": "NSCI.Tests.StoredProcedures.StoredProcedureTest",
+              "category": "StoredProcedures",
+              "description": "Test STORED PROCEDURE",
+              "passed": false,
+              "duration": "00:00:00.146",
+              "error": "PostgresException: XX000: SQLParseException: line 1:45: extraneous input \u0027INT\u0027 expecting {\u0027,\u0027, \u0027)\u0027}"
+            }
+          ]
+        },
+        "Triggers": {
+          "total": 1,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "TriggerTest",
+              "className": "NSCI.Tests.Triggers.TriggerTest",
+              "category": "Triggers",
+              "description": "Test TRIGGER",
+              "passed": false,
+              "duration": "00:00:00.128",
+              "error": "PostgresException: XX000: SQLParseException: line 1:59: mismatched input \u0027AS\u0027 expecting \u0027LANGUAGE\u0027"
+            }
+          ]
+        },
+        "CTE": {
+          "total": 2,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "CteTest",
+              "className": "NSCI.Tests.CTE.CteTest",
+              "category": "CTE",
+              "description": "Test Common Table Expression (CTE)",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: SQLParseException: line 1:61: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "RecursiveCteTest",
+              "className": "NSCI.Tests.CTE.RecursiveCteTest",
+              "category": "CTE",
+              "description": "Test recursive CTE",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 1:72: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "FullTextSearch": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresFullTextSearchBasicTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchBasicTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search basics with tsvector and tsquery",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresFullTextSearchBooleanTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchBooleanTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search with boolean operators",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresFullTextSearchGeneratedTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchGeneratedTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search with generated tsvector column",
+              "passed": false,
+              "duration": "00:00:00.014",
+              "error": "PostgresException: XX000: SQLParseException: line 3:42: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresFullTextSearchPhraseTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchPhraseTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text phrase search with phraseto_tsquery",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresFullTextSearchRankingTest",
+              "className": "NSCI.Tests.FullTextSearch.PostgresFullTextSearchRankingTest",
+              "category": "FullTextSearch",
+              "description": "Test PostgreSQL full-text search ranking with ts_rank",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 3:42: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "Locking": {
+          "total": 6,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresOnlyAdvancedLockingTest",
+              "className": "NSCI.Tests.Locking.PostgresOnlyAdvancedLockingTest",
+              "category": "Locking",
+              "description": "FOR KEY SHARE and FOR NO KEY UPDATE",
+              "passed": false,
+              "duration": "00:00:00.043",
+              "error": "PostgresException: XX000: SQLParseException: line 1:64: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "RowLockingPreventsConcurrentModificationTest",
+              "className": "NSCI.Tests.Locking.RowLockingPreventsConcurrentModificationTest",
+              "category": "Locking",
+              "description": "Test row locking prevents concurrent modification",
+              "passed": false,
+              "duration": "00:00:00.029",
+              "error": "PostgresException: XX000: SQLParseException: line 1:62: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "SelectForShareTest",
+              "className": "NSCI.Tests.Locking.SelectForShareTest",
+              "category": "Locking",
+              "description": "Test SELECT...FOR SHARE (shared lock)",
+              "passed": false,
+              "duration": "00:00:00.144",
+              "error": "PostgresException: XX000: SQLParseException: line 1:50: mismatched input \u0027FOR\u0027 expecting {\u003CEOF\u003E, \u0027[\u0027, \u0027GROUP\u0027, \u0027ORDER\u0027, \u0027HAVING\u0027, \u0027LIMIT\u0027, \u0027OFFSET\u0027, \u0027OR\u0027, \u0027AND\u0027, \u0027UNION\u0027, \u0027\u002B\u0027, \u0027-\u0027, \u0027*\u0027, \u0027/\u0027, \u0027%\u0027, \u0027||\u0027, \u0027::\u0027, \u0027;\u0027}"
+            },
+            {
+              "name": "SelectForUpdateTest",
+              "className": "NSCI.Tests.Locking.SelectForUpdateTest",
+              "category": "Locking",
+              "description": "Test SELECT...FOR UPDATE row locking",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 1:59: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "SelectForUpdateWithWhereTest",
+              "className": "NSCI.Tests.Locking.SelectForUpdateWithWhereTest",
+              "category": "Locking",
+              "description": "Test FOR UPDATE with WHERE clause",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 1:60: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "SkipLockedTest",
+              "className": "NSCI.Tests.Locking.SkipLockedTest",
+              "category": "Locking",
+              "description": "Test SKIP LOCKED ",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 1:55: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "Upsert": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresOnConflictDoUpdateTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictDoUpdateTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL INSERT...ON CONFLICT DO UPDATE",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "PostgresException: XX000: SQLParseException: line 3:41: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresOnConflictMultipleConstraintsTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictMultipleConstraintsTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with multiple columns and unique constraints",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: SQLParseException: line 3:45: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresOnConflictPartialIndexTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictPartialIndexTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with partial indexes",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 4:54: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresOnConflictReturningTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictReturningTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with RETURNING clause",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "PostgresException: XX000: SQLParseException: line 3:47: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresOnConflictWhereTest",
+              "className": "NSCI.Tests.Upsert.PostgresOnConflictWhereTest",
+              "category": "Upsert",
+              "description": "Test PostgreSQL ON CONFLICT with WHERE clause",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 3:41: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "Partitioning": {
+          "total": 4,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "ListPartitioningTest",
+              "className": "NSCI.Tests.Partitioning.ListPartitioningTest",
+              "category": "Partitioning",
+              "description": "Test LIST partitioning",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 3:45: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PartitionPruningTest",
+              "className": "NSCI.Tests.Partitioning.PartitionPruningTest",
+              "category": "Partitioning",
+              "description": "Test partition pruning in queries",
+              "passed": false,
+              "duration": "00:00:00.020",
+              "error": "PostgresException: XX000: SQLParseException: line 4:44: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "RangePartitioningByColumnTest",
+              "className": "NSCI.Tests.Partitioning.RangePartitioningByColumnTest",
+              "category": "Partitioning",
+              "description": "Test RANGE partitioning by column",
+              "passed": false,
+              "duration": "00:00:00.029",
+              "error": "PostgresException: XX000: SQLParseException: line 3:41: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "RangePartitioningTest",
+              "className": "NSCI.Tests.Partitioning.RangePartitioningTest",
+              "category": "Partitioning",
+              "description": "Test RANGE partitioning by date",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 3:43: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "UserManagement": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresColumnPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresColumnPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL column-level privileges",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "InvalidOperationException: Connection is not open"
+            },
+            {
+              "name": "PostgresCreateRoleTest",
+              "className": "NSCI.Tests.UserManagement.PostgresCreateRoleTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL CREATE ROLE and CREATE USER",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 1:8: no viable alternative at input \u0027CREATE ROLE\u0027"
+            },
+            {
+              "name": "PostgresDefaultPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresDefaultPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL default privileges and schema permissions",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "InvalidOperationException: Connection is not open"
+            },
+            {
+              "name": "PostgresGrantPrivilegesTest",
+              "className": "NSCI.Tests.UserManagement.PostgresGrantPrivilegesTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL GRANT privileges on tables",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "InvalidOperationException: Connection is not open"
+            },
+            {
+              "name": "PostgresRoleMembershipTest",
+              "className": "NSCI.Tests.UserManagement.PostgresRoleMembershipTest",
+              "category": "UserManagement",
+              "description": "Test PostgreSQL role membership and inheritance",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "InvalidOperationException: Connection is not open"
+            }
+          ]
+        },
+        "JSONOperations": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "JsonContainsTest",
+              "className": "NSCI.Tests.JSONOperations.JsonContainsTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_CONTAINS function",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: Cannot find data type: jsonb"
+            },
+            {
+              "name": "JsonCreationTest",
+              "className": "NSCI.Tests.JSONOperations.JsonCreationTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_ARRAY and JSON_OBJECT functions",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: Cannot find data type: serial"
+            },
+            {
+              "name": "JsonExtractTest",
+              "className": "NSCI.Tests.JSONOperations.JsonExtractTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_EXTRACT function",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: Cannot find data type: jsonb"
+            },
+            {
+              "name": "JsonLengthTest",
+              "className": "NSCI.Tests.JSONOperations.JsonLengthTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_LENGTH function",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: Cannot find data type: jsonb"
+            },
+            {
+              "name": "JsonSetTest",
+              "className": "NSCI.Tests.JSONOperations.JsonSetTest",
+              "category": "JSONOperations",
+              "description": "Test JSON_SET function",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: Cannot find data type: jsonb"
+            }
+          ]
+        },
+        "DDL": {
+          "total": 12,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "AlterTableDataTypeConversionTest",
+              "className": "NSCI.Tests.TableDefinition.AlterTableDataTypeConversionTest",
+              "category": "DDL",
+              "description": "Test ALTER TABLE data type conversions",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 1:84: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "AlterTableMultipleChangesTest",
+              "className": "NSCI.Tests.TableDefinition.AlterTableMultipleChangesTest",
+              "category": "DDL",
+              "description": "Test ALTER TABLE with multiple changes to same column",
+              "passed": false,
+              "duration": "00:00:00.024",
+              "error": "PostgresException: XX000: SQLParseException: line 1:59: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "CollateColumnTest",
+              "className": "NSCI.Tests.TableDefinition.CollateColumnTest",
+              "category": "DDL",
+              "description": "Test COLLATE on columns affects string comparison and ordering",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 3:27: mismatched input \u0027COLLATE\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "GeneratedColumnTest",
+              "className": "NSCI.Tests.TableDefinition.GeneratedColumnTest",
+              "category": "DDL",
+              "description": "Test GENERATED (computed/virtual) columns update automatically",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: line 3:31: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresColumnCompressionTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresColumnCompressionTest",
+              "category": "DDL",
+              "description": "Test COMPRESSION attribute on TEXT columns is recorded in pg_attribute",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: line 3:29: mismatched input \u0027COMPRESSION\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresColumnStorageTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresColumnStorageTest",
+              "category": "DDL",
+              "description": "Test STORAGE clause on columns is recorded in pg_attribute",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 3:45: mismatched input \u0027PLAIN\u0027 expecting \u0027WITH\u0027"
+            },
+            {
+              "name": "PostgresIdentityColumnTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresIdentityColumnTest",
+              "category": "DDL",
+              "description": "Test IDENTITY columns with GENERATED ALWAYS and GENERATED BY DEFAULT",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 3:32: mismatched input \u0027BY\u0027 expecting \u0027ALWAYS\u0027"
+            },
+            {
+              "name": "PostgresSequenceTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresSequenceTest",
+              "category": "DDL",
+              "description": "Test CREATE SEQUENCE with NEXTVAL and CURRVAL",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: line 1:8: no viable alternative at input \u0027CREATE SEQUENCE\u0027"
+            },
+            {
+              "name": "PostgresTableInheritsTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresTableInheritsTest",
+              "category": "DDL",
+              "description": "Test table inheritance with INHERITS clause",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: Cannot find data type: serial"
+            },
+            {
+              "name": "PostgresTypedTableTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresTypedTableTest",
+              "category": "DDL",
+              "description": "Test typed table creation using OF type_name",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 1:8: no viable alternative at input \u0027CREATE TYPE\u0027"
+            },
+            {
+              "name": "PostgresUnloggedTableTest",
+              "className": "NSCI.Tests.TableDefinition.PostgresUnloggedTableTest",
+              "category": "DDL",
+              "description": "Test UNLOGGED table creation that skips WAL",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: line 1:8: no viable alternative at input \u0027CREATE UNLOGGED\u0027"
+            },
+            {
+              "name": "TableLikeTest",
+              "className": "NSCI.Tests.TableDefinition.TableLikeTest",
+              "category": "DDL",
+              "description": "Test CREATE TABLE LIKE copies structure from an existing table",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 4:33: extraneous input \u0027CHECK\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "CustomTypes": {
+          "total": 3,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "EnumTypeTest",
+              "className": "NSCI.Tests.CustomTypes.EnumTypeTest",
+              "category": "CustomTypes",
+              "description": "Test enumerated type enforces valid values",
+              "passed": false,
+              "duration": "00:00:00.016",
+              "error": "PostgresException: XX000: SQLParseException: line 1:8: no viable alternative at input \u0027CREATE TYPE\u0027"
+            },
+            {
+              "name": "PostgresCompositeTypeTest",
+              "className": "NSCI.Tests.CustomTypes.PostgresCompositeTypeTest",
+              "category": "CustomTypes",
+              "description": "Test CREATE TYPE composite type used as a column type",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: line 1:8: no viable alternative at input \u0027CREATE TYPE\u0027"
+            },
+            {
+              "name": "PostgresDomainTest",
+              "className": "NSCI.Tests.CustomTypes.PostgresDomainTest",
+              "category": "CustomTypes",
+              "description": "Test CREATE DOMAIN enforces constraints on columns that use it",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: line 1:8: no viable alternative at input \u0027CREATE DOMAIN\u0027"
+            }
+          ]
+        },
+        "Misc": {
+          "total": 3,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "OptimizeTableTest",
+              "className": "NSCI.Tests.Misc.OptimizeTableTest",
+              "category": "Misc",
+              "description": "Test OPTIMIZE TABLE syntax ",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: line 1:61: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "XATransactionTest",
+              "className": "NSCI.Tests.Misc.XATransactionTest",
+              "category": "Misc",
+              "description": "Test XA Transaction syntax ",
+              "passed": false,
+              "duration": "00:00:00.142",
+              "error": "PostgresException: XX000: SQLParseException: line 1:1: mismatched input \u0027PREPARE\u0027 expecting {\u0027SELECT\u0027, \u0027DEALLOCATE\u0027, \u0027CREATE\u0027, \u0027ALTER\u0027, \u0027KILL\u0027, \u0027BEGIN\u0027, \u0027COMMIT\u0027, \u0027EXPLAIN\u0027, \u0027SHOW\u0027, \u0027OPTIMIZE\u0027, \u0027REFRESH\u0027, \u0027RESTORE\u0027, \u0027DROP\u0027, \u0027INSERT\u0027, \u0027DELETE\u0027, \u0027UPDATE\u0027, \u0027SET\u0027, \u0027RESET\u0027, \u0027COPY\u0027, \u0027GRANT\u0027, \u0027DENY\u0027, \u0027REVOKE\u0027}"
+            },
+            {
+              "name": "XmlFunctionsTest",
+              "className": "NSCI.Tests.Misc.XmlFunctionsTest",
+              "category": "Misc",
+              "description": "Test XML Functions ",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: SQLParseException: Cannot find data type: xml"
+            }
+          ]
+        },
+        "PerformanceHints": {
+          "total": 5,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresCTEMaterializationTest",
+              "className": "NSCI.Tests.Performance.PostgresCTEMaterializationTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL CTE materialization hints",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 3:45: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresExplainAnalyzeTest",
+              "className": "NSCI.Tests.Performance.PostgresExplainAnalyzeTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL EXPLAIN and EXPLAIN ANALYZE",
+              "passed": false,
+              "duration": "00:00:00.018",
+              "error": "PostgresException: XX000: SQLParseException: line 3:43: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresJoinOrderPlanningTest",
+              "className": "NSCI.Tests.Performance.PostgresJoinOrderPlanningTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL join order and planning settings",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 3:41: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresParallelQueryTest",
+              "className": "NSCI.Tests.Performance.PostgresParallelQueryTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL parallel query settings",
+              "passed": false,
+              "duration": "00:00:00.019",
+              "error": "PostgresException: XX000: SQLParseException: line 3:41: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            },
+            {
+              "name": "PostgresQueryPlannerSettingsTest",
+              "className": "NSCI.Tests.Performance.PostgresQueryPlannerSettingsTest",
+              "category": "PerformanceHints",
+              "description": "Test PostgreSQL query planner settings",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 3:41: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        },
+        "Spatial": {
+          "total": 2,
+          "passed": 0,
+          "tests": [
+            {
+              "name": "PostgresPostGISTest",
+              "className": "NSCI.Tests.Spatial.PostgresPostGISTest",
+              "category": "Spatial",
+              "description": "PostGIS geometry types and spatial functions",
+              "passed": false,
+              "duration": "00:00:00.017",
+              "error": "PostgresException: XX000: SQLParseException: line 1:8: no viable alternative at input \u0027CREATE EXTENSION\u0027"
+            },
+            {
+              "name": "SpatialCoordinatesTest",
+              "className": "NSCI.Tests.Spatial.SpatialCoordinatesTest",
+              "category": "Spatial",
+              "description": "Basic spatial point and polygon types",
+              "passed": false,
+              "duration": "00:00:00.015",
+              "error": "PostgresException: XX000: SQLParseException: line 3:17: mismatched input \u0027(\u0027 expecting {\u0027,\u0027, \u0027)\u0027, \u0027NOT\u0027, \u0027PRIMARY KEY\u0027, \u0027INDEX\u0027, \u0027STORAGE\u0027}"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

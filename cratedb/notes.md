@@ -13,3 +13,6 @@ GRANT DQL ON SCHEMA schema_name TO user_name;
 
     In CrateDB, schemas are just namespaces that are created and dropped implicitly. Therefore, when GRANT , DENY or REVOKE are invoked on a schema level, CrateDB takes the schema name provided without further validation.
 ```
+
+
+- CrateDB 3 - Could not create a test database: 0A000: unknown function: version()

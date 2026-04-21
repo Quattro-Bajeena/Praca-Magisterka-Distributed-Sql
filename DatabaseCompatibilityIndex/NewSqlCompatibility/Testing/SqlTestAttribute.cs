@@ -15,6 +15,11 @@ public class SqlTestAttribute : Attribute
     {
     }
 
+    public SqlTestAttribute(SqlFeatureCategory category, string description, float weight)
+        : this(category, description, [DatabaseType.MySql, DatabaseType.PostgreSql], weight)
+    {
+    }
+
     public SqlTestAttribute(SqlFeatureCategory category, string description, DatabaseType databaseType)
         : this(category, description, [databaseType], 1.0f)
     {

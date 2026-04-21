@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace NSCI.Tests.BasicQueries;
 
-[SqlTest(SqlFeatureCategory.BasicQueries, "Create and drop simple table")]
+[SqlTest(SqlFeatureCategory.BasicQueries, "Create and drop simple table", 1)]
 public class CreateDropTableTest : SqlTest
 {
     protected override void ExecuteMy(DbConnection connection, DbConnection connectionSecond)
